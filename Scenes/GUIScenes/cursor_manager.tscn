@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkyfocw87xutx"]
+
+[ext_resource type="Script" path="res://Scripts/GUIScripts/scr_cursor_manager.gd" id="1_72amk"]
+[ext_resource type="Texture2D" uid="uid://be5nvx5i40nne" path="res://Sprites/GUISprites/spr_cursor_player.png" id="2_2hcxj"]
+
+[node name="CursorManager" type="Node2D"]
+script = ExtResource("1_72amk")
+
+[node name="CursorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_2hcxj")

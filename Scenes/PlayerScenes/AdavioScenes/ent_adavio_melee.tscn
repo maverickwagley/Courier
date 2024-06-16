@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdqqxuccgdwgu"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio_melee_collision.gd" id="1_7av0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocbwy"]
+size = Vector2(7, 12)
+
+[node name="MeleeArea" type="Area2D"]
+collision_layer = 4
+collision_mask = 32
+script = ExtResource("1_7av0r")
+
+[node name="MeleeShape" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -6)
+shape = SubResource("RectangleShape2D_ocbwy")

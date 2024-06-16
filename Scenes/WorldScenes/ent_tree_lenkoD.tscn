@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://byrfisu6j4qk"]
+
+[ext_resource type="Script" path="res://Scripts/scr_tree_lenko.gd" id="1_lfv8t"]
+[ext_resource type="Texture2D" uid="uid://cwps0kkqgamtg" path="res://Sprites/WorldSprites/spr_tree_lenko_all.png" id="2_rh3qg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bywb"]
+size = Vector2(16, 10)
+
+[node name="TreeLenkoD" type="CharacterBody2D"]
+collision_layer = 255
+collision_mask = 85
+script = ExtResource("1_lfv8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("2_rh3qg")
+offset = Vector2(0, -2)
+hframes = 7
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_8bywb")

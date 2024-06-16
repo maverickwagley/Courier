@@ -1,0 +1,125 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1s1l33aj55l4"]
+
+[ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_form_swap.gd" id="1_r8cfk"]
+
+[node name="FormControl" type="CanvasLayer"]
+script = ExtResource("1_r8cfk")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.5
+offset_top = -134.5
+offset_right = 239.5
+offset_bottom = 134.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FormButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -48.0
+offset_right = -33.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "1"
+
+[node name="FormButton2" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -77.0
+offset_right = 25.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "2"
+
+[node name="FormButton3" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 41.5
+offset_top = -49.5
+offset_right = 84.5
+offset_bottom = -6.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "3"
+
+[node name="FormButton4" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = 10.0
+offset_right = -31.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "4"
+
+[node name="FormButton5" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = 35.5
+offset_right = 24.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "5"
+
+[node name="FormButton6" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 40.5
+offset_top = 11.5
+offset_right = 82.5
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "6"
+
+[connection signal="button_down" from="Control/FormButton" to="." method="_on_form_button_down"]
+[connection signal="button_down" from="Control/FormButton2" to="." method="_on_form_button_2_down"]

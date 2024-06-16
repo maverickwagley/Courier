@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc8rl514x1dqh"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_projectile_regaliare_goldBolt.gd" id="1_qxmvf"]
+[ext_resource type="Texture2D" uid="uid://8bpfb7tygcr0" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_projectile_goldBullet.png" id="2_44tox"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_projectile_goldBolt_collision.gd" id="3_2a1ac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ent4a"]
+size = Vector2(5, 3)
+
+[node name="Projectile" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 544
+script = ExtResource("1_qxmvf")
+
+[node name="MoveCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ent4a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_44tox")
+
+[node name="EnemyCollision" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 288
+script = ExtResource("3_2a1ac")
+
+[node name="EnemyCollisionShape" type="CollisionShape2D" parent="EnemyCollision"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ent4a")
+
+[connection signal="area_entered" from="EnemyCollision" to="." method="_on_enemy_collision_area_entered"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://osnc543hrtg3"]
+
+[ext_resource type="PackedScene" uid="uid://bwlr5srdjtnft" path="res://Scenes/ItemScenes/ent_item.tscn" id="1_nwjgq"]
+[ext_resource type="Texture2D" uid="uid://bwxoee2rvgjx2" path="res://Sprites/ItemSprites/spr_essence_yellow.png" id="2_a0ixw"]
+[ext_resource type="Resource" uid="uid://bcveiqqq3yc5q" path="res://Scripts/Resources/InventoryResources/res_essence_yellow.tres" id="2_lwaw4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8oc5k"]
+resource_local_to_scene = true
+size = Vector2(10, 10.5)
+
+[node name="EssenceYellow" instance=ExtResource("1_nwjgq")]
+item_resource = ExtResource("2_lwaw4")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_a0ixw")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -0.25)
+shape = SubResource("RectangleShape2D_8oc5k")

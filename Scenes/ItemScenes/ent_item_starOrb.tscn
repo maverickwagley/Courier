@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmjbvgxgrddau"]
+
+[ext_resource type="PackedScene" uid="uid://bwlr5srdjtnft" path="res://Scenes/ItemScenes/ent_item.tscn" id="1_y6144"]
+[ext_resource type="Texture2D" uid="uid://bewah4s7i2ne" path="res://Sprites/ItemSprites/spr_starOrb.png" id="2_r7nu2"]
+[ext_resource type="Resource" uid="uid://c5pwhrcudlsh2" path="res://Scripts/Resources/InventoryResources/res_inventory_item_starOrb.tres" id="2_vu8e2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nb24e"]
+resource_local_to_scene = true
+size = Vector2(6, 8)
+
+[node name="Star Orb" instance=ExtResource("1_y6144")]
+item_resource = ExtResource("2_vu8e2")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_r7nu2")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_nb24e")

@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://drf5qkli8uwpe"]
+
+[ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_home.gd" id="1_4ef8p"]
+[ext_resource type="PackedScene" uid="uid://bwdsaqgglbkfj" path="res://Scenes/GameScenes/multiplayer_controller.tscn" id="3_fkjin"]
+
+[sub_resource type="SystemFont" id="SystemFont_mkood"]
+font_italic = true
+generate_mipmaps = true
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_l5lf4"]
+font = SubResource("SystemFont_mkood")
+
+[node name="HomeControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 479.0
+offset_bottom = 269.0
+script = ExtResource("1_4ef8p")
+mp_control = ExtResource("3_fkjin")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 45.0
+offset_right = 290.0
+offset_bottom = 68.0
+text = "COURIER BRAVE"
+label_settings = SubResource("LabelSettings_l5lf4")
+
+[node name="SPButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 80.0
+offset_right = 294.0
+offset_bottom = 112.0
+text = "SINGLE PLAYER"
+
+[node name="MPButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 120.0
+offset_right = 294.0
+offset_bottom = 152.0
+text = "MULTIPLAYER"
+
+[node name="SetButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 160.0
+offset_right = 294.0
+offset_bottom = 192.0
+text = "SETTINGS"
+
+[connection signal="button_down" from="SPButton" to="." method="_on_sp_button_button_down"]
+[connection signal="button_down" from="MPButton" to="." method="_on_mp_button_button_down"]

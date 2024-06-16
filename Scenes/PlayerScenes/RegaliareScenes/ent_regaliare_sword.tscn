@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc2bw4wlu0gd7"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_melee_collision.gd" id="1_8yn74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocbwy"]
+size = Vector2(9, 14)
+
+[node name="PlayerAttack" type="Area2D"]
+collision_layer = 4
+collision_mask = 32
+script = ExtResource("1_8yn74")
+
+[node name="Damagebox" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, -7)
+shape = SubResource("RectangleShape2D_ocbwy")

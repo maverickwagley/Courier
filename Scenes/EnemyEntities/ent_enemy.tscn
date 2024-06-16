@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2q8lspn432da"]
+
+[ext_resource type="PackedScene" uid="uid://b87153mqpcmem" path="res://Scenes/EnemyEntities/ent_skirmisher.tscn" id="2_5khr8"]
+
+[node name="Enemy" type="Node2D"]
+texture_filter = 1
+
+[node name="Skirmisher" parent="." instance=ExtResource("2_5khr8")]

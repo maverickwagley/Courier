@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://chrquyamwisko"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_projectile_regaliare_goldArcs.gd" id="1_bhnwe"]
+[ext_resource type="Texture2D" uid="uid://c8b1lgkkfvepy" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_projectile_goldArc.png" id="2_aorx2"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_projectile_goldArc_collision.gd" id="3_8iq3r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m1g3f"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqevs"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_slefo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ylu4u"]
+resource_name = "anim_goldArcs"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vjef"]
+_data = {
+"RESET": SubResource("Animation_slefo"),
+"anim_goldArcs": SubResource("Animation_ylu4u")
+}
+
+[node name="Projectile" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 544
+script = ExtResource("1_bhnwe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("2_aorx2")
+hframes = 4
+
+[node name="MoveCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_m1g3f")
+
+[node name="EnemyCollision" type="Area2D" parent="."]
+position = Vector2(0, -3)
+collision_layer = 4
+collision_mask = 288
+script = ExtResource("3_8iq3r")
+
+[node name="EnemyCollisionShape" type="CollisionShape2D" parent="EnemyCollision"]
+shape = SubResource("CircleShape2D_cqevs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1vjef")
+}
+
+[connection signal="area_entered" from="EnemyCollision" to="." method="_on_enemy_collision_area_entered"]

@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=3 uid="uid://n6tgp86xdidy"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player.gd" id="1_xyui8"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_camera.gd" id="2_y6y5c"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_gui.gd" id="3_ldtj5"]
+[ext_resource type="Texture2D" uid="uid://de22n8laifbbt" path="res://Sprites/GUISprites/spr_gui_health_bar.png" id="4_rsfn0"]
+[ext_resource type="Texture2D" uid="uid://548m67j82yab" path="res://Sprites/GUISprites/spr_gui_health_bar_fill.png" id="5_ys3ik"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_health.gd" id="6_jin4q"]
+[ext_resource type="PackedScene" uid="uid://c1s1l33aj55l4" path="res://Scenes/GUIScenes/gui_form_swap.tscn" id="7_yggh5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd4rm"]
+size = Vector2(7, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxttq"]
+size = Vector2(7, 6)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_witlg"]
+properties/0/path = NodePath("Magic:visible")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Magic/Sprite2D:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:sync_pos")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:hp")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:is_hurt")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:is_attack")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath(".:is_melee")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath(".:is_magic")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath(".:is_special")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Magic/Sprite2D:visible")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath(".:velocity")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+
+[node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+texture_filter = 1
+collision_mask = 273
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_xyui8")
+
+[node name="Movebox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_cd4rm")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 64
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_gxttq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 960
+limit_bottom = 540
+limit_smoothed = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+script = ExtResource("2_y6y5c")
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_ldtj5")
+
+[node name="HealthBar" type="TextureProgressBar" parent="PlayerHUD"]
+z_index = 1
+offset_left = 3.0
+offset_top = 253.0
+offset_right = 67.0
+offset_bottom = 269.0
+texture_under = ExtResource("4_rsfn0")
+texture_progress = ExtResource("5_ys3ik")
+script = ExtResource("6_jin4q")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_witlg")
+
+[node name="FormControl" parent="." instance=ExtResource("7_yggh5")]
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
