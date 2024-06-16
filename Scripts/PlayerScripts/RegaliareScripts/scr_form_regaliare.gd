@@ -79,7 +79,6 @@ func form_hit():
 	effects.play("anim_hurt_blink")
 	hurt_timer.start()
 	await hurt_timer.timeout
-	print_debug("Timer End")
 	effects.play("RESET")
 	player.is_hurt = false
 	player.is_knockback = false

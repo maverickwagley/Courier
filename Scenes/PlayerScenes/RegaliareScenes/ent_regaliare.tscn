@@ -646,7 +646,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(0.843137, 0.0235294, 0.145098, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_3l53d"]
@@ -659,10 +659,10 @@ tracks/0/path = NodePath("Sprite2D/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.843137, 0.0235294, 0.145098, 0.498039), Color(1, 1, 1, 0.490196), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0.498039), Color(1, 1, 1, 0.498039)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k2x4x"]
@@ -686,7 +686,7 @@ libraries = {
 }
 
 [node name="MagicSkill" type="Node2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(1, 3)
 script = ExtResource("2_bm3dc")
 projectile_scene = ExtResource("3_l0eld")
 
@@ -721,7 +721,8 @@ frame = 1
 offset_left = -20.0
 offset_top = -40.0
 offset_right = 20.0
-color = Color(1, 1, 1, 0)
+offset_bottom = -2.28882e-05
+color = Color(0.843137, 0.0235294, 0.145098, 0)
 
 [node name="HurtTimer" type="Timer" parent="."]
 wait_time = 0.5
