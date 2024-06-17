@@ -203,6 +203,8 @@ func menu_input():
 #
 func form_update(_formNum):
 	#CM: Form Control > _on_button_name_down
+	current_form.effects.play("anim_swap_out")
+	await current_form.effects.animation_finished
 	var form_pos = current_form.global_position
 	current_form.queue_free()
 	form_inst = form_array[_formNum]

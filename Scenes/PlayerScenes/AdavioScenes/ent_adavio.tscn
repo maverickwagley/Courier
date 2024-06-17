@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cfhbae5wr34to"]
+[gd_scene load_steps=45 format=3 uid="uid://cfhbae5wr34to"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio.gd" id="1_fal4e"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio_magic.gd" id="2_dmnhk"]
@@ -642,10 +642,44 @@ tracks/0/keys = {
 "values": [Color(0.72549, 0, 0.176471, 0.498039), Color(1, 1, 1, 0.498039), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_j2m8c"]
+resource_name = "anim_swap_out"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bidx8"]
+resource_name = "anim_swap_in"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k2x4x"]
 _data = {
 "RESET": SubResource("Animation_byxpr"),
-"anim_hurt_blink": SubResource("Animation_3l53d")
+"anim_hurt_blink": SubResource("Animation_3l53d"),
+"anim_swap_in": SubResource("Animation_bidx8"),
+"anim_swap_out": SubResource("Animation_j2m8c")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cd7yv"]

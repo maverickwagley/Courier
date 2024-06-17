@@ -30,7 +30,7 @@ var sync_pos = Vector2(0,0)
 #Built-In Methods
 #
 func _ready():
-	effects.play("RESET")
+	effects.play("anim_swap_in")
 	pass # Replace with function body.
 #
 func _physics_process(delta):
