@@ -16,7 +16,7 @@ var inflict_kb: bool = true
 var parent_velocity: Vector2
 
 func _ready():
-	z_index = -1
+	#z_index = -1
 	collision.damage = damage
 	collision.inflict_kb = inflict_kb
 	animations.play("anim_goldArcs")

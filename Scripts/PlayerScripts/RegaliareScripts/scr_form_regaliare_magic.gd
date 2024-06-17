@@ -46,12 +46,12 @@ func _physics_process(delta):
 				position.x = -2
 				position.y = -7
 				sprite.flip_v = true
-				z_index = 1
+				z_index = 0
 			"down":
 				position.x = 2
 				position.y = -7
 				sprite.flip_v = true
-				z_index = 1
+				z_index = 0
 
 		
 		#Spawn Projectile
@@ -62,8 +62,8 @@ func _physics_process(delta):
 			#var spr_rot = sprite.rotation
 			#print_debug(spr_rot)
 			#projectile.direction = Vector2.from_angle(spr_rot)
-			projectile.global_position = global_position + projectile.direction.normalized() * 5
-			projectile.global_position = spawner.global_position
+			#projectile.global_position = global_position + projectile.direction.normalized() * 5
+			projectile.global_position = spawner.global_position #+ projectile.direction.normalized() * 5
 			projectile.global_rotation = sprite.global_rotation
-			projectile.z_index = z_index
+			projectile.z_index = 0
 			get_tree().root.add_child(projectile)

@@ -162,7 +162,7 @@ func hurt_by_enemy(area):
 	#CM: _on_hit_area_area_entered
 	update_health(20)
 	camera.is_shaking = true
-	camera.apply_shake()
+	camera.apply_shake(3)
 	is_hurt = true
 	current_form.is_hurt = true
 	if area.inflict_kb == true:
