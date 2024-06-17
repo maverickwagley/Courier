@@ -14,6 +14,7 @@ var t1: int
 var is_magic = false
 
 func _ready():
+	visible = false
 	position.x = 0
 	position.y = 0
 	t1 = 0

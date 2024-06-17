@@ -13,6 +13,7 @@ var parent_velocity: Vector2
 var is_special: bool = false
 var special_use: bool = false
 var t1: int
+var t2: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +28,17 @@ func _process(delta):
 			t1 = t1 - 1
 			if t1 <= 0:
 				special_collision.enable()
+				t1 = 90
+			t2 = t2 - 1
+			if t2 <= 0:
+				for i in 5:
+					var projectile = projectile_scene.instantiate()
+					projectile.global_position = global_position + projectile.direction.normalized() * 5
+					projectile.global_position = global_position
+					projectile.global_rotation = (6.28/5) * i
+					projectile.z_index = z_index
+					get_tree().root.add_child(projectile)
+				t2 = 90
 		else:
 			if Input.is_action_just_pressed("special_skill"):
 					is_special = false

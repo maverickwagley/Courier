@@ -686,6 +686,7 @@ script = ExtResource("5_u2u4k")
 position = Vector2(0, -1)
 scale = Vector2(1, 0.6)
 script = ExtResource("7_r5leq")
+projectile_scene = ExtResource("3_4f8v2")
 
 [node name="SpecialArea" type="Area2D" parent="SpecialSkill"]
 position = Vector2(0, -31.6667)

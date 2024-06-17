@@ -24,6 +24,28 @@ func _ready():
 func _physics_process(_delta):
 	pass
 #
+#Signal Methods
+#
+func _on_form_button_pressed():
+	if player_form == 0:
+		player.form_menu = false
+		close()
+	else:
+		player.form_update(0)
+		player_form = 0
+		player.form_menu = false
+		close()
+#
+func _on_form_button_2_pressed():
+	if player_form == 1:
+		player.form_menu = false
+		close()
+	else:
+		player.form_update(1)
+		player_form = 1
+		player.form_menu = false
+		close()
+#
 #Custom Methods
 #
 func toggle_menu():
@@ -41,17 +63,5 @@ func close():
 	visible = false
 	is_open = false
 	#closed.emit()
-
-func _on_form_button_down():
-	if player_form == 0:
-		return
-	else:
-		player.form_update(0)
-		player_form = 0
 #
-func _on_form_button_2_down():
-	if player_form == 1:
-		return
-	else:
-		player.form_update(1)
-		player_form = 1
+

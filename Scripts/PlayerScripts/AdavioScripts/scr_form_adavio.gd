@@ -85,7 +85,8 @@ func form_special():
 					await animations.animation_finished
 					player.global_position = get_global_mouse_position()
 					special.special_use = true
-					special.t1 = 45
+					special.t1 = 60
+					special.t2 = 75
 					animations.play("anim_adavio_special_enter")
 					await animations.animation_finished
 					player.is_attack = false

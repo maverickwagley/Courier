@@ -78,10 +78,11 @@ func handle_input():
 	#CM: _phsyics_process
 	if is_knockback == false:
 		move_input()
-		roll_input()
-		melee_input()
-		magic_input()
-		special_input()
+		if form_menu == false:
+			roll_input()
+			melee_input()
+			magic_input()
+			special_input()
 #
 func move_input():
 	#CM: handle_input
@@ -141,6 +142,7 @@ func magic_input():
 #
 func special_input():
 	#CM: handle_input
+	if is_roll == true: return
 	if is_attack == false:
 		if Input.is_action_just_pressed("special_skill"):
 			if t1 <= 0:
@@ -193,6 +195,10 @@ func update_cam_tilemap():
 func menu_input():
 	#CM: _physics_process
 	if Input.is_action_just_pressed("switch_form"):
+		if form_menu == false:
+			form_menu = true
+		else:
+			form_menu = false
 		form_controller.toggle_menu()
 #
 func form_update(_formNum):

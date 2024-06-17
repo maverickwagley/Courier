@@ -121,5 +121,5 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "6"
 
-[connection signal="button_down" from="Control/FormButton" to="." method="_on_form_button_down"]
-[connection signal="button_down" from="Control/FormButton2" to="." method="_on_form_button_2_down"]
+[connection signal="pressed" from="Control/FormButton" to="." method="_on_form_button_pressed"]
+[connection signal="pressed" from="Control/FormButton2" to="." method="_on_form_button_2_pressed"]
