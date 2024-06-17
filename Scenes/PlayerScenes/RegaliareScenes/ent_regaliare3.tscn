@@ -1,14 +1,14 @@
-[gd_scene load_steps=43 format=3 uid="uid://b743ii3v1vjje"]
+[gd_scene load_steps=40 format=3 uid="uid://dwmdw7e4x2sds"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare.gd" id="1_xud2j"]
-[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_magic.gd" id="2_bm3dc"]
-[ext_resource type="PackedScene" uid="uid://dc8rl514x1dqh" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_projectile_regaliare_goldBolt.tscn" id="3_l0eld"]
-[ext_resource type="Texture2D" uid="uid://5a6xhi51aijo" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare_castArm.png" id="4_xotgn"]
-[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_melee.gd" id="5_hlfvf"]
-[ext_resource type="PackedScene" uid="uid://cc2bw4wlu0gd7" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare_sword.tscn" id="6_8oiy2"]
-[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_special.gd" id="7_lxbxq"]
-[ext_resource type="PackedScene" uid="uid://chrquyamwisko" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_projectile_regaliare_goldArcs.tscn" id="8_2by46"]
-[ext_resource type="Texture2D" uid="uid://b5h8r6o01ramt" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare.png" id="9_ph3mt"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare.gd" id="1_sq435"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_magic.gd" id="2_8vhfi"]
+[ext_resource type="PackedScene" uid="uid://dc8rl514x1dqh" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_projectile_regaliare_goldBolt.tscn" id="3_kmde5"]
+[ext_resource type="Texture2D" uid="uid://5a6xhi51aijo" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare_castArm.png" id="4_5tu8q"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_melee.gd" id="5_buy3b"]
+[ext_resource type="PackedScene" uid="uid://cc2bw4wlu0gd7" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare_sword.tscn" id="6_xjn3d"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_special.gd" id="7_84mqs"]
+[ext_resource type="PackedScene" uid="uid://chrquyamwisko" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_projectile_regaliare_goldArcs.tscn" id="8_pa4hx"]
+[ext_resource type="Texture2D" uid="uid://b5h8r6o01ramt" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare.png" id="9_w1ett"]
 
 [sub_resource type="Animation" id="Animation_4cpli"]
 length = 0.001
@@ -634,78 +634,22 @@ _data = {
 "anim_regaliare_walk_up": SubResource("Animation_5bkio")
 }
 
-[sub_resource type="Animation" id="Animation_il4a6"]
-resource_name = "anim_hurt_blink"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0.784314, 0, 0.215686, 0.498039), Color(1, 1, 1, 0.498039), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_b5sdj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_j4vv3"]
-_data = {
-"RESET": SubResource("Animation_b5sdj"),
-"anim_hurt_blink": SubResource("Animation_il4a6")
-}
-
 [node name="FormController" type="Node2D"]
-script = ExtResource("1_xud2j")
+y_sort_enabled = true
+script = ExtResource("1_sq435")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2yd4d")
 }
 
-[node name="Effects" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_j4vv3")
-}
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-clip_children = 2
-position = Vector2(0, -8)
-texture = ExtResource("9_ph3mt")
-hframes = 16
-vframes = 10
-frame = 1
-
-[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
-offset_left = -22.0
-offset_top = -24.0
-offset_right = 18.0
-offset_bottom = 16.0
-color = Color(1, 1, 1, 0)
-
 [node name="MagicSkill" type="Node2D" parent="."]
 position = Vector2(1, 3)
-script = ExtResource("2_bm3dc")
-projectile_scene = ExtResource("3_l0eld")
+script = ExtResource("2_8vhfi")
+projectile_scene = ExtResource("3_kmde5")
 
 [node name="Sprite2D" type="Sprite2D" parent="MagicSkill"]
-texture = ExtResource("4_xotgn")
+texture = ExtResource("4_5tu8q")
 offset = Vector2(4, 0)
 
 [node name="ProjectileSpawn" type="Node2D" parent="MagicSkill"]
@@ -714,13 +658,30 @@ position = Vector2(4, 0)
 [node name="MeleeSkill" type="Node2D" parent="."]
 position = Vector2(4, -12)
 rotation = 0.785398
-script = ExtResource("5_hlfvf")
+script = ExtResource("5_buy3b")
 
-[node name="MeleeArea" parent="MeleeSkill" instance=ExtResource("6_8oiy2")]
+[node name="MeleeArea" parent="MeleeSkill" instance=ExtResource("6_xjn3d")]
 
 [node name="SpecialSkill" type="Node2D" parent="."]
-script = ExtResource("7_lxbxq")
-projectile_scene = ExtResource("8_2by46")
+script = ExtResource("7_84mqs")
+projectile_scene = ExtResource("8_pa4hx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+clip_children = 2
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(-1, 1)
+texture = ExtResource("9_w1ett")
+offset = Vector2(0, -8)
+hframes = 16
+vframes = 10
+frame = 1
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+offset_left = -20.0
+offset_top = -28.0
+offset_right = 20.0
+offset_bottom = 12.0
 
 [node name="HurtTimer" type="Timer" parent="."]
 wait_time = 0.5
