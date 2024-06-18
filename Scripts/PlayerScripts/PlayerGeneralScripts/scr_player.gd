@@ -19,6 +19,7 @@ signal sig_health_changed
 @onready var current_form
 @onready var player: Node2D
 @onready var tilemap: TileMap 
+@onready var room_space = get_parent()
 
 var hp: int = 200
 var max_hp: int = 200

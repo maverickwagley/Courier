@@ -7,6 +7,7 @@ class_name Magic
 @onready var sprite = $Sprite2D #Players Rotating Arm
 @onready var spawner = $ProjectileSpawn
 @onready var parent = get_parent()
+@onready var player = CharacterBody2D
 
 var parent_velocity: Vector2
 
@@ -61,9 +62,10 @@ func _physics_process(delta):
 			#projectile.parent_velocity = parent_velocity
 			#var spr_rot = sprite.rotation
 			#print_debug(spr_rot)
-			#projectile.direction = Vector2.from_angle(spr_rot)
-			#projectile.global_position = global_position + projectile.direction.normalized() * 5
+			#projectile.didrection = Vector2.from_angle(spr_rot)
+			#projecddtile.global_position = global_position + projectile.direction.normalized() * 5
 			projectile.global_position = spawner.global_position #+ projectile.direction.normalized() * 5
 			projectile.global_rotation = sprite.global_rotation
-			projectile.z_index = 0
-			get_tree().root.add_child(projectile)
+			#projectile.player = player
+			print_debug(str(get_tree().root))
+			get_tree().current_scene.add_child(projectile)

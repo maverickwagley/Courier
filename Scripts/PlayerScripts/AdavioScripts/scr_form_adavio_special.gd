@@ -37,7 +37,7 @@ func _process(delta):
 					projectile.global_position = global_position
 					projectile.global_rotation = (6.28/5) * i
 					projectile.z_index = z_index
-					get_tree().root.add_child(projectile)
+					get_tree().current_scene.add_child(projectile)
 				t2 = 90
 		else:
 			if Input.is_action_just_pressed("special_skill"):
@@ -61,10 +61,7 @@ func special_check():
 	query.set_collision_mask(0b00000000_00000000_00000001_00000000)
 	query.exclude = [player]
 	var result = space_state.intersect_ray(query)
-	print_debug(special_collision.get_collision_mask_value(6))
 	if result:
-		print_debug("Object:" + str(result.collider))
-		print_debug("Position:" + str(result.position))
 		return true
 	else: 
 		return false

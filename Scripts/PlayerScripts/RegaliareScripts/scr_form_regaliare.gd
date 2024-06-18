@@ -8,7 +8,7 @@ extends Node2D
 @onready var magic = $MagicSkill
 @onready var special = $SpecialSkill
 @onready var hurt_timer = $HurtTimer
-@onready var player: CharacterBody2D = get_parent()
+@onready var player: CharacterBody2D
 
 var form_id: int = 0
 var form_menu: bool = false
@@ -29,6 +29,7 @@ var sync_pos = Vector2(0,0)
 #
 func _ready():
 	effects.play("anim_swap_in")
+	player = get_parent()
 	pass # Replace with function body.
 #
 func _physics_process(delta):
@@ -61,7 +62,8 @@ func form_melee():
 		is_melee = false
 #
 func form_magic():
-	pass
+	if is_magic == true:
+		magic.player = player
 #
 func form_special():
 	if is_special == true:

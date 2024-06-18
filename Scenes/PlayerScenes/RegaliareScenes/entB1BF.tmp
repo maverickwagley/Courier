@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare.gd" id="1_xud2j"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_magic.gd" id="2_bm3dc"]
-[ext_resource type="PackedScene" uid="uid://dc8rl514x1dqh" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_projectile_regaliare_goldBolt.tscn" id="3_l0eld"]
+[ext_resource type="PackedScene" uid="uid://b8qm06c7rtfb3" path="res://Scenes/PlayerScenes/ent_projectile_test.tscn" id="4_m5tqo"]
 [ext_resource type="Texture2D" uid="uid://5a6xhi51aijo" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare_castArm.png" id="4_xotgn"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_melee.gd" id="5_hlfvf"]
 [ext_resource type="PackedScene" uid="uid://cc2bw4wlu0gd7" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare_sword.tscn" id="6_8oiy2"]
@@ -736,7 +736,7 @@ libraries = {
 [node name="MagicSkill" type="Node2D" parent="."]
 position = Vector2(0, -6)
 script = ExtResource("2_bm3dc")
-projectile_scene = ExtResource("3_l0eld")
+projectile_scene = ExtResource("4_m5tqo")
 
 [node name="Sprite2D" type="Sprite2D" parent="MagicSkill"]
 texture = ExtResource("4_xotgn")

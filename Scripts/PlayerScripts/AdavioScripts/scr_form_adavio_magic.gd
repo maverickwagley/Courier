@@ -6,6 +6,7 @@ extends Node2D
 
 @onready var sprite = $Sprite2D #Players Rotating Arm
 @onready var spawner = $ProjectileSpawn
+@onready var player = get_parent()
 @onready var parent = get_parent()
 
 var parent_velocity: Vector2
@@ -61,5 +62,5 @@ func _physics_process(delta):
 				#projectile.global_position = global_position + projectile.direction.normalized() * 10
 				projectile.global_position = spawner.global_position 
 				projectile.global_rotation = sprite.global_rotation - .2 + (.1 * i)
+				get_tree().current_scene.add_child(projectile)
 				projectile.z_index = 0
-				get_tree().root.add_child(projectile)
