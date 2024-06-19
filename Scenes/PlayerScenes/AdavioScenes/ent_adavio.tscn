@@ -747,7 +747,7 @@ script = ExtResource("7_r5leq")
 projectile_scene = ExtResource("3_4f8v2")
 
 [node name="SpecialArea" type="Area2D" parent="SpecialSkill"]
-position = Vector2(0, -31.6667)
+position = Vector2(0, -30)
 collision_layer = 4
 collision_mask = 288
 script = ExtResource("8_6jp02")

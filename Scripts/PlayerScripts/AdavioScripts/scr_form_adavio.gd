@@ -63,7 +63,8 @@ func form_melee():
 		is_melee = false
 #
 func form_magic():
-	pass
+	if is_magic == true:
+		magic.player = player
 #
 func form_special():
 	if is_special == true:
@@ -144,5 +145,5 @@ func update_animation():
 			animations.play("anim_adavio_idle_" + last_dir)
 #
 func _on_melee_area_entered(area):
-	print_debug(area)
+	#print_debug(area)
 	pass # Replace with function body.

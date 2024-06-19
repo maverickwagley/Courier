@@ -25,7 +25,7 @@ func _ready():
 
 func _physics_process(delta):
 	sd_timer = sd_timer - 1
-	print_debug(sd_timer)
+	#print_debug(sd_timer)
 	global_position = player.global_position
 	#velocity = direction * SPEED * delta
 	#var collision = move_and_collide(velocity)

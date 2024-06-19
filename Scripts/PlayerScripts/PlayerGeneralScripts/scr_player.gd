@@ -25,6 +25,7 @@ var hp: int = 200
 var max_hp: int = 200
 var cam_set: bool = false
 var cam_timer: int = 30
+var roll_shake: bool = false
 var form_id: int = 0
 var t1: int = 0
 var form_menu: bool = false
@@ -59,7 +60,7 @@ func _physics_process(delta):
 			handle_input()
 	else:
 		handle_input()
-	move_and_slide()
+	
 	update_cam_tilemap()
 	menu_input()
 #
@@ -77,6 +78,8 @@ func _on_hitbox_area_entered(area):
 #
 func handle_input():
 	#CM: _phsyics_process
+	if move_and_slide():
+		roll_collision()
 	if is_knockback == false:
 		move_input()
 		if form_menu == false:
@@ -159,6 +162,16 @@ func knockback(_enemyDirection: Vector2):
 	velocity = knockback_dir
 	move_and_slide()
 #
+func roll_collision():
+	if is_roll == true:
+			for i in get_slide_collision_count():
+				var collision = get_slide_collision(i)
+				#print("Collided with: ", collision.get_collider().name)
+				if roll_shake == false:
+					camera.is_shaking = true
+					camera.apply_shake(3)
+					roll_shake = true
+#
 func hurt_by_enemy(area):
 	#CM: _on_hit_area_area_entered
 	update_health(20)
@@ -212,3 +225,4 @@ func form_update(_formNum):
 	current_form = form_inst.instantiate()
 	add_child(current_form)
 	current_form.global_position = form_pos
+	current_form.player = self

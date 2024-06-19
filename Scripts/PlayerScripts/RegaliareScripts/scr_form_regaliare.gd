@@ -46,6 +46,7 @@ func form_roll():
 		await animations.animation_finished
 		player.is_roll = false
 		player.is_invincible = false
+		player.roll_shake = false
 		is_roll = false
 		is_invincible = false
 #
