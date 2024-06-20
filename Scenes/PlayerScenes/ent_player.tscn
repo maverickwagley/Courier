@@ -48,6 +48,9 @@ properties/9/replication_mode = 1
 properties/10/path = NodePath(".:velocity")
 properties/10/spawn = true
 properties/10/replication_mode = 1
+properties/11/path = NodePath(".:position")
+properties/11/spawn = true
+properties/11/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
