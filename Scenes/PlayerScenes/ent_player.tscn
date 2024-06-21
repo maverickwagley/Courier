@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://n6tgp86xdidy"]
+[gd_scene load_steps=12 format=3 uid="uid://n6tgp86xdidy"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player.gd" id="1_xyui8"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_camera.gd" id="2_y6y5c"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://548m67j82yab" path="res://Sprites/GUISprites/spr_gui_health_bar_fill.png" id="5_ys3ik"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_health.gd" id="6_jin4q"]
 [ext_resource type="PackedScene" uid="uid://c1s1l33aj55l4" path="res://Scenes/GUIScenes/gui_form_swap.tscn" id="7_yggh5"]
+[ext_resource type="PackedScene" uid="uid://dkyfocw87xutx" path="res://Scenes/GUIScenes/cursor_manager.tscn" id="8_gva1e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd4rm"]
 size = Vector2(7, 6)
@@ -82,6 +83,9 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 script = ExtResource("2_y6y5c")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_witlg")
+
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_ldtj5")
 
@@ -95,9 +99,10 @@ texture_under = ExtResource("4_rsfn0")
 texture_progress = ExtResource("5_ys3ik")
 script = ExtResource("6_jin4q")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_witlg")
+[node name="FormSwapMenu" parent="." instance=ExtResource("7_yggh5")]
 
-[node name="FormControl" parent="." instance=ExtResource("7_yggh5")]
+[node name="Cursor" type="CanvasLayer" parent="."]
+
+[node name="CursorManager" parent="Cursor" instance=ExtResource("8_gva1e")]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

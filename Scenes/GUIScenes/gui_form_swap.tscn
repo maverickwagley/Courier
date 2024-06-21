@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_form_swap.gd" id="1_r8cfk"]
 
-[node name="FormControl" type="CanvasLayer"]
+[node name="FormSwapMenu" type="CanvasLayer"]
 script = ExtResource("1_r8cfk")
 
 [node name="Control" type="Control" parent="."]

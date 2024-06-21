@@ -3,8 +3,7 @@ extends Control
 
 @export var ip_address = "127.0.0.1"
 @export var port = 8910
-var multiplayer_peer = ENetMultiplayerPeer.new()
-var peer
+var peer = ENetMultiplayerPeer.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
