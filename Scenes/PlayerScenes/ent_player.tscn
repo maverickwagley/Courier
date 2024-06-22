@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://n6tgp86xdidy"]
+[gd_scene load_steps=11 format=3 uid="uid://n6tgp86xdidy"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player.gd" id="1_xyui8"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_camera.gd" id="2_y6y5c"]
@@ -14,44 +14,6 @@ size = Vector2(7, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxttq"]
 size = Vector2(7, 6)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_witlg"]
-properties/0/path = NodePath("Magic:visible")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Magic/Sprite2D:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:sync_pos")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath(".:hp")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath(".:is_hurt")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath(".:is_attack")
-properties/5/spawn = true
-properties/5/replication_mode = 1
-properties/6/path = NodePath(".:is_melee")
-properties/6/spawn = true
-properties/6/replication_mode = 1
-properties/7/path = NodePath(".:is_magic")
-properties/7/spawn = true
-properties/7/replication_mode = 1
-properties/8/path = NodePath(".:is_special")
-properties/8/spawn = true
-properties/8/replication_mode = 1
-properties/9/path = NodePath("Magic/Sprite2D:visible")
-properties/9/spawn = true
-properties/9/replication_mode = 1
-properties/10/path = NodePath(".:velocity")
-properties/10/spawn = true
-properties/10/replication_mode = 1
-properties/11/path = NodePath(".:position")
-properties/11/spawn = true
-properties/11/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -82,9 +44,6 @@ limit_smoothed = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 script = ExtResource("2_y6y5c")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_witlg")
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_ldtj5")

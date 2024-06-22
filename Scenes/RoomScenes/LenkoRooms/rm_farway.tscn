@@ -1,10 +1,10 @@
 [gd_scene load_steps=32 format=3 uid="uid://ca7pf5s7vr3pd"]
 
-[ext_resource type="Script" path="res://Scripts/GameScripts/scr_rm_farway.gd" id="1_v86d4"]
-[ext_resource type="PackedScene" uid="uid://n6tgp86xdidy" path="res://Scenes/PlayerScenes/ent_player.tscn" id="2_q1cks"]
-[ext_resource type="Texture2D" uid="uid://bk3elhgx4vnrh" path="res://Sprites/WorldSprites/spr_tileset_lenko.png" id="3_50ege"]
-[ext_resource type="Texture2D" uid="uid://cf5iymmvekaax" path="res://Sprites/WorldSprites/spr_effect_bush_lenko.png" id="4_drht5"]
-[ext_resource type="Texture2D" uid="uid://cwps0kkqgamtg" path="res://Sprites/WorldSprites/spr_tree_lenko_all.png" id="5_es3h8"]
+[ext_resource type="Script" path="res://Scripts/GameScripts/scr_rm_farway.gd" id="1_58377"]
+[ext_resource type="PackedScene" uid="uid://n6tgp86xdidy" path="res://Scenes/PlayerScenes/ent_player.tscn" id="2_miyam"]
+[ext_resource type="Texture2D" uid="uid://bk3elhgx4vnrh" path="res://Sprites/WorldSprites/spr_tileset_lenko.png" id="3_leaij"]
+[ext_resource type="Texture2D" uid="uid://cf5iymmvekaax" path="res://Sprites/WorldSprites/spr_effect_bush_lenko.png" id="4_fpkfy"]
+[ext_resource type="Texture2D" uid="uid://cwps0kkqgamtg" path="res://Sprites/WorldSprites/spr_tree_lenko_all.png" id="5_7vacd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2hy8r"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -78,7 +78,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j4f4o"]
-texture = ExtResource("3_50ege")
+texture = ExtResource("3_leaij")
 1:0/0 = 0
 1:0/0/terrain_set = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -3623,7 +3623,7 @@ texture = ExtResource("3_50ege")
 0:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_2hy8r")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f6gol"]
-texture = ExtResource("4_drht5")
+texture = ExtResource("4_fpkfy")
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -3681,7 +3681,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vfk6k"]
-texture = ExtResource("5_es3h8")
+texture = ExtResource("5_7vacd")
 use_texture_padding = false
 2:0/size_in_atlas = Vector2i(2, 4)
 2:0/0 = 0
@@ -3773,8 +3773,8 @@ sources/3 = SubResource("TileSetAtlasSource_vfk6k")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_v86d4")
-player_scene = ExtResource("2_q1cks")
+script = ExtResource("1_58377")
+player_scene = ExtResource("2_miyam")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -3808,7 +3808,7 @@ position = Vector2(-1, 0)
 position = Vector2(265, 393)
 
 [node name="1" type="Node2D" parent="TileMap/PlayerSpawns" groups=["PlayerSpawnPoint"]]
-position = Vector2(353, 70)
+position = Vector2(330, 353)
 
 [node name="EnemyPathPoints" type="Node2D" parent="TileMap"]
 

@@ -5,7 +5,6 @@ signal sig_health_changed
 
 @export var speed: int = 65
 @export var knockback_power = 50
-@export var inventory: Inventory
 
 @onready var camera = $Camera2D
 @onready var hurt_box = $Hitbox
@@ -50,17 +49,11 @@ func _ready():
 	add_child(current_form)
 	form_controller.player_form = 0
 	form_id = 0
-	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 #
 func _physics_process(delta):
 	if t1 > 0:
 		t1 = t1 - 1
-	if ScrGameManager.mode == 2:
-		if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-			handle_input()
-	else:
-		handle_input()
-	
+	handle_input()
 	update_cam_tilemap()
 	menu_input()
 #
@@ -188,8 +181,8 @@ func hurt_by_enemy(area):
 func item_pickup(area):
 	#CM: _on_hit_area_area_entered
 	pass
-	if area.has_method("pick_up"):
-		area.pick_up(inventory)
+	#if area.has_method("pick_up"):
+		#area.pick_up(inventory)
 #
 func update_health(_damage):
 	#CM: hurt_by_enemy
