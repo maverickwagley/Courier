@@ -1,8 +1,8 @@
 extends Control
 
-@export var ip_address = "127.0.0.1"
-@export var port = 8080
-var peer = ENetMultiplayerPeer.new()
+@export var server_ip = "127.0.0.1"
+@export var server_port = 8080
+var server_peer = ENetMultiplayerPeer.new()
 #
 #Built-in Methods
 #
@@ -32,7 +32,11 @@ func connection_failed():
 #
 func _on_host_button_down():
 	print_debug("Starting host!")
-	peer = ENetMultiplayerPeer.new()
+	server_peer = ENetMultiplayerPeer.new()
+	multiplayer.multiplayer_peer = server_peer
+	multiplayer.peer_connected.connect(_add_player_to_game)
+	multiplayer.peer_disconnected.connect(_del_player)
+	send_player_info($LineEdit.text, multiplayer.get_unique_id())
 	#old version
 	#peer = ENetMultiplayerPeer.new()
 	#var error = peer.create_server(port, 4)
@@ -45,10 +49,22 @@ func _on_host_button_down():
 	#send_player_info($LineEdit.text, multiplayer.get_unique_id())
 #
 func _on_join_button_down():
-	peer = ENetMultiplayerPeer.new()
-	peer.create_client(ip_address, port)
-	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
-	multiplayer.set_multiplayer_peer(peer)
+	print_debug("Player 2 joining")
+	var client_peer = ENetMultiplayerPeer.new()
+	client_peer.create_client(server_ip,server_port)
+	multiplayer.multiplayer_peer = client_peer
+	send_player_info($LineEdit.text, multiplayer.get_unique_id())
+	#server_peer = ENetMultiplayerPeer.new()
+	#server_peer.create_client(ip_address, port)
+	#server_peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
+	#multiplayer.set_multiplayer_peer(server_peer)
+#
+func _add_player_to_game(id: int):
+	print_debug("Player %s joined the game!" % id)
+
+#
+func _del_player(id: int):
+	print_debug("Player %s left the game!" % id)
 #
 func _on_start_button_down():
 	start_game.rpc()

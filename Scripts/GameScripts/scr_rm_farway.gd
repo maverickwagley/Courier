@@ -28,7 +28,7 @@ func _ready():
 		var index = 0
 		for i in ScrGameManager.player:
 			var current_player = player_scene.instantiate()
-			current_player.name = str(ScrGameManager.player[i].id)
+			#current_player.name = str(ScrGameManager.player[i].id)
 			add_child(current_player)
 			for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
 				if spawn.name == str(index):

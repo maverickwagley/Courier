@@ -1,4 +1,6 @@
 extends Node
+
+var player = {}
 #
 func magic_direction(_mdir):
 	_mdir = wrapi(_mdir,0,360)

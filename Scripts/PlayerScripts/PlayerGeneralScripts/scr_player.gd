@@ -11,7 +11,7 @@ signal sig_health_changed
 @onready var hurt_box = $Hitbox
 @onready var player_hud: CanvasLayer = $PlayerHUD
 @onready var health_gui: TextureProgressBar = $PlayerHUD/HealthBar
-@onready var form_controller: CanvasLayer = $FormControl
+@onready var form_controller: CanvasLayer = $FormSwapMenu
 @onready var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
 @onready var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
 @onready var form_array = [form0,form1]
