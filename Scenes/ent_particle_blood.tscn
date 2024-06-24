@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8dt62417aypa"]
+
+[ext_resource type="Script" path="res://scr_particle_explosion.gd" id="1_rdcmx"]
+
+[sub_resource type="Curve" id="Curve_3f0cp"]
+_data = [Vector2(0.0479452, 1), 0.0, 0.0, 0, 0, Vector2(0.969178, 0.108726), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Particle" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_rdcmx")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 3
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+lifetime_randomness = 1.0
+gravity = Vector2(0, 100)
+initial_velocity_min = 25.64
+initial_velocity_max = 70.51
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_3f0cp")
+color = Color(0.556863, 0.145098, 0.137255, 1)

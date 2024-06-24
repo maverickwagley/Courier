@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var collision: Area2D = $EnemyCollision
-@onready var frag = preload("res://Scenes/ent_explosion.tscn")
+@onready var frag = preload("res://Scenes/PlayerScenes/ent_particle_goldBolt.tscn")
 
 var speed = 250
 var sd_timer: int

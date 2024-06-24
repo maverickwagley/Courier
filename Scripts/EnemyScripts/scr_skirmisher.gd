@@ -17,6 +17,7 @@ signal sig_health_changed
 @onready var melee_box = $MeleeWeapon
 @onready var melee_timer = $MeleeWeapon/MeleeTimer
 @onready var nav_agent = $Navigation/NavigationAgent2D
+@onready var blood_particle = preload("res://Scenes/ent_particle_blood.tscn")
 
 var hp: int = 70
 var max_hp: int = 70
@@ -169,4 +170,11 @@ func _on_hitbox_area_entered(area):
 	#if is_hurt == true: return
 	if area.enemy_hit.find(self) == -1:
 		area.enemy_hit.append(self)
+		var _partChance = randi_range(0,1)
+		if _partChance == 0:
+			var current_part = blood_particle.instantiate()
+			get_tree().root.add_child(current_part) 
+			current_part.particle.amount = randi_range(1,3)
+			current_part.global_position = global_position
+			current_part.global_rotation = area.global_rotation - 3.14
 		hurt_and_damage(area)

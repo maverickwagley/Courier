@@ -11,7 +11,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print_debug(sd_timer)
 	if sd_timer > 0:
 		sd_timer = sd_timer - 1
 	if sd_timer <= 0:

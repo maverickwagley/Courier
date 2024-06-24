@@ -65,7 +65,7 @@ func _physics_process(delta):
 			#projectile.didrection = Vector2.from_angle(spr_rot)
 			#projecddtile.global_position = global_position + projectile.direction.normalized() * 5
 			player.camera.is_shaking = true
-			player.camera.apply_shake(1)
+			player.camera.apply_shake(.75)
 			projectile.global_position = spawner.global_position #+ projectile.direction.normalized() * 5
 			projectile.global_rotation = sprite.global_rotation
 			#projectile.player = player
