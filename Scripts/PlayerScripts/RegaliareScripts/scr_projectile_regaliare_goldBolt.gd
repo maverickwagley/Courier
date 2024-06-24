@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var collision: Area2D = $EnemyCollision
-@onready var frag = preload("res://Scenes/ent_frag.tscn")
+@onready var frag = preload("res://Scenes/ent_explosion.tscn")
 
 var speed = 250
 var sd_timer: int
@@ -34,11 +34,11 @@ func _physics_process(delta):
 
 func frag_spawn():
 	var current_frag = frag.instantiate()
-	add_child(current_frag)
-	current_frag.speed = speed
+	get_tree().root.add_child(current_frag) 
+	#current_frag.speed = speed
 	current_frag.global_position = global_position
 	current_frag.global_rotation = global_rotation - 3.14
-	current_frag.direction = Vector2.RIGHT.rotated(global_rotation)
+	#current_frag.direction = Vector2.RIGHT.rotated(global_rotation)
 
 
 func _on_enemy_collision_area_entered(area):

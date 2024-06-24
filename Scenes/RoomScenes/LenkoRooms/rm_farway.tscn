@@ -3840,6 +3840,7 @@ position = Vector2(105, 726)
 position = Vector2(137, 718)
 
 [node name="CollisionMap" type="TileMap" parent="."]
+visible = false
 y_sort_enabled = true
 tile_set = SubResource("TileSet_5447k")
 format = 2
