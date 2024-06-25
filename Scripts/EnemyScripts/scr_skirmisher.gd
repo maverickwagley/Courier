@@ -18,6 +18,7 @@ signal sig_health_changed
 @onready var melee_timer = $MeleeWeapon/MeleeTimer
 @onready var nav_agent = $Navigation/NavigationAgent2D
 @onready var blood_particle = preload("res://Scenes/ent_particle_blood.tscn")
+@onready var death_particle = preload("res://Scenes/ent_particle_death.tscn")
 
 var hp: int = 70
 var max_hp: int = 70
@@ -110,6 +111,11 @@ func update_animation():
 func hurt_and_damage(area):
 	hp = hp - area.damage
 	if hp <= 0:
+		var current_death = death_particle.instantiate()
+		for current_world in get_tree().get_nodes_in_group("World"):
+				if current_world.name == "World":
+					current_world.add_child(current_death)  
+		current_death.global_position = global_position
 		queue_free()
 	sig_health_changed.emit()
 	is_hurt = true
@@ -173,7 +179,9 @@ func _on_hitbox_area_entered(area):
 		var _partChance = randi_range(0,1)
 		if _partChance == 0:
 			var current_part = blood_particle.instantiate()
-			get_tree().root.add_child(current_part) 
+			for current_world in get_tree().get_nodes_in_group("World"):
+				if current_world.name == "World":
+					current_world.add_child(current_part) 
 			current_part.particle.amount = randi_range(1,3)
 			current_part.global_position = global_position
 			current_part.global_rotation = area.global_rotation - 3.14

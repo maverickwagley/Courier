@@ -3771,7 +3771,7 @@ sources/0 = SubResource("TileSetAtlasSource_j4f4o")
 sources/2 = SubResource("TileSetAtlasSource_f6gol")
 sources/3 = SubResource("TileSetAtlasSource_vfk6k")
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" groups=["World"]]
 y_sort_enabled = true
 script = ExtResource("1_58377")
 player_scene = ExtResource("2_miyam")

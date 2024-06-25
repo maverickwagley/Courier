@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfwkreholewgl"]
 
-[ext_resource type="Script" path="res://scr_particle_explosion.gd" id="1_gy88k"]
+[ext_resource type="Script" path="res://Scripts/scr_particle_generic.gd" id="1_t0o8m"]
 
 [sub_resource type="Curve" id="Curve_3f0cp"]
 _data = [Vector2(0.0479452, 1), 0.0, 0.0, 0, 0, Vector2(0.969178, 0.108726), 0.0, 0.0, 0, 0]
@@ -8,7 +8,7 @@ point_count = 2
 
 [node name="Particle" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_gy88k")
+script = ExtResource("1_t0o8m")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false

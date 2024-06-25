@@ -34,7 +34,9 @@ func _physics_process(delta):
 
 func frag_spawn():
 	var current_frag = frag.instantiate()
-	get_tree().root.add_child(current_frag) 
+	for current_world in get_tree().get_nodes_in_group("World"):
+		if current_world.name == "World":
+			current_world.add_child(current_frag) 
 	#current_frag.speed = speed
 	current_frag.global_position = global_position
 	current_frag.global_rotation = global_rotation - 3.14
