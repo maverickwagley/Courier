@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var collision: Area2D = $EnemyCollision
-@onready var frag = preload("res://Scenes/PlayerScenes/ent_particle_goldBolt.tscn")
+@onready var particle = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_particle_goldBolt.tscn")
 
 var speed = 250
 var sd_timer: int
@@ -26,24 +26,22 @@ func _physics_process(delta):
 	velocity = direction * speed * delta
 	var collision = move_and_collide(velocity)
 	if collision:
-		frag_spawn()
+		ScrPlayerGeneral.part_spawn(particle,global_position,global_rotation)
 		queue_free()
 	visible = true
 	if sd_timer < 1:
 		queue_free()
 
-func frag_spawn():
-	var current_frag = frag.instantiate()
-	for current_world in get_tree().get_nodes_in_group("World"):
-		if current_world.name == "World":
-			current_world.add_child(current_frag) 
-	#current_frag.speed = speed
-	current_frag.global_position = global_position
-	current_frag.global_rotation = global_rotation - 3.14
-	#current_frag.direction = Vector2.RIGHT.rotated(global_rotation)
+#func part_spawn():
+	#var current_part = particle.instantiate()
+	#for current_world in get_tree().get_nodes_in_group("World"):
+		#if current_world.name == "World":
+			#current_world.add_child(current_part) 
+	#current_part.global_position = global_position
+	#current_part.global_rotation = global_rotation - 3.14
 
 
 func _on_enemy_collision_area_entered(area):
-	frag_spawn()
+	ScrPlayerGeneral.part_spawn(particle,global_position,global_rotation)
 	queue_free()
 	

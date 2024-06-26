@@ -56,7 +56,7 @@ func _physics_process(delta):
 		
 		#Spawn Projectile
 		if t1 <= 0:
-			t1 = 30
+			t1 = 50
 			for i in 5:
 				var projectile = projectile_scene.instantiate()
 				#projectile.global_position = global_position + projectile.direction.normalized() * 10

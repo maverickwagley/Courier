@@ -18,5 +18,7 @@ spread = 180.0
 gravity = Vector2(0, 100)
 initial_velocity_min = 25.64
 initial_velocity_max = 70.51
+damping_min = 50.0
+damping_max = 100.0
 scale_amount_max = 2.0
 color = Color(0.556863, 0.145098, 0.137255, 1)

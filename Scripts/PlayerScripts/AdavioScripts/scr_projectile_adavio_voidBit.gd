@@ -1,14 +1,15 @@
 extends CharacterBody2D
 
 @onready var collision: Area2D = $EnemyCollision
+@onready var particle: PackedScene = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_particle_voidBolt.tscn")
 
-var SPEED = 250
+var speed = 250
 var sd_timer: int
 #var direction: Vector2
 var direction: Vector2 = Vector2.RIGHT
 
 
-var damage: int = 7
+var damage: int = 14
 var inflict_kb: bool = false
 var parent_velocity: Vector2
 
@@ -20,11 +21,17 @@ func _ready():
 	sd_timer = 40
 
 func _physics_process(delta):
+	if sd_timer < 35:
+		if damage > 3:
+			damage = damage - 1
+		if speed > 150:
+			speed = speed - 10
 	sd_timer = sd_timer - 1
 	#position = position + direction.normalized() * SPEED * delta
-	velocity = direction * SPEED * delta
+	velocity = direction * speed * delta
 	var collision = move_and_collide(velocity)
 	if collision:
+		ScrPlayerGeneral.part_spawn(particle,global_position,global_rotation)
 		queue_free()
 	visible = true
 	if sd_timer < 1:
@@ -34,4 +41,6 @@ func _physics_process(delta):
 
 
 func _on_enemy_collision_area_entered(area):
+	print_debug(damage)
+	ScrPlayerGeneral.part_spawn(particle,global_position,global_rotation)
 	queue_free()

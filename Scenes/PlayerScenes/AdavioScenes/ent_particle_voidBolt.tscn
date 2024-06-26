@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8dt62417aypa"]
+[gd_scene load_steps=3 format=3 uid="uid://cn283gb7wdik4"]
 
-[ext_resource type="Script" path="res://Scripts/scr_particle_generic.gd" id="1_iv2hk"]
+[ext_resource type="Script" path="res://Scripts/scr_particle_generic.gd" id="1_c28qu"]
 
 [sub_resource type="Curve" id="Curve_3f0cp"]
 _data = [Vector2(0.0479452, 1), 0.0, 0.0, 0, 0, Vector2(0.969178, 0.108726), 0.0, 0.0, 0, 0]
@@ -8,18 +8,17 @@ point_count = 2
 
 [node name="Particle" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_iv2hk")
+script = ExtResource("1_c28qu")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 3
+amount = 2
 lifetime = 0.5
 one_shot = true
-explosiveness = 0.75
-lifetime_randomness = 1.0
+explosiveness = 1.0
 gravity = Vector2(0, 100)
 initial_velocity_min = 25.64
-initial_velocity_max = 121.79
-scale_amount_max = 3.0
+initial_velocity_max = 160.25
+scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_3f0cp")
-color = Color(0.556863, 0.145098, 0.137255, 1)
+color = Color(0.529412, 0.121569, 0.588235, 1)

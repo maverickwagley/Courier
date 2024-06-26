@@ -11,6 +11,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if particle.gravity.y > 0:
+		particle.gravity.y = particle.gravity.y - 1
 	if sd_timer > 0:
 		sd_timer = sd_timer - 1
 	if sd_timer <= 0:

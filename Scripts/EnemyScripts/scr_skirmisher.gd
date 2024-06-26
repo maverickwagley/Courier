@@ -20,8 +20,8 @@ signal sig_health_changed
 @onready var blood_particle = preload("res://Scenes/ent_particle_blood.tscn")
 @onready var death_particle = preload("res://Scenes/ent_particle_death.tscn")
 
-var hp: int = 70
-var max_hp: int = 70
+var hp: int = 69
+var max_hp: int = 69
 var knockback_power: int = 150
 var move_timer: int = randi_range(60,600)
 var kb_timer: int = 0
@@ -171,18 +171,20 @@ func _on_aggro_drop_area_exited(area):
 	is_aggro = false
 
 func _on_hitbox_area_entered(area):
-	if area == $MeleeWeapon: return
-	if area == $HitArea: return
-	#if is_hurt == true: return
-	if area.enemy_hit.find(self) == -1:
-		area.enemy_hit.append(self)
-		var _partChance = randi_range(0,1)
-		if _partChance == 0:
-			var current_part = blood_particle.instantiate()
-			for current_world in get_tree().get_nodes_in_group("World"):
-				if current_world.name == "World":
-					current_world.add_child(current_part) 
-			current_part.particle.amount = randi_range(1,3)
-			current_part.global_position = global_position
-			current_part.global_rotation = area.global_rotation - 3.14
-		hurt_and_damage(area)
+	ScrEnemyGeneral.hitbox_area_entered(area,blood_particle,global_position)
+	hurt_and_damage(area)
+	#if area == $MeleeWeapon: return
+	#if area == $HitArea: return
+	##if is_hurt == true: return
+	#if area.enemy_hit.find(self) == -1:
+		#area.enemy_hit.append(self)
+		#var _partChance = randi_range(0,1)
+		#if _partChance == 0:
+			#var current_part = blood_particle.instantiate()
+			#for current_world in get_tree().get_nodes_in_group("World"):
+				#if current_world.name == "World":
+					#current_world.add_child(current_part) 
+			#current_part.particle.amount = randi_range(1,3)
+			#current_part.global_position = global_position
+			#current_part.global_rotation = area.global_rotation - 3.14
+		#hurt_and_damage(area)
