@@ -19,15 +19,19 @@ signal sig_health_changed
 @onready var player: Node2D
 @onready var tilemap: TileMap 
 @onready var room_space = get_parent()
-
+#Stats
 var hp: int = 200
 var max_hp: int = 200
-var cam_set: bool = false
-var cam_timer: int = 30
-var roll_shake: bool = false
+var yellow_energy: int = 0
+var violet_energy: int = 0
+var green_energy: int = 0
+var blue_energy: int = 0
+var orange_energy: int = 0
+var red_energy: int = 0
+var max_energy: int = 200
+#Status
 var form_id: int = 0
-var t1: int = 0
-var form_menu: bool = false
+var form_type: int = 0
 var is_invincible: bool = false
 var is_hurt: bool = false
 var is_knockback: bool = false
@@ -36,9 +40,16 @@ var is_attack: bool = false
 var is_melee: bool = false
 var is_magic: bool = false
 var is_special: bool = false
+#Animation
 var direction = "down"
 var last_dir = "down"
 var magic_dir = "down"
+#Other
+var roll_shake: bool = false
+var cam_set: bool = false
+var cam_timer: int = 30
+var t1: int = 0
+var form_menu: bool = false
 var sync_pos = Vector2(0,0)
 #
 #Built-In Methods

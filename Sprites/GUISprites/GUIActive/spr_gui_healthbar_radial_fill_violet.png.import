@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://smsr3r2i64te"
-path="res://.godot/imported/spr_hud_meter_round.png-2f5ee56ed0eef6f0d970f105c2ed3d09.ctex"
+uid="uid://dlwdioqfqhmcj"
+path="res://.godot/imported/spr_gui_healthbar_radial_fill_violet.png-1f86bf12fca4a0a1f894acd23ef19713.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/spr_hud_meter_round.png"
-dest_files=["res://.godot/imported/spr_hud_meter_round.png-2f5ee56ed0eef6f0d970f105c2ed3d09.ctex"]
+source_file="res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial_fill_violet.png"
+dest_files=["res://.godot/imported/spr_gui_healthbar_radial_fill_violet.png-1f86bf12fca4a0a1f894acd23ef19713.ctex"]
 
 [params]
 

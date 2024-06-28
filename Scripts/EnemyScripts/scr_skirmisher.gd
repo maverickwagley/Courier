@@ -171,6 +171,8 @@ func _on_aggro_drop_area_exited(area):
 	is_aggro = false
 
 func _on_hitbox_area_entered(area):
+	if area == $MeleeWeapon: return
+	if area == $HitArea: return
 	ScrEnemyGeneral.hitbox_area_entered(area,blood_particle,global_position)
 	hurt_and_damage(area)
 	#if area == $MeleeWeapon: return

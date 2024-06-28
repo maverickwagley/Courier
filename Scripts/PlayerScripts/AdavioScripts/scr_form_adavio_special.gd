@@ -31,6 +31,7 @@ func _process(delta):
 				t1 = 90
 			t2 = t2 - 1
 			if t2 <= 0:
+				player.camera.apply_shake(3)
 				for i in 5:
 					var projectile = projectile_scene.instantiate()
 					projectile.global_position = global_position + projectile.direction.normalized() * 5

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://548m67j82yab"
-path="res://.godot/imported/spr_gui_health_bar_fill.png-b222978e20cefe2a12bcccea0cc599a6.ctex"
+uid="uid://4g4sr0jqirrf"
+path="res://.godot/imported/spr_gui_healthbar_radial_fill_yellow.png-1a8182ba182dc9eb6c7e2bccf3e3f517.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/spr_gui_health_bar_fill.png"
-dest_files=["res://.godot/imported/spr_gui_health_bar_fill.png-b222978e20cefe2a12bcccea0cc599a6.ctex"]
+source_file="res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial_fill_yellow.png"
+dest_files=["res://.godot/imported/spr_gui_healthbar_radial_fill_yellow.png-1a8182ba182dc9eb6c7e2bccf3e3f517.ctex"]
 
 [params]
 

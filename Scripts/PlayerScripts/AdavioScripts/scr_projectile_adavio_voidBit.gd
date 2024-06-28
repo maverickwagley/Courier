@@ -41,6 +41,5 @@ func _physics_process(delta):
 
 
 func _on_enemy_collision_area_entered(area):
-	print_debug(damage)
 	ScrPlayerGeneral.part_spawn(particle,global_position,global_rotation)
 	queue_free()
