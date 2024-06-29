@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://n6tgp86xdidy"]
+[gd_scene load_steps=16 format=3 uid="uid://n6tgp86xdidy"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player.gd" id="1_xyui8"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_camera.gd" id="2_y6y5c"]
@@ -6,8 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://bvbew6t2x5s0s" path="res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial.png" id="4_ox0tq"]
 [ext_resource type="Texture2D" uid="uid://dcqpiu56ar123" path="res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial_fill_health.png" id="5_unnem"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_health.gd" id="6_jin4q"]
+[ext_resource type="Texture2D" uid="uid://bhd3437rmfkuf" path="res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial_fill_stamina.png" id="7_0w8p2"]
 [ext_resource type="PackedScene" uid="uid://c1s1l33aj55l4" path="res://Scenes/GUIScenes/gui_form_swap.tscn" id="7_yggh5"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_staminabar.gd" id="8_1l12b"]
 [ext_resource type="PackedScene" uid="uid://dkyfocw87xutx" path="res://Scenes/GUIScenes/cursor_manager.tscn" id="8_gva1e"]
+[ext_resource type="Texture2D" uid="uid://4g4sr0jqirrf" path="res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial_fill_yellow.png" id="9_peld0"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_primarybar.gd" id="10_lb68f"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_specialbar.gd" id="11_pm6ow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd4rm"]
 size = Vector2(7, 6)
@@ -50,14 +55,46 @@ script = ExtResource("3_ldtj5")
 
 [node name="HealthBar" type="TextureProgressBar" parent="PlayerHUD"]
 z_index = 1
-offset_left = 3.0
-offset_top = 237.0
-offset_right = 35.0
-offset_bottom = 269.0
+offset_top = 238.0
+offset_right = 32.0
+offset_bottom = 270.0
 fill_mode = 5
 texture_under = ExtResource("4_ox0tq")
 texture_progress = ExtResource("5_unnem")
 script = ExtResource("6_jin4q")
+
+[node name="StaminaBar" type="TextureProgressBar" parent="PlayerHUD"]
+z_index = 1
+offset_left = 32.0
+offset_top = 238.0
+offset_right = 64.0
+offset_bottom = 270.0
+fill_mode = 5
+texture_under = ExtResource("4_ox0tq")
+texture_progress = ExtResource("7_0w8p2")
+script = ExtResource("8_1l12b")
+
+[node name="PrimaryBar" type="TextureProgressBar" parent="PlayerHUD"]
+z_index = 1
+offset_left = 448.0
+offset_top = 238.0
+offset_right = 480.0
+offset_bottom = 270.0
+fill_mode = 5
+texture_under = ExtResource("4_ox0tq")
+texture_progress = ExtResource("9_peld0")
+script = ExtResource("10_lb68f")
+
+[node name="SpecialBar" type="TextureProgressBar" parent="PlayerHUD"]
+z_index = 1
+offset_left = 416.0
+offset_top = 238.0
+offset_right = 448.0
+offset_bottom = 270.0
+fill_mode = 5
+texture_under = ExtResource("4_ox0tq")
+texture_progress = ExtResource("9_peld0")
+script = ExtResource("11_pm6ow")
 
 [node name="FormSwapMenu" parent="." instance=ExtResource("7_yggh5")]
 

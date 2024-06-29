@@ -10,6 +10,7 @@ signal sig_health_changed
 @onready var hurt_box = $Hitbox
 @onready var player_hud: CanvasLayer = $PlayerHUD
 @onready var health_gui: TextureProgressBar = $PlayerHUD/HealthBar
+@onready var stamina_gui: TextureProgressBar = $PlayerHUD/StaminaBar
 @onready var form_controller: CanvasLayer = $FormSwapMenu
 @onready var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
 @onready var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
@@ -22,13 +23,29 @@ signal sig_health_changed
 #Stats
 var hp: int = 200
 var max_hp: int = 200
-var yellow_energy: int = 0
-var violet_energy: int = 0
-var green_energy: int = 0
-var blue_energy: int = 0
-var orange_energy: int = 0
-var red_energy: int = 0
-var max_energy: int = 200
+var stamina: int = 200
+var max_stamina: int = 200
+var yellow_primary: int = 0
+var violet_primary: int = 0
+var green_primary: int = 0
+var blue_primary: int = 0
+var orange_primary: int = 0
+var red_primary: int = 0
+var current_primary: int = 0
+var yellow_special: int = 0
+var violet_special: int = 0
+var green_special: int = 0
+var blue_special: int = 0
+var orange_special: int = 0
+var red_special: int = 0
+var current_special: int = 0
+var yellow_max: int = 200
+var violet_max: int = 200
+var green_max: int = 200
+var blue_max: int = 200
+var orange_max: int = 200
+var red_max: int = 200
+var current_max: int = 200
 #Status
 var form_id: int = 0
 var form_type: int = 0
@@ -49,13 +66,13 @@ var roll_shake: bool = false
 var cam_set: bool = false
 var cam_timer: int = 30
 var t1: int = 0
+var t_stamina: int = 0
 var form_menu: bool = false
 var sync_pos = Vector2(0,0)
 #
 #Built-In Methods
 #
 func _ready():
-	#ssz_index = position.y
 	current_form = form_inst.instantiate()
 	add_child(current_form)
 	form_controller.player_form = 0
@@ -64,6 +81,7 @@ func _ready():
 func _physics_process(delta):
 	if t1 > 0:
 		t1 = t1 - 1
+	update_stamina()
 	handle_input()
 	update_cam_tilemap()
 	menu_input()
@@ -112,12 +130,15 @@ func roll_input():
 	#CM: handle_input
 	if is_attack == false:
 		if is_roll == false:
-			if Input.is_action_just_pressed("roll"):
-				velocity = velocity * 2
-				is_roll = true
-				is_invincible = true
-				current_form.is_roll = true
-				current_form.is_invincible = true
+			if stamina >= 50:
+				if Input.is_action_just_pressed("roll"):
+					stamina = stamina - 50
+					velocity = velocity * 2
+					is_roll = true
+					is_invincible = true
+					current_form.is_roll = true
+					current_form.is_invincible = true
+					stamina_gui.update()
 #
 func melee_input():
 	#CM: handle_input
@@ -168,13 +189,13 @@ func knockback(_enemyDirection: Vector2):
 #
 func roll_collision():
 	if is_roll == true:
-			for i in get_slide_collision_count():
-				var collision = get_slide_collision(i)
-				#print("Collided with: ", collision.get_collider().name)
-				if roll_shake == false:
-					camera.is_shaking = true
-					camera.apply_shake(3)
-					roll_shake = true
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			#print("Collided with: ", collision.get_collider().name)
+			if roll_shake == false:
+				camera.is_shaking = true
+				camera.apply_shake(3)
+				roll_shake = true
 #
 func hurt_by_enemy(area):
 	#CM: _on_hit_area_area_entered
@@ -202,6 +223,15 @@ func update_health(_damage):
 		hp = max_hp
 	health_gui.value = hp * 100 / max_hp
 #
+func update_stamina():
+	if stamina < max_stamina:
+		if t_stamina > 0:
+			t_stamina = t_stamina - 1
+		if t_stamina <= 0:
+			t_stamina = 3
+			stamina = stamina + 1
+			stamina_gui.update()
+#
 func update_cam_tilemap():
 	#CM: Spawner Script
 	if cam_set == false:
@@ -219,8 +249,8 @@ func menu_input():
 			form_menu = false
 		form_controller.toggle_menu()
 #
-func form_update(_formNum):
-	#CM: Form Control > _on_button_name_down
+func form_update(_formNum,_formType):
+	#CM: Form Swap Menu > _on_button_name_down
 	current_form.effects.play("anim_swap_out")
 	await current_form.effects.animation_finished
 	var form_pos = current_form.global_position
@@ -230,3 +260,8 @@ func form_update(_formNum):
 	add_child(current_form)
 	current_form.global_position = form_pos
 	current_form.player = self
+	match _formType:
+		0:
+			current_primary = yellow_primary
+		1:
+			current_primary = violet_primary

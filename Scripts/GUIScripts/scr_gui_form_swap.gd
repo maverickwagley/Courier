@@ -31,7 +31,7 @@ func _on_form_button_pressed():
 		player.form_menu = false
 		close()
 	else:
-		player.form_update(0)
+		player.form_update(0,0)
 		player_form = 0
 		player.form_menu = false
 		close()
@@ -41,7 +41,7 @@ func _on_form_button_2_pressed():
 		player.form_menu = false
 		close()
 	else:
-		player.form_update(1)
+		player.form_update(1,1)
 		player_form = 1
 		player.form_menu = false
 		close()
