@@ -1,14 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwlr5srdjtnft"]
+[gd_scene load_steps=5 format=3 uid="uid://dno3k311ngslt"]
 
-[ext_resource type="Script" path="res://Scripts/ItemScripts/scr_collectable.gd" id="1_8opfm"]
+[ext_resource type="Script" path="res://scr_item.gd" id="1_suk8v"]
+[ext_resource type="Texture2D" uid="uid://bwxoee2rvgjx2" path="res://Sprites/ItemSprites/spr_essence_yellow.png" id="2_i82bf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_px4as"]
-resource_local_to_scene = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t6sm"]
+size = Vector2(7, 7)
 
-[node name="Item" type="Area2D"]
-script = ExtResource("1_8opfm")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aarp5"]
+size = Vector2(7, 7)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Item" type="StaticBody2D"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_suk8v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_px4as")
+shape = SubResource("RectangleShape2D_3t6sm")
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_i82bf")
+
+[node name="PlayerCollision" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="PlayerCollisionShape" type="CollisionShape2D" parent="PlayerCollision"]
+shape = SubResource("RectangleShape2D_aarp5")
+
+[connection signal="area_entered" from="PlayerCollision" to="." method="_on_player_collision_area_entered"]

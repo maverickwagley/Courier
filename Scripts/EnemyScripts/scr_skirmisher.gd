@@ -19,6 +19,7 @@ signal sig_health_changed
 @onready var nav_agent = $Navigation/NavigationAgent2D
 @onready var blood_particle = preload("res://Scenes/ent_particle_blood.tscn")
 @onready var death_particle = preload("res://Scenes/ent_particle_death.tscn")
+@onready var item_drop = preload("res://Scenes/ItemScenes/ent_item.tscn")
 
 var hp: int = 69
 var max_hp: int = 69
@@ -112,10 +113,13 @@ func hurt_and_damage(area):
 	hp = hp - area.damage
 	if hp <= 0:
 		var current_death = death_particle.instantiate()
+		var current_energy = item_drop.instantiate()
 		for current_world in get_tree().get_nodes_in_group("World"):
 				if current_world.name == "World":
-					current_world.add_child(current_death)  
+					current_world.add_child(current_death) 
+					current_world.call_deferred("add_child",current_energy)
 		current_death.global_position = global_position
+		current_energy.global_position = global_position
 		queue_free()
 	sig_health_changed.emit()
 	is_hurt = true

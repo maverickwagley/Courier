@@ -32,14 +32,6 @@ func _physics_process(delta):
 	if sd_timer < 1:
 		queue_free()
 
-#func part_spawn():
-	#var current_part = particle.instantiate()
-	#for current_world in get_tree().get_nodes_in_group("World"):
-		#if current_world.name == "World":
-			#current_world.add_child(current_part) 
-	#current_part.global_position = global_position
-	#current_part.global_rotation = global_rotation - 3.14
-
 
 func _on_enemy_collision_area_entered(area):
 	ScrPlayerGeneral.part_spawn(particle,global_position,global_rotation)
