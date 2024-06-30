@@ -11,6 +11,8 @@ signal sig_health_changed
 @onready var player_hud: CanvasLayer = $PlayerHUD
 @onready var health_gui: TextureProgressBar = $PlayerHUD/HealthBar
 @onready var stamina_gui: TextureProgressBar = $PlayerHUD/StaminaBar
+@onready var primary_gui: TextureProgressBar = $PlayerHUD/PrimaryBar
+@onready var special_gui: TextureProgressBar = $PlayerHUD/SpecialBar
 @onready var form_controller: CanvasLayer = $FormSwapMenu
 @onready var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
 @onready var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
@@ -25,20 +27,20 @@ var hp: int = 200
 var max_hp: int = 200
 var stamina: int = 200
 var max_stamina: int = 200
-var yellow_primary: int = 0
-var violet_primary: int = 0
-var green_primary: int = 0
-var blue_primary: int = 0
-var orange_primary: int = 0
-var red_primary: int = 0
-var current_primary: int = 0
-var yellow_special: int = 0
-var violet_special: int = 0
-var green_special: int = 0
-var blue_special: int = 0
-var orange_special: int = 0
-var red_special: int = 0
-var current_special: int = 0
+var yellow_primary: int = 200
+var violet_primary: int = 200
+var green_primary: int = 200
+var blue_primary: int = 200
+var orange_primary: int = 200
+var red_primary: int = 200
+#var current_primary: int = 200
+var yellow_special: int = 200
+var violet_special: int = 200
+var green_special: int = 200
+var blue_special: int = 200
+var orange_special: int = 200
+var red_special: int = 200
+#var current_special: int = 0
 var yellow_max: int = 200
 var violet_max: int = 200
 var green_max: int = 200
@@ -251,6 +253,8 @@ func menu_input():
 #
 func form_update(_formNum,_formType):
 	#CM: Form Swap Menu > _on_button_name_down
+	form_id = _formNum
+	form_type = _formType
 	current_form.effects.play("anim_swap_out")
 	await current_form.effects.animation_finished
 	var form_pos = current_form.global_position
@@ -260,8 +264,4 @@ func form_update(_formNum,_formType):
 	add_child(current_form)
 	current_form.global_position = form_pos
 	current_form.player = self
-	match _formType:
-		0:
-			current_primary = yellow_primary
-		1:
-			current_primary = violet_primary
+	primary_gui.update()

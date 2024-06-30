@@ -31,7 +31,6 @@ func _physics_process(delta):
 	if parent.is_magic == true:
 		var rot = get_global_mouse_position()
 		look_at(rot)
-		#if parent.is_magic == true:
 		match parent.last_dir:
 			"right":
 				position.x = 0
@@ -58,16 +57,12 @@ func _physics_process(delta):
 		#Spawn Projectile
 		if t1 <= 0:
 			t1 = 10
-			var projectile = projectile_scene.instantiate()
-			#projectile.parent_velocity = parent_velocity
-			#var spr_rot = sprite.rotation
-			#print_debug(spr_rot)
-			#projectile.didrection = Vector2.from_angle(spr_rot)
-			#projecddtile.global_position = global_position + projectile.direction.normalized() * 5
-			player.camera.is_shaking = true
-			player.camera.apply_shake(.75)
-			projectile.global_position = spawner.global_position #+ projectile.direction.normalized() * 5
-			projectile.global_rotation = sprite.global_rotation
-			#projectile.player = player
-			#print_debug(str(get_tree().root))
-			get_tree().current_scene.add_child(projectile)
+			if player.yellow_primary >= 5:
+				var projectile = projectile_scene.instantiate()
+				player.yellow_primary = player.yellow_primary - 5
+				player.camera.is_shaking = true
+				player.camera.apply_shake(.75)
+				player.primary_gui.update()
+				projectile.global_position = spawner.global_position
+				projectile.global_rotation = sprite.global_rotation
+				get_tree().current_scene.add_child(projectile)
