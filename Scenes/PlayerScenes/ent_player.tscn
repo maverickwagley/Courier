@@ -76,9 +76,9 @@ script = ExtResource("8_1l12b")
 
 [node name="PrimaryBar" type="TextureProgressBar" parent="PlayerHUD"]
 z_index = 1
-offset_left = 448.0
+offset_left = 416.0
 offset_top = 238.0
-offset_right = 480.0
+offset_right = 448.0
 offset_bottom = 270.0
 fill_mode = 5
 texture_under = ExtResource("4_ox0tq")
@@ -87,9 +87,9 @@ script = ExtResource("10_lb68f")
 
 [node name="SpecialBar" type="TextureProgressBar" parent="PlayerHUD"]
 z_index = 1
-offset_left = 416.0
+offset_left = 448.0
 offset_top = 238.0
-offset_right = 448.0
+offset_right = 480.0
 offset_bottom = 270.0
 fill_mode = 5
 texture_under = ExtResource("4_ox0tq")
