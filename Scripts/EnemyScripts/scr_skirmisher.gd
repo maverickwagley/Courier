@@ -35,6 +35,7 @@ var is_magic: bool = false
 var is_special: bool = false
 var is_knockback: bool = false
 var is_aggro: bool = false
+var is_dead: bool = false
 var move_dir: Vector2
 var direction = "down"
 var last_dir = "down"
@@ -112,15 +113,18 @@ func update_animation():
 func hurt_and_damage(area):
 	hp = hp - area.damage
 	if hp <= 0:
-		var current_death = death_particle.instantiate()
-		var current_energy = item_drop.instantiate()
-		for current_world in get_tree().get_nodes_in_group("World"):
+		if is_dead == false:
+			is_dead = true
+			var current_death = death_particle.instantiate()
+			var current_energy = item_drop.instantiate()
+			for current_world in get_tree().get_nodes_in_group("World"):
 				if current_world.name == "World":
 					current_world.add_child(current_death) 
 					current_world.call_deferred("add_child",current_energy)
-		current_death.global_position = global_position
-		current_energy.global_position = global_position
-		queue_free()
+			current_death.global_position = global_position
+			current_energy.global_position = global_position
+			current_energy.amount = randi_range(5,25)
+			queue_free()
 	sig_health_changed.emit()
 	is_hurt = true
 	if area.inflict_kb == true:

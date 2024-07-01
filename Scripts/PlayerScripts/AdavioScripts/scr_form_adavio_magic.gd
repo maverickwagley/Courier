@@ -57,12 +57,14 @@ func _physics_process(delta):
 		#Spawn Projectile
 		if t1 <= 0:
 			t1 = 50
-			for i in 5:
-				var projectile = projectile_scene.instantiate()
-				#projectile.global_position = global_position + projectile.direction.normalized() * 10
-				player.camera.is_shaking = true
-				player.camera.apply_shake(3)
-				projectile.global_position = spawner.global_position 
-				projectile.global_rotation = sprite.global_rotation - .2 + (.1 * i)
-				get_tree().current_scene.add_child(projectile)
-				projectile.z_index = 0
+			if player.violet_primary >= 35:
+				player.violet_primary = player.violet_primary - 35
+				for i in 5:
+					var projectile = projectile_scene.instantiate()
+					player.camera.is_shaking = true
+					player.camera.apply_shake(3)
+					projectile.global_position = spawner.global_position 
+					projectile.global_rotation = sprite.global_rotation - .2 + (.1 * i)
+					player.primary_gui.update()
+					get_tree().current_scene.add_child(projectile)
+					projectile.z_index = 0

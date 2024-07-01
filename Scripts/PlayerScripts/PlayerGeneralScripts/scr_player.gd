@@ -226,6 +226,7 @@ func update_health(_damage):
 	health_gui.value = hp * 100 / max_hp
 #
 func update_stamina():
+	#CM: _physics_process
 	if stamina < max_stamina:
 		if t_stamina > 0:
 			t_stamina = t_stamina - 1
