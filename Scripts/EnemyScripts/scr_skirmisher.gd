@@ -123,7 +123,11 @@ func hurt_and_damage(area):
 					current_world.call_deferred("add_child",current_energy)
 			current_death.global_position = global_position
 			current_energy.global_position = global_position
+			current_energy.item_class = 0
+			current_energy.item_id = area.type
 			current_energy.amount = randi_range(5,25)
+			current_energy.classed = true
+			#current_energy.update()
 			queue_free()
 	sig_health_changed.emit()
 	is_hurt = true

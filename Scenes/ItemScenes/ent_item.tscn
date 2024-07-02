@@ -1,13 +1,65 @@
-[gd_scene load_steps=5 format=3 uid="uid://dno3k311ngslt"]
+[gd_scene load_steps=9 format=3 uid="uid://dno3k311ngslt"]
 
 [ext_resource type="Script" path="res://scr_item.gd" id="1_suk8v"]
-[ext_resource type="Texture2D" uid="uid://bwxoee2rvgjx2" path="res://Sprites/ItemSprites/spr_essence_yellow.png" id="2_i82bf"]
+[ext_resource type="Texture2D" uid="uid://j7havktcm2jk" path="res://Sprites/ItemSprites/spr_items_all.png" id="2_55l10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t6sm"]
 size = Vector2(7, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aarp5"]
 size = Vector2(7, 7)
+
+[sub_resource type="Animation" id="Animation_epsxs"]
+resource_name = "anim_item_ess_yellow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_whoua"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2us8l"]
+resource_name = "anim_item_ess_violet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w32ba"]
+_data = {
+"RESET": SubResource("Animation_whoua"),
+"anim_item_ess_violet": SubResource("Animation_2us8l"),
+"anim_item_ess_yellow": SubResource("Animation_epsxs")
+}
 
 [node name="Item" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -19,7 +71,9 @@ script = ExtResource("1_suk8v")
 shape = SubResource("RectangleShape2D_3t6sm")
 
 [node name="ItemSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_i82bf")
+texture = ExtResource("2_55l10")
+hframes = 10
+vframes = 10
 
 [node name="PlayerCollision" type="Area2D" parent="."]
 collision_layer = 0
@@ -27,5 +81,10 @@ collision_mask = 3
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="PlayerCollision"]
 shape = SubResource("RectangleShape2D_aarp5")
+
+[node name="ItemAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w32ba")
+}
 
 [connection signal="area_entered" from="PlayerCollision" to="." method="_on_player_collision_area_entered"]

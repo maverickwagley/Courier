@@ -14,6 +14,7 @@ var ary_collision: Array
 var damage: int = 25
 var inflict_kb: bool = true
 var parent_velocity: Vector2
+var type: int = 0
 
 func _ready():
 	#z_index = -1
