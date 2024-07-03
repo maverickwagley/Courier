@@ -7,7 +7,7 @@ var parent_velocity: Vector2
 var damage: int = 35
 var inflict_kb: bool = true
 var enemy_hit: Array
-
+var type: int = 1
 
 func _ready():
 	shape.disabled = true

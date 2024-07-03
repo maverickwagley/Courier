@@ -235,6 +235,16 @@ func update_stamina():
 			stamina = stamina + 1
 			stamina_gui.update()
 #
+func update_special():
+	#CM: _physics_process
+	if stamina < max_stamina:
+		if t_stamina > 0:
+			t_stamina = t_stamina - 1
+		if t_stamina <= 0:
+			t_stamina = 3
+			stamina = stamina + 1
+			stamina_gui.update()
+#
 func update_cam_tilemap():
 	#CM: Spawner Script
 	if cam_set == false:
@@ -248,8 +258,9 @@ func menu_input():
 	if Input.is_action_just_pressed("switch_form"):
 		if form_menu == false:
 			form_menu = true
-		else:
-			form_menu = false
+			get_tree().paused = true
+		#else:
+			#form_menu = false
 		form_controller.toggle_menu()
 #
 func form_update(_formNum,_formType):

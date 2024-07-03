@@ -29,21 +29,25 @@ func _physics_process(_delta):
 func _on_form_button_pressed():
 	if player_form == 0:
 		player.form_menu = false
+		get_tree().paused = false
 		close()
 	else:
 		player.form_update(0,0)
 		player_form = 0
 		player.form_menu = false
+		get_tree().paused = false
 		close()
 #
 func _on_form_button_2_pressed():
 	if player_form == 1:
 		player.form_menu = false
+		get_tree().paused = false
 		close()
 	else:
 		player.form_update(1,1)
 		player_form = 1
 		player.form_menu = false
+		get_tree().paused = false
 		close()
 #
 #Custom Methods
