@@ -276,4 +276,7 @@ func form_update(_formNum,_formType):
 	add_child(current_form)
 	current_form.global_position = form_pos
 	current_form.player = self
+	health_gui.update()
+	stamina_gui.update()
 	primary_gui.update()
+	special_gui.update()
