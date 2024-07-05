@@ -24,6 +24,7 @@ var direction = "down"
 var last_dir = "down"
 var magic_dir = "down"
 var sync_pos = Vector2(0,0)
+var _tSpecial: int = 5
 #
 #Built-In Methods
 #
@@ -33,6 +34,14 @@ func _ready():
 	pass # Replace with function body.
 #
 func _physics_process(delta):
+	if is_special == false:
+		if player.yellow_special < player.current_max:
+			if _tSpecial > 0:
+				_tSpecial = _tSpecial - 1
+			if _tSpecial < 1:
+				_tSpecial = 5
+				player.yellow_special = player.yellow_special + 1
+				player.special_gui.update()
 	form_roll()
 	form_melee()
 	form_magic()

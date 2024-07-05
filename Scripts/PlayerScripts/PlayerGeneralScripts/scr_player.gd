@@ -95,7 +95,6 @@ func _on_hitbox_area_entered(area):
 	if is_roll == true: return
 	if area.name == "MeleeWeapon":
 		hurt_by_enemy(area)
-		item_pickup(area)
 		current_form.form_hit()
 #
 #Custom Methods
@@ -211,12 +210,6 @@ func hurt_by_enemy(area):
 		current_form.is_knockback = true
 	sig_health_changed.emit()
 	knockback(area.get_parent().velocity) #Replace velocity with direction
-#
-func item_pickup(area):
-	#CM: _on_hit_area_area_entered
-	pass
-	#if area.has_method("pick_up"):
-		#area.pick_up(inventory)
 #
 func update_health(_damage):
 	#CM: hurt_by_enemy

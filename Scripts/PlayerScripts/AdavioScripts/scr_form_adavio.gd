@@ -26,6 +26,7 @@ var direction = "down"
 var last_dir = "down"
 var magic_dir = "down"
 var sync_pos = Vector2(0,0)
+var _tSpecial: int = 0
 #
 #Built-In Methods
 #
@@ -34,6 +35,14 @@ func _ready():
 	pass # Replace with function body.
 #
 func _physics_process(delta):
+	if is_special == false:
+		if player.violet_special < player.current_max:
+			if _tSpecial > 0:
+				_tSpecial = _tSpecial - 1
+			if _tSpecial < 1:
+				_tSpecial = 5
+				player.violet_special = player.violet_special + 1
+				player.special_gui.update()
 	form_roll()
 	form_melee()
 	form_magic()
@@ -72,15 +81,26 @@ func form_special():
 			
 			animations.play("anim_adavio_special_cast")
 			await animations.animation_finished
-			special_start = true
-			special.is_special = true
-			special.parent = self
-			special.player = player
+			if player.violet_special >= 75:
+				special_start = true
+				special.is_special = true
+				special.parent = self
+				special.player = player
+			else:
+				is_attack = false
+				is_special = false
+				special_start = false
+				special_use = false
+				special.is_special = false
+				special.special_use = false
+				special.special_collision.disable()
 			
 		if Input.is_action_just_pressed("magic_skill"):
 			if special_use == false:
 				var _check = special.special_check()
 				if _check == false:
+					player.violet_special = player.violet_special - 75
+					player.special_gui.update()
 					special_use = true
 					animations.play("anim_adavio_special_exit")
 					await animations.animation_finished

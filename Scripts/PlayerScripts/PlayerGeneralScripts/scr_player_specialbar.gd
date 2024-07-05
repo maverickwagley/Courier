@@ -17,9 +17,9 @@ func update():
 	match player.form_type:
 		0:
 			set_progress_texture(yellow_texture)
-			value = player.yellow_primary * 100 / player.current_max
+			value = player.yellow_special * 100 / player.current_max
 			#current_primary = yellow_primary
 		1:
 			set_progress_texture(violet_texture)
-			value = player.violet_primary * 100 / player.current_max
+			value = player.violet_special * 100 / player.current_max
 			#current_primary = violet_primary

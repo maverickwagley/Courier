@@ -23,10 +23,11 @@ func _process(delta):
 	if is_special == true:
 		if t1 <= 0:
 			t1 = 90
-			var projectile = projectile_scene.instantiate()
-			#projectile.parent_velocity = parent_velocityd
-			#projectile.direction = Vector2.from_angle(sprite.global_rotation)
-			projectile.global_position = player.global_position
-			projectile.player = player
-			player.add_child(projectile)
+			if player.yellow_special >= 100:
+				player.yellow_special = player.yellow_special - 100
+				player.special_gui.update()
+				var projectile = projectile_scene.instantiate()
+				projectile.global_position = player.global_position
+				projectile.player = player
+				player.add_child(projectile)
 			is_special = false
