@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1s1l33aj55l4"]
+[gd_scene load_steps=7 format=3 uid="uid://c1s1l33aj55l4"]
 
 [ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_form_swap.gd" id="1_r8cfk"]
+[ext_resource type="Texture2D" uid="uid://5hvtdda68grr" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone.png" id="2_haf2d"]
+[ext_resource type="Texture2D" uid="uid://pqn5pa0mhxwr" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_pressed.png" id="3_aumhn"]
+[ext_resource type="Texture2D" uid="uid://bvw1gi08juivf" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_hover.png" id="4_su8rx"]
+[ext_resource type="Texture2D" uid="uid://bhn25kk7x7d3g" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_disabled.png" id="5_xrr0o"]
+[ext_resource type="BitMap" uid="uid://bffjo2706uetc" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_clickmask.png" id="6_im5ek"]
 
 [node name="FormSwapMenu" type="CanvasLayer"]
 script = ExtResource("1_r8cfk")
@@ -18,100 +23,137 @@ offset_right = 239.5
 offset_bottom = 134.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="FormButton" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 173.5
-offset_top = 98.5
-offset_right = 205.5
-offset_bottom = 130.5
 size_flags_horizontal = 4
-size_flags_vertical = 0
 
-[node name="FormButton2" type="Button" parent="Control"]
+[node name="FormButton" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -77.0
-offset_right = 25.0
-offset_bottom = -32.0
+offset_left = -16.0
+offset_top = -47.0
+offset_right = 16.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "2"
+texture_normal = ExtResource("2_haf2d")
+texture_pressed = ExtResource("3_aumhn")
+texture_hover = ExtResource("4_su8rx")
+texture_disabled = ExtResource("5_xrr0o")
+texture_click_mask = ExtResource("6_im5ek")
 
-[node name="FormButton3" type="Button" parent="Control"]
+[node name="FormButton2" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 41.5
-offset_top = -49.5
-offset_right = 84.5
-offset_bottom = -6.5
+offset_left = 8.0
+offset_top = -31.0
+offset_right = 40.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "3"
+texture_normal = ExtResource("2_haf2d")
+texture_pressed = ExtResource("3_aumhn")
+texture_hover = ExtResource("4_su8rx")
+texture_disabled = ExtResource("5_xrr0o")
+texture_click_mask = ExtResource("6_im5ek")
 
-[node name="FormButton4" type="Button" parent="Control"]
+[node name="FormButton3" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -74.0
-offset_top = 10.0
-offset_right = -31.0
-offset_bottom = 54.0
+offset_left = -40.0
+offset_top = -31.0
+offset_right = -8.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "4"
+disabled = true
+texture_normal = ExtResource("2_haf2d")
+texture_pressed = ExtResource("3_aumhn")
+texture_hover = ExtResource("4_su8rx")
+texture_disabled = ExtResource("5_xrr0o")
+texture_click_mask = ExtResource("6_im5ek")
 
-[node name="FormButton5" type="Button" parent="Control"]
+[node name="FormButton4" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -17.5
-offset_top = 35.5
-offset_right = 24.5
-offset_bottom = 78.5
+offset_left = -40.0
+offset_top = 1.0
+offset_right = -8.0
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "5"
+disabled = true
+texture_normal = ExtResource("2_haf2d")
+texture_pressed = ExtResource("3_aumhn")
+texture_hover = ExtResource("4_su8rx")
+texture_disabled = ExtResource("5_xrr0o")
+texture_click_mask = ExtResource("6_im5ek")
 
-[node name="FormButton6" type="Button" parent="Control"]
+[node name="FormButton5" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 40.5
-offset_top = 11.5
-offset_right = 82.5
-offset_bottom = 54.5
+offset_left = 8.0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "6"
+disabled = true
+texture_normal = ExtResource("2_haf2d")
+texture_pressed = ExtResource("3_aumhn")
+texture_hover = ExtResource("4_su8rx")
+texture_disabled = ExtResource("5_xrr0o")
+texture_click_mask = ExtResource("6_im5ek")
+
+[node name="FormButton6" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+disabled = true
+texture_normal = ExtResource("2_haf2d")
+texture_pressed = ExtResource("3_aumhn")
+texture_hover = ExtResource("4_su8rx")
+texture_disabled = ExtResource("5_xrr0o")
+texture_click_mask = ExtResource("6_im5ek")
 
 [connection signal="pressed" from="Control/FormButton" to="." method="_on_form_button_pressed"]
 [connection signal="pressed" from="Control/FormButton2" to="." method="_on_form_button_2_pressed"]

@@ -94,6 +94,8 @@ func form_special():
 				special.is_special = false
 				special.special_use = false
 				special.special_collision.disable()
+				player.is_attack = false
+				player.is_special = false
 			
 		if Input.is_action_just_pressed("magic_skill"):
 			if special_use == false:
