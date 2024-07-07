@@ -150,6 +150,10 @@ func melee_input():
 			is_melee = true
 			current_form.is_attack = true
 			current_form.is_melee = true
+			#if melee_aim = true
+			var cdir = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))
+			current_form.melee_dir = ScrPlayerGeneral.cursor_direction(cdir)
+			current_form.last_dir = ScrPlayerGeneral.cursor_direction(cdir)
 #
 func magic_input():
 	#CM: handle_input

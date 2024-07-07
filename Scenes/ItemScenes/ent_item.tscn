@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dno3k311ngslt"]
 
-[ext_resource type="Script" path="res://scr_item.gd" id="1_suk8v"]
+[ext_resource type="Script" path="res://Scripts/scr_item.gd" id="1_suk8v"]
 [ext_resource type="Texture2D" uid="uid://j7havktcm2jk" path="res://Sprites/ItemSprites/spr_items_all.png" id="2_55l10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t6sm"]

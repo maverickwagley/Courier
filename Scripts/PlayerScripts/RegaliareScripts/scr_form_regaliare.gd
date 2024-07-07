@@ -23,6 +23,7 @@ var is_special: bool = false
 var direction = "down"
 var last_dir = "down"
 var magic_dir = "down"
+var melee_dir = "down"
 var sync_pos = Vector2(0,0)
 var _tSpecial: int = 5
 #
@@ -105,9 +106,9 @@ func update_animation():
 	var _pVel = player.velocity
 	
 	if is_magic == true:
-		var mdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
-		magic_dir = ScrPlayerGeneral.magic_direction(mdir)
-		last_dir = ScrPlayerGeneral.magic_direction(mdir)
+		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
+		magic_dir = ScrPlayerGeneral.cursor_direction(cdir)
+		last_dir = ScrPlayerGeneral.cursor_direction(cdir)
 		if animations:
 			if _pVel.length() != 0:
 				animations.play("anim_regaliare_runCast_" + magic_dir)

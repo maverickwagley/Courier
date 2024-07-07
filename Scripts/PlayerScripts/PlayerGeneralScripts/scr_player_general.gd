@@ -2,22 +2,22 @@ extends Node
 
 var player = {}
 #
-func magic_direction(_mdir):
-	_mdir = wrapi(_mdir,0,360)
-	if _mdir < 0:
-		_mdir = 360 - _mdir
-	if _mdir < 45:
+func cursor_direction(_cdir):
+	_cdir = wrapi(_cdir,0,360)
+	if _cdir < 0:
+		_cdir = 360 - _cdir
+	if _cdir < 45:
 			return "right"
-	if _mdir >= 45:
-		if _mdir < 135:
+	if _cdir >= 45:
+		if _cdir < 135:
 			return "down"
-	if _mdir >= 135:
-		if _mdir < 225:
+	if _cdir >= 135:
+		if _cdir < 225:
 			return "left"
-	if _mdir >= 225:
-		if _mdir < 315:
+	if _cdir >= 225:
+		if _cdir < 315:
 			return "up"
-	if _mdir >= 315:
+	if _cdir >= 315:
 			return "right"
 
 func form_swap(_form_menu):
