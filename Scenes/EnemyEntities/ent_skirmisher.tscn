@@ -565,7 +565,6 @@ position = Vector2(-0.5, -3)
 shape = SubResource("RectangleShape2D_6p7tm")
 
 [node name="MeleeWeapon" type="Area2D" parent="."]
-visible = false
 position = Vector2(6, -4)
 rotation = 1.5708
 collision_layer = 64

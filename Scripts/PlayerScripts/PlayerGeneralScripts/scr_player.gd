@@ -13,6 +13,7 @@ signal sig_health_changed
 @onready var stamina_gui: TextureProgressBar = $PlayerHUD/StaminaBar
 @onready var primary_gui: TextureProgressBar = $PlayerHUD/PrimaryBar
 @onready var special_gui: TextureProgressBar = $PlayerHUD/SpecialBar
+@onready var dead_gui: Label = $DeadLabel
 @onready var form_controller: CanvasLayer = $FormSwapMenu
 @onready var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
 @onready var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
@@ -53,6 +54,7 @@ var form_id: int = 0
 var form_type: int = 0
 var is_invincible: bool = false
 var is_hurt: bool = false
+var is_dead: bool = false
 var is_knockback: bool = false
 var is_roll: bool = false
 var is_attack: bool = false
@@ -69,6 +71,7 @@ var cam_set: bool = false
 var cam_timer: int = 30
 var t1: int = 0
 var t_stamina: int = 0
+var t_dead: int = 300
 var form_menu: bool = false
 var sync_pos = Vector2(0,0)
 #
@@ -81,12 +84,22 @@ func _ready():
 	form_id = 0
 #
 func _physics_process(delta):
-	if t1 > 0:
-		t1 = t1 - 1
-	update_stamina()
-	handle_input()
-	update_cam_tilemap()
-	menu_input()
+	if is_dead == false:
+		if t1 > 0:
+			t1 = t1 - 1
+		visible = true
+		update_stamina()
+		handle_input()
+		update_cam_tilemap()
+		menu_input()
+	else:
+		t_dead = t_dead - 1
+		visible = false
+		if t_dead <= 0:
+			is_dead = false
+			t_dead = 300
+			dead_gui.visible = false
+			current_form.effects.play("anim_swap_in")
 #
 #Signal Methods
 #
@@ -204,7 +217,7 @@ func roll_collision():
 #
 func hurt_by_enemy(area):
 	#CM: _on_hit_area_area_entered
-	update_health(20)
+	update_health(area.damage)
 	camera.is_shaking = true
 	camera.apply_shake(3)
 	is_hurt = true
@@ -220,6 +233,12 @@ func update_health(_damage):
 	hp = hp - _damage
 	if hp <= 0:
 		hp = max_hp
+		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
+			if spawn.name == str(0):
+				global_position = spawn.global_position
+				dead_gui.visible = true
+				t_dead = 300
+				is_dead = true
 	health_gui.value = hp * 100 / max_hp
 #
 func update_stamina():

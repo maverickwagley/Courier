@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://n6tgp86xdidy"]
+[gd_scene load_steps=98 format=3 uid="uid://n6tgp86xdidy"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player.gd" id="1_xyui8"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_camera.gd" id="2_y6y5c"]
@@ -560,6 +560,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SystemFont" id="SystemFont_s0k2k"]
+font_names = PackedStringArray("Gabriola")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_l41wf"]
+font = SubResource("SystemFont_s0k2k")
+font_size = 50
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 texture_filter = 1
@@ -655,6 +665,15 @@ script = ExtResource("11_pm6ow")
 position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_02o1c")
 speed_scale = 0.0
+
+[node name="DeadLabel" type="Label" parent="PlayerHUD"]
+visible = false
+offset_left = 190.0
+offset_top = 116.0
+offset_right = 289.0
+offset_bottom = 167.0
+text = "DEAD"
+label_settings = SubResource("LabelSettings_l41wf")
 
 [node name="FormSwapMenu" parent="." instance=ExtResource("7_yggh5")]
 process_mode = 2

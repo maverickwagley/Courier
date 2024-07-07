@@ -3805,10 +3805,10 @@ layer_5/tile_data = PackedInt32Array(1769475, 524291, 0, 2031617, 131075, 0, 190
 position = Vector2(-1, 0)
 
 [node name="0" type="Node2D" parent="TileMap/PlayerSpawns" groups=["PlayerSpawnPoint"]]
-position = Vector2(265, 393)
+position = Vector2(320, 75)
 
 [node name="1" type="Node2D" parent="TileMap/PlayerSpawns" groups=["PlayerSpawnPoint"]]
-position = Vector2(330, 353)
+position = Vector2(400, 79)
 
 [node name="EnemyPathPoints" type="Node2D" parent="TileMap"]
 

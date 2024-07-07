@@ -131,5 +131,3 @@ func update_animation():
 			animations.play("anim_regaliare_walk_" + direction)
 		else:
 			animations.play("anim_regaliare_idle_" + last_dir)
-			
-
