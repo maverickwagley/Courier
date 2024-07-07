@@ -263,6 +263,8 @@ func form_update(_formNum,_formType):
 	current_form.effects.play("anim_swap_out")
 	await current_form.effects.animation_finished
 	var form_pos = current_form.global_position
+	velocity.x = 0
+	velocity.y = 0
 	current_form.queue_free()
 	form_inst = form_array[_formNum]
 	current_form = form_inst.instantiate()

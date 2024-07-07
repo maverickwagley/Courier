@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1s1l33aj55l4"]
+[gd_scene load_steps=27 format=3 uid="uid://c1s1l33aj55l4"]
 
 [ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_form_swap.gd" id="1_r8cfk"]
 [ext_resource type="Texture2D" uid="uid://5hvtdda68grr" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone.png" id="2_haf2d"]
@@ -6,6 +6,141 @@
 [ext_resource type="Texture2D" uid="uid://bvw1gi08juivf" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_hover.png" id="4_su8rx"]
 [ext_resource type="Texture2D" uid="uid://bhn25kk7x7d3g" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_disabled.png" id="5_xrr0o"]
 [ext_resource type="BitMap" uid="uid://bffjo2706uetc" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_clickmask.png" id="6_im5ek"]
+[ext_resource type="Texture2D" uid="uid://bvfjpe5p27tl7" path="res://Sprites/GUISprites/spr_gui_formSelect_icons.png" id="7_oeql0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcr8n"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(0, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k0ch"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(32, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd4fi"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(64, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewwqa"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(96, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eouv8"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(128, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wu3pj"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(160, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od7v0"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(192, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vs8na"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(224, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebsej"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(256, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nprw3"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(288, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1ll8"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(320, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqai8"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(352, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s03q"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(384, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4wma"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(416, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufh3i"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(448, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk3x6"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(480, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86bei"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(512, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i41i8"]
+atlas = ExtResource("7_oeql0")
+region = Rect2(544, 0, 32, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_smuig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcr8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k0ch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd4fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewwqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eouv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wu3pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od7v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vs8na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebsej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nprw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1ll8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqai8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s03q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4wma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufh3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk3x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86bei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i41i8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="FormSwapMenu" type="CanvasLayer"]
 script = ExtResource("1_r8cfk")
@@ -46,6 +181,10 @@ texture_hover = ExtResource("4_su8rx")
 texture_disabled = ExtResource("5_xrr0o")
 texture_click_mask = ExtResource("6_im5ek")
 
+[node name="SlotSprite" type="AnimatedSprite2D" parent="Control/FormButton"]
+position = Vector2(15, 17)
+sprite_frames = SubResource("SpriteFrames_smuig")
+
 [node name="FormButton2" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -66,6 +205,11 @@ texture_pressed = ExtResource("3_aumhn")
 texture_hover = ExtResource("4_su8rx")
 texture_disabled = ExtResource("5_xrr0o")
 texture_click_mask = ExtResource("6_im5ek")
+
+[node name="SlotSprite2" type="AnimatedSprite2D" parent="Control/FormButton2"]
+position = Vector2(15, 17)
+sprite_frames = SubResource("SpriteFrames_smuig")
+frame = 1
 
 [node name="FormButton3" type="TextureButton" parent="Control"]
 layout_mode = 1
