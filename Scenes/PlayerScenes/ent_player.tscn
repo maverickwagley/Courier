@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://n6tgp86xdidy"]
+[gd_scene load_steps=99 format=3 uid="uid://n6tgp86xdidy"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player.gd" id="1_xyui8"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_camera.gd" id="2_y6y5c"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_specialbar.gd" id="11_pm6ow"]
 [ext_resource type="Texture2D" uid="uid://ch0gijv5m3rnk" path="res://Sprites/GUISprites/spr_gui_primary_all.png" id="12_vktxg"]
 [ext_resource type="Texture2D" uid="uid://dskbnpd2lcvxh" path="res://Sprites/GUISprites/spr_gui_special_all.png" id="14_ly0ay"]
+[ext_resource type="PackedScene" uid="uid://cuumobgxb8km6" path="res://Scenes/GUIScenes/gui_player_pause.tscn" id="18_crtwj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd4rm"]
 size = Vector2(7, 6)
@@ -682,5 +683,7 @@ process_mode = 2
 process_mode = 3
 
 [node name="CursorManager" parent="Cursor" instance=ExtResource("8_gva1e")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("18_crtwj")]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

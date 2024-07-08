@@ -143,7 +143,7 @@ func update_animation():
 	if is_magic == true:
 		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
 		magic_dir = ScrPlayerGeneral.cursor_direction(cdir)
-		last_dir = ScrPlayerGeneral.curosr_direction(cdir)
+		last_dir = ScrPlayerGeneral.cursor_direction(cdir)
 		if animations:
 			if _pVel.length() != 0:
 				animations.play("anim_adavio_runCast_" + magic_dir)

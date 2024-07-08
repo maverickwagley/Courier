@@ -5,7 +5,7 @@ extends Area2D
 
 var is_melee: bool = false
 var inflict_kb: bool = false
-var damage: int = 20
+var damage: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

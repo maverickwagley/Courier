@@ -13,8 +13,9 @@ signal sig_health_changed
 @onready var stamina_gui: TextureProgressBar = $PlayerHUD/StaminaBar
 @onready var primary_gui: TextureProgressBar = $PlayerHUD/PrimaryBar
 @onready var special_gui: TextureProgressBar = $PlayerHUD/SpecialBar
-@onready var dead_gui: Label = $DeadLabel
+@onready var dead_gui: Label = $PlayerHUD/DeadLabel
 @onready var form_controller: CanvasLayer = $FormSwapMenu
+@onready var pause_controller: CanvasLayer = $PauseMenu
 @onready var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
 @onready var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
 @onready var form_array = [form0,form1]
@@ -73,6 +74,7 @@ var t1: int = 0
 var t_stamina: int = 0
 var t_dead: int = 300
 var form_menu: bool = false
+var pause_menu: bool = false
 var sync_pos = Vector2(0,0)
 #
 #Built-In Methods
@@ -236,9 +238,9 @@ func update_health(_damage):
 		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
 			if spawn.name == str(0):
 				global_position = spawn.global_position
-				dead_gui.visible = true
-				t_dead = 300
-				is_dead = true
+		dead_gui.set_visible(true)
+		t_dead = 300
+		is_dead = true
 	health_gui.value = hp * 100 / max_hp
 #
 func update_stamina():
@@ -273,11 +275,18 @@ func menu_input():
 	#CM: _physics_process
 	if Input.is_action_just_pressed("switch_form"):
 		if form_menu == false:
-			form_menu = true
-			get_tree().paused = true
-		#else:
-			#form_menu = false
-		form_controller.toggle_menu()
+			if pause_menu == false:
+				form_menu = true
+				get_tree().paused = true
+				form_controller.toggle_menu()
+	if Input.is_action_just_pressed("pause_game"):
+		if form_menu == false:
+			if pause_menu == false:
+				pause_menu = true
+				get_tree().paused = true
+				pause_controller.toggle_menu()
+		
+	
 #
 func form_update(_formNum,_formType):
 	#CM: Form Swap Menu > _on_button_name_down
