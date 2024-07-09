@@ -41,5 +41,7 @@ func open():
 func close():
 	visible = false
 	is_open = false
+	player.form_menu = false
+	player.pause_menu = false
 	#closed.emit()
 
