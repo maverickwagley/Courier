@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhn25kk7x7d3g"
-path="res://.godot/imported/spr_menu_circle_stone_disabled.png-060df68afcf003fa794a098fa65d0052.ctex"
+path="res://.godot/imported/spr_menu_circle_stone_disabled.png-dfd3dd953b0e533491edc5df8ffa9da4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_disabled.png"
-dest_files=["res://.godot/imported/spr_menu_circle_stone_disabled.png-060df68afcf003fa794a098fa65d0052.ctex"]
+source_file="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_disabled.png"
+dest_files=["res://.godot/imported/spr_menu_circle_stone_disabled.png-dfd3dd953b0e533491edc5df8ffa9da4.ctex"]
 
 [params]
 

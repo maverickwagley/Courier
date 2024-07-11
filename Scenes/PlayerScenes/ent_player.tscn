@@ -685,5 +685,6 @@ process_mode = 3
 [node name="CursorManager" parent="Cursor" instance=ExtResource("8_gva1e")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("18_crtwj")]
+visible = false
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

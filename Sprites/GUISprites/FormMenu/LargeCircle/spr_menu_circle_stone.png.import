@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvw1gi08juivf"
-path="res://.godot/imported/spr_menu_circle_stone_hover.png-93c067b20d906832b057e280a4e4ba40.ctex"
+uid="uid://5hvtdda68grr"
+path="res://.godot/imported/spr_menu_circle_stone.png-3255bc95bb0a3c222dad4d021d14b482.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_hover.png"
-dest_files=["res://.godot/imported/spr_menu_circle_stone_hover.png-93c067b20d906832b057e280a4e4ba40.ctex"]
+source_file="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone.png"
+dest_files=["res://.godot/imported/spr_menu_circle_stone.png-3255bc95bb0a3c222dad4d021d14b482.ctex"]
 
 [params]
 

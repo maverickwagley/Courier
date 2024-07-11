@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://cuumobgxb8km6"]
 
 [ext_resource type="Script" path="res://Scenes/GUIScenes/scr_gui_player_pause.gd" id="1_sk8st"]
-[ext_resource type="Texture2D" uid="uid://5hvtdda68grr" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone.png" id="2_ceqih"]
-[ext_resource type="Texture2D" uid="uid://pqn5pa0mhxwr" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_pressed.png" id="3_iq571"]
-[ext_resource type="Texture2D" uid="uid://bvw1gi08juivf" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_hover.png" id="4_82t73"]
-[ext_resource type="Texture2D" uid="uid://bhn25kk7x7d3g" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_disabled.png" id="5_05h27"]
-[ext_resource type="BitMap" uid="uid://bffjo2706uetc" path="res://Sprites/GUISprites/FormMenuButtons/spr_menu_circle_stone_clickmask.png" id="6_aaody"]
+[ext_resource type="Texture2D" uid="uid://5hvtdda68grr" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone.png" id="2_o4754"]
+[ext_resource type="Texture2D" uid="uid://pqn5pa0mhxwr" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_pressed.png" id="3_hhc36"]
+[ext_resource type="Texture2D" uid="uid://bvw1gi08juivf" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_hover.png" id="4_vadc5"]
+[ext_resource type="Texture2D" uid="uid://bhn25kk7x7d3g" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_disabled.png" id="5_hodhc"]
+[ext_resource type="BitMap" uid="uid://bffjo2706uetc" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_clickmask.png" id="6_xmdlk"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2
@@ -41,11 +41,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("2_ceqih")
-texture_pressed = ExtResource("3_iq571")
-texture_hover = ExtResource("4_82t73")
-texture_disabled = ExtResource("5_05h27")
-texture_click_mask = ExtResource("6_aaody")
+texture_normal = ExtResource("2_o4754")
+texture_pressed = ExtResource("3_hhc36")
+texture_hover = ExtResource("4_vadc5")
+texture_disabled = ExtResource("5_hodhc")
+texture_click_mask = ExtResource("6_xmdlk")
 
 [node name="SettingsButton" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -62,11 +62,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("2_ceqih")
-texture_pressed = ExtResource("3_iq571")
-texture_hover = ExtResource("4_82t73")
-texture_disabled = ExtResource("5_05h27")
-texture_click_mask = ExtResource("6_aaody")
+texture_normal = ExtResource("2_o4754")
+texture_pressed = ExtResource("3_hhc36")
+texture_hover = ExtResource("4_vadc5")
+texture_disabled = ExtResource("5_hodhc")
+texture_click_mask = ExtResource("6_xmdlk")
 
 [node name="HomeButton" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -83,11 +83,11 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-texture_normal = ExtResource("2_ceqih")
-texture_pressed = ExtResource("3_iq571")
-texture_hover = ExtResource("4_82t73")
-texture_disabled = ExtResource("5_05h27")
-texture_click_mask = ExtResource("6_aaody")
+texture_normal = ExtResource("2_o4754")
+texture_pressed = ExtResource("3_hhc36")
+texture_hover = ExtResource("4_vadc5")
+texture_disabled = ExtResource("5_hodhc")
+texture_click_mask = ExtResource("6_xmdlk")
 
 [node name="QuitButton" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -105,10 +105,10 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-texture_normal = ExtResource("2_ceqih")
-texture_pressed = ExtResource("3_iq571")
-texture_hover = ExtResource("4_82t73")
-texture_disabled = ExtResource("5_05h27")
-texture_click_mask = ExtResource("6_aaody")
+texture_normal = ExtResource("2_o4754")
+texture_pressed = ExtResource("3_hhc36")
+texture_hover = ExtResource("4_vadc5")
+texture_disabled = ExtResource("5_hodhc")
+texture_click_mask = ExtResource("6_xmdlk")
 
 [connection signal="pressed" from="Control/UnpauseButton" to="." method="_on_unpause_button_pressed"]
