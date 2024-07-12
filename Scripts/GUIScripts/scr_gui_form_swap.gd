@@ -2,6 +2,19 @@ extends CanvasLayer
 
 signal opened
 signal closed
+
+@onready var yellow_button: TextureButton = $Control/YellowFormButton
+@onready var yellow_sprite: AnimatedSprite2D = $Control/YellowFormButton/YellowFormSprite
+@onready var yellow_primary: TextureProgressBar = $Control/YellowFormButton/YellowPrimaryBar
+@onready var yellow_special: TextureProgressBar = $Control/YellowFormButton/YellowSpecialBar
+
+@onready var violet_button: TextureButton = $Control/VioletFormButton
+@onready var violet_sprite: AnimatedSprite2D = $Control/YellowFormButton/YellowFormSprite
+@onready var violet_primary: TextureProgressBar = $Control/YellowFormButton/YellowPrimaryBar
+@onready var violet_special: TextureProgressBar = $Control/YellowFormButton/YellowSpecialBar
+
+
+
 var is_open: bool = false
 var player_form: int = 0
 var player: CharacterBody2D
@@ -26,7 +39,7 @@ func _physics_process(_delta):
 #
 #Signal Methods
 #
-func _on_form_button_pressed():
+func _on_yellow_form_button_pressed():
 	if player_form == 0:
 		player.form_menu = false
 		get_tree().paused = false
@@ -38,7 +51,7 @@ func _on_form_button_pressed():
 		get_tree().paused = false
 		close()
 #
-func _on_form_button_2_pressed():
+func _on_violet_form_button_pressed():
 	if player_form == 1:
 		player.form_menu = false
 		get_tree().paused = false
@@ -68,4 +81,10 @@ func close():
 	is_open = false
 	#closed.emit()
 #
+
+
+
+
+
+
 
