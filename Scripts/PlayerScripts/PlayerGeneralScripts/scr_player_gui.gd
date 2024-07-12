@@ -5,8 +5,8 @@ extends CanvasLayer
 @onready var primarybar: TextureProgressBar = $PrimaryBar
 @onready var specialbar: TextureProgressBar = $SpecialBar
 
-@onready var heath_texture = preload("res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial_fill_health.png")
-@onready var stamina_texture = preload("res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial_fill_stamina.png")
+@onready var heath_texture = preload("res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_health.png")
+@onready var stamina_texture = preload("res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_stamina.png")
 
 
 func _ready():

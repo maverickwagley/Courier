@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var current_sprite = preload("res://Sprites/GUISprites/spr_cursor_player.png")
+@onready var current_sprite = preload("res://Sprites/GUISprites/PlayerGUI/spr_cursor_player.png")
 @onready var cursor_sprite: Sprite2D = $CursorSprite
 
 # Called when the node enters the scene tree for the first time.

@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://cuumobgxb8km6"]
 
 [ext_resource type="Script" path="res://Scenes/GUIScenes/scr_gui_player_pause.gd" id="1_sk8st"]
-[ext_resource type="Texture2D" uid="uid://5hvtdda68grr" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone.png" id="2_o4754"]
-[ext_resource type="Texture2D" uid="uid://pqn5pa0mhxwr" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_pressed.png" id="3_hhc36"]
-[ext_resource type="Texture2D" uid="uid://bvw1gi08juivf" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_hover.png" id="4_vadc5"]
-[ext_resource type="Texture2D" uid="uid://bhn25kk7x7d3g" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_disabled.png" id="5_hodhc"]
-[ext_resource type="BitMap" uid="uid://bffjo2706uetc" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_clickmask.png" id="6_xmdlk"]
+[ext_resource type="Texture2D" uid="uid://5hvtdda68grr" path="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone.png" id="2_o4754"]
+[ext_resource type="Texture2D" uid="uid://pqn5pa0mhxwr" path="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone_pressed.png" id="3_hhc36"]
+[ext_resource type="Texture2D" uid="uid://bvw1gi08juivf" path="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone_hover.png" id="4_vadc5"]
+[ext_resource type="Texture2D" uid="uid://bhn25kk7x7d3g" path="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone_disabled.png" id="5_hodhc"]
+[ext_resource type="BitMap" uid="uid://bffjo2706uetc" path="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone_clickmask.png" id="6_xmdlk"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2

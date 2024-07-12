@@ -1,91 +1,89 @@
-[gd_scene load_steps=35 format=3 uid="uid://c1s1l33aj55l4"]
+[gd_scene load_steps=33 format=3 uid="uid://c1s1l33aj55l4"]
 
 [ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_form_swap.gd" id="1_r8cfk"]
-[ext_resource type="Texture2D" uid="uid://ljhx8wvxpuiu" path="res://Sprites/GUISprites/FormMenu/spr_gui_form_swap_min.png" id="2_rjxow"]
-[ext_resource type="Texture2D" uid="uid://baacsgycu4jsb" path="res://Sprites/GUISprites/FormMenu/SmallCircle/spr_gui_circle_stone_small.png" id="3_qb6lb"]
-[ext_resource type="Texture2D" uid="uid://b4j6i4g45dmh5" path="res://Sprites/GUISprites/FormMenu/SmallCircle/spr_gui_circle_stone_small_pressed.png" id="4_e3xuk"]
-[ext_resource type="Texture2D" uid="uid://c4ow6kmmigm6a" path="res://Sprites/GUISprites/FormMenu/SmallCircle/spr_gui_circle_stone_small_hover.png" id="5_nqndd"]
-[ext_resource type="Texture2D" uid="uid://yrrxxd0d7bth" path="res://Sprites/GUISprites/FormMenu/SmallCircle/spr_gui_circle_stone_small_disabled.png" id="6_oh7i2"]
-[ext_resource type="BitMap" uid="uid://d01b3isal42us" path="res://Sprites/GUISprites/FormMenu/SmallCircle/spr_gui_circle_stone_small_clickmask.png" id="7_mu4ju"]
-[ext_resource type="Texture2D" uid="uid://bvfjpe5p27tl7" path="res://Sprites/GUISprites/spr_gui_formSelect_icons.png" id="7_oeql0"]
-[ext_resource type="BitMap" uid="uid://bffjo2706uetc" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_clickmask.png" id="9_7hro1"]
-[ext_resource type="Texture2D" uid="uid://cw1l47g873mvb" path="res://Sprites/GUISprites/FormMenu/SmallCircle/spr_gui_radial_fill_yellow_large.png" id="9_trgwt"]
-[ext_resource type="Texture2D" uid="uid://4g4sr0jqirrf" path="res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial_fill_yellow.png" id="10_7lssm"]
-[ext_resource type="Texture2D" uid="uid://5hvtdda68grr" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone.png" id="10_s6bpq"]
-[ext_resource type="Texture2D" uid="uid://pqn5pa0mhxwr" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_pressed.png" id="11_1knni"]
-[ext_resource type="Texture2D" uid="uid://bvw1gi08juivf" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_hover.png" id="12_wkphp"]
-[ext_resource type="Texture2D" uid="uid://bhn25kk7x7d3g" path="res://Sprites/GUISprites/FormMenu/LargeCircle/spr_menu_circle_stone_disabled.png" id="13_xhvgt"]
+[ext_resource type="Texture2D" uid="uid://ljhx8wvxpuiu" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap_min.png" id="2_rf58f"]
+[ext_resource type="Texture2D" uid="uid://baacsgycu4jsb" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small.png" id="3_3gaox"]
+[ext_resource type="Texture2D" uid="uid://b4j6i4g45dmh5" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small_pressed.png" id="4_j2f1k"]
+[ext_resource type="Texture2D" uid="uid://c4ow6kmmigm6a" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small_hover.png" id="5_oa7qn"]
+[ext_resource type="Texture2D" uid="uid://yrrxxd0d7bth" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small_disabled.png" id="6_71471"]
+[ext_resource type="BitMap" uid="uid://d01b3isal42us" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small_clickmask.png" id="7_tcned"]
+[ext_resource type="Texture2D" uid="uid://bvfjpe5p27tl7" path="res://Sprites/GUISprites/PlayerGUI/spr_gui_formSelect_icons.png" id="8_bq0rw"]
+[ext_resource type="Texture2D" uid="uid://4g4sr0jqirrf" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_yellow.png" id="9_t70jo"]
+[ext_resource type="Texture2D" uid="uid://bvbew6t2x5s0s" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial.png" id="9_us1py"]
+[ext_resource type="Texture2D" uid="uid://cw1l47g873mvb" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_radial_fill_yellow_large.png" id="10_v05mb"]
+[ext_resource type="Texture2D" uid="uid://dlwdioqfqhmcj" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_violet.png" id="11_sbc7m"]
+[ext_resource type="Texture2D" uid="uid://xp33x2x4322c" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_radial_fill_violet_large.png" id="12_wihmj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcr8n"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(0, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8k0ch"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(32, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fd4fi"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(64, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewwqa"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(96, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eouv8"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(128, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wu3pj"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(160, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_od7v0"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(192, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vs8na"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(224, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebsej"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(256, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nprw3"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(288, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q1ll8"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(320, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nqai8"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(352, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1s03q"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(384, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m4wma"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(416, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufh3i"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(448, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hk3x6"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(480, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86bei"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(512, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i41i8"]
-atlas = ExtResource("7_oeql0")
+atlas = ExtResource("8_bq0rw")
 region = Rect2(544, 0, 32, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_smuig"]
@@ -177,7 +175,7 @@ size_flags_horizontal = 4
 
 [node name="MenuSprite" type="Sprite2D" parent="Control"]
 position = Vector2(241, 135)
-texture = ExtResource("2_rjxow")
+texture = ExtResource("2_rf58f")
 
 [node name="YellowFormButton" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -194,33 +192,38 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("3_qb6lb")
-texture_pressed = ExtResource("4_e3xuk")
-texture_hover = ExtResource("5_nqndd")
-texture_disabled = ExtResource("6_oh7i2")
-texture_click_mask = ExtResource("7_mu4ju")
+texture_normal = ExtResource("3_3gaox")
+texture_pressed = ExtResource("4_j2f1k")
+texture_hover = ExtResource("5_oa7qn")
+texture_disabled = ExtResource("6_71471")
+texture_click_mask = ExtResource("7_tcned")
 
 [node name="YellowFormSprite" type="AnimatedSprite2D" parent="Control/YellowFormButton"]
 position = Vector2(15.5, 18.5)
 sprite_frames = SubResource("SpriteFrames_smuig")
 
 [node name="YellowSpecialBar" type="TextureProgressBar" parent="Control/YellowFormButton"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 33.0
 offset_bottom = 33.0
 mouse_filter = 2
 value = 100.0
-texture_progress = ExtResource("10_7lssm")
+fill_mode = 5
+texture_under = ExtResource("9_us1py")
+texture_progress = ExtResource("9_t70jo")
 
 [node name="YellowPrimaryBar" type="TextureProgressBar" parent="Control/YellowFormButton"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 33.0
 offset_bottom = 33.0
 mouse_filter = 2
 value = 100.0
-texture_progress = ExtResource("9_trgwt")
+fill_mode = 5
+texture_progress = ExtResource("10_v05mb")
 
 [node name="VioletFormButton" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -229,24 +232,42 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 25.5
+offset_left = 27.5
 offset_top = -37.5
-offset_right = 58.5
+offset_right = 60.5
 offset_bottom = -4.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("3_qb6lb")
-texture_pressed = ExtResource("4_e3xuk")
-texture_hover = ExtResource("5_nqndd")
-texture_disabled = ExtResource("6_oh7i2")
-texture_click_mask = ExtResource("7_mu4ju")
+texture_normal = ExtResource("3_3gaox")
+texture_pressed = ExtResource("4_j2f1k")
+texture_hover = ExtResource("5_oa7qn")
+texture_disabled = ExtResource("6_71471")
+texture_click_mask = ExtResource("7_tcned")
 
 [node name="VioletFormSprite" type="AnimatedSprite2D" parent="Control/VioletFormButton"]
-position = Vector2(15, 17)
+position = Vector2(16, 18)
 sprite_frames = SubResource("SpriteFrames_smuig")
 frame = 1
+
+[node name="VioletSpecialBar" type="TextureProgressBar" parent="Control/VioletFormButton"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 33.0
+offset_bottom = 33.0
+value = 100.0
+texture_progress = ExtResource("11_sbc7m")
+
+[node name="VioletPrimaryBar" type="TextureProgressBar" parent="Control/VioletFormButton"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 41.0
+offset_bottom = 41.0
+value = 100.0
+texture_progress = ExtResource("12_wihmj")
 
 [node name="FormButton3" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -264,11 +285,11 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-texture_normal = ExtResource("10_s6bpq")
-texture_pressed = ExtResource("11_1knni")
-texture_hover = ExtResource("12_wkphp")
-texture_disabled = ExtResource("13_xhvgt")
-texture_click_mask = ExtResource("9_7hro1")
+texture_normal = ExtResource("3_3gaox")
+texture_pressed = ExtResource("4_j2f1k")
+texture_hover = ExtResource("5_oa7qn")
+texture_disabled = ExtResource("6_71471")
+texture_click_mask = ExtResource("7_tcned")
 
 [node name="FormButton4" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -277,20 +298,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = 9.0
-offset_right = -26.0
-offset_bottom = 41.0
+offset_left = -56.5
+offset_top = 7.5
+offset_right = -23.5
+offset_bottom = 40.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-texture_normal = ExtResource("10_s6bpq")
-texture_pressed = ExtResource("11_1knni")
-texture_hover = ExtResource("12_wkphp")
-texture_disabled = ExtResource("13_xhvgt")
-texture_click_mask = ExtResource("9_7hro1")
+texture_normal = ExtResource("3_3gaox")
+texture_pressed = ExtResource("4_j2f1k")
+texture_hover = ExtResource("5_oa7qn")
+texture_disabled = ExtResource("6_71471")
+texture_click_mask = ExtResource("7_tcned")
 
 [node name="FormButton5" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -299,20 +320,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 26.0
-offset_top = 9.0
-offset_right = 58.0
-offset_bottom = 41.0
+offset_left = 26.5
+offset_top = 8.5
+offset_right = 59.5
+offset_bottom = 41.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-texture_normal = ExtResource("10_s6bpq")
-texture_pressed = ExtResource("11_1knni")
-texture_hover = ExtResource("12_wkphp")
-texture_disabled = ExtResource("13_xhvgt")
-texture_click_mask = ExtResource("9_7hro1")
+texture_normal = ExtResource("3_3gaox")
+texture_pressed = ExtResource("4_j2f1k")
+texture_hover = ExtResource("5_oa7qn")
+texture_disabled = ExtResource("6_71471")
+texture_click_mask = ExtResource("7_tcned")
 
 [node name="FormButton6" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -321,20 +342,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = 34.0
-offset_right = 16.0
-offset_bottom = 66.0
+offset_left = -15.5
+offset_top = 33.5
+offset_right = 17.5
+offset_bottom = 66.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-texture_normal = ExtResource("10_s6bpq")
-texture_pressed = ExtResource("11_1knni")
-texture_hover = ExtResource("12_wkphp")
-texture_disabled = ExtResource("13_xhvgt")
-texture_click_mask = ExtResource("9_7hro1")
+texture_normal = ExtResource("3_3gaox")
+texture_pressed = ExtResource("4_j2f1k")
+texture_hover = ExtResource("5_oa7qn")
+texture_disabled = ExtResource("6_71471")
+texture_click_mask = ExtResource("7_tcned")
 
 [connection signal="pressed" from="Control/YellowFormButton" to="." method="_on_yellow_form_button_pressed"]
 [connection signal="pressed" from="Control/VioletFormButton" to="." method="_on_violet_form_button_pressed"]

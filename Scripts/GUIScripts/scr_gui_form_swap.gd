@@ -72,6 +72,8 @@ func toggle_menu():
 		close()
 #
 func open():
+	
+	update()
 	visible = true
 	is_open = true
 	#opened.emit()
@@ -81,6 +83,15 @@ func close():
 	is_open = false
 	#closed.emit()
 #
+func update():
+	#yellow_primary.value = player.yellow_primary * 100 / player.current_max
+	yellow_special.set_value(player.yellow_special * 100 / player.current_max)
+	yellow_primary.set_value(player.yellow_primary * 100 / player.current_max)
+	print_debug(yellow_primary.value)
+	print_debug(yellow_special.value)
+	violet_primary.value = player.violet_primary * 100 / player.current_max
+	violet_special.value = player.violet_special * 100 / player.current_max
+	print_debug("Form Menu Update")
 
 
 

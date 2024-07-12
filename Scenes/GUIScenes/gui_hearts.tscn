@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxss1ly1oyo5s"]
-
-[ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_hearts.gd" id="1_epp3e"]
-
-[node name="HeartsGUI" type="HBoxContainer"]
-theme_override_constants/separation = 0
-script = ExtResource("1_epp3e")

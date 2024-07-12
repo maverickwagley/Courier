@@ -1,8 +1,8 @@
 extends TextureProgressBar
 
 @onready var player = $"../.."
-@onready var yellow_texture = preload("res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial_fill_yellow.png")
-@onready var violet_texture = preload("res://Sprites/GUISprites/GUIActive/spr_gui_healthbar_radial_fill_violet.png")
+@onready var yellow_texture = preload("res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_yellow.png")
+@onready var violet_texture = preload("res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_violet.png")
 @onready var sprite: AnimatedSprite2D = $PrimaryBarSprite
 
 var player_num: int = 0

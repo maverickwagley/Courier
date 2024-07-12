@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://beu8blmis61u7"]
 
 [ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_slot.gd" id="1_wb1eu"]
-[ext_resource type="Texture2D" uid="uid://dfkcrcyjxl1hn" path="res://Sprites/GUISprites/spr_menu_button_darkgrey_10.png" id="2_xr8h1"]
-[ext_resource type="Texture2D" uid="uid://bvfjpe5p27tl7" path="res://Sprites/GUISprites/spr_gui_formSelect_icons.png" id="3_7q4mb"]
+[ext_resource type="Texture2D" uid="uid://dfkcrcyjxl1hn" path="res://Sprites/GUISprites/GeneralGUI/spr_menu_button_darkgrey_10.png" id="2_xr8h1"]
+[ext_resource type="Texture2D" uid="uid://bvfjpe5p27tl7" path="res://Sprites/GUISprites/PlayerGUI/spr_gui_formSelect_icons.png" id="3_7q4mb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0mmg8"]
 

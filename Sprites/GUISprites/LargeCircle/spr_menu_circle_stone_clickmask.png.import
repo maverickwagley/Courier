@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bffjo2706uetc"
+path="res://.godot/imported/spr_menu_circle_stone_clickmask.png-14b130e4a690b038d903d25215f999d5.res"
+
+[deps]
+
+source_file="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone_clickmask.png"
+dest_files=["res://.godot/imported/spr_menu_circle_stone_clickmask.png-14b130e4a690b038d903d25215f999d5.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
