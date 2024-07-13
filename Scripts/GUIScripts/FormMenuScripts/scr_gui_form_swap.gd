@@ -3,17 +3,19 @@ extends CanvasLayer
 signal opened
 signal closed
 
+@onready var health_bar: TextureProgressBar = $Control/HealthBar
+@onready var stamina_bar: TextureProgressBar = $Control/StaminaBar
+@onready var current_form: AnimatedSprite2D = $Control/CurrentFormSprite
+
 @onready var yellow_button: TextureButton = $Control/YellowFormButton
 @onready var yellow_sprite: AnimatedSprite2D = $Control/YellowFormButton/YellowFormSprite
 @onready var yellow_primary: TextureProgressBar = $Control/YellowFormButton/YellowPrimaryBar
 @onready var yellow_special: TextureProgressBar = $Control/YellowFormButton/YellowSpecialBar
 
 @onready var violet_button: TextureButton = $Control/VioletFormButton
-@onready var violet_sprite: AnimatedSprite2D = $Control/YellowFormButton/YellowFormSprite
-@onready var violet_primary: TextureProgressBar = $Control/YellowFormButton/YellowPrimaryBar
-@onready var violet_special: TextureProgressBar = $Control/YellowFormButton/YellowSpecialBar
-
-
+@onready var violet_sprite: AnimatedSprite2D = $Control/VioletFormButton/VioletFormSprite
+@onready var violet_primary: TextureProgressBar = $Control/VioletFormButton/VioletPrimaryBar
+@onready var violet_special: TextureProgressBar = $Control/VioletFormButton/VioletSpecialBar
 
 var is_open: bool = false
 var player_form: int = 0
@@ -84,14 +86,14 @@ func close():
 	#closed.emit()
 #
 func update():
-	#yellow_primary.value = player.yellow_primary * 100 / player.current_max
+	current_form.set_frame_and_progress(player.form_id,0.0)
+	health_bar.set_value(player.hp * 100 / player.max_hp)
+	stamina_bar.set_value(player.stamina * 100 / player.max_stamina)
 	yellow_special.set_value(player.yellow_special * 100 / player.current_max)
 	yellow_primary.set_value(player.yellow_primary * 100 / player.current_max)
-	print_debug(yellow_primary.value)
-	print_debug(yellow_special.value)
-	violet_primary.value = player.violet_primary * 100 / player.current_max
-	violet_special.value = player.violet_special * 100 / player.current_max
-	print_debug("Form Menu Update")
+	violet_primary.set_value(player.violet_primary * 100 / player.current_max)
+	violet_special.set_value(player.violet_special * 100 / player.current_max)
+
 
 
 

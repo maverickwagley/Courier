@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bvbew6t2x5s0s" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial.png" id="4_ygxjo"]
 [ext_resource type="Texture2D" uid="uid://dcqpiu56ar123" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_health.png" id="5_lhgv1"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_health.gd" id="6_jin4q"]
-[ext_resource type="Texture2D" uid="uid://bvfjpe5p27tl7" path="res://Sprites/GUISprites/PlayerGUI/spr_gui_formSelect_icons.png" id="7_y2fyu"]
 [ext_resource type="PackedScene" uid="uid://c1s1l33aj55l4" path="res://Scenes/GUIScenes/gui_form_swap.tscn" id="7_yggh5"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_staminabar.gd" id="8_1l12b"]
 [ext_resource type="PackedScene" uid="uid://dkyfocw87xutx" path="res://Scenes/GUIScenes/cursor_manager.tscn" id="8_gva1e"]
@@ -25,76 +24,79 @@ size = Vector2(7, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxttq"]
 size = Vector2(7, 6)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gjmgg"]
+load_path = "res://.godot/imported/spr_gui_formSelect_icons.png-d51c33b67e7d8379bb9d6d900f7de51b.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tgkx5"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(0, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlj4a"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(32, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_thv7p"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(64, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ynmp"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(96, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7wig"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(128, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jv4u5"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(160, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqsqi"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(192, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_woh2n"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(224, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yuf8o"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(256, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_udc3a"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(288, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hfpjn"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(320, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cun24"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(352, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nyx5e"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(384, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p00el"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(416, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4yhh"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(448, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eehux"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(480, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxpsx"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(512, 0, 32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnx7s"]
-atlas = ExtResource("7_y2fyu")
+atlas = SubResource("CompressedTexture2D_gjmgg")
 region = Rect2(544, 0, 32, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t54bn"]

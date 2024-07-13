@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvfjpe5p27tl7"
-path="res://.godot/imported/spr_gui_formSelect_icons.png-d51c33b67e7d8379bb9d6d900f7de51b.ctex"
+uid="uid://b52s7y1ptnxcq"
+path="res://.godot/imported/spr_gui_radial_fill_health_large.png-eefc19990ad74716218eea7612586edf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/PlayerGUI/spr_gui_formSelect_icons.png"
-dest_files=["res://.godot/imported/spr_gui_formSelect_icons.png-d51c33b67e7d8379bb9d6d900f7de51b.ctex"]
+source_file="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_radial_fill_health_large.png"
+dest_files=["res://.godot/imported/spr_gui_radial_fill_health_large.png-eefc19990ad74716218eea7612586edf.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ljhx8wvxpuiu"
-path="res://.godot/imported/spr_gui_form_swap_min.png-9bec5b069ba3dd2df6e2ef6543c23e59.ctex"
+uid="uid://stct2hnnt7m1"
+path="res://.godot/imported/spr_gui_radial_fill_stamina_large.png-f9153be17e2babcd95d625ad350933e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap_min.png"
-dest_files=["res://.godot/imported/spr_gui_form_swap_min.png-9bec5b069ba3dd2df6e2ef6543c23e59.ctex"]
+source_file="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_radial_fill_stamina_large.png"
+dest_files=["res://.godot/imported/spr_gui_radial_fill_stamina_large.png-f9153be17e2babcd95d625ad350933e1.ctex"]
 
 [params]
 
