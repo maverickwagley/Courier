@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://bp15s6ahqb6rf"]
+
+[ext_resource type="FontFile" uid="uid://bwr8eduuv1sj5" path="res://Sprites/FontFiles/Fleftex_M.ttf" id="1_yyj1m"]
+
+[resource]
+base_font = ExtResource("1_yyj1m")

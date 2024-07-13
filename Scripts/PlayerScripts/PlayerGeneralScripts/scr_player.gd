@@ -273,12 +273,12 @@ func update_cam_tilemap():
 #
 func menu_input():
 	#CM: _physics_process
-	if Input.is_action_just_pressed("switch_form"):
-		if form_menu == false:
-			if pause_menu == false:
-				form_menu = true
-				get_tree().paused = true
-				form_controller.toggle_menu()
+	#if Input.is_action_just_pressed("switch_form"):
+		#if form_menu == false:
+			#if pause_menu == false:
+				#form_menu = true
+				#get_tree().paused = true
+				#form_controller.toggle_menu()
 	if Input.is_action_just_pressed("pause_game"):
 		if form_menu == false:
 			if pause_menu == false:

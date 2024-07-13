@@ -37,7 +37,15 @@ func _ready():
 	is_open = false
 #
 func _physics_process(_delta):
-	pass
+	if Input.is_action_just_pressed("switch_form"):
+		if is_open == true:
+			player.form_menu = false
+			get_tree().paused = false
+			close()
+		else:
+			player.form_menu = true
+			get_tree().paused = true
+			open()
 #
 #Signal Methods
 #

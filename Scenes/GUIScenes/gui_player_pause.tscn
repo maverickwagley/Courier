@@ -1,15 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuumobgxb8km6"]
+[gd_scene load_steps=6 format=3 uid="uid://cuumobgxb8km6"]
 
 [ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_player_pause.gd" id="1_sk8st"]
-[ext_resource type="Texture2D" uid="uid://5hvtdda68grr" path="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone.png" id="2_o4754"]
-[ext_resource type="Texture2D" uid="uid://pqn5pa0mhxwr" path="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone_pressed.png" id="3_hhc36"]
-[ext_resource type="Texture2D" uid="uid://bvw1gi08juivf" path="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone_hover.png" id="4_vadc5"]
-[ext_resource type="Texture2D" uid="uid://bhn25kk7x7d3g" path="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone_disabled.png" id="5_hodhc"]
-[ext_resource type="BitMap" uid="uid://bffjo2706uetc" path="res://Sprites/GUISprites/LargeCircle/spr_menu_circle_stone_clickmask.png" id="6_xmdlk"]
+[ext_resource type="Texture2D" uid="uid://cltqtq4ff4ets" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused.png" id="2_0x7hq"]
+[ext_resource type="Texture2D" uid="uid://j6rciykiytas" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_pressed.png" id="3_tuv68"]
+[ext_resource type="Texture2D" uid="uid://dnkxja2olddv1" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_hover.png" id="4_kqf4g"]
+[ext_resource type="BitMap" uid="uid://16x57urarisq" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_clickmask.png" id="5_xsnkm"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2
 script = ExtResource("1_sk8st")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 484.0
+offset_bottom = 273.0
+color = Color(0, 0, 0, 0.494118)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -18,34 +24,45 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -239.5
-offset_top = -134.5
-offset_right = 239.5
-offset_bottom = 134.5
+offset_left = -243.0
+offset_top = -137.0
+offset_right = 236.0
+offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 
-[node name="UnpauseButton" type="TextureButton" parent="Control"]
+[node name="ResumeButton" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -50.0
-offset_right = 17.0
-offset_bottom = -18.0
+offset_left = -64.5
+offset_top = -65.5
+offset_right = 64.5
+offset_bottom = -32.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("2_o4754")
-texture_pressed = ExtResource("3_hhc36")
-texture_hover = ExtResource("4_vadc5")
-texture_disabled = ExtResource("5_hodhc")
-texture_click_mask = ExtResource("6_xmdlk")
+texture_normal = ExtResource("2_0x7hq")
+texture_pressed = ExtResource("3_tuv68")
+texture_hover = ExtResource("4_kqf4g")
+texture_click_mask = ExtResource("5_xsnkm")
+
+[node name="ResumeLabel" type="RichTextLabel" parent="Control/ResumeButton"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 119.0
+offset_bottom = 22.0
+mouse_filter = 2
+theme_type_variation = &"HeaderSmall"
+bbcode_enabled = true
+text = "[center]RESUME[/center]"
+scroll_active = false
 
 [node name="SettingsButton" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -54,19 +71,29 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -25.0
-offset_right = 17.0
-offset_bottom = 7.0
+offset_left = -64.5
+offset_top = -33.5
+offset_right = 64.5
+offset_bottom = -0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("2_o4754")
-texture_pressed = ExtResource("3_hhc36")
-texture_hover = ExtResource("4_vadc5")
-texture_disabled = ExtResource("5_hodhc")
-texture_click_mask = ExtResource("6_xmdlk")
+texture_normal = ExtResource("2_0x7hq")
+texture_pressed = ExtResource("3_tuv68")
+texture_hover = ExtResource("4_kqf4g")
+texture_click_mask = ExtResource("5_xsnkm")
+
+[node name="SettingsLabel" type="RichTextLabel" parent="Control/SettingsButton"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 118.0
+offset_bottom = 23.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]SETTINGS[/center]"
+scroll_active = false
 
 [node name="HomeButton" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -75,40 +102,59 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_right = 17.0
-offset_bottom = 32.0
+offset_left = -64.5
+offset_top = -1.5
+offset_right = 64.5
+offset_bottom = 31.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-disabled = true
-texture_normal = ExtResource("2_o4754")
-texture_pressed = ExtResource("3_hhc36")
-texture_hover = ExtResource("4_vadc5")
-texture_disabled = ExtResource("5_hodhc")
-texture_click_mask = ExtResource("6_xmdlk")
+texture_normal = ExtResource("2_0x7hq")
+texture_pressed = ExtResource("3_tuv68")
+texture_hover = ExtResource("4_kqf4g")
+texture_click_mask = ExtResource("5_xsnkm")
 
-[node name="QuitButton" type="TextureButton" parent="Control"]
+[node name="HomeLabel" type="RichTextLabel" parent="Control/HomeButton"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 120.0
+offset_bottom = 24.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]HOME[/center]"
+scroll_active = false
+
+[node name="ExitButton" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = 25.0
-offset_right = 17.0
-offset_bottom = 57.0
+offset_left = -64.5
+offset_top = 30.5
+offset_right = 64.5
+offset_bottom = 63.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-disabled = true
-texture_normal = ExtResource("2_o4754")
-texture_pressed = ExtResource("3_hhc36")
-texture_hover = ExtResource("4_vadc5")
-texture_disabled = ExtResource("5_hodhc")
-texture_click_mask = ExtResource("6_xmdlk")
+texture_normal = ExtResource("2_0x7hq")
+texture_pressed = ExtResource("3_tuv68")
+texture_hover = ExtResource("4_kqf4g")
+texture_click_mask = ExtResource("5_xsnkm")
 
-[connection signal="pressed" from="Control/UnpauseButton" to="." method="_on_unpause_button_pressed"]
+[node name="ExitLabel" type="RichTextLabel" parent="Control/ExitButton"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 118.0
+offset_bottom = 24.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]EXIT GAME[/center]"
+scroll_active = false
+
+[connection signal="pressed" from="Control/ResumeButton" to="." method="_on_resume_button_pressed"]

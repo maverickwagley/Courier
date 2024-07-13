@@ -21,7 +21,7 @@ func _physics_process(_delta):
 #
 #Signal Methods
 #
-func _on_unpause_button_pressed():
+func _on_resume_button_pressed():
 	get_tree().paused = false
 	close()
 #
@@ -44,4 +44,5 @@ func close():
 	player.form_menu = false
 	player.pause_menu = false
 	#closed.emit()
+
 

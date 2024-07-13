@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://16x57urarisq"
+path="res://.godot/imported/scr_gui_button_paused_clickmask.png-24952631a1eac8cfe20e19452a5043ac.res"
+
+[deps]
+
+source_file="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_clickmask.png"
+dest_files=["res://.godot/imported/scr_gui_button_paused_clickmask.png-24952631a1eac8cfe20e19452a5043ac.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

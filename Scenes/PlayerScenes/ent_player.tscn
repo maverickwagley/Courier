@@ -25,7 +25,6 @@ size = Vector2(7, 6)
 size = Vector2(7, 6)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gjmgg"]
-load_path = "res://.godot/imported/spr_gui_formSelect_icons.png-d51c33b67e7d8379bb9d6d900f7de51b.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tgkx5"]
 atlas = SubResource("CompressedTexture2D_gjmgg")
@@ -679,14 +678,15 @@ text = "DEAD"
 label_settings = SubResource("LabelSettings_l41wf")
 
 [node name="FormSwapMenu" parent="." instance=ExtResource("7_yggh5")]
-process_mode = 2
+process_mode = 3
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("18_crtwj")]
+process_mode = 3
 
 [node name="Cursor" type="CanvasLayer" parent="."]
 process_mode = 3
 
 [node name="CursorManager" parent="Cursor" instance=ExtResource("8_gva1e")]
-
-[node name="PauseMenu" parent="." instance=ExtResource("18_crtwj")]
-visible = false
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
