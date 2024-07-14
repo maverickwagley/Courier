@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://cuumobgxb8km6"]
 
-[ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_player_pause.gd" id="1_sk8st"]
-[ext_resource type="Texture2D" uid="uid://cltqtq4ff4ets" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused.png" id="2_0x7hq"]
-[ext_resource type="Texture2D" uid="uid://j6rciykiytas" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_pressed.png" id="3_tuv68"]
-[ext_resource type="Texture2D" uid="uid://dnkxja2olddv1" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_hover.png" id="4_kqf4g"]
-[ext_resource type="BitMap" uid="uid://16x57urarisq" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_clickmask.png" id="5_xsnkm"]
+[ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_player_pause.gd" id="1_34n1t"]
+[ext_resource type="Texture2D" uid="uid://cltqtq4ff4ets" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused.png" id="2_xg7f2"]
+[ext_resource type="Texture2D" uid="uid://j6rciykiytas" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_pressed.png" id="3_53ojo"]
+[ext_resource type="Texture2D" uid="uid://dnkxja2olddv1" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_hover.png" id="4_sppxc"]
+[ext_resource type="BitMap" uid="uid://16x57urarisq" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_clickmask.png" id="5_a5wxd"]
 
 [node name="PauseMenu" type="CanvasLayer"]
-process_mode = 2
-script = ExtResource("1_sk8st")
+process_mode = 3
+script = ExtResource("1_34n1t")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -2.0
@@ -24,10 +24,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -243.0
-offset_top = -137.0
-offset_right = 236.0
-offset_bottom = 132.0
+offset_left = -242.0
+offset_top = -134.0
+offset_right = 237.0
+offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -40,26 +40,23 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -64.5
-offset_top = -65.5
-offset_right = 64.5
-offset_bottom = -32.5
+offset_top = -61.5
+offset_right = 63.5
+offset_bottom = -29.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture_normal = ExtResource("2_0x7hq")
-texture_pressed = ExtResource("3_tuv68")
-texture_hover = ExtResource("4_kqf4g")
-texture_click_mask = ExtResource("5_xsnkm")
+texture_normal = ExtResource("2_xg7f2")
+texture_pressed = ExtResource("3_53ojo")
+texture_hover = ExtResource("4_sppxc")
+texture_click_mask = ExtResource("5_a5wxd")
 
-[node name="ResumeLabel" type="RichTextLabel" parent="Control/ResumeButton"]
+[node name="ResumLabel" type="RichTextLabel" parent="Control/ResumeButton"]
 layout_mode = 0
-offset_left = 10.0
+offset_left = 9.0
 offset_top = 8.0
-offset_right = 119.0
-offset_bottom = 22.0
+offset_right = 118.0
+offset_bottom = 23.0
 mouse_filter = 2
-theme_type_variation = &"HeaderSmall"
 bbcode_enabled = true
 text = "[center]RESUME[/center]"
 scroll_active = false
@@ -72,17 +69,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -64.5
-offset_top = -33.5
-offset_right = 64.5
-offset_bottom = -0.5
+offset_top = -29.5
+offset_right = 63.5
+offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture_normal = ExtResource("2_0x7hq")
-texture_pressed = ExtResource("3_tuv68")
-texture_hover = ExtResource("4_kqf4g")
-texture_click_mask = ExtResource("5_xsnkm")
+texture_normal = ExtResource("2_xg7f2")
+texture_pressed = ExtResource("3_53ojo")
+texture_hover = ExtResource("4_sppxc")
+texture_click_mask = ExtResource("5_a5wxd")
 
 [node name="SettingsLabel" type="RichTextLabel" parent="Control/SettingsButton"]
 layout_mode = 0
@@ -92,7 +87,7 @@ offset_right = 118.0
 offset_bottom = 23.0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[center]SETTINGS[/center]"
+text = "[center][font_size=8]xSETTINGSx"
 scroll_active = false
 
 [node name="HomeButton" type="TextureButton" parent="Control"]
@@ -103,27 +98,25 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -64.5
-offset_top = -1.5
-offset_right = 64.5
-offset_bottom = 31.5
+offset_top = 2.5
+offset_right = 63.5
+offset_bottom = 34.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture_normal = ExtResource("2_0x7hq")
-texture_pressed = ExtResource("3_tuv68")
-texture_hover = ExtResource("4_kqf4g")
-texture_click_mask = ExtResource("5_xsnkm")
+texture_normal = ExtResource("2_xg7f2")
+texture_pressed = ExtResource("3_53ojo")
+texture_hover = ExtResource("4_sppxc")
+texture_click_mask = ExtResource("5_a5wxd")
 
 [node name="HomeLabel" type="RichTextLabel" parent="Control/HomeButton"]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 9.0
-offset_right = 120.0
-offset_bottom = 24.0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 118.0
+offset_bottom = 23.0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[center]HOME[/center]"
+text = "[center]HOME"
 scroll_active = false
 
 [node name="ExitButton" type="TextureButton" parent="Control"]
@@ -133,28 +126,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.5
-offset_top = 30.5
-offset_right = 64.5
-offset_bottom = 63.5
+offset_left = -65.5
+offset_top = 34.5
+offset_right = 62.5
+offset_bottom = 66.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture_normal = ExtResource("2_0x7hq")
-texture_pressed = ExtResource("3_tuv68")
-texture_hover = ExtResource("4_kqf4g")
-texture_click_mask = ExtResource("5_xsnkm")
+texture_normal = ExtResource("2_xg7f2")
+texture_pressed = ExtResource("3_53ojo")
+texture_hover = ExtResource("4_sppxc")
+texture_click_mask = ExtResource("5_a5wxd")
 
 [node name="ExitLabel" type="RichTextLabel" parent="Control/ExitButton"]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 9.0
+offset_top = 8.0
 offset_right = 118.0
-offset_bottom = 24.0
+offset_bottom = 23.0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[center]EXIT GAME[/center]"
+text = "[center]EXIT"
 scroll_active = false
 
 [connection signal="pressed" from="Control/ResumeButton" to="." method="_on_resume_button_pressed"]

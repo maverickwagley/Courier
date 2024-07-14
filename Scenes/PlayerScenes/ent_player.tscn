@@ -682,7 +682,6 @@ process_mode = 3
 visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("18_crtwj")]
-process_mode = 3
 
 [node name="Cursor" type="CanvasLayer" parent="."]
 process_mode = 3
