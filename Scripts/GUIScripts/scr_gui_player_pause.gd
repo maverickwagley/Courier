@@ -25,6 +25,15 @@ func _on_resume_button_pressed():
 	get_tree().paused = false
 	close()
 #
+func _on_home_button_pressed():
+	ScrGameManager.mode = 0
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/RoomScenes/MetaRooms/rm_home.tscn")
+	player.queue_free()
+#
+func _on_exit_button_pressed():
+	get_tree().quit()
+#
 #Custom Methods
 #
 func toggle_menu():
@@ -44,5 +53,11 @@ func close():
 	player.form_menu = false
 	player.pause_menu = false
 	#closed.emit()
+
+
+
+
+
+
 
 

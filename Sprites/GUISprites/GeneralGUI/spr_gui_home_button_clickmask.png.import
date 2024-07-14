@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckyo2r3hfm0l2"
-path="res://.godot/imported/spr_menu_base_darkgrey_10.png-605d140ff8621fecdce1c70e4c0d8110.ctex"
+uid="uid://ee1gwlbwarbt"
+path="res://.godot/imported/spr_gui_home_button_clickmask.png-2ee61dda723e101835fd1fdd2c185fae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/GeneralGUI/spr_menu_base_darkgrey_10.png"
-dest_files=["res://.godot/imported/spr_menu_base_darkgrey_10.png-605d140ff8621fecdce1c70e4c0d8110.ctex"]
+source_file="res://Sprites/GUISprites/GeneralGUI/spr_gui_home_button_clickmask.png"
+dest_files=["res://.godot/imported/spr_gui_home_button_clickmask.png-2ee61dda723e101835fd1fdd2c185fae.ctex"]
 
 [params]
 

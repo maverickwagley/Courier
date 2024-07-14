@@ -81,10 +81,10 @@ texture_click_mask = ExtResource("5_a5wxd")
 
 [node name="SettingsLabel" type="RichTextLabel" parent="Control/SettingsButton"]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 8.0
-offset_right = 118.0
-offset_bottom = 23.0
+offset_left = 10.0
+offset_top = 13.0
+offset_right = 119.0
+offset_bottom = 28.0
 mouse_filter = 2
 bbcode_enabled = true
 text = "[center][font_size=8]xSETTINGSx"
@@ -149,3 +149,5 @@ text = "[center]EXIT"
 scroll_active = false
 
 [connection signal="pressed" from="Control/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="Control/ExitButton" to="." method="_on_exit_button_pressed"]

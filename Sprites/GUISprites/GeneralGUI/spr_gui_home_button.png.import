@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfkcrcyjxl1hn"
-path="res://.godot/imported/spr_menu_button_darkgrey_10.png-66e40b6db13f51c1a93a46491d891d4c.ctex"
+uid="uid://ccjeowahsfvde"
+path="res://.godot/imported/spr_gui_home_button.png-3284042e934c9042b4b794abaddaeffb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/GeneralGUI/spr_menu_button_darkgrey_10.png"
-dest_files=["res://.godot/imported/spr_menu_button_darkgrey_10.png-66e40b6db13f51c1a93a46491d891d4c.ctex"]
+source_file="res://Sprites/GUISprites/GeneralGUI/spr_gui_home_button.png"
+dest_files=["res://.godot/imported/spr_gui_home_button.png-3284042e934c9042b4b794abaddaeffb.ctex"]
 
 [params]
 

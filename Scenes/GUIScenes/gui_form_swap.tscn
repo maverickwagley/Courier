@@ -1,7 +1,6 @@
-[gd_scene load_steps=72 format=3 uid="uid://c1s1l33aj55l4"]
+[gd_scene load_steps=71 format=3 uid="uid://c1s1l33aj55l4"]
 
 [ext_resource type="Script" path="res://Scripts/GUIScripts/FormMenuScripts/scr_gui_form_swap.gd" id="1_5yd3w"]
-[ext_resource type="Texture2D" uid="uid://hemowiaq016t" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap.png" id="2_wrd2w"]
 [ext_resource type="Texture2D" uid="uid://baacsgycu4jsb" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small.png" id="3_3gaox"]
 [ext_resource type="Texture2D" uid="uid://dhsj6un6mo5gx" path="res://Sprites/GUISprites/PlayerGUI/spr_formSelect_icons.png" id="3_ffw50"]
 [ext_resource type="Texture2D" uid="uid://b4j6i4g45dmh5" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small_pressed.png" id="4_j2f1k"]
@@ -444,7 +443,6 @@ size_flags_horizontal = 4
 
 [node name="MenuSprite" type="Sprite2D" parent="Control"]
 position = Vector2(241, 135)
-texture = ExtResource("2_wrd2w")
 
 [node name="HealthBar" type="TextureProgressBar" parent="Control"]
 layout_mode = 0

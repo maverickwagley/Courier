@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dxw2sqmi73pf8"
+path="res://.godot/imported/spr_gui_settings_button_clickmask.png-8ea01974fb4ccd78acfe31f15b5c4c75.res"
+
+[deps]
+
+source_file="res://Sprites/GUISprites/GeneralGUI/spr_gui_settings_button_clickmask.png"
+dest_files=["res://.godot/imported/spr_gui_settings_button_clickmask.png-8ea01974fb4ccd78acfe31f15b5c4c75.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
