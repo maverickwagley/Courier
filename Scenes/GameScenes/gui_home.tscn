@@ -1,14 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://drf5qkli8uwpe"]
+[gd_scene load_steps=15 format=3 uid="uid://drf5qkli8uwpe"]
 
 [ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_home.gd" id="1_4ef8p"]
 [ext_resource type="Texture2D" uid="uid://di7nvbvr6d8af" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_title_gold.png" id="2_g7n6l"]
 [ext_resource type="Texture2D" uid="uid://cltqtq4ff4ets" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused.png" id="2_vaesu"]
+[ext_resource type="Texture2D" uid="uid://cj3vvxv3hbwvp" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_settings_button_pressed.png" id="3_3ssky"]
 [ext_resource type="Texture2D" uid="uid://j6rciykiytas" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_pressed.png" id="3_pcyfy"]
 [ext_resource type="Texture2D" uid="uid://dnkxja2olddv1" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_hover.png" id="4_f2ap3"]
 [ext_resource type="BitMap" uid="uid://16x57urarisq" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_clickmask.png" id="5_pg2m0"]
 [ext_resource type="Texture2D" uid="uid://c11uiyng4lrmj" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_exit_button.png" id="6_ir4qp"]
+[ext_resource type="Texture2D" uid="uid://djmpuqjhqed2a" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_exit_button_pressed.png" id="7_yjt0q"]
 [ext_resource type="Texture2D" uid="uid://dyuu8h7e31mgf" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_exit_button_hover.png" id="7_ysy2t"]
 [ext_resource type="Texture2D" uid="uid://cs8cen71bou88" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_settings_button.png" id="8_i0vq2"]
+[ext_resource type="BitMap" uid="uid://dws4r7fpb73ix" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_exit_button_clickmask.png" id="9_dfqki"]
 [ext_resource type="Texture2D" uid="uid://gm1r0kceibtj" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_settings_button_hover.png" id="9_lpnw7"]
 [ext_resource type="BitMap" uid="uid://dxw2sqmi73pf8" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_settings_button_clickmask.png" id="10_emc3f"]
 
@@ -19,7 +22,11 @@ offset_right = 479.0
 offset_bottom = 269.0
 script = ExtResource("1_4ef8p")
 
-[node name="SPButton" type="TextureButton" parent="."]
+[node name="TitleSprite" type="Sprite2D" parent="."]
+position = Vector2(227, 57)
+texture = ExtResource("2_g7n6l")
+
+[node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 166.0
 offset_top = 127.0
@@ -30,39 +37,37 @@ texture_pressed = ExtResource("3_pcyfy")
 texture_hover = ExtResource("4_f2ap3")
 texture_click_mask = ExtResource("5_pg2m0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="SPButton"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayButton"]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 7.0
+offset_top = 8.0
 offset_right = 119.0
-offset_bottom = 25.0
+offset_bottom = 26.0
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center][font_size=16]PLAY"
 
-[node name="MPButton" type="TextureButton" parent="."]
+[node name="ExitButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 132.0
 offset_top = 127.0
 offset_right = 164.0
 offset_bottom = 159.0
 texture_normal = ExtResource("6_ir4qp")
-texture_pressed = ExtResource("7_ysy2t")
+texture_pressed = ExtResource("7_yjt0q")
 texture_hover = ExtResource("7_ysy2t")
+texture_click_mask = ExtResource("9_dfqki")
 
-[node name="SetButton" type="TextureButton" parent="."]
+[node name="SettingsButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 295.0
 offset_top = 128.0
 offset_right = 327.0
 offset_bottom = 160.0
 texture_normal = ExtResource("8_i0vq2")
-texture_pressed = ExtResource("9_lpnw7")
+texture_pressed = ExtResource("3_3ssky")
 texture_hover = ExtResource("9_lpnw7")
 texture_click_mask = ExtResource("10_emc3f")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(227, 57)
-texture = ExtResource("2_g7n6l")
-
-[connection signal="button_down" from="SPButton" to="." method="_on_sp_button_button_down"]
-[connection signal="button_down" from="MPButton" to="." method="_on_mp_button_button_down"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

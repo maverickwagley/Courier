@@ -1,4 +1,4 @@
-#Player - Regaliare
+#Player
 extends CharacterBody2D
 
 signal sig_health_changed
@@ -35,14 +35,12 @@ var green_primary: int = 200
 var blue_primary: int = 200
 var orange_primary: int = 200
 var red_primary: int = 200
-#var current_primary: int = 200
 var yellow_special: int = 200
 var violet_special: int = 200
 var green_special: int = 200
 var blue_special: int = 200
 var orange_special: int = 200
 var red_special: int = 200
-#var current_special: int = 0
 var yellow_max: int = 200
 var violet_max: int = 200
 var green_max: int = 200
@@ -272,21 +270,12 @@ func update_cam_tilemap():
 			cam_set = true
 #
 func menu_input():
-	#CM: _physics_process
-	#if Input.is_action_just_pressed("switch_form"):
-		#if form_menu == false:
-			#if pause_menu == false:
-				#form_menu = true
-				#get_tree().paused = true
-				#form_controller.toggle_menu()
 	if Input.is_action_just_pressed("pause_game"):
 		if form_menu == false:
 			if pause_menu == false:
 				pause_menu = true
 				get_tree().paused = true
 				pause_controller.toggle_menu()
-		
-	
 #
 func form_update(_formNum,_formType):
 	#CM: Form Swap Menu > _on_button_name_down
