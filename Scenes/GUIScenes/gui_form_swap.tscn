@@ -1,14 +1,16 @@
-[gd_scene load_steps=71 format=3 uid="uid://c1s1l33aj55l4"]
+[gd_scene load_steps=73 format=3 uid="uid://c1s1l33aj55l4"]
 
 [ext_resource type="Script" path="res://Scripts/GUIScripts/FormMenuScripts/scr_gui_form_swap.gd" id="1_5yd3w"]
-[ext_resource type="Texture2D" uid="uid://baacsgycu4jsb" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small.png" id="3_3gaox"]
+[ext_resource type="Texture2D" uid="uid://cyd4vyjkn24cn" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap.png" id="2_fb65j"]
+[ext_resource type="Texture2D" uid="uid://v0sm840apj1u" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_current.png" id="2_s1srv"]
 [ext_resource type="Texture2D" uid="uid://dhsj6un6mo5gx" path="res://Sprites/GUISprites/PlayerGUI/spr_formSelect_icons.png" id="3_ffw50"]
-[ext_resource type="Texture2D" uid="uid://b4j6i4g45dmh5" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small_pressed.png" id="4_j2f1k"]
-[ext_resource type="Texture2D" uid="uid://c4ow6kmmigm6a" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small_hover.png" id="5_oa7qn"]
-[ext_resource type="Texture2D" uid="uid://yrrxxd0d7bth" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small_disabled.png" id="6_71471"]
-[ext_resource type="BitMap" uid="uid://d01b3isal42us" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small_clickmask.png" id="7_tcned"]
+[ext_resource type="Texture2D" uid="uid://qjoyqbh8tydt" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap_button.png" id="6_e5bri"]
+[ext_resource type="Texture2D" uid="uid://d1tmxr3ws5hoi" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap_button_pressed.png" id="7_kj2gm"]
+[ext_resource type="Texture2D" uid="uid://det7i84qnavyh" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap_button_hover.png" id="8_kq0f4"]
 [ext_resource type="Texture2D" uid="uid://4g4sr0jqirrf" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_yellow.png" id="9_t70jo"]
+[ext_resource type="Texture2D" uid="uid://chwa73jfrtpuc" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap_button_disabled.png" id="9_vnwwm"]
 [ext_resource type="Texture2D" uid="uid://cw1l47g873mvb" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_radial_fill_yellow_large.png" id="10_v05mb"]
+[ext_resource type="BitMap" uid="uid://d01b3isal42us" path="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap_button_clickmask.png" id="10_xxuly"]
 [ext_resource type="Texture2D" uid="uid://dlwdioqfqhmcj" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_violet.png" id="11_sbc7m"]
 [ext_resource type="Texture2D" uid="uid://xp33x2x4322c" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_radial_fill_violet_large.png" id="12_wihmj"]
 [ext_resource type="Texture2D" uid="uid://b52s7y1ptnxcq" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_radial_fill_health_large.png" id="14_sgsuv"]
@@ -441,8 +443,15 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 
+[node name="Guide" type="Sprite2D" parent="Control"]
+visible = false
+position = Vector2(241, 135)
+texture = ExtResource("2_fb65j")
+
 [node name="MenuSprite" type="Sprite2D" parent="Control"]
 position = Vector2(241, 135)
+texture = ExtResource("2_s1srv")
+offset = Vector2(-0.5, -0.5)
 
 [node name="HealthBar" type="TextureProgressBar" parent="Control"]
 layout_mode = 0
@@ -465,7 +474,7 @@ fill_mode = 5
 texture_progress = ExtResource("15_6wofo")
 
 [node name="CurrentFormSprite" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(240, 136)
+position = Vector2(240, 135)
 sprite_frames = SubResource("SpriteFrames_ewbk8")
 
 [node name="YellowFormButton" type="TextureButton" parent="Control"]
@@ -475,26 +484,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.5
-offset_top = -61.5
-offset_right = 17.5
-offset_bottom = -28.5
+offset_left = -17.5
+offset_top = -66.5
+offset_right = 19.5
+offset_bottom = -29.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("3_3gaox")
-texture_pressed = ExtResource("4_j2f1k")
-texture_hover = ExtResource("5_oa7qn")
-texture_disabled = ExtResource("6_71471")
-texture_click_mask = ExtResource("7_tcned")
+texture_normal = ExtResource("6_e5bri")
+texture_pressed = ExtResource("7_kj2gm")
+texture_hover = ExtResource("8_kq0f4")
+texture_disabled = ExtResource("9_vnwwm")
+texture_click_mask = ExtResource("10_xxuly")
 
 [node name="YellowSpecialBar" type="TextureProgressBar" parent="Control/YellowFormButton"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 33.0
-offset_bottom = 33.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
 mouse_filter = 2
 value = 100.0
 fill_mode = 5
@@ -502,17 +511,17 @@ texture_progress = ExtResource("9_t70jo")
 
 [node name="YellowPrimaryBar" type="TextureProgressBar" parent="Control/YellowFormButton"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 33.0
-offset_bottom = 33.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
 mouse_filter = 2
 value = 100.0
 fill_mode = 5
 texture_progress = ExtResource("10_v05mb")
 
 [node name="YellowFormSprite" type="AnimatedSprite2D" parent="Control/YellowFormButton"]
-position = Vector2(16, 18)
+position = Vector2(18, 21)
 sprite_frames = SubResource("SpriteFrames_8q4jy")
 
 [node name="VioletFormButton" type="TextureButton" parent="Control"]
@@ -522,42 +531,42 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 27.5
-offset_top = -37.5
-offset_right = 60.5
-offset_bottom = -4.5
+offset_left = 25.5
+offset_top = -42.5
+offset_right = 62.5
+offset_bottom = -5.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("3_3gaox")
-texture_pressed = ExtResource("4_j2f1k")
-texture_hover = ExtResource("5_oa7qn")
-texture_disabled = ExtResource("6_71471")
-texture_click_mask = ExtResource("7_tcned")
+texture_normal = ExtResource("6_e5bri")
+texture_pressed = ExtResource("7_kj2gm")
+texture_hover = ExtResource("8_kq0f4")
+texture_disabled = ExtResource("9_vnwwm")
+texture_click_mask = ExtResource("10_xxuly")
 
 [node name="VioletSpecialBar" type="TextureProgressBar" parent="Control/VioletFormButton"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 33.0
-offset_bottom = 33.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
 value = 100.0
 fill_mode = 5
 texture_progress = ExtResource("11_sbc7m")
 
 [node name="VioletPrimaryBar" type="TextureProgressBar" parent="Control/VioletFormButton"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 34.0
+offset_bottom = 34.0
 value = 100.0
 fill_mode = 5
 texture_progress = ExtResource("12_wihmj")
 
 [node name="VioletFormSprite" type="AnimatedSprite2D" parent="Control/VioletFormButton"]
-position = Vector2(16, 18)
+position = Vector2(18, 20)
 sprite_frames = SubResource("SpriteFrames_0i76n")
 frame = 2
 
@@ -568,20 +577,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -37.0
-offset_right = -26.0
-offset_bottom = -5.0
+offset_left = -59.5
+offset_top = -42.5
+offset_right = -22.5
+offset_bottom = -5.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-texture_normal = ExtResource("3_3gaox")
-texture_pressed = ExtResource("4_j2f1k")
-texture_hover = ExtResource("5_oa7qn")
-texture_disabled = ExtResource("6_71471")
-texture_click_mask = ExtResource("7_tcned")
+texture_normal = ExtResource("6_e5bri")
+texture_pressed = ExtResource("7_kj2gm")
+texture_hover = ExtResource("8_kq0f4")
+texture_disabled = ExtResource("9_vnwwm")
+texture_click_mask = ExtResource("10_xxuly")
 
 [node name="FormButton4" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -590,20 +599,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.5
-offset_top = 7.5
-offset_right = -23.5
-offset_bottom = 40.5
+offset_left = -59.5
+offset_top = 5.5
+offset_right = -22.5
+offset_bottom = 42.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-texture_normal = ExtResource("3_3gaox")
-texture_pressed = ExtResource("4_j2f1k")
-texture_hover = ExtResource("5_oa7qn")
-texture_disabled = ExtResource("6_71471")
-texture_click_mask = ExtResource("7_tcned")
+texture_normal = ExtResource("6_e5bri")
+texture_pressed = ExtResource("7_kj2gm")
+texture_hover = ExtResource("8_kq0f4")
+texture_disabled = ExtResource("9_vnwwm")
+texture_click_mask = ExtResource("10_xxuly")
 
 [node name="FormButton5" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -612,20 +621,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 26.5
-offset_top = 8.5
-offset_right = 59.5
-offset_bottom = 41.5
+offset_left = 25.5
+offset_top = 5.5
+offset_right = 62.5
+offset_bottom = 42.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-texture_normal = ExtResource("3_3gaox")
-texture_pressed = ExtResource("4_j2f1k")
-texture_hover = ExtResource("5_oa7qn")
-texture_disabled = ExtResource("6_71471")
-texture_click_mask = ExtResource("7_tcned")
+texture_normal = ExtResource("6_e5bri")
+texture_pressed = ExtResource("7_kj2gm")
+texture_hover = ExtResource("8_kq0f4")
+texture_disabled = ExtResource("9_vnwwm")
+texture_click_mask = ExtResource("10_xxuly")
 
 [node name="FormButton6" type="TextureButton" parent="Control"]
 layout_mode = 1
@@ -634,20 +643,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.5
-offset_top = 33.5
-offset_right = 17.5
-offset_bottom = 66.5
+offset_left = -17.5
+offset_top = 28.5
+offset_right = 19.5
+offset_bottom = 65.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 disabled = true
-texture_normal = ExtResource("3_3gaox")
-texture_pressed = ExtResource("4_j2f1k")
-texture_hover = ExtResource("5_oa7qn")
-texture_disabled = ExtResource("6_71471")
-texture_click_mask = ExtResource("7_tcned")
+texture_normal = ExtResource("6_e5bri")
+texture_pressed = ExtResource("7_kj2gm")
+texture_hover = ExtResource("8_kq0f4")
+texture_disabled = ExtResource("9_vnwwm")
+texture_click_mask = ExtResource("10_xxuly")
 
 [connection signal="pressed" from="Control/YellowFormButton" to="." method="_on_yellow_form_button_pressed"]
 [connection signal="pressed" from="Control/VioletFormButton" to="." method="_on_violet_form_button_pressed"]

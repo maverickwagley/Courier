@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yrrxxd0d7bth"
-path="res://.godot/imported/spr_gui_circle_stone_small_disabled.png-3d137738c14f071a581e8ba3417b8ffb.ctex"
+uid="uid://v0sm840apj1u"
+path="res://.godot/imported/spr_gui_form_current.png-3a0e5613f6806a048fc8a84787326050.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small_disabled.png"
-dest_files=["res://.godot/imported/spr_gui_circle_stone_small_disabled.png-3d137738c14f071a581e8ba3417b8ffb.ctex"]
+source_file="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_current.png"
+dest_files=["res://.godot/imported/spr_gui_form_current.png-3a0e5613f6806a048fc8a84787326050.ctex"]
 
 [params]
 

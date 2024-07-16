@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://d01b3isal42us"
+path="res://.godot/imported/spr_gui_form_swap_button_clickmask.png-e064951f61aa6a99600463f891cfb5b6.res"
+
+[deps]
+
+source_file="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap_button_clickmask.png"
+dest_files=["res://.godot/imported/spr_gui_form_swap_button_clickmask.png-e064951f61aa6a99600463f891cfb5b6.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

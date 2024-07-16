@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baacsgycu4jsb"
-path="res://.godot/imported/spr_gui_circle_stone_small.png-17d4928bc130467b55906b7a5d2d757b.ctex"
+uid="uid://qjoyqbh8tydt"
+path="res://.godot/imported/spr_gui_form_swap_button.png-928460e65ce9c4851f2861895bab09af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/PlayerGUI/FormMenu/SmallCircle/spr_gui_circle_stone_small.png"
-dest_files=["res://.godot/imported/spr_gui_circle_stone_small.png-17d4928bc130467b55906b7a5d2d757b.ctex"]
+source_file="res://Sprites/GUISprites/PlayerGUI/FormMenu/spr_gui_form_swap_button.png"
+dest_files=["res://.godot/imported/spr_gui_form_swap_button.png-928460e65ce9c4851f2861895bab09af.ctex"]
 
 [params]
 
