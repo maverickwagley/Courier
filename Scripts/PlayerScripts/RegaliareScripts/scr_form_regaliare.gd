@@ -2,12 +2,12 @@ extends Node2D
 
 @export var knockback_power = 50
 
-@onready var animations = $AnimationPlayer
-@onready var effects = $Effects
-@onready var weapon = $MeleeSkill
-@onready var magic = $MagicSkill
-@onready var special = $SpecialSkill
-@onready var hurt_timer = $HurtTimer
+@onready var animations: AnimationPlayer = $AnimationPlayer
+@onready var effects: AnimationPlayer = $Effects
+@onready var weapon: Node2D = $MeleeSkill
+@onready var magic: Node2D = $MagicSkill
+@onready var special: Node2D = $SpecialSkill
+@onready var hurt_timer: Timer = $HurtTimer
 @onready var player: CharacterBody2D
 
 var form_id: int = 0

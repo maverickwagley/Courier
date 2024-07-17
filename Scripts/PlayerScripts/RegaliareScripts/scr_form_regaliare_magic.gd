@@ -4,8 +4,9 @@ class_name Magic
 
 @export var projectile_scene: PackedScene
 
-@onready var sprite = $Sprite2D #Players Rotating Arm
-@onready var spawner = $ProjectileSpawn
+@onready var sprite: Sprite2D = $Sprite2D #Players Rotating Arm
+@onready var spawner: Node2D = $ProjectileSpawn
+@onready var magic_audio: AudioStreamPlayer = $MagicSFX
 @onready var parent = get_parent()
 @onready var player = CharacterBody2D
 
@@ -59,6 +60,7 @@ func _physics_process(delta):
 			t1 = 10
 			if player.yellow_primary >= 5:
 				var projectile = projectile_scene.instantiate()
+				magic_audio.play()
 				player.yellow_primary = player.yellow_primary - 5
 				player.camera.is_shaking = true
 				player.camera.apply_shake(.75)

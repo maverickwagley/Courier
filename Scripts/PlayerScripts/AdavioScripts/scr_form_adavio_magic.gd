@@ -4,8 +4,9 @@ extends Node2D
 
 @export var projectile_scene: PackedScene
 
-@onready var sprite = $Sprite2D #Players Rotating Arm
-@onready var spawner = $ProjectileSpawn
+@onready var sprite: Sprite2D = $Sprite2D #Players Rotating Arm
+@onready var spawner: Node2D = $ProjectileSpawn
+@onready var magic_audio: AudioStreamPlayer = $MagicSFX
 @onready var player: CharacterBody2D
 @onready var parent = get_parent()
 
@@ -59,6 +60,7 @@ func _physics_process(delta):
 			t1 = 50
 			if player.violet_primary >= 35:
 				player.violet_primary = player.violet_primary - 35
+				magic_audio.play()
 				for i in 5:
 					var projectile = projectile_scene.instantiate()
 					player.camera.is_shaking = true

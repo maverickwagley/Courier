@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b743ii3v1vjje"]
+[gd_scene load_steps=46 format=3 uid="uid://b743ii3v1vjje"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare.gd" id="1_xud2j"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_magic.gd" id="2_bm3dc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ck757mh1fnkf0" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare_castArm.png" id="4_xotgn"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_melee.gd" id="5_hlfvf"]
 [ext_resource type="PackedScene" uid="uid://cc2bw4wlu0gd7" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare_sword.tscn" id="6_8oiy2"]
+[ext_resource type="AudioStream" uid="uid://bgpvnyod6w4vh" path="res://Audio/PlayerAudio/RegaliareAudio/snd_goldBullet.wav" id="6_nx7qq"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_special.gd" id="7_lxbxq"]
 [ext_resource type="PackedScene" uid="uid://chrquyamwisko" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_projectile_regaliare_goldArcs.tscn" id="8_2by46"]
 [ext_resource type="Texture2D" uid="uid://b5h8r6o01ramt" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare.png" id="9_ph3mt"]
@@ -744,6 +745,9 @@ offset = Vector2(4, 0)
 
 [node name="ProjectileSpawn" type="Node2D" parent="MagicSkill"]
 position = Vector2(6, 0)
+
+[node name="MagicSFX" type="AudioStreamPlayer" parent="MagicSkill"]
+stream = ExtResource("6_nx7qq")
 
 [node name="MeleeSkill" type="Node2D" parent="."]
 position = Vector2(4, -12)

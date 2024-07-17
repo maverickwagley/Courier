@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cfhbae5wr34to"]
+[gd_scene load_steps=46 format=3 uid="uid://cfhbae5wr34to"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio.gd" id="1_fal4e"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio_magic.gd" id="2_dmnhk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b3g7mlnl0kk04" path="res://Sprites/PlayerSprites/AdavioSprites/spr_player_adavio_castArm.png" id="4_xe7fv"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio_melee.gd" id="5_u2u4k"]
 [ext_resource type="PackedScene" uid="uid://bdqqxuccgdwgu" path="res://Scenes/PlayerScenes/AdavioScenes/ent_adavio_melee.tscn" id="6_esa0v"]
+[ext_resource type="AudioStream" uid="uid://cui0ytcfs00qg" path="res://Audio/PlayerAudio/AdavioAudio/snd_adavio_voidBits.wav" id="6_guxto"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio_special.gd" id="7_r5leq"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio_special_collision.gd" id="8_6jp02"]
 [ext_resource type="Texture2D" uid="uid://b1nvladpeghqw" path="res://Sprites/PlayerSprites/AdavioSprites/spr_player_adavio.png" id="9_vuyvq"]
@@ -731,7 +732,10 @@ texture = ExtResource("4_xe7fv")
 offset = Vector2(4, 0)
 
 [node name="ProjectileSpawn" type="Node2D" parent="MagicSkill"]
-position = Vector2(6, 0)
+position = Vector2(5, 0)
+
+[node name="MagicSFX" type="AudioStreamPlayer" parent="MagicSkill"]
+stream = ExtResource("6_guxto")
 
 [node name="MeleeSkill" type="Node2D" parent="."]
 position = Vector2(2, -4)
