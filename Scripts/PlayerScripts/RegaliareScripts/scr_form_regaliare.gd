@@ -8,6 +8,7 @@ extends Node2D
 @onready var magic: Node2D = $MagicSkill
 @onready var special: Node2D = $SpecialSkill
 @onready var hurt_timer: Timer = $HurtTimer
+@onready var move_audio: AudioStreamPlayer = $MovementSFX
 @onready var player: CharacterBody2D
 
 var form_id: int = 0
@@ -26,6 +27,7 @@ var magic_dir = "down"
 var melee_dir = "down"
 var sync_pos = Vector2(0,0)
 var _tSpecial: int = 5
+var _tMove: int = 0
 #
 #Built-In Methods
 #
@@ -117,6 +119,7 @@ func update_animation():
 
 	if is_attack == false:
 		if _pVel.length() != 0:
+			play_move_audio(18)
 			direction = "down"
 			last_dir = "down"
 			if _pVel.x < 0: 
@@ -131,3 +134,11 @@ func update_animation():
 			animations.play("anim_regaliare_walk_" + direction)
 		else:
 			animations.play("anim_regaliare_idle_" + last_dir)
+#
+func play_move_audio(_stepSpeed):
+	if _tMove >= 0:
+		_tMove = _tMove - 1
+	if _tMove < 0:
+		_tMove = _stepSpeed
+		if ScrGameManager.audio_mute == false:
+			move_audio.play()

@@ -60,7 +60,8 @@ func _physics_process(delta):
 			t1 = 50
 			if player.violet_primary >= 35:
 				player.violet_primary = player.violet_primary - 35
-				magic_audio.play()
+				if ScrGameManager.audio_mute == false:
+					magic_audio.play()
 				for i in 5:
 					var projectile = projectile_scene.instantiate()
 					player.camera.is_shaking = true

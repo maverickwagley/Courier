@@ -13,3 +13,7 @@ func _on_exit_button_pressed():
 func _on_play_button_pressed():
 	ScrGameManager.mode = 1
 	get_tree().change_scene_to_file("res://Scenes/RoomScenes/LenkoRooms/rm_farway.tscn")
+
+
+func _on_settings_button_pressed():
+	ScrGameManager.audio_mute = false
