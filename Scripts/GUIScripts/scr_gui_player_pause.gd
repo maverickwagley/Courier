@@ -21,33 +21,33 @@ func _physics_process(_delta):
 #
 #Signal Methods
 #
-func _on_resume_button_pressed():
+func _on_resume_button_pressed() -> void:
 	get_tree().paused = false
 	close()
 #
-func _on_home_button_pressed():
+func _on_home_button_pressed() -> void:
 	ScrGameManager.mode = 0
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/RoomScenes/MetaRooms/rm_home.tscn")
 	player.queue_free()
 #
-func _on_exit_button_pressed():
+func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 #
 #Custom Methods
 #
-func toggle_menu():
+func toggle_menu() -> void:
 	if is_open == false:
 		open()
 	else:
 		close()
 #
-func open():
+func open() -> void:
 	visible = true
 	is_open = true
 	#opened.emit()
 #
-func close():
+func close() -> void:
 	visible = false
 	is_open = false
 	player.form_menu = false
