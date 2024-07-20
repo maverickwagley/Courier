@@ -9,6 +9,7 @@ signal sig_health_changed
 @onready var camera = $Camera2D
 @onready var hurt_box = $Hitbox
 @onready var player_hud: CanvasLayer = $PlayerHUD
+@onready var silhouette: Sprite2D = $ShilhouetteSprite
 @onready var health_gui: TextureProgressBar = $PlayerHUD/HealthBar
 @onready var stamina_gui: TextureProgressBar = $PlayerHUD/StaminaBar
 @onready var primary_gui: TextureProgressBar = $PlayerHUD/PrimaryBar
@@ -16,6 +17,7 @@ signal sig_health_changed
 @onready var dead_gui: Label = $PlayerHUD/DeadLabel
 @onready var form_controller: CanvasLayer = $FormSwapMenu
 @onready var pause_controller: CanvasLayer = $PauseMenu
+@onready var cursor: CanvasLayer = $Cursor
 @onready var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
 @onready var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
 @onready var form_array = [form0,form1]
@@ -85,10 +87,7 @@ func _ready():
 #
 func _physics_process(delta):
 	if is_dead == false:
-		if t1 > 0:
-			t1 = t1 - 1
-		visible = true
-		update_stamina()
+		update_process()
 		handle_input()
 		update_cam_tilemap()
 		menu_input()
@@ -241,8 +240,11 @@ func update_health(_damage):
 		is_dead = true
 	health_gui.value = hp * 100 / max_hp
 #
-func update_stamina():
+func update_process():
 	#CM: _physics_process
+	visible = true
+	if t1 > 0:
+		t1 = t1 - 1
 	if stamina < max_stamina:
 		if t_stamina > 0:
 			t_stamina = t_stamina - 1

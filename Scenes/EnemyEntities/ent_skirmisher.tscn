@@ -1,8 +1,8 @@
 [gd_scene load_steps=30 format=3 uid="uid://b87153mqpcmem"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_skirmisher.gd" id="1_6dh1p"]
-[ext_resource type="Texture2D" uid="uid://cvjogw318t2h2" path="res://Sprites/EnemySprites/GeneralEnemySprites/spr_healthbar_enemy.png" id="2_y5y7o"]
-[ext_resource type="Texture2D" uid="uid://bpdkjgb0xdwfa" path="res://Sprites/EnemySprites/GeneralEnemySprites/spr_healthbar_enemy_fill.png" id="3_jv2b4"]
+[ext_resource type="Texture2D" uid="uid://cvjogw318t2h2" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy.png" id="2_y5y7o"]
+[ext_resource type="Texture2D" uid="uid://bpdkjgb0xdwfa" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy_fill.png" id="3_jv2b4"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_healthbar_enemy.gd" id="4_pmxve"]
 [ext_resource type="Texture2D" uid="uid://cwrrdkhu6gqv3" path="res://Sprites/EnemySprites/spr_enemy_skirmisher.png" id="5_48ily"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_skirmisher_melee.gd" id="6_om3n6"]

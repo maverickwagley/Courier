@@ -1,8 +1,10 @@
-[gd_scene load_steps=48 format=3 uid="uid://b743ii3v1vjje"]
+[gd_scene load_steps=51 format=3 uid="uid://b743ii3v1vjje"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare.gd" id="1_xud2j"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_magic.gd" id="2_bm3dc"]
+[ext_resource type="Script" path="res://Scenes/PlayerScenes/RegaliareScenes/scr_regaliare_sprite.gd" id="3_cmili"]
 [ext_resource type="PackedScene" uid="uid://dc8rl514x1dqh" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_projectile_regaliare_goldBolt.tscn" id="3_l0eld"]
+[ext_resource type="Shader" path="res://Scenes/PlayerScenes/sdr_silhouette.gdshader" id="4_dw182"]
 [ext_resource type="Texture2D" uid="uid://ck757mh1fnkf0" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare_castArm.png" id="4_xotgn"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_melee.gd" id="5_hlfvf"]
 [ext_resource type="PackedScene" uid="uid://cc2bw4wlu0gd7" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare_sword.tscn" id="6_8oiy2"]
@@ -12,6 +14,10 @@
 [ext_resource type="AudioStream" uid="uid://bujlm21bfbf5b" path="res://Audio/PlayerAudio/RegaliareAudio/snd_regaliare_slash.mp3" id="9_780ka"]
 [ext_resource type="Texture2D" uid="uid://b5h8r6o01ramt" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare.png" id="9_ph3mt"]
 [ext_resource type="AudioStream" uid="uid://bcmosdfyhm30c" path="res://Audio/PlayerAudio/PlayerGeneralAudio/snd_walk_grass.wav" id="12_67c71"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5twaq"]
+shader = ExtResource("4_dw182")
+shader_parameter/silhouette_color = Color(0, 0, 0, 0.5)
 
 [sub_resource type="Animation" id="Animation_4cpli"]
 length = 0.001
@@ -718,6 +724,7 @@ texture = ExtResource("9_ph3mt")
 hframes = 16
 vframes = 10
 frame = 1
+script = ExtResource("3_cmili")
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D"]
 offset_left = -22.0
@@ -725,6 +732,11 @@ offset_top = -24.0
 offset_right = 18.0
 offset_bottom = 16.0
 color = Color(1, 1, 1, 0)
+
+[node name="SilhouetteSprite" type="Sprite2D" parent="Sprite2D"]
+z_index = 100
+material = SubResource("ShaderMaterial_5twaq")
+position = Vector2(0, -14)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

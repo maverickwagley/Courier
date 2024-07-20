@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvjogw318t2h2"
-path="res://.godot/imported/spr_healthbar_enemy.png-ed1b6c31c784af2a2bee620036b8eacb.ctex"
+uid="uid://bpdkjgb0xdwfa"
+path="res://.godot/imported/spr_healthbar_enemy_fill.png-301ce37b3ff106bfd7dddb49817c071c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/EnemySprites/GeneralEnemySprites/spr_healthbar_enemy.png"
-dest_files=["res://.godot/imported/spr_healthbar_enemy.png-ed1b6c31c784af2a2bee620036b8eacb.ctex"]
+source_file="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy_fill.png"
+dest_files=["res://.godot/imported/spr_healthbar_enemy_fill.png-301ce37b3ff106bfd7dddb49817c071c.ctex"]
 
 [params]
 

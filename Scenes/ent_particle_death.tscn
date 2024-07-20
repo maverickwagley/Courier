@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bph8sm2l3y3l0"]
 
-[ext_resource type="Script" path="res://Scripts/scr_particle_death.gd" id="1_ghtcj"]
+[ext_resource type="Script" path="res://Scripts/ParticleScripts/scr_particle_death.gd" id="1_ghtcj"]
 
 [node name="Particle" type="Node2D"]
 script = ExtResource("1_ghtcj")
