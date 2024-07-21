@@ -736,7 +736,8 @@ color = Color(1, 1, 1, 0)
 [node name="SilhouetteSprite" type="Sprite2D" parent="Sprite2D"]
 z_index = 100
 material = SubResource("ShaderMaterial_5twaq")
-position = Vector2(0, -14)
+hframes = 16
+vframes = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

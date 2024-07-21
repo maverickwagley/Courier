@@ -9,7 +9,7 @@ signal sig_health_changed
 @onready var camera = $Camera2D
 @onready var hurt_box = $Hitbox
 @onready var player_hud: CanvasLayer = $PlayerHUD
-@onready var silhouette: Sprite2D = $ShilhouetteSprite
+#@onready var silhouette: Sprite2D = $SilhouetteSprite
 @onready var health_gui: TextureProgressBar = $PlayerHUD/HealthBar
 @onready var stamina_gui: TextureProgressBar = $PlayerHUD/StaminaBar
 @onready var primary_gui: TextureProgressBar = $PlayerHUD/PrimaryBar

@@ -26,6 +26,7 @@ var last_dir = "down"
 var magic_dir = "down"
 var melee_dir = "down"
 var sync_pos = Vector2(0,0)
+var _pVel: Vector2
 var _tSpecial: int = 5
 var _tMove: int = 0
 #
@@ -49,7 +50,8 @@ func _physics_process(delta):
 	form_melee()
 	form_magic()
 	form_special()
-	update_animation()
+	form_run()
+	
 #
 #Custom Methods
 func form_roll():
@@ -77,6 +79,16 @@ func form_melee():
 func form_magic():
 	if is_magic == true:
 		magic.player = player
+		#
+		_pVel = player.velocity
+		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
+		magic_dir = ScrPlayerGeneral.cursor_direction(cdir)
+		last_dir = ScrPlayerGeneral.cursor_direction(cdir)
+		if animations:
+			if _pVel.length() != 0:
+				animations.play("anim_regaliare_runCast_" + magic_dir)
+			else:
+				animations.play("anim_regaliare_idleCast_" + last_dir)
 #
 func form_special():
 	if is_special == true:
@@ -100,22 +112,22 @@ func form_hit():
 	is_hurt = false
 	is_knockback = false
 #
-func update_animation():
+func form_run():
 	#CM: _physics_process
-	if is_melee == true: return
+	#if is_melee == true: return
 	if is_roll == true: return
 	
-	var _pVel = player.velocity
+	_pVel = player.velocity
 	
-	if is_magic == true:
-		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
-		magic_dir = ScrPlayerGeneral.cursor_direction(cdir)
-		last_dir = ScrPlayerGeneral.cursor_direction(cdir)
-		if animations:
-			if _pVel.length() != 0:
-				animations.play("anim_regaliare_runCast_" + magic_dir)
-			else:
-				animations.play("anim_regaliare_idleCast_" + last_dir)
+	#if is_magic == true:
+		#var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
+		#magic_dir = ScrPlayerGeneral.cursor_direction(cdir)
+		#last_dir = ScrPlayerGeneral.cursor_direction(cdir)
+		#if animations:
+			#if _pVel.length() != 0:
+				#animations.play("anim_regaliare_runCast_" + magic_dir)
+			#else:
+				#animations.play("anim_regaliare_idleCast_" + last_dir)
 
 	if is_attack == false:
 		if _pVel.length() != 0:

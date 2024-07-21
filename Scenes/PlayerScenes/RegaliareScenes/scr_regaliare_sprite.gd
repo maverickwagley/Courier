@@ -8,6 +8,7 @@ func _ready() -> void:
 	silhouette.flip_h = flip_h
 	silhouette.hframes = hframes
 	silhouette.vframes = vframes
+	silhouette.frame_coords = frame_coords
 	silhouette.frame = frame
 
 
@@ -26,4 +27,7 @@ func _set(property: StringName, value: Variant) -> bool:
 				silhouette.vframes = value
 			"frame":
 				silhouette.frame = value
+			"frame_coords":
+				silhouette.frame_coords = value
+	print_debug(silhouette.frame_coords.y)
 	return false
