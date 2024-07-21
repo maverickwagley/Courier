@@ -17,8 +17,8 @@ signal sig_health_changed
 @onready var melee_box = $MeleeWeapon
 @onready var melee_timer = $MeleeWeapon/MeleeTimer
 @onready var nav_agent = $Navigation/NavigationAgent2D
-@onready var blood_particle = preload("res://Scenes/ent_particle_blood.tscn")
-@onready var death_particle = preload("res://Scenes/ent_particle_death.tscn")
+@onready var blood_particle = preload("res://Scenes/GameScenes/ent_particle_blood.tscn")
+@onready var death_particle = preload("res://Scenes/GameScenes/ent_particle_death.tscn")
 @onready var item_drop = preload("res://Scenes/ItemScenes/ent_item.tscn")
 
 var hp: int = 69

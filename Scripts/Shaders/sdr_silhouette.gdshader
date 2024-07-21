@@ -9,6 +9,8 @@ uniform vec4 silhouette_color: source_color = vec4(0.0,0.0,0.0,0.5);
 void fragment() {
 	//Get Screen Color
 	vec4 screen_color = texture(screen_texture,SCREEN_UV);
+	//Get Weapon Color
+	//vec4 weapon_color = texture()
 	//Sample Sprite Color
 	vec4 sprite_color = texture(TEXTURE,UV);
 	//Check if sprite and screen match colors
