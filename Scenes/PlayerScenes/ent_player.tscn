@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_health.gd" id="6_jin4q"]
 [ext_resource type="PackedScene" uid="uid://c1s1l33aj55l4" path="res://Scenes/GUIScenes/gui_form_swap.tscn" id="7_yggh5"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_staminabar.gd" id="8_1l12b"]
-[ext_resource type="PackedScene" uid="uid://dkyfocw87xutx" path="res://Scenes/GUIScenes/cursor_manager.tscn" id="8_gva1e"]
+[ext_resource type="PackedScene" uid="uid://dkyfocw87xutx" path="res://Scenes/GUIScenes/gui_cursor_manager.tscn" id="8_gva1e"]
 [ext_resource type="Texture2D" uid="uid://bhd3437rmfkuf" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_stamina.png" id="8_njsuj"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_primarybar.gd" id="10_lb68f"]
 [ext_resource type="Texture2D" uid="uid://clwu4s26qq3wb" path="res://Sprites/GUISprites/PlayerGUI/spr_gui_weapons_all.png" id="10_y03p6"]

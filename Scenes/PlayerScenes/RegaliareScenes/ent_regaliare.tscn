@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare.gd" id="1_xud2j"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_magic.gd" id="2_bm3dc"]
-[ext_resource type="Script" path="res://Scenes/PlayerScenes/RegaliareScenes/scr_regaliare_sprite.gd" id="3_cmili"]
 [ext_resource type="PackedScene" uid="uid://dc8rl514x1dqh" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_projectile_regaliare_goldBolt.tscn" id="3_l0eld"]
-[ext_resource type="Shader" path="res://Scenes/PlayerScenes/sdr_silhouette.gdshader" id="4_dw182"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_sprite.gd" id="3_t6qfc"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/sdr_silhouette.gdshader" id="4_dw182"]
 [ext_resource type="Texture2D" uid="uid://ck757mh1fnkf0" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare_castArm.png" id="4_xotgn"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_melee.gd" id="5_hlfvf"]
 [ext_resource type="PackedScene" uid="uid://cc2bw4wlu0gd7" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare_sword.tscn" id="6_8oiy2"]
@@ -724,7 +724,7 @@ texture = ExtResource("9_ph3mt")
 hframes = 16
 vframes = 10
 frame = 1
-script = ExtResource("3_cmili")
+script = ExtResource("3_t6qfc")
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D"]
 offset_left = -22.0

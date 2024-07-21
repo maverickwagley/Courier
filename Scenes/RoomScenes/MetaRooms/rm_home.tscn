@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bk3elhgx4vnrh" path="res://Sprites/WorldSprites/spr_tileset_lenko.png" id="1_0prus"]
 [ext_resource type="Texture2D" uid="uid://cf5iymmvekaax" path="res://Sprites/WorldSprites/spr_effect_bush_lenko.png" id="2_bs5fb"]
 [ext_resource type="Texture2D" uid="uid://cwps0kkqgamtg" path="res://Sprites/WorldSprites/spr_tree_lenko_all.png" id="3_kv3um"]
-[ext_resource type="PackedScene" uid="uid://drf5qkli8uwpe" path="res://Scenes/GameScenes/gui_home.tscn" id="4_5fxpo"]
-[ext_resource type="PackedScene" uid="uid://dkyfocw87xutx" path="res://Scenes/GUIScenes/cursor_manager.tscn" id="5_n3xh7"]
+[ext_resource type="PackedScene" uid="uid://drf5qkli8uwpe" path="res://Scenes/GUIScenes/gui_home.tscn" id="4_5fxpo"]
+[ext_resource type="PackedScene" uid="uid://dkyfocw87xutx" path="res://Scenes/GUIScenes/gui_cursor_manager.tscn" id="5_n3xh7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nnlu2"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

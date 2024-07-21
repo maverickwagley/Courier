@@ -114,21 +114,10 @@ func form_hit():
 #
 func form_run():
 	#CM: _physics_process
-	#if is_melee == true: return
 	if is_roll == true: return
 	
 	_pVel = player.velocity
 	
-	#if is_magic == true:
-		#var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
-		#magic_dir = ScrPlayerGeneral.cursor_direction(cdir)
-		#last_dir = ScrPlayerGeneral.cursor_direction(cdir)
-		#if animations:
-			#if _pVel.length() != 0:
-				#animations.play("anim_regaliare_runCast_" + magic_dir)
-			#else:
-				#animations.play("anim_regaliare_idleCast_" + last_dir)
-
 	if is_attack == false:
 		if _pVel.length() != 0:
 			play_move_audio(18)

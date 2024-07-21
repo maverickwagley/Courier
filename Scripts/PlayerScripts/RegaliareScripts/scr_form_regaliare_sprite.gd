@@ -29,5 +29,4 @@ func _set(property: StringName, value: Variant) -> bool:
 				silhouette.frame = value
 			"frame_coords":
 				silhouette.frame_coords = value
-	print_debug(silhouette.frame_coords.y)
 	return false
