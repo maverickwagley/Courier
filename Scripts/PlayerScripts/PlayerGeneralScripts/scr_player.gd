@@ -9,7 +9,6 @@ signal sig_health_changed
 @onready var camera = $Camera2D
 @onready var hurt_box = $Hitbox
 @onready var player_hud: CanvasLayer = $PlayerHUD
-#@onready var silhouette: Sprite2D = $SilhouetteSprite
 @onready var health_gui: TextureProgressBar = $PlayerHUD/HealthBar
 @onready var stamina_gui: TextureProgressBar = $PlayerHUD/StaminaBar
 @onready var primary_gui: TextureProgressBar = $PlayerHUD/PrimaryBar
@@ -106,8 +105,9 @@ func _on_hitbox_area_entered(area):
 	if is_knockback == true: return
 	if is_roll == true: return
 	if area.name == "MeleeWeapon":
-		hurt_by_enemy(area)
-		current_form.form_hit()
+		if is_hurt == false:
+			hurt_by_enemy(area)
+			current_form.form_hit()
 #
 #Custom Methods
 #
@@ -251,7 +251,7 @@ func update_process():
 		if t_stamina <= 0:
 			t_stamina = 3
 			stamina = stamina + 1
-			stamina_gui.update()
+			stamina_gui.update() 
 #
 func update_special():
 	#CM: _physics_process

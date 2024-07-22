@@ -2,6 +2,8 @@ extends Sprite2D
 
 @onready var silhouette: Sprite2D = $Silhouette
 
+@export var is_hurt: bool = false
+
 func _ready() -> void:
 	silhouette.texture = texture
 	silhouette.offset = offset
@@ -11,6 +13,7 @@ func _ready() -> void:
 	silhouette.vframes = vframes
 	silhouette.frame_coords = frame_coords
 	silhouette.frame = frame
+	silhouette.material.set_shader_parameter("active",true)
 
 
 func _set(property: StringName, value: Variant) -> bool:
@@ -33,4 +36,11 @@ func _set(property: StringName, value: Variant) -> bool:
 				silhouette.frame = value
 			"frame_coords":
 				silhouette.frame_coords = value
+				print_debug("is_hurt updated")
+				silhouette.material.set_shader_parameter("active",false)
+			"is_hurt":
+				if value == false:
+					silhouette.material.set_shader_param("active",true)
+				else:
+					silhouette.material.set_shader_param("active", false)
 	return false

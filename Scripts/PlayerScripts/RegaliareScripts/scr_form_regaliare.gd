@@ -2,6 +2,7 @@ extends Node2D
 
 @export var knockback_power = 50
 
+@onready var sprite: Sprite2D = $CharacterSprite
 @onready var animations: AnimationPlayer = $AnimationPlayer
 @onready var effects: AnimationPlayer = $Effects
 @onready var weapon: Node2D = $MeleeSkill
@@ -103,12 +104,14 @@ func form_special():
 		special.is_special = false
 #
 func form_hit():
+	sprite.set("is_hurt", true)
 	effects.play("anim_hurt_blink")
 	hurt_timer.start()
 	await hurt_timer.timeout
 	effects.play("RESET")
 	player.is_hurt = false
 	player.is_knockback = false
+	sprite.set("is_hurt", false)
 	is_hurt = false
 	is_knockback = false
 #

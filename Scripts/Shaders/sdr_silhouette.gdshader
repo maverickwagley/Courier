@@ -5,6 +5,7 @@ uniform sampler2D screen_texture: hint_screen_texture;
 
 //Silhouette Color
 uniform vec4 silhouette_color: source_color = vec4(0.0,0.0,0.0,0.5);
+uniform bool active = true;
 
 void fragment() {
 	//Get Screen Color
@@ -14,13 +15,20 @@ void fragment() {
 	//Sample Sprite Color
 	vec4 sprite_color = texture(TEXTURE,UV);
 	//Check if sprite and screen match colors
-	if(all(lessThan(abs(sprite_color - screen_color), vec4(0.01))))
+	if (active == true)
 	{
-		COLOR = sprite_color;
+		if(all(lessThan(abs(sprite_color - screen_color), vec4(0.01))))
+		{
+			COLOR = sprite_color;
+		}
+		else
+		{
+			COLOR = vec4(silhouette_color.rgb,silhouette_color.a * sprite_color.a);
+		}
 	}
 	else
 	{
-		COLOR = vec4(silhouette_color.rgb,silhouette_color.a * sprite_color.a);
+		COLOR = vec4(silhouette_color.rgb,0.0);
 	}
 }
 

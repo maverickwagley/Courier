@@ -4,7 +4,7 @@ extends Node2D
 
 @export var projectile_scene: PackedScene
 
-@onready var sprite: Sprite2D = $Sprite2D #Players Rotating Arm
+@onready var sprite: Sprite2D = $MagicSprite #Players Rotating Arm
 @onready var spawner: Node2D = $ProjectileSpawn
 @onready var magic_audio: AudioStreamPlayer = $MagicSFX
 @onready var player: CharacterBody2D

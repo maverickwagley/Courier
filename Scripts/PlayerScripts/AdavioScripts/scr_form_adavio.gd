@@ -2,6 +2,7 @@ extends Node2D
 
 @export var knockback_power = 50
 
+@onready var sprite: Sprite2D = $CharacterSprite
 @onready var animations: AnimationPlayer = $AnimationPlayer
 @onready var effects: AnimationPlayer = $Effects
 @onready var weapon: Node2D = $MeleeSkill
