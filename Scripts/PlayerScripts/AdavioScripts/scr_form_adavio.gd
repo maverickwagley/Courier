@@ -15,6 +15,7 @@ extends Node2D
 var form_id: int = 1
 var form_menu: bool = false
 var is_invincible: bool = false
+var is_swap: bool = false
 var is_hurt: bool = false
 var is_knockback: bool = false
 var is_roll: bool = false
@@ -31,6 +32,7 @@ var melee_dir = "down"
 var sync_pos = Vector2(0,0)
 var _tSpecial: int = 0
 var _tMove: int = 0
+var _tSwap: int = 15
 #
 #Built-In Methods
 #
@@ -39,6 +41,14 @@ func _ready():
 	pass # Replace with function body.
 #
 func _physics_process(delta):
+	if is_swap == true:
+		if _tSwap > 0:
+			_tSwap = _tSwap - 1
+			sprite._set("is_swap",true)
+		else:
+			sprite._set("is_swap",false)
+			is_swap = false
+			_tSwap = 15
 	if is_special == false:
 		if player.violet_special < player.current_max:
 			if _tSpecial > 0:

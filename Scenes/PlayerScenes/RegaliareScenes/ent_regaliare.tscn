@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b743ii3v1vjje"]
+[gd_scene load_steps=53 format=3 uid="uid://b743ii3v1vjje"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare.gd" id="1_xud2j"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_magic.gd" id="2_bm3dc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_sprite_silhouette.gd" id="3_nrjl4"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/sdr_silhouette.gdshader" id="4_dw182"]
 [ext_resource type="Texture2D" uid="uid://ck757mh1fnkf0" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare_castArm.png" id="4_xotgn"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/sdr_hurtBlink.gdshader" id="5_f5kg2"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_melee.gd" id="5_hlfvf"]
 [ext_resource type="PackedScene" uid="uid://cc2bw4wlu0gd7" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare_sword.tscn" id="6_8oiy2"]
 [ext_resource type="AudioStream" uid="uid://bgpvnyod6w4vh" path="res://Audio/PlayerAudio/RegaliareAudio/snd_goldBullet.wav" id="6_nx7qq"]
@@ -19,6 +20,11 @@
 shader = ExtResource("4_dw182")
 shader_parameter/silhouette_color = Color(0, 0, 0, 0.5)
 shader_parameter/active = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfcal"]
+shader = ExtResource("5_f5kg2")
+shader_parameter/hurt_color = Color(1, 0, 0, 1)
+shader_parameter/active = false
 
 [sub_resource type="Animation" id="Animation_4cpli"]
 length = 0.001
@@ -733,6 +739,12 @@ material = SubResource("ShaderMaterial_5twaq")
 hframes = 16
 vframes = 10
 
+[node name="HurtBlink" type="Sprite2D" parent="CharacterSprite"]
+z_index = 100
+material = SubResource("ShaderMaterial_nfcal")
+hframes = 16
+vframes = 10
+
 [node name="ColorRect" type="ColorRect" parent="CharacterSprite"]
 y_sort_enabled = true
 offset_left = -22.0
@@ -764,6 +776,12 @@ script = ExtResource("3_nrjl4")
 [node name="Silhouette" type="Sprite2D" parent="MagicSkill/MagicSprite"]
 z_index = 100
 material = SubResource("ShaderMaterial_5twaq")
+hframes = 16
+vframes = 10
+
+[node name="HurtBlink" type="Sprite2D" parent="MagicSkill/MagicSprite"]
+z_index = 100
+material = SubResource("ShaderMaterial_nfcal")
 hframes = 16
 vframes = 10
 

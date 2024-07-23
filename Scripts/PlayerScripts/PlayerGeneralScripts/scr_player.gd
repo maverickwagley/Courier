@@ -284,6 +284,8 @@ func form_update(_formNum,_formType):
 	form_id = _formNum
 	form_type = _formType
 	current_form.effects.play("anim_swap_out")
+	current_form.is_swap = true
+	current_form._tSwap = 15
 	await current_form.effects.animation_finished
 	var form_pos = current_form.global_position
 	velocity.x = 0
@@ -294,6 +296,7 @@ func form_update(_formNum,_formType):
 	add_child(current_form)
 	current_form.global_position = form_pos
 	current_form.player = self
+	current_form.is_swap = true
 	health_gui.update()
 	stamina_gui.update()
 	primary_gui.update()

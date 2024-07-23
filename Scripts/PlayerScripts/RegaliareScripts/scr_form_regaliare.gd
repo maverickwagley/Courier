@@ -15,6 +15,7 @@ extends Node2D
 var form_id: int = 0
 var form_menu: bool = false
 var is_invincible: bool = false
+var is_swap: bool = false
 var is_hurt: bool = false
 var is_knockback: bool = false
 var is_roll: bool = false
@@ -30,6 +31,7 @@ var sync_pos = Vector2(0,0)
 var _pVel: Vector2
 var _tSpecial: int = 5
 var _tMove: int = 0
+var _tSwap: int = 15
 #
 #Built-In Methods
 #
@@ -39,6 +41,14 @@ func _ready():
 	pass # Replace with function body.
 #
 func _physics_process(delta):
+	if is_swap == true:
+		if _tSwap > 0:
+			_tSwap = _tSwap - 1
+			sprite._set("is_swap",true)
+		else:
+			sprite._set("is_swap",false)
+			is_swap = false
+			_tSwap = 15
 	if is_special == false:
 		if player.yellow_special < player.current_max:
 			if _tSpecial > 0:
@@ -104,14 +114,14 @@ func form_special():
 		special.is_special = false
 #
 func form_hit():
-	sprite.set("is_hurt", true)
+	sprite._set("is_hurt", true)
 	effects.play("anim_hurt_blink")
 	hurt_timer.start()
 	await hurt_timer.timeout
 	effects.play("RESET")
 	player.is_hurt = false
 	player.is_knockback = false
-	sprite.set("is_hurt", false)
+	sprite._set("is_hurt", false)
 	is_hurt = false
 	is_knockback = false
 #
