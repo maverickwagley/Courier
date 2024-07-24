@@ -114,14 +114,11 @@ func form_special():
 		special.is_special = false
 #
 func form_hit():
-	sprite._set("is_hurt", true)
-	effects.play("anim_hurt_blink")
+	sprite.apply_hurt()
 	hurt_timer.start()
 	await hurt_timer.timeout
-	effects.play("RESET")
 	player.is_hurt = false
 	player.is_knockback = false
-	sprite._set("is_hurt", false)
 	is_hurt = false
 	is_knockback = false
 #

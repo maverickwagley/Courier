@@ -1,16 +1,19 @@
 shader_type canvas_item;
 
-uniform vec4 hurt_color: source_color = vec4(1.0,1.0,1.0,1.0);
+//uniform sampler2D screen_texture: hint_screen_texture;
+uniform vec4 hurt_color: source_color = vec4(1.0,0.5,0.5,1.0);
+uniform float blink_intensity = 0;
 uniform bool active = false;
 
 
 void fragment() {
-	// Called for every pixel the material is visible on.
-	if (active == true){
-		COLOR = hurt_color;
-	}
-	else{
-		COLOR = vec4(0.0);
-	}
+	//Get Screen Color
+	//vec4 screen_color = texture(screen_texture,SCREEN_UV);
+	//Sample Sprite Color
+	vec4 sprite_color = texture(TEXTURE,UV);
+
+	sprite_color = mix(sprite_color,hurt_color,blink_intensity * sprite_color.a);
+	COLOR = sprite_color;
+
 }
 

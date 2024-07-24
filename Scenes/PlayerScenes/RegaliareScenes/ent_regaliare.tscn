@@ -1,9 +1,9 @@
-[gd_scene load_steps=53 format=3 uid="uid://b743ii3v1vjje"]
+[gd_scene load_steps=52 format=3 uid="uid://b743ii3v1vjje"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare.gd" id="1_xud2j"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_magic.gd" id="2_bm3dc"]
 [ext_resource type="PackedScene" uid="uid://dc8rl514x1dqh" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_projectile_regaliare_goldBolt.tscn" id="3_l0eld"]
-[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_sprite_silhouette.gd" id="3_nrjl4"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_sprite.gd" id="3_nrjl4"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/sdr_silhouette.gdshader" id="4_dw182"]
 [ext_resource type="Texture2D" uid="uid://ck757mh1fnkf0" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare_castArm.png" id="4_xotgn"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/sdr_hurtBlink.gdshader" id="5_f5kg2"]
@@ -16,15 +16,16 @@
 [ext_resource type="Texture2D" uid="uid://b5h8r6o01ramt" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare.png" id="9_ph3mt"]
 [ext_resource type="AudioStream" uid="uid://bcmosdfyhm30c" path="res://Audio/PlayerAudio/PlayerGeneralAudio/snd_walk_grass.wav" id="12_67c71"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wukk"]
+shader = ExtResource("5_f5kg2")
+shader_parameter/hurt_color = Color(1, 0.5, 0.5, 1)
+shader_parameter/blink_intensity = 0.0
+shader_parameter/active = false
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5twaq"]
 shader = ExtResource("4_dw182")
 shader_parameter/silhouette_color = Color(0, 0, 0, 0.5)
 shader_parameter/active = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfcal"]
-shader = ExtResource("5_f5kg2")
-shader_parameter/hurt_color = Color(1, 0, 0, 1)
-shader_parameter/active = false
 
 [sub_resource type="Animation" id="Animation_4cpli"]
 length = 0.001
@@ -665,22 +666,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_il4a6"]
-resource_name = "anim_hurt_blink"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0.784314, 0, 0.215686, 0.498039), Color(1, 1, 1, 0.498039), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_kyn61"]
 resource_name = "anim_swap_in"
 length = 0.25
@@ -716,7 +701,6 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j4vv3"]
 _data = {
 "RESET": SubResource("Animation_b5sdj"),
-"anim_hurt_blink": SubResource("Animation_il4a6"),
 "anim_swap_in": SubResource("Animation_kyn61"),
 "anim_swap_out": SubResource("Animation_rqc7m")
 }
@@ -726,6 +710,7 @@ script = ExtResource("1_xud2j")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 clip_children = 2
+material = SubResource("ShaderMaterial_7wukk")
 position = Vector2(0, -8)
 texture = ExtResource("9_ph3mt")
 hframes = 16
@@ -736,12 +721,6 @@ script = ExtResource("3_nrjl4")
 [node name="Silhouette" type="Sprite2D" parent="CharacterSprite"]
 z_index = 100
 material = SubResource("ShaderMaterial_5twaq")
-hframes = 16
-vframes = 10
-
-[node name="HurtBlink" type="Sprite2D" parent="CharacterSprite"]
-z_index = 100
-material = SubResource("ShaderMaterial_nfcal")
 hframes = 16
 vframes = 10
 
@@ -776,12 +755,6 @@ script = ExtResource("3_nrjl4")
 [node name="Silhouette" type="Sprite2D" parent="MagicSkill/MagicSprite"]
 z_index = 100
 material = SubResource("ShaderMaterial_5twaq")
-hframes = 16
-vframes = 10
-
-[node name="HurtBlink" type="Sprite2D" parent="MagicSkill/MagicSprite"]
-z_index = 100
-material = SubResource("ShaderMaterial_nfcal")
 hframes = 16
 vframes = 10
 

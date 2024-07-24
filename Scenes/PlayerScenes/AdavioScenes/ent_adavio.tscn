@@ -1,9 +1,10 @@
-[gd_scene load_steps=51 format=3 uid="uid://cfhbae5wr34to"]
+[gd_scene load_steps=52 format=3 uid="uid://cfhbae5wr34to"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio.gd" id="1_fal4e"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/sdr_hurtBlink.gdshader" id="2_4alll"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio_magic.gd" id="2_dmnhk"]
 [ext_resource type="PackedScene" uid="uid://doewrc4so3dd1" path="res://Scenes/PlayerScenes/AdavioScenes/ent_projectile_adavio_voidBit.tscn" id="3_4f8v2"]
-[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_sprite_silhouette.gd" id="3_yvie7"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_sprite.gd" id="3_yvie7"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/sdr_silhouette.gdshader" id="4_1qxif"]
 [ext_resource type="Texture2D" uid="uid://b3g7mlnl0kk04" path="res://Sprites/PlayerSprites/AdavioSprites/spr_player_adavio_castArm.png" id="4_xe7fv"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio_melee.gd" id="5_u2u4k"]
@@ -13,6 +14,12 @@
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/AdavioScripts/scr_form_adavio_special_collision.gd" id="8_6jp02"]
 [ext_resource type="Texture2D" uid="uid://b1nvladpeghqw" path="res://Sprites/PlayerSprites/AdavioSprites/spr_player_adavio.png" id="9_vuyvq"]
 [ext_resource type="AudioStream" uid="uid://bcmosdfyhm30c" path="res://Audio/PlayerAudio/PlayerGeneralAudio/snd_walk_grass.wav" id="12_uiuo1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ngqb"]
+shader = ExtResource("2_4alll")
+shader_parameter/hurt_color = Color(1, 0.5, 0.5, 1)
+shader_parameter/blink_intensity = 0.0
+shader_parameter/active = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ac5j2"]
 shader = ExtResource("4_1qxif")
@@ -635,22 +642,6 @@ tracks/0/keys = {
 "values": [Color(0.843137, 0.0235294, 0.145098, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_3l53d"]
-resource_name = "anim_hurt_blink"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0.72549, 0, 0.176471, 0.498039), Color(1, 1, 1, 0.498039), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_bidx8"]
 resource_name = "anim_swap_in"
 length = 0.25
@@ -686,7 +677,6 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k2x4x"]
 _data = {
 "RESET": SubResource("Animation_byxpr"),
-"anim_hurt_blink": SubResource("Animation_3l53d"),
 "anim_swap_in": SubResource("Animation_bidx8"),
 "anim_swap_out": SubResource("Animation_j2m8c")
 }
@@ -704,6 +694,7 @@ script = ExtResource("1_fal4e")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 clip_children = 2
+material = SubResource("ShaderMaterial_0ngqb")
 position = Vector2(0, 2.02656e-06)
 texture = ExtResource("9_vuyvq")
 offset = Vector2(0, -8)

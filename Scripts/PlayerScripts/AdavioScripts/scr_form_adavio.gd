@@ -137,10 +137,9 @@ func form_special():
 					special.special_collision.disable()
 #
 func form_hit():
-	effects.play("anim_hurt_blink")
+	sprite.apply_hurt()
 	hurt_timer.start()
 	await hurt_timer.timeout
-	effects.play("RESET")
 	player.is_hurt = false
 	player.is_knockback = false
 	is_hurt = false

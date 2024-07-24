@@ -291,6 +291,7 @@ func form_update(_formNum,_formType):
 	velocity.x = 0
 	velocity.y = 0
 	current_form.queue_free()
+	is_hurt = false
 	form_inst = form_array[_formNum]
 	current_form = form_inst.instantiate()
 	add_child(current_form)
