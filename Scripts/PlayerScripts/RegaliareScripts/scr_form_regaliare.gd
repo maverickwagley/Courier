@@ -11,6 +11,8 @@ extends Node2D
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var move_audio: AudioStreamPlayer = $MovementSFX
 @onready var player: CharacterBody2D
+@onready var hurt_shader = preload("res://Scripts/Shaders/sdr_hurtBlink.gdshader")
+@onready var swap_shader = preload("res://Scripts/Shaders/sdr_formSwap_out.gdshader")
 
 var form_id: int = 0
 var form_menu: bool = false
@@ -115,8 +117,10 @@ func form_special():
 #
 func form_hit():
 	sprite.apply_hurt()
+	sprite._set("is_hurt",true)
 	hurt_timer.start()
 	await hurt_timer.timeout
+	sprite._set("is_hurt",false)
 	player.is_hurt = false
 	player.is_knockback = false
 	is_hurt = false

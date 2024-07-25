@@ -1,6 +1,7 @@
 extends Sprite2D
 
 @onready var silhouette: Sprite2D = $Silhouette
+@onready var swap_shader = preload("res://Scripts/Shaders/sdr_formSwap_out.gdshader")
 
 @export var is_hurt: bool = false
 @export var is_swap: bool = false
@@ -65,8 +66,9 @@ func load_shader_silhouette() -> void:
 	silhouette.material.set_shader_parameter("active",true)
 #
 func apply_hurt():
+	material.shader = swap_shader
 	var tween = get_tree().create_tween()
-	tween.tween_method(set_shader_blinkIntensity,1.0,0.0,0.5)
+	tween.tween_method(set_shader_blinkIntensity,1.0,0.0,0.25)
 #
 func set_shader_blinkIntensity(_newValue: float) -> void:
 	material.set_shader_parameter("blink_intensity", _newValue)

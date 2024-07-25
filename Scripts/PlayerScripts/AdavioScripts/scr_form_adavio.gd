@@ -138,8 +138,10 @@ func form_special():
 #
 func form_hit():
 	sprite.apply_hurt()
+	sprite._set("is_hurt",true)
 	hurt_timer.start()
 	await hurt_timer.timeout
+	sprite._set("is_hurt",false)
 	player.is_hurt = false
 	player.is_knockback = false
 	is_hurt = false
