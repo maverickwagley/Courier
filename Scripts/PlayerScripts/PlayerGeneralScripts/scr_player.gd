@@ -15,6 +15,7 @@ signal sig_health_changed
 @onready var special_gui: TextureProgressBar = $PlayerHUD/SpecialBar
 @onready var dead_gui: Label = $PlayerHUD/DeadLabel
 @onready var form_controller: CanvasLayer = $FormSwapMenu
+@onready var form_timer: Timer = $FormSwapMenu/FormSwapTimer
 @onready var pause_controller: CanvasLayer = $PauseMenu
 @onready var cursor: CanvasLayer = $Cursor
 @onready var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
@@ -53,6 +54,7 @@ var current_max: int = 200
 var form_id: int = 0
 var form_type: int = 0
 var is_invincible: bool = false
+var is_swap: bool = false
 var is_hurt: bool = false
 var is_dead: bool = false
 var is_knockback: bool = false
@@ -128,7 +130,7 @@ func move_input():
 	if is_roll == true: return
 	if is_melee == false:
 		if is_special == false:
-			var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+			var moveDirection = Input.get_vector("move_left","move_right","move_up","move_down")
 			velocity = moveDirection*speed
 		else:
 			velocity.x = 0
@@ -141,7 +143,7 @@ func move_input():
 #
 func roll_input():
 	#CM: handle_input
-	if is_attack == false:
+	if is_attack == false && is_swap == false:
 		if is_roll == false:
 			if stamina >= 50:
 				if Input.is_action_just_pressed("roll"):
@@ -169,7 +171,7 @@ func melee_input():
 #
 func magic_input():
 	#CM: handle_input
-	if is_attack == false:
+	if is_attack == false && is_roll == false:
 		if Input.is_action_pressed("magic_skill"):
 			is_attack = true
 			is_magic = true
@@ -283,15 +285,19 @@ func form_update(_formNum,_formType):
 	#CM: Form Swap Menu > _on_button_name_down
 	form_id = _formNum
 	form_type = _formType
-	current_form.effects.play("anim_swap_out")
+	is_swap = true
 	current_form.is_swap = true
-	current_form._tSwap = 15
-	await current_form.effects.animation_finished
+	current_form._tSwap = 30
+	current_form.sprite._set("is_swap",true)
+	current_form.sprite.apply_intensity_fade(0.0,1.0,0.5)
+	form_timer.start()
+	await form_timer.timeout
 	var form_pos = current_form.global_position
 	velocity.x = 0
 	velocity.y = 0
 	current_form.queue_free()
 	is_hurt = false
+	is_swap = false
 	form_inst = form_array[_formNum]
 	current_form = form_inst.instantiate()
 	add_child(current_form)

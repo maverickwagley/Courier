@@ -4,15 +4,12 @@ extends Node2D
 
 @onready var sprite: Sprite2D = $CharacterSprite
 @onready var animations: AnimationPlayer = $AnimationPlayer
-@onready var effects: AnimationPlayer = $Effects
 @onready var weapon: Node2D = $MeleeSkill
 @onready var magic: Node2D = $MagicSkill
 @onready var special: Node2D = $SpecialSkill
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var move_audio: AudioStreamPlayer = $MovementSFX
 @onready var player: CharacterBody2D
-@onready var hurt_shader = preload("res://Scripts/Shaders/sdr_hurtBlink.gdshader")
-@onready var swap_shader = preload("res://Scripts/Shaders/sdr_formSwap_out.gdshader")
 
 var form_id: int = 0
 var form_menu: bool = false
@@ -38,19 +35,20 @@ var _tSwap: int = 15
 #Built-In Methods
 #
 func _ready():
-	effects.play("anim_swap_in")
+	is_swap = true
+	_tSwap = 30
+	sprite._set("is_swap",true)
+	sprite.apply_intensity_fade(1.0,0.0,0.5)
 	player = get_parent()
-	pass # Replace with function body.
 #
 func _physics_process(delta):
 	if is_swap == true:
 		if _tSwap > 0:
 			_tSwap = _tSwap - 1
-			sprite._set("is_swap",true)
 		else:
-			sprite._set("is_swap",false)
 			is_swap = false
-			_tSwap = 15
+			sprite._set("is_swap",false)
+			_tSwap = 30
 	if is_special == false:
 		if player.yellow_special < player.current_max:
 			if _tSpecial > 0:
@@ -116,7 +114,7 @@ func form_special():
 		special.is_special = false
 #
 func form_hit():
-	sprite.apply_hurt()
+	sprite.apply_intensity_fade(1.0,0.0,0.25)
 	sprite._set("is_hurt",true)
 	hurt_timer.start()
 	await hurt_timer.timeout

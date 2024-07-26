@@ -681,6 +681,9 @@ label_settings = SubResource("LabelSettings_l41wf")
 process_mode = 3
 visible = false
 
+[node name="FormSwapTimer" type="Timer" parent="FormSwapMenu"]
+wait_time = 0.5
+
 [node name="PauseMenu" parent="." instance=ExtResource("18_crtwj")]
 
 [node name="Cursor" type="CanvasLayer" parent="."]

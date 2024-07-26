@@ -4,7 +4,6 @@ extends Node2D
 
 @onready var sprite: Sprite2D = $CharacterSprite
 @onready var animations: AnimationPlayer = $AnimationPlayer
-@onready var effects: AnimationPlayer = $Effects
 @onready var weapon: Node2D = $MeleeSkill
 @onready var magic: Node2D = $MagicSkill
 @onready var special: Node2D = $SpecialSkill
@@ -37,18 +36,20 @@ var _tSwap: int = 15
 #Built-In Methods
 #
 func _ready():
-	effects.play("anim_swap_in")
-	pass # Replace with function body.
+	is_swap = true
+	_tSwap = 30
+	sprite._set("is_swap",true)
+	sprite.apply_intensity_fade(1.0,0.0,0.5)
+	player = get_parent()
 #
 func _physics_process(delta):
 	if is_swap == true:
 		if _tSwap > 0:
 			_tSwap = _tSwap - 1
-			sprite._set("is_swap",true)
 		else:
-			sprite._set("is_swap",false)
 			is_swap = false
-			_tSwap = 15
+			sprite._set("is_swap",false)
+			_tSwap = 30
 	if is_special == false:
 		if player.violet_special < player.current_max:
 			if _tSpecial > 0:
@@ -137,7 +138,7 @@ func form_special():
 					special.special_collision.disable()
 #
 func form_hit():
-	sprite.apply_hurt()
+	sprite.apply_intensity_fade(1.0,0.0,0.25)
 	sprite._set("is_hurt",true)
 	hurt_timer.start()
 	await hurt_timer.timeout

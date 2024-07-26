@@ -1,7 +1,7 @@
 extends Sprite2D
 
 @onready var silhouette: Sprite2D = $Silhouette
-@onready var swap_shader = preload("res://Scripts/Shaders/sdr_formSwap_out.gdshader")
+#@onready var swap_shader = preload("res://Scripts/Shaders/sdr_formSwap_out.gdshader")
 
 @export var is_hurt: bool = false
 @export var is_swap: bool = false
@@ -16,40 +16,34 @@ func _set(property: StringName, value: Variant) -> bool:
 		match property:
 			"texture":
 				silhouette.texture = value
-				#hurtBlink.texture = value
 			"offset":
 				silhouette.offset = value
-				#hurtBlink.offset = value
 			"flip_h":
 				silhouette.flip_h = value
-				#hurtBlink.flip_h = value
 			"flip_v":
 				silhouette.flip_v = value
-				#hurtBlink.flip_v = value
 			"hframes":
 				silhouette.hframes = value
-				#hurtBlink.hframes = value
 			"vframes":
 				silhouette.vframes = value
-				#hurtBlink.vframes = value
 			"frame":
 				silhouette.frame = value
-				#hurtBlink.frame = value
 			"frame_coords":
 				silhouette.frame_coords = value
-				#hurtBlink.frame_coords = value
 			"is_hurt":
 				if value == false:
 					silhouette.material.set_shader_parameter("active",true)
-					#hurtBlink.material.set_shader_parameter("active",false)
+					material.set_shader_parameter("is_hurt",false)
 				else:
 					silhouette.material.set_shader_parameter("active", false)
-					#hurtBlink.material.set_shader_parameter("active",true)
+					material.set_shader_parameter("is_hurt",true)
 			"is_swap":
 				if value == false:
 					silhouette.material.set_shader_parameter("active",true)
+					material.set_shader_parameter("is_swap",false)
 				else:
 					silhouette.material.set_shader_parameter("active", false)
+					material.set_shader_parameter("is_swap",true)
 	return false
 #
 #Custom Methods
@@ -65,10 +59,9 @@ func load_shader_silhouette() -> void:
 	silhouette.frame = frame
 	silhouette.material.set_shader_parameter("active",true)
 #
-func apply_hurt():
-	material.shader = swap_shader
+func apply_intensity_fade(_start,_finish,_length):
 	var tween = get_tree().create_tween()
-	tween.tween_method(set_shader_blinkIntensity,1.0,0.0,0.25)
+	tween.tween_method(set_shader_blinkIntensity,_start,_finish,_length)
 #
 func set_shader_blinkIntensity(_newValue: float) -> void:
 	material.set_shader_parameter("blink_intensity", _newValue)
