@@ -1,10 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkyfocw87xutx"]
+[gd_scene load_steps=4 format=3 uid="uid://dkyfocw87xutx"]
 
 [ext_resource type="Script" path="res://Scripts/GUIScripts/scr_cursor_manager.gd" id="1_72amk"]
-[ext_resource type="Texture2D" uid="uid://be5nvx5i40nne" path="res://Sprites/GUISprites/PlayerGUI/spr_cursor_player.png" id="2_2hcxj"]
+[ext_resource type="Texture2D" uid="uid://duk5yrdlg882g" path="res://Sprites/GUISprites/PlayerGUI/Cursors/spr_cursor_regaliare.png" id="2_hy2kw"]
+[ext_resource type="Texture2D" uid="uid://be5nvx5i40nne" path="res://Sprites/GUISprites/PlayerGUI/Cursors/spr_cursor_player.png" id="3_tmvmc"]
 
 [node name="CursorManager" type="Node2D"]
 script = ExtResource("1_72amk")
 
+[node name="FormCursor" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(5, 5)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("2_hy2kw")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
 [node name="CursorSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_2hcxj")
+texture = ExtResource("3_tmvmc")

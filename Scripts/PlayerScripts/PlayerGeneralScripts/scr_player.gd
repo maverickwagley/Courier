@@ -17,7 +17,7 @@ signal sig_health_changed
 @onready var form_controller: CanvasLayer = $FormSwapMenu
 @onready var form_timer: Timer = $FormSwapMenu/FormSwapTimer
 @onready var pause_controller: CanvasLayer = $PauseMenu
-@onready var cursor: CanvasLayer = $Cursor
+@onready var cursor: Node2D = $Cursor/CursorManager
 @onready var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
 @onready var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
 @onready var form_array = [form0,form1]
