@@ -175,6 +175,7 @@ func magic_input():
 		if Input.is_action_pressed("magic_skill"):
 			is_attack = true
 			is_magic = true
+			cursor.form_cursor.visible = true
 			current_form.is_attack = true
 			current_form.is_magic = true
 			speed = 40
@@ -183,6 +184,7 @@ func magic_input():
 		if Input.is_action_just_released("magic_skill"):
 			is_attack = false
 			is_magic = false
+			cursor.form_cursor.visible = false
 			current_form.is_attack = false
 			current_form.is_magic = false
 			speed = 60

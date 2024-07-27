@@ -65,7 +65,7 @@ func _physics_process(delta):
 				player.yellow_primary = player.yellow_primary - 5
 				player.camera.is_shaking = true
 				player.camera.apply_shake(.75)
-				#player.cursor.apply_spread(14)
+				player.cursor.form_cursor.visible = true
 				player.primary_gui.update()
 				projectile.global_position = spawner.global_position
 				projectile.global_rotation = sprite.global_rotation

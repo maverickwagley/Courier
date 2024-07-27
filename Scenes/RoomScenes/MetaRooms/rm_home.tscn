@@ -2475,3 +2475,4 @@ layer_4/tile_data = PackedInt32Array(65543, 131075, 0, 8, 393219, 0, 131080, 786
 
 [node name="CursorManager" parent="CanvasLayer" instance=ExtResource("5_n3xh7")]
 z_index = 1
+home = true
