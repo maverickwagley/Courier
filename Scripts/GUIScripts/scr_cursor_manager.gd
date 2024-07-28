@@ -11,6 +11,7 @@ extends Node2D
 
 @onready var spread: float = 10
 @onready var _tSpread: int = 0
+@onready var form_id: int = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,4 +28,11 @@ func _process(delta):
 	
 #
 #Custom Methods
+func update(_formID: int):
+	match _formID:
+		0:
+			form_cursor.texture = regaliare_cursor
+		1:
+			form_cursor.texture = adavio_cursor
+	
 

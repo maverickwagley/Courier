@@ -11,5 +11,4 @@ script = ExtResource("1_72amk")
 texture = ExtResource("3_tmvmc")
 
 [node name="FormCursor" type="Sprite2D" parent="CursorSprite"]
-visible = false
 texture = ExtResource("2_hy2kw")

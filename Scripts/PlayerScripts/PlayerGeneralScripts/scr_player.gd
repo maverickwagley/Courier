@@ -288,6 +288,7 @@ func form_update(_formNum,_formType):
 	form_id = _formNum
 	form_type = _formType
 	is_swap = true
+	cursor.update(form_id)
 	current_form.is_swap = true
 	current_form._tSwap = 30
 	current_form.sprite._set("is_swap",true)
@@ -300,6 +301,12 @@ func form_update(_formNum,_formType):
 	current_form.queue_free()
 	is_hurt = false
 	is_swap = false
+	is_attack = false
+	is_roll = false
+	is_attack = false
+	is_melee = false
+	is_magic = false
+	is_special = false
 	form_inst = form_array[_formNum]
 	current_form = form_inst.instantiate()
 	add_child(current_form)
