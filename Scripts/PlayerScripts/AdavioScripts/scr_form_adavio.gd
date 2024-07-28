@@ -92,15 +92,16 @@ func form_magic():
 #
 func form_special():
 	if is_special == true:
+		special.parent = self
+		special.player = player
+		var _check = special.special_check()
+		player.cursor.adavio_special_cursor(_check)
 		if special_start == false:
-			
 			animations.play("anim_adavio_special_cast")
 			await animations.animation_finished
 			if player.violet_special >= 75:
 				special_start = true
 				special.is_special = true
-				special.parent = self
-				special.player = player
 			else:
 				is_attack = false
 				is_special = false
@@ -111,10 +112,9 @@ func form_special():
 				special.special_collision.disable()
 				player.is_attack = false
 				player.is_special = false
-			
+		
 		if Input.is_action_just_pressed("magic_skill"):
 			if special_use == false:
-				var _check = special.special_check()
 				if _check == false:
 					player.violet_special = player.violet_special - 75
 					player.special_gui.update()
