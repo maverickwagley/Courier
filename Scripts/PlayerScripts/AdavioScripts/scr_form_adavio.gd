@@ -62,7 +62,7 @@ func _physics_process(delta):
 	form_melee()
 	form_magic()
 	form_special()
-	update_animation()
+	form_run()
 #
 #Custom Methods
 func form_roll():
@@ -87,8 +87,17 @@ func form_melee():
 		is_melee = false
 #
 func form_magic():
+	var _pVel = player.velocity
 	if is_magic == true:
 		magic.player = player
+		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
+		magic_dir = ScrPlayerGeneral.cursor_direction(cdir)
+		last_dir = ScrPlayerGeneral.cursor_direction(cdir)
+		if animations:
+			if _pVel.length() != 0:
+				animations.play("anim_adavio_runCast_" + magic_dir)
+			else:
+				animations.play("anim_adavio_idleCast_" + last_dir)
 #
 func form_special():
 	if is_special == true:
@@ -120,11 +129,13 @@ func form_special():
 					player.special_gui.update()
 					special_use = true
 					animations.play("anim_adavio_special_exit")
+					if ScrGameManager.audio_mute == false:
+						special.special_snd.play()
 					await animations.animation_finished
 					player.global_position = get_global_mouse_position()
 					special.special_use = true
 					special.t1 = 60
-					special.t2 = 90
+					special.t2 = 70
 					animations.play("anim_adavio_special_enter")
 					await animations.animation_finished
 					player.is_attack = false
@@ -148,26 +159,16 @@ func form_hit():
 	is_hurt = false
 	is_knockback = false
 #
-func update_animation():
+func form_run():
 	#CM: _physics_process
 	if is_melee == true: return
 	if is_roll == true: return
 	
 	var _pVel = player.velocity
-	
-	if is_magic == true:
-		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
-		magic_dir = ScrPlayerGeneral.cursor_direction(cdir)
-		last_dir = ScrPlayerGeneral.cursor_direction(cdir)
-		if animations:
-			if _pVel.length() != 0:
-				animations.play("anim_adavio_runCast_" + magic_dir)
-			else:
-				animations.play("anim_adavio_idleCast_" + last_dir)
 
 	if is_attack == false:
 		if _pVel.length() != 0:
-			play_move_audio(36)
+			play_move_audio(18)
 			direction = "down"
 			last_dir = "down"
 			if _pVel.x < 0: 
@@ -191,6 +192,3 @@ func play_move_audio(_stepSpeed):
 		if ScrGameManager.audio_mute == false:
 			move_audio.play()
 #
-func _on_melee_area_entered(area):
-	#print_debug(area)
-	pass # Replace with function body.

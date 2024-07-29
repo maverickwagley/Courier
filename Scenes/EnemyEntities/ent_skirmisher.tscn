@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b87153mqpcmem"]
+[gd_scene load_steps=31 format=3 uid="uid://b87153mqpcmem"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_skirmisher.gd" id="1_6dh1p"]
 [ext_resource type="Texture2D" uid="uid://cvjogw318t2h2" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy.png" id="2_y5y7o"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_healthbar_enemy.gd" id="4_pmxve"]
 [ext_resource type="Texture2D" uid="uid://cwrrdkhu6gqv3" path="res://Sprites/EnemySprites/spr_enemy_skirmisher.png" id="5_48ily"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_skirmisher_melee.gd" id="6_om3n6"]
+[ext_resource type="AudioStream" uid="uid://bhxij0kehmm0p" path="res://Audio/GameAudio/snd_damaged_generic.wav" id="7_xyefh"]
 
 [sub_resource type="Animation" id="Animation_doyhu"]
 length = 0.001
@@ -620,6 +621,10 @@ collision_mask = 2
 
 [node name="AggroDropCircle" type="CollisionShape2D" parent="Navigation/AggroDrop"]
 shape = SubResource("CircleShape2D_eei6g")
+
+[node name="DamageSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_xyefh")
+volume_db = -20.0
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="Navigation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]

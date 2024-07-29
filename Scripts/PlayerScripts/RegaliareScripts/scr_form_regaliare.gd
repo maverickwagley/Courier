@@ -77,7 +77,7 @@ func form_roll():
 #
 func form_melee():
 	if is_melee == true:
-		weapon.enable()
+		weapon.enable(player)
 		weapon.parent_velocity = player.velocity
 		animations.play("anim_regaliare_slash_" + last_dir)
 		await animations.animation_finished

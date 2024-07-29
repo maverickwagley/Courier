@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn283gb7wdik4"]
+[gd_scene load_steps=5 format=3 uid="uid://cn283gb7wdik4"]
 
-[ext_resource type="Script" path="res://Scripts/ParticleScripts/scr_particle_generic.gd" id="1_c28qu"]
+[ext_resource type="Script" path="res://Scripts/ParticleScripts/scr_particle_projectile.gd" id="1_i8hpl"]
+[ext_resource type="AudioStream" uid="uid://bcf6t7hprgphw" path="res://Audio/GameAudio/snd_projectile_collision.wav" id="2_tblqr"]
+[ext_resource type="AudioStream" uid="uid://bhxij0kehmm0p" path="res://Audio/GameAudio/snd_damaged_generic.wav" id="3_3qtin"]
 
 [sub_resource type="Curve" id="Curve_3f0cp"]
 _data = [Vector2(0.0479452, 1), 0.0, 0.0, 0, 0, Vector2(0.969178, 0.108726), 0.0, 0.0, 0, 0]
@@ -8,7 +10,7 @@ point_count = 2
 
 [node name="Particle" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_c28qu")
+script = ExtResource("1_i8hpl")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
@@ -22,3 +24,11 @@ initial_velocity_max = 160.25
 scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_3f0cp")
 color = Color(0.529412, 0.121569, 0.588235, 1)
+
+[node name="ProjCollisionSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tblqr")
+volume_db = -20.0
+
+[node name="DamageSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3qtin")
+volume_db = -20.0

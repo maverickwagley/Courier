@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://n6tgp86xdidy"]
+[gd_scene load_steps=100 format=3 uid="uid://n6tgp86xdidy"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player.gd" id="1_xyui8"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_camera.gd" id="2_y6y5c"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ch0gijv5m3rnk" path="res://Sprites/GUISprites/PlayerGUI/spr_gui_primary_all.png" id="13_a6te2"]
 [ext_resource type="Texture2D" uid="uid://dskbnpd2lcvxh" path="res://Sprites/GUISprites/PlayerGUI/spr_gui_special_all.png" id="15_155dg"]
 [ext_resource type="PackedScene" uid="uid://cuumobgxb8km6" path="res://Scenes/GUIScenes/gui_player_pause.tscn" id="18_crtwj"]
+[ext_resource type="AudioStream" uid="uid://bhxij0kehmm0p" path="res://Audio/GameAudio/snd_damaged_generic.wav" id="18_x247h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd4rm"]
 size = Vector2(7, 6)
@@ -690,5 +691,9 @@ wait_time = 0.5
 process_mode = 3
 
 [node name="CursorManager" parent="Cursor" instance=ExtResource("8_gva1e")]
+
+[node name="DamageSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_x247h")
+volume_db = -20.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -70,3 +70,4 @@ func _physics_process(delta):
 				projectile.global_position = spawner.global_position
 				projectile.global_rotation = sprite.global_rotation
 				get_tree().current_scene.add_child(projectile)
+				projectile.player = player

@@ -1,7 +1,6 @@
 extends Sprite2D
 
 @onready var silhouette: Sprite2D = $Silhouette
-#@onready var swap_shader = preload("res://Scripts/Shaders/sdr_formSwap_out.gdshader")
 
 @export var is_hurt: bool = false
 @export var is_swap: bool = false

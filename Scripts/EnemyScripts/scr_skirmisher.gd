@@ -186,4 +186,5 @@ func _on_hitbox_area_entered(area):
 	if area == $MeleeWeapon: return
 	if area == $HitArea: return
 	if ScrEnemyGeneral.hitbox_area_entered(area,blood_particle,global_position) == true:
+		area.player.damage_dealt_audio.play()
 		hurt_and_damage(area)

@@ -5,6 +5,7 @@ class_name Special
 @export var projectile_scene: PackedScene
 
 @onready var special_collision: Area2D = $SpecialArea
+@onready var special_snd: AudioStreamPlayer = $SpecialSFX
 @onready var parent: Node2D
 @onready var player: CharacterBody2D
 
@@ -28,7 +29,7 @@ func _process(delta):
 			t1 = t1 - 1
 			if t1 <= 0:
 				special_collision.enable()
-				t1 = 90
+				t1 = 70
 			t2 = t2 - 1
 			if t2 <= 0:
 				player.camera.apply_shake(3)
@@ -39,7 +40,7 @@ func _process(delta):
 					projectile.global_rotation = (6.28/5) * i
 					projectile.z_index = z_index
 					get_tree().current_scene.add_child(projectile)
-				t2 = 90
+				t2 = 70
 		else:
 			if Input.is_action_just_pressed("special_skill"):
 					is_special = false
