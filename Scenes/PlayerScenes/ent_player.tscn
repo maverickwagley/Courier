@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://n6tgp86xdidy"]
+[gd_scene load_steps=101 format=3 uid="uid://n6tgp86xdidy"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player.gd" id="1_xyui8"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_camera.gd" id="2_y6y5c"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dskbnpd2lcvxh" path="res://Sprites/GUISprites/PlayerGUI/spr_gui_special_all.png" id="15_155dg"]
 [ext_resource type="PackedScene" uid="uid://cuumobgxb8km6" path="res://Scenes/GUIScenes/gui_player_pause.tscn" id="18_crtwj"]
 [ext_resource type="AudioStream" uid="uid://bhxij0kehmm0p" path="res://Audio/GameAudio/snd_damaged_generic.wav" id="18_x247h"]
+[ext_resource type="AudioStream" uid="uid://ff6pqu2jkro3" path="res://Audio/PlayerAudio/PlayerGeneralAudio/snd_player_hurt_generic.wav" id="19_p0sud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd4rm"]
 size = Vector2(7, 6)
@@ -695,5 +696,9 @@ process_mode = 3
 [node name="DamageSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_x247h")
 volume_db = -20.0
+
+[node name="HurtSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_p0sud")
+volume_db = -5.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

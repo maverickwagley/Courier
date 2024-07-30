@@ -19,6 +19,7 @@ func _ready():
 				current_player.global_position = spawn.global_position
 				current_player.tilemap = tilemap
 				current_player.room_space = self
+		ScrPlayerGeneral.player = current_player
 		pass
 		
 	if ScrGameManager.mode == 2:

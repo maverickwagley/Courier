@@ -27,7 +27,6 @@ func _physics_process(delta):
 		if speed > 150:
 			speed = speed - 10
 	sd_timer = sd_timer - 1
-	#position = position + direction.normalized() * SPEED * delta
 	velocity = direction * speed * delta
 	var collision = move_and_collide(velocity)
 	if collision:

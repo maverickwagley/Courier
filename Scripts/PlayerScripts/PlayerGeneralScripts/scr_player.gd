@@ -19,6 +19,7 @@ signal sig_health_changed
 @onready var pause_controller: CanvasLayer = $PauseMenu
 @onready var cursor: Node2D = $Cursor/CursorManager
 @onready var damage_dealt_audio: AudioStreamPlayer = $DamageSFX
+@onready var hurt_audio: AudioStreamPlayer = $HurtSFX
 @onready var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
 @onready var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
 @onready var form_array = [form0,form1]
@@ -222,6 +223,8 @@ func roll_collision():
 func hurt_by_enemy(area):
 	#CM: _on_hit_area_area_entered
 	update_health(area.damage)
+	if ScrGameManager.audio_mute == false:
+		hurt_audio.play()
 	camera.is_shaking = true
 	camera.apply_shake(3)
 	is_hurt = true

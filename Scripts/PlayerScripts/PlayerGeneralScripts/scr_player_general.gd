@@ -1,6 +1,6 @@
 extends Node
 
-var player = {}
+@onready var player: CharacterBody2D
 #
 func cursor_direction(_cdir):
 	_cdir = wrapi(_cdir,0,360)
