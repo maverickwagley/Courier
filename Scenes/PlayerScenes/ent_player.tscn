@@ -1,6 +1,7 @@
-[gd_scene load_steps=101 format=3 uid="uid://n6tgp86xdidy"]
+[gd_scene load_steps=102 format=3 uid="uid://n6tgp86xdidy"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player.gd" id="1_xyui8"]
+[ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_mttb0"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_camera.gd" id="2_y6y5c"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_player_gui.gd" id="3_ldtj5"]
 [ext_resource type="Texture2D" uid="uid://bvbew6t2x5s0s" path="res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial.png" id="4_ygxjo"]
@@ -581,6 +582,10 @@ collision_mask = 273
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_xyui8")
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture = ExtResource("2_mttb0")
 
 [node name="Movebox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
