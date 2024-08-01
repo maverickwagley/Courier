@@ -22,7 +22,7 @@ texture = ExtResource("2_44tox")
 
 [node name="EnemyCollision" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 288
+collision_mask = 544
 script = ExtResource("3_2a1ac")
 
 [node name="EnemyCollisionShape" type="CollisionShape2D" parent="EnemyCollision"]
