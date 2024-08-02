@@ -2,6 +2,8 @@ extends Area2D
 
 
 @onready var meleebox = $Damagebox
+@onready var melee_audio = $MeleeSFX
+@onready var melee_aud_timer = $MeleeAudioTimer
 
 var is_melee: bool = false
 var inflict_kb: bool = false

@@ -17,6 +17,7 @@ signal sig_health_changed
 @onready var melee_box = $MeleeWeapon
 @onready var melee_timer = $MeleeWeapon/MeleeTimer
 @onready var nav_agent = $Navigation/NavigationAgent2D
+@onready var hurt_audio = $HurtSFX
 @onready var blood_particle = preload("res://Scenes/GameScenes/ent_particle_blood.tscn")
 @onready var death_particle = preload("res://Scenes/GameScenes/ent_particle_death.tscn")
 @onready var item_drop = preload("res://Scenes/ItemScenes/ent_item.tscn")
@@ -164,6 +165,7 @@ func _on_melee_detect_area_entered(area):
 		melee_box.is_melee = true
 		velocity.x = 0
 		velocity.y = 0
+		melee.melee_aud_timer.start()
 		animations.play("anim_skirmisher_slash_" + last_dir)
 		await animations.animation_finished
 		melee_box.is_melee = false
@@ -186,6 +188,15 @@ func _on_hitbox_area_entered(area):
 	if area == $MeleeWeapon: return
 	if area == $HitArea: return
 	if ScrEnemyGeneral.hitbox_area_entered(area,blood_particle,global_position) == true:
+		var _cryChance = randi_range(0,100)
+		if _cryChance >= 50:
+			if ScrGameManager.audio_mute == false:
+				hurt_audio.play()
 		if ScrGameManager.audio_mute == false:
 			ScrPlayerGeneral.player.damage_dealt_audio.play()
 		hurt_and_damage(area)
+
+
+
+func _on_melee_audio_timer_timeout():
+	melee.melee_audio.play()

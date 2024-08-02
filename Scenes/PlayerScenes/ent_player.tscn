@@ -700,7 +700,7 @@ process_mode = 3
 
 [node name="DamageSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_x247h")
-volume_db = -20.0
+volume_db = -25.0
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_p0sud")

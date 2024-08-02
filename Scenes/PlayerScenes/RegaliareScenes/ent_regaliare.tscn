@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bgpvnyod6w4vh" path="res://Audio/PlayerAudio/RegaliareAudio/snd_goldBullet.wav" id="6_nx7qq"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/RegaliareScripts/scr_form_regaliare_special.gd" id="7_lxbxq"]
 [ext_resource type="PackedScene" uid="uid://chrquyamwisko" path="res://Scenes/PlayerScenes/RegaliareScenes/ent_projectile_regaliare_goldArcs.tscn" id="8_2by46"]
-[ext_resource type="AudioStream" uid="uid://bgkiikju2btrh" path="res://Audio/PlayerAudio/RegaliareAudio/snd_regaliare_slash.mp3" id="9_780ka"]
+[ext_resource type="AudioStream" uid="uid://b4kw0wi33j37o" path="res://Audio/PlayerAudio/RegaliareAudio/snd_regaliare_slash.mp3" id="9_780ka"]
 [ext_resource type="Texture2D" uid="uid://b5h8r6o01ramt" path="res://Sprites/PlayerSprites/RegaliareSprites/spr_player_regaliare.png" id="9_ph3mt"]
 [ext_resource type="AudioStream" uid="uid://bcmosdfyhm30c" path="res://Audio/PlayerAudio/PlayerGeneralAudio/snd_walk_grass.wav" id="12_67c71"]
 [ext_resource type="AudioStream" uid="uid://boj366eara6h7" path="res://Audio/PlayerAudio/RegaliareAudio/snd_goldArcs.wav" id="15_0x30o"]

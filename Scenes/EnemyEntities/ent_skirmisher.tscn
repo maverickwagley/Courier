@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b87153mqpcmem"]
+[gd_scene load_steps=33 format=3 uid="uid://b87153mqpcmem"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_skirmisher.gd" id="1_6dh1p"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_dadce"]
@@ -7,7 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_healthbar_enemy.gd" id="4_pmxve"]
 [ext_resource type="Texture2D" uid="uid://cwrrdkhu6gqv3" path="res://Sprites/EnemySprites/spr_enemy_skirmisher.png" id="5_48ily"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_skirmisher_melee.gd" id="6_om3n6"]
-[ext_resource type="AudioStream" uid="uid://bhxij0kehmm0p" path="res://Audio/GameAudio/snd_damaged_generic.wav" id="7_xyefh"]
+[ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="8_cahhk"]
+[ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="9_au4yb"]
 
 [sub_resource type="Animation" id="Animation_doyhu"]
 length = 0.001
@@ -583,6 +584,15 @@ shape = SubResource("RectangleShape2D_grp8a")
 
 [node name="MeleeTimer" type="Timer" parent="MeleeWeapon"]
 
+[node name="MeleeSFX" type="AudioStreamPlayer" parent="MeleeWeapon"]
+stream = ExtResource("8_cahhk")
+volume_db = -25.0
+pitch_scale = 0.5
+
+[node name="MeleeAudioTimer" type="Timer" parent="MeleeWeapon"]
+wait_time = 0.25
+one_shot = true
+
 [node name="HitArea" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 4
@@ -627,10 +637,11 @@ collision_mask = 2
 [node name="AggroDropCircle" type="CollisionShape2D" parent="Navigation/AggroDrop"]
 shape = SubResource("CircleShape2D_eei6g")
 
-[node name="DamageSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_xyefh")
-volume_db = -20.0
+[node name="HurtSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_au4yb")
+volume_db = -5.0
 
+[connection signal="timeout" from="MeleeWeapon/MeleeAudioTimer" to="." method="_on_melee_audio_timer_timeout"]
 [connection signal="area_entered" from="HitArea" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="Navigation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]
 [connection signal="area_entered" from="Navigation/MeleeDetect" to="." method="_on_melee_detect_area_entered"]
