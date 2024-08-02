@@ -26,13 +26,13 @@ func form_swap(_form_menu):
 	else:
 		return true
 #
-func part_spawn(_particle,_global_position,_global_rotation):
+func part_spawn(_particle,_global_position,_global_rotation,_change):
 	var current_part = _particle.instantiate()
 	for current_world in get_tree().get_nodes_in_group("World"):
 		if current_world.name == "World":
 			current_world.add_child(current_part) 
 	current_part.global_position = _global_position
-	current_part.global_rotation = _global_rotation - 3.14
+	current_part.global_rotation = _global_rotation + _change
 #
 func move_audio():
 	pass

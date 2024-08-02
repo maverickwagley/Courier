@@ -30,7 +30,7 @@ func _physics_process(delta):
 	velocity = direction * speed * delta
 	var collision = move_and_collide(velocity)
 	if collision:
-		ScrPlayerGeneral.part_spawn(particle,global_position,global_rotation)
+		ScrPlayerGeneral.part_spawn(particle,global_position,global_rotation,-3.14)
 		queue_free()
 	visible = true
 	if sd_timer < 1:
@@ -40,5 +40,5 @@ func _physics_process(delta):
 
 
 func _on_enemy_collision_area_entered(area):
-	ScrPlayerGeneral.part_spawn(particle,global_position,global_rotation)
+	ScrPlayerGeneral.part_spawn(particle,global_position,global_rotation,-3.14)
 	queue_free()

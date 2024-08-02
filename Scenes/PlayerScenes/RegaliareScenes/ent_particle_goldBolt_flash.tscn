@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://tsyk1fopwy3b"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleScripts/scr_particle_generic.gd" id="1_jqiex"]
+
+[sub_resource type="Curve" id="Curve_3f0cp"]
+_data = [Vector2(0.0479452, 1), 0.0, 0.0, 0, 0, Vector2(0.969178, 0.108726), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Particle" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_jqiex")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_curve = SubResource("Curve_3f0cp")
+color = Color(1, 1, 0.784314, 1)

@@ -4,6 +4,7 @@ extends Node2D
 
 @export var projectile_scene: PackedScene
 
+@onready var flash = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_particle_voidBolt_flash.tscn")
 @onready var sprite: Sprite2D = $MagicSprite #Players Rotating Arm
 @onready var spawner: Node2D = $ProjectileSpawn
 @onready var magic_audio: AudioStreamPlayer = $MagicSFX
@@ -60,6 +61,7 @@ func _physics_process(delta):
 			t1 = 50
 			if player.violet_primary >= 35:
 				player.violet_primary = player.violet_primary - 35
+				ScrPlayerGeneral.part_spawn(flash,spawner.global_position,global_rotation,0.0)
 				if ScrGameManager.audio_mute == false:
 					magic_audio.play()
 				for i in 5:

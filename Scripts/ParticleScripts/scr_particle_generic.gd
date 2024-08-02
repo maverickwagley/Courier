@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var particle: CPUParticles2D = $CPUParticles2D
-var sd_timer: int = 30
+var sd_timer: int = 15
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
