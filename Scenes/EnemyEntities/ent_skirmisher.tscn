@@ -583,6 +583,7 @@ position = Vector2(-0.5, 9.53674e-07)
 shape = SubResource("RectangleShape2D_grp8a")
 
 [node name="MeleeTimer" type="Timer" parent="MeleeWeapon"]
+wait_time = 1.5
 
 [node name="MeleeSFX" type="AudioStreamPlayer" parent="MeleeWeapon"]
 stream = ExtResource("8_cahhk")
@@ -643,5 +644,6 @@ volume_db = -5.0
 [connection signal="area_entered" from="HitArea" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="Navigation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]
 [connection signal="area_entered" from="Navigation/MeleeDetect" to="." method="_on_melee_detect_area_entered"]
+[connection signal="area_exited" from="Navigation/MeleeDetect" to="." method="_on_melee_detect_area_exited"]
 [connection signal="area_entered" from="Navigation/AggroDetect" to="." method="_on_aggro_detect_area_entered"]
 [connection signal="area_exited" from="Navigation/AggroDrop" to="." method="_on_aggro_drop_area_exited"]

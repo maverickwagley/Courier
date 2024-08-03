@@ -1,15 +1,13 @@
 extends Node
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+#
+#Custom Methods
+#
+func detect_area_entered():
 	pass
-
+#
 func hitbox_area_entered(area,particle,global_position):
 		#if is_hurt == true: return
 	if area.enemy_hit.find(self) == -1:

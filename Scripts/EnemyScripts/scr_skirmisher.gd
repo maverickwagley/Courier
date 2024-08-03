@@ -30,6 +30,7 @@ var knockback_power: int = 150
 var move_timer: int = randi_range(60,600)
 var kb_timer: int = 0
 var aggro_timer: int = 0
+var _tMelee: int = 0
 var objective_num: int = 0
 var is_hurt: bool = false
 var is_attack: bool = false
@@ -43,11 +44,11 @@ var move_dir: Vector2
 var direction = "down"
 var last_dir = "down"
 var magic_dir = "down"
-
+#
 func _ready():
 	call_deferred("navigation_setup")
 	melee_box.is_melee = false
-
+#
 func _physics_process(delta):
 	if is_knockback == true:
 		kb_timer = kb_timer - 1
@@ -55,11 +56,29 @@ func _physics_process(delta):
 			velocity.x = 0
 			velocity.y = 0
 			is_knockback = false
+	melee_state()
 	update_velocity()
 	move_and_slide()
 	update_animation()
 	aggro_drop()
-
+#
+func melee_state():
+	if _tMelee > 0:
+		_tMelee = _tMelee - 1
+	if is_melee == true:
+		velocity.x = 0
+		velocity.y = 0
+		if _tMelee <= 0:
+			_tMelee = 90
+			melee.melee_aud_timer.start()
+			animations.play("anim_skirmisher_slash_" + last_dir)
+			await animations.animation_finished
+			animations.play("anim_skirmisher_idle_" + last_dir)
+			if melee_targets.size() < 1:
+				melee_box.is_melee = false
+				is_attack = false
+				is_melee = false
+#
 func navigation_setup():
 	await get_tree().physics_frame
 	
@@ -69,7 +88,7 @@ func navigation_setup():
 		for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
 			if spawn.name == str(0):
 				nav_agent.target_position  = spawn.global_position
-
+#
 func update_velocity():
 	if is_knockback == true: return
 	if is_melee == true: return
@@ -87,7 +106,7 @@ func update_velocity():
 	var agent_current_pos = global_position
 	var next_path_position = nav_agent.get_next_path_position()
 	velocity = agent_current_pos.direction_to(next_path_position) * speed
-
+#
 func update_animation():
 	if is_melee == true: return
 	if is_knockback == true: return
@@ -112,7 +131,7 @@ func update_animation():
 		animations.play("anim_skirmisher_run_" + direction)
 	else:
 		animations.play("anim_skirmisher_idle_" + last_dir)
-
+#
 func hurt_and_damage(area):
 	hp = hp - area.damage
 	if hp <= 0:
@@ -143,49 +162,48 @@ func hurt_and_damage(area):
 	await hurt_timer.timeout
 	effects.play("RESET")
 	is_hurt = false
-
+#
 func aggro_drop():
 	if is_aggro == false:
 		aggro_timer = aggro_timer - 1
 		if aggro_timer <= 0:
 			target_node = null
-
+#
 func knockback(damage_source_pos: Vector2, _kbPower):
 	var knockback_dir = damage_source_pos.direction_to(self.global_position)
 	velocity = knockback_dir * _kbPower
 	move_and_slide()
-
+#
 func manual_target_set(_trgt):
 	is_aggro = true
 	aggro_timer = 300
 	target_node = _trgt
-
+#
 func _on_melee_detect_area_entered(area):
+	if melee_targets.find(area) == -1:
+		melee_targets.append(area)
 	if is_attack == false:
 		is_attack = true
 		is_melee = true
 		melee_box.is_melee = true
-		velocity.x = 0
-		velocity.y = 0
-		melee.melee_aud_timer.start()
-		animations.play("anim_skirmisher_slash_" + last_dir)
-		await animations.animation_finished
-		melee_box.is_melee = false
-		is_attack = false
-		is_melee = false
-
+#
+func _on_melee_detect_area_exited(area):
+	var _targetInd = melee_targets.find(area)
+	if _targetInd != -1:
+		melee_targets.pop_at(_targetInd)
+#
 func _on_recalculate_timer_timeout():
 	if target_node:
 		nav_agent.target_position = target_node.global_position
-
+#
 func _on_aggro_detect_area_entered(area):
 	is_aggro = true
 	aggro_timer = 300
 	target_node = area.owner
-
+#
 func _on_aggro_drop_area_exited(area):
 	is_aggro = false
-
+#
 func _on_hitbox_area_entered(area):
 	if area == $MeleeWeapon: return
 	if area == $HitArea: return
@@ -197,8 +215,9 @@ func _on_hitbox_area_entered(area):
 		if ScrGameManager.audio_mute == false:
 			ScrPlayerGeneral.player.damage_dealt_audio.play()
 		hurt_and_damage(area)
-
-
-
+#
 func _on_melee_audio_timer_timeout():
 	melee.melee_audio.play()
+
+
+
