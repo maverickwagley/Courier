@@ -9,13 +9,15 @@ signal sig_health_changed
 @export var limit: float = .5
 @export var target_node: Node2D = null
 
-@onready var animations = $AnimationPlayer
-@onready var effects = $Effects
-@onready var hurt_timer = $HurtTimer
+@onready var animations: AnimationPlayer = $AnimationPlayer
+@onready var effects: AnimationPlayer = $Effects
+@onready var hurt_timer: Timer = $HurtTimer
 @onready var hurt_box = $HitArea/Hitbox
 @onready var melee = $MeleeWeapon
 @onready var melee_box = $MeleeWeapon
 @onready var melee_timer = $MeleeWeapon/MeleeTimer
+@onready var melee_detect = $Navigation/MeleeDetect/MeleeDetectCircle
+@onready var melee_targets: Array
 @onready var nav_agent = $Navigation/NavigationAgent2D
 @onready var hurt_audio = $HurtSFX
 @onready var blood_particle = preload("res://Scenes/GameScenes/ent_particle_blood.tscn")
@@ -134,7 +136,7 @@ func hurt_and_damage(area):
 	is_hurt = true
 	if area.inflict_kb == true:
 		kb_timer = 5
-		knockback(area.global_position)
+		knockback(area.global_position, area.kb_power)
 		is_knockback = true
 	effects.play("anim_hurt_blink")
 	hurt_timer.start()
@@ -148,9 +150,9 @@ func aggro_drop():
 		if aggro_timer <= 0:
 			target_node = null
 
-func knockback(damage_source_pos: Vector2):
+func knockback(damage_source_pos: Vector2, _kbPower):
 	var knockback_dir = damage_source_pos.direction_to(self.global_position)
-	velocity = knockback_dir * knockback_power
+	velocity = knockback_dir * _kbPower
 	move_and_slide()
 
 func manual_target_set(_trgt):

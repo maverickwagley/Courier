@@ -622,7 +622,6 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_nexmf")
 
 [node name="AggroDetect" type="Area2D" parent="Navigation"]
-visible = false
 collision_layer = 64
 collision_mask = 2
 
@@ -630,7 +629,6 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_em0np")
 
 [node name="AggroDrop" type="Area2D" parent="Navigation"]
-visible = false
 collision_layer = 64
 collision_mask = 2
 
