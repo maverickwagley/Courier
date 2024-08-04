@@ -4,7 +4,7 @@ extends Area2D
 
 var damage: int
 var inflict_kb: bool = false
-var kb_power: int = 200
+var kb_power: int = 250
 var enemy_hit: Array
 var t1: int = 0
 var type: int = 0

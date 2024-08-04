@@ -12,6 +12,7 @@ signal sig_health_changed
 @onready var animations: AnimationPlayer = $AnimationPlayer
 @onready var effects: AnimationPlayer = $Effects
 @onready var hurt_timer: Timer = $HurtTimer
+@onready var hurt_areas: Array
 @onready var hurt_box = $HitArea/Hitbox
 @onready var melee = $MeleeWeapon
 @onready var melee_box = $MeleeWeapon
@@ -57,6 +58,7 @@ func _physics_process(delta):
 			velocity.y = 0
 			is_knockback = false
 	melee_state()
+	hurt_state()
 	update_velocity()
 	move_and_slide()
 	update_animation()
@@ -78,6 +80,23 @@ func melee_state():
 				melee_box.is_melee = false
 				is_attack = false
 				is_melee = false
+#
+func hurt_state():
+	if is_hurt == true:
+		print_debug("is_hurt")
+		if hurt_areas.size() > 0:
+			var _damageArea = hurt_areas[0]
+			print_debug(_damageArea)
+			if hurt_timer.get_time_left() == 0:
+				if ScrEnemyGeneral.hitbox_area_entered(_damageArea,blood_particle,global_position):
+					hurt_timer.start()
+					hurt_and_damage(_damageArea)
+					var _cryChance = randi_range(0,100)
+					if _cryChance >= 50:
+						if ScrGameManager.audio_mute == false:
+							hurt_audio.play()
+					if ScrGameManager.audio_mute == false:
+						ScrPlayerGeneral.player.damage_dealt_audio.play()
 #
 func navigation_setup():
 	await get_tree().physics_frame
@@ -152,16 +171,10 @@ func hurt_and_damage(area):
 			#current_energy.update()
 			queue_free()
 	sig_health_changed.emit()
-	is_hurt = true
 	if area.inflict_kb == true:
 		kb_timer = 5
 		knockback(area.global_position, area.kb_power)
 		is_knockback = true
-	effects.play("anim_hurt_blink")
-	hurt_timer.start()
-	await hurt_timer.timeout
-	effects.play("RESET")
-	is_hurt = false
 #
 func aggro_drop():
 	if is_aggro == false:
@@ -207,17 +220,22 @@ func _on_aggro_drop_area_exited(area):
 func _on_hitbox_area_entered(area):
 	if area == $MeleeWeapon: return
 	if area == $HitArea: return
-	if ScrEnemyGeneral.hitbox_area_entered(area,blood_particle,global_position) == true:
-		var _cryChance = randi_range(0,100)
-		if _cryChance >= 50:
-			if ScrGameManager.audio_mute == false:
-				hurt_audio.play()
-		if ScrGameManager.audio_mute == false:
-			ScrPlayerGeneral.player.damage_dealt_audio.play()
-		hurt_and_damage(area)
+	is_hurt = true
+	if hurt_areas.find(area) == -1:
+		hurt_areas.append(area)
+#
+func _on_hitbox_area_exited(area):
+	var _targetInd = hurt_areas.find(area)
+	if _targetInd != -1:
+		hurt_areas.pop_at(_targetInd)
+	if hurt_areas.size() <= 0:
+		is_hurt = false
 #
 func _on_melee_audio_timer_timeout():
 	melee.melee_audio.play()
+
+
+
 
 
 
