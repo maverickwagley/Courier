@@ -85,18 +85,19 @@ func hurt_state():
 	if is_hurt == true:
 		print_debug("is_hurt")
 		if hurt_areas.size() > 0:
-			var _damageArea = hurt_areas[0]
-			print_debug(_damageArea)
-			if hurt_timer.get_time_left() == 0:
+			for i in hurt_areas.size():
+				var _damageArea = hurt_areas[i]
 				if ScrEnemyGeneral.hitbox_area_entered(_damageArea,blood_particle,global_position):
-					hurt_timer.start()
+					print_debug(_damageArea)
 					hurt_and_damage(_damageArea)
-					var _cryChance = randi_range(0,100)
-					if _cryChance >= 50:
-						if ScrGameManager.audio_mute == false:
-							hurt_audio.play()
+			if hurt_timer.get_time_left() <= 0:
+				var _cryChance = randi_range(0,100)
+				if _cryChance >= 50:
 					if ScrGameManager.audio_mute == false:
-						ScrPlayerGeneral.player.damage_dealt_audio.play()
+						hurt_audio.play()
+				if ScrGameManager.audio_mute == false:
+					ScrPlayerGeneral.player.damage_dealt_audio.play()
+				hurt_timer.start()
 #
 func navigation_setup():
 	await get_tree().physics_frame
@@ -232,7 +233,8 @@ func _on_hitbox_area_exited(area):
 		is_hurt = false
 #
 func _on_melee_audio_timer_timeout():
-	melee.melee_audio.play()
+	if ScrGameManager.audio_mute == false:
+		melee.melee_audio.play()
 
 
 

@@ -64,12 +64,12 @@ func _physics_process(delta):
 				ScrPlayerGeneral.part_spawn(flash,spawner.global_position,global_rotation,0.0)
 				if ScrGameManager.audio_mute == false:
 					magic_audio.play()
-				for i in 5:
+				for i in 7:
 					var projectile = projectile_scene.instantiate()
 					player.camera.is_shaking = true
 					player.camera.apply_shake(3)
 					projectile.global_position = spawner.global_position 
-					projectile.global_rotation = sprite.global_rotation - .2 + (.1 * i)
+					projectile.global_rotation = sprite.global_rotation - .45 + (.15 * i)
 					player.primary_gui.update()
 					get_tree().current_scene.add_child(projectile)
 					projectile.z_index = 0
