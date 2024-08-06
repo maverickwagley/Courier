@@ -1,6 +1,10 @@
 extends Node
 
 @onready var player: CharacterBody2D
+var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
+var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
+var form_array = [form0,form1]
+
 #
 func cursor_direction(_cdir):
 	_cdir = wrapi(_cdir,0,360)

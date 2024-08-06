@@ -91,8 +91,8 @@ func form_magic():
 	if is_magic == true:
 		magic.player = player
 		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
-		magic_dir = ScrPlayerGeneral.cursor_direction(cdir)
-		last_dir = ScrPlayerGeneral.cursor_direction(cdir)
+		magic_dir = autoload_player.cursor_direction(cdir)
+		last_dir = autoload_player.cursor_direction(cdir)
 		if animations:
 			if _pVel.length() != 0:
 				animations.play("anim_adavio_runCast_" + magic_dir)
@@ -129,7 +129,7 @@ func form_special():
 					player.special_gui.update()
 					special_use = true
 					animations.play("anim_adavio_special_exit")
-					if ScrGameManager.audio_mute == false:
+					if autoload_game.audio_mute == false:
 						special.special_snd.play()
 					await animations.animation_finished
 					player.global_position = get_global_mouse_position()
@@ -189,6 +189,6 @@ func play_move_audio(_stepSpeed):
 		_tMove = _tMove - 1
 	if _tMove < 0:
 		_tMove = _stepSpeed
-		if ScrGameManager.audio_mute == false:
+		if autoload_game.audio_mute == false:
 			move_audio.play()
 #

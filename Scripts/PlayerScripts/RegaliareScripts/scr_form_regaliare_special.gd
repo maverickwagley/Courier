@@ -27,7 +27,7 @@ func _process(delta):
 			if player.yellow_special >= 100:
 				player.yellow_special = player.yellow_special - 100
 				player.special_gui.update()
-				if ScrGameManager.audio_mute == false:
+				if autoload_game.audio_mute == false:
 					special_snd.play()
 				var projectile = projectile_scene.instantiate()
 				projectile.global_position = player.global_position

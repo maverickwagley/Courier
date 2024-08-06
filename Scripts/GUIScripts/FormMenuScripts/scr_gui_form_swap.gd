@@ -58,7 +58,7 @@ func _on_yellow_form_button_pressed():
 		player.form_update(0,0)
 		player_form = 0
 		player.form_menu = false
-		player.current_form.is_swap = true
+		player.form.is_swap = true
 		get_tree().paused = false
 		close()
 #
@@ -71,7 +71,7 @@ func _on_violet_form_button_pressed():
 		player.form_update(1,1)
 		player_form = 1
 		player.form_menu = false
-		player.current_form.is_swap = true
+		player.form.is_swap = true
 		get_tree().paused = false
 		close()
 #

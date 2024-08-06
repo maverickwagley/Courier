@@ -17,7 +17,7 @@ func enable():
 	if !weapon: return
 	if audio_played == false:
 		audio_played = true
-		if ScrGameManager.audio_mute == false:
+		if autoload_game.audio_mute == false:
 			melee_audio.play()
 	visible = true
 	weapon.parent_velocity = parent_velocity

@@ -7,6 +7,7 @@ extends Area2D
 
 var is_melee: bool = false
 var inflict_kb: bool = false
+var kb_power: int = 0
 var damage: int = 10
 
 # Called when the node enters the scene tree for the first time.

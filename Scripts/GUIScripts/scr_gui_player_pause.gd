@@ -26,7 +26,7 @@ func _on_resume_button_pressed() -> void:
 	close()
 #
 func _on_home_button_pressed() -> void:
-	ScrGameManager.mode = 0
+	autoload_game.mode = 0
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/RoomScenes/MetaRooms/rm_home.tscn")
 	player.queue_free()

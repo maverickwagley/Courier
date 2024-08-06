@@ -10,8 +10,8 @@ var form_menu: bool = false
 var enemy0 = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
 
 func _ready():
-	print_debug("Mode:" + str(ScrGameManager.mode))
-	if ScrGameManager.mode == 1:
+	print_debug("Mode:" + str(autoload_game.mode))
+	if autoload_game.mode == 1:
 		var current_player = player_scene.instantiate()
 		add_child(current_player)
 		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
@@ -19,10 +19,10 @@ func _ready():
 				current_player.global_position = spawn.global_position
 				current_player.tilemap = tilemap
 				current_player.room_space = self
-		ScrPlayerGeneral.player = current_player
+		autoload_player.player = current_player
 		pass
 		
-	if ScrGameManager.mode == 2:
+	if autoload_game.mode == 2:
 		var current_player = player_scene.instantiate()
 		add_child(current_player)
 		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):

@@ -87,16 +87,16 @@ func hurt_state():
 		if hurt_areas.size() > 0:
 			for i in hurt_areas.size():
 				var _damageArea = hurt_areas[i]
-				if ScrEnemyGeneral.hitbox_area_entered(_damageArea,blood_particle,global_position):
+				if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
 					print_debug(_damageArea)
 					hurt_and_damage(_damageArea)
 			if hurt_timer.get_time_left() <= 0:
 				var _cryChance = randi_range(0,100)
 				if _cryChance >= 50:
-					if ScrGameManager.audio_mute == false:
+					if autoload_game.audio_mute == false:
 						hurt_audio.play()
-				if ScrGameManager.audio_mute == false:
-					ScrPlayerGeneral.player.damage_dealt_audio.play()
+				if autoload_game.audio_mute == false:
+					autoload_player.player.damage_dealt_audio.play()
 				hurt_timer.start()
 #
 func navigation_setup():
@@ -173,20 +173,13 @@ func hurt_and_damage(area):
 			queue_free()
 	sig_health_changed.emit()
 	if area.inflict_kb == true:
-		kb_timer = 5
-		knockback(area.global_position, area.kb_power)
-		is_knockback = true
+		autoload_entity.knockback(self, area.global_position, area.kb_power, 5)
 #
 func aggro_drop():
 	if is_aggro == false:
 		aggro_timer = aggro_timer - 1
 		if aggro_timer <= 0:
 			target_node = null
-#
-func knockback(damage_source_pos: Vector2, _kbPower):
-	var knockback_dir = damage_source_pos.direction_to(self.global_position)
-	velocity = knockback_dir * _kbPower
-	move_and_slide()
 #
 func manual_target_set(_trgt):
 	is_aggro = true
@@ -233,7 +226,7 @@ func _on_hitbox_area_exited(area):
 		is_hurt = false
 #
 func _on_melee_audio_timer_timeout():
-	if ScrGameManager.audio_mute == false:
+	if autoload_game.audio_mute == false:
 		melee.melee_audio.play()
 
 

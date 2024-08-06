@@ -61,8 +61,8 @@ func _physics_process(delta):
 			t1 = 10
 			if player.yellow_primary >= 5:
 				var projectile = projectile_scene.instantiate()
-				ScrPlayerGeneral.part_spawn(flash,spawner.global_position,global_rotation,0.0)
-				if ScrGameManager.audio_mute == false:
+				autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)
+				if autoload_game.audio_mute == false:
 					magic_audio.play()
 				player.yellow_primary = player.yellow_primary - 5
 				player.camera.is_shaking = true

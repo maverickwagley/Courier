@@ -9,7 +9,7 @@ var damaged: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	particle.emitting = true
-	if ScrGameManager.audio_mute == false:
+	if autoload_game.audio_mute == false:
 		proj_coll_snd.play()
 
 

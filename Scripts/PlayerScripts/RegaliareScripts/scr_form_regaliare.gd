@@ -93,8 +93,8 @@ func form_magic():
 		#
 		_pVel = player.velocity
 		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
-		magic_dir = ScrPlayerGeneral.cursor_direction(cdir)
-		last_dir = ScrPlayerGeneral.cursor_direction(cdir)
+		magic_dir = autoload_player.cursor_direction(cdir)
+		last_dir = autoload_player.cursor_direction(cdir)
 		if animations:
 			if _pVel.length() != 0:
 				animations.play("anim_regaliare_runCast_" + magic_dir)
@@ -153,5 +153,5 @@ func play_move_audio(_stepSpeed):
 		_tMove = _tMove - 1
 	if _tMove < 0:
 		_tMove = _stepSpeed
-		if ScrGameManager.audio_mute == false:
+		if autoload_game.audio_mute == false:
 			move_audio.play()

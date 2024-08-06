@@ -1,13 +1,8 @@
 #Player
 extends CharacterBody2D
-
-signal sig_health_changed
-
-@export var speed: int = 65
-@export var knockback_power = 50
-
-@onready var camera = $Camera2D
-@onready var hurt_box = $Hitbox
+#Prep Nodes
+@onready var camera: Camera2D = $Camera2D
+@onready var hurt_box: Area2D = $Hitbox
 @onready var player_hud: CanvasLayer = $PlayerHUD
 @onready var health_gui: TextureProgressBar = $PlayerHUD/HealthBar
 @onready var stamina_gui: TextureProgressBar = $PlayerHUD/StaminaBar
@@ -20,18 +15,19 @@ signal sig_health_changed
 @onready var cursor: Node2D = $Cursor/CursorManager
 @onready var damage_dealt_audio: AudioStreamPlayer = $DamageSFX
 @onready var hurt_audio: AudioStreamPlayer = $HurtSFX
-@onready var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
-@onready var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
-@onready var form_array = [form0,form1]
-@onready var form_inst = form0
-@onready var current_form
-@onready var player: Node2D
-@onready var tilemap: TileMap 
-@onready var room_space = get_parent()
+#Room
+var tilemap: TileMap 
+var room_space = get_parent()
+#Form
+var form: Node2D
+var load_form: PackedScene
+var form_id: int = 0
+var form_type: int = 0
 #Stats
 var hp: int = 200
 var max_hp: int = 200
 var stamina: int = 200
+var speed: int = 65
 var max_stamina: int = 200
 var yellow_primary: int = 200
 var violet_primary: int = 200
@@ -53,8 +49,6 @@ var orange_max: int = 200
 var red_max: int = 200
 var current_max: int = 200
 #Status
-var form_id: int = 0
-var form_type: int = 0
 var is_invincible: bool = false
 var is_swap: bool = false
 var is_hurt: bool = false
@@ -83,12 +77,13 @@ var sync_pos = Vector2(0,0)
 #Built-In Methods
 #
 func _ready():
-	current_form = form_inst.instantiate()
-	add_child(current_form)
+	load_form = autoload_player.form_array[0]
+	form = load_form.instantiate()
+	add_child(form)
 	form_controller.player_form = 0
 	form_id = 0
 #
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_dead == false:
 		update_process()
 		handle_input()
@@ -101,17 +96,17 @@ func _physics_process(delta):
 			is_dead = false
 			t_dead = 300
 			dead_gui.visible = false
-			current_form.effects.play("anim_swap_in")
+			form.effects.play("anim_swap_in")
 #
 #Signal Methods
 #
 func _on_hitbox_area_entered(area):
 	if is_knockback == true: return
 	if is_roll == true: return
-	if area.name == "MeleeWeapon":
+	if area.name == "MeleeWeapon": #This likely will need updated for other hitboxes
 		if is_hurt == false:
 			hurt_by_enemy(area)
-			current_form.form_hit()
+			form.form_hit()
 #
 #Custom Methods
 #
@@ -153,8 +148,8 @@ func roll_input():
 					velocity = velocity * 2
 					is_roll = true
 					is_invincible = true
-					current_form.is_roll = true
-					current_form.is_invincible = true
+					form.is_roll = true
+					form.is_invincible = true
 					stamina_gui.update()
 #
 func melee_input():
@@ -164,12 +159,12 @@ func melee_input():
 		if Input.is_action_just_pressed("melee_skill"):
 			is_attack = true
 			is_melee = true
-			current_form.is_attack = true
-			current_form.is_melee = true
+			form.is_attack = true
+			form.is_melee = true
 			#if melee_aim = true
 			var cdir = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))
-			current_form.melee_dir = ScrPlayerGeneral.cursor_direction(cdir)
-			current_form.last_dir = ScrPlayerGeneral.cursor_direction(cdir)
+			form.melee_dir = autoload_player.cursor_direction(cdir)
+			form.last_dir = autoload_player.cursor_direction(cdir)
 #
 func magic_input():
 	#CM: handle_input
@@ -178,19 +173,19 @@ func magic_input():
 			is_attack = true
 			is_magic = true
 			cursor.form_cursor.visible = true
-			current_form.is_attack = true
-			current_form.is_magic = true
+			form.is_attack = true
+			form.is_magic = true
 			speed = 40
-			current_form.magic.update()
+			form.magic.update()
 	if is_magic == true:
 		if Input.is_action_just_released("magic_skill"):
 			is_attack = false
 			is_magic = false
 			cursor.form_cursor.visible = false
-			current_form.is_attack = false
-			current_form.is_magic = false
+			form.is_attack = false
+			form.is_magic = false
 			speed = 60
-			current_form.magic.update()
+			form.magic.update()
 #
 func special_input():
 	#CM: handle_input
@@ -201,14 +196,8 @@ func special_input():
 				t1 = 90
 				is_attack = true
 				is_special = true
-				current_form.is_attack = true
-				current_form.is_special = true
-#
-func knockback(_enemyDirection: Vector2):
-	#CM: hurt_by_enemy
-	var knockback_dir = (_enemyDirection - velocity).normalized() * knockback_power #Replace velocity with direction
-	velocity = knockback_dir
-	move_and_slide()
+				form.is_attack = true
+				form.is_special = true
 #
 func roll_collision():
 	if is_roll == true:
@@ -223,17 +212,16 @@ func roll_collision():
 func hurt_by_enemy(area):
 	#CM: _on_hit_area_area_entered
 	update_health(area.damage)
-	if ScrGameManager.audio_mute == false:
+	if autoload_game.audio_mute == false:
 		hurt_audio.play()
 	camera.is_shaking = true
 	camera.apply_shake(3)
 	is_hurt = true
-	current_form.is_hurt = true
+	form.is_hurt = true
 	if area.inflict_kb == true:
 		is_knockback = true
-		current_form.is_knockback = true
-	sig_health_changed.emit()
-	knockback(area.get_parent().velocity) #Replace velocity with direction
+		form.is_knockback = true
+		autoload_entity.knockback(self,area.global_position,area.kb_power,5)
 #
 func update_health(_damage):
 	#CM: hurt_by_enemy
@@ -246,7 +234,8 @@ func update_health(_damage):
 		dead_gui.set_visible(true)
 		t_dead = 300
 		is_dead = true
-	health_gui.value = hp * 100 / max_hp
+	#health_gui.value = hp * 100 / max_hp
+	health_gui.update()
 #
 func update_process():
 	#CM: _physics_process
@@ -293,16 +282,16 @@ func form_update(_formNum,_formType):
 	form_type = _formType
 	is_swap = true
 	cursor.update(form_id)
-	current_form.is_swap = true
-	current_form._tSwap = 30
-	current_form.sprite._set("is_swap",true)
-	current_form.sprite.apply_intensity_fade(0.0,1.0,0.5)
+	form.is_swap = true
+	form._tSwap = 30
+	form.sprite._set("is_swap",true)
+	form.sprite.apply_intensity_fade(0.0,1.0,0.5)
 	form_timer.start()
 	await form_timer.timeout
-	var form_pos = current_form.global_position
+	var form_pos = form.global_position
 	velocity.x = 0
 	velocity.y = 0
-	current_form.queue_free()
+	form.queue_free()
 	is_hurt = false
 	is_swap = false
 	is_attack = false
@@ -311,12 +300,12 @@ func form_update(_formNum,_formType):
 	is_melee = false
 	is_magic = false
 	is_special = false
-	form_inst = form_array[_formNum]
-	current_form = form_inst.instantiate()
-	add_child(current_form)
-	current_form.global_position = form_pos
-	current_form.player = self
-	current_form.is_swap = true
+	load_form = autoload_player.form_array[_formNum]
+	form = load_form.instantiate()
+	add_child(form)
+	form.global_position = form_pos
+	form.player = self
+	form.is_swap = true
 	health_gui.update()
 	stamina_gui.update()
 	primary_gui.update()

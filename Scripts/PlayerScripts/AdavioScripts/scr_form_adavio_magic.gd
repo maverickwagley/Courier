@@ -61,8 +61,8 @@ func _physics_process(delta):
 			t1 = 50
 			if player.violet_primary >= 35:
 				player.violet_primary = player.violet_primary - 35
-				ScrPlayerGeneral.part_spawn(flash,spawner.global_position,global_rotation,0.0)
-				if ScrGameManager.audio_mute == false:
+				autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)
+				if autoload_game.audio_mute == false:
 					magic_audio.play()
 				for i in 7:
 					var projectile = projectile_scene.instantiate()
