@@ -83,12 +83,10 @@ func melee_state():
 #
 func hurt_state():
 	if is_hurt == true:
-		print_debug("is_hurt")
 		if hurt_areas.size() > 0:
 			for i in hurt_areas.size():
 				var _damageArea = hurt_areas[i]
 				if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
-					print_debug(_damageArea)
 					hurt_and_damage(_damageArea)
 			if hurt_timer.get_time_left() <= 0:
 				var _cryChance = randi_range(0,100)

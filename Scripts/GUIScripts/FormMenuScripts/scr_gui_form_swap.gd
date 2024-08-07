@@ -1,22 +1,21 @@
+#Player Form Swap Menu
+#
 extends CanvasLayer
-
-signal opened
-signal closed
-
+#Center
 @onready var health_bar: TextureProgressBar = $Control/HealthBar
 @onready var stamina_bar: TextureProgressBar = $Control/StaminaBar
 @onready var current_form: AnimatedSprite2D = $Control/CurrentFormSprite
-
+#Yellow
 @onready var yellow_button: TextureButton = $Control/YellowFormButton
 @onready var yellow_sprite: AnimatedSprite2D = $Control/YellowFormButton/YellowFormSprite
 @onready var yellow_primary: TextureProgressBar = $Control/YellowFormButton/YellowPrimaryBar
 @onready var yellow_special: TextureProgressBar = $Control/YellowFormButton/YellowSpecialBar
-
+#Violet
 @onready var violet_button: TextureButton = $Control/VioletFormButton
 @onready var violet_sprite: AnimatedSprite2D = $Control/VioletFormButton/VioletFormSprite
 @onready var violet_primary: TextureProgressBar = $Control/VioletFormButton/VioletPrimaryBar
 @onready var violet_special: TextureProgressBar = $Control/VioletFormButton/VioletSpecialBar
-
+#
 var is_open: bool = false
 var player_form: int = 0
 var player: CharacterBody2D
@@ -31,7 +30,6 @@ var form5: int = 5
 #Built-In Methods
 #
 func _ready():
-	#inventory.updated.connect(update)
 	player = get_parent()
 	visible = false
 	is_open = false
@@ -84,18 +82,16 @@ func toggle_menu():
 		close()
 #
 func open():
-	
 	update()
 	visible = true
 	is_open = true
-	#opened.emit()
 #
 func close():
 	visible = false
 	is_open = false
-	#closed.emit()
 #
 func update():
+	#CM: open()
 	current_form.set_frame_and_progress(player.form_id,0.0)
 	health_bar.set_value(player.hp * 100 / player.max_hp)
 	stamina_bar.set_value(player.stamina * 100 / player.max_stamina)

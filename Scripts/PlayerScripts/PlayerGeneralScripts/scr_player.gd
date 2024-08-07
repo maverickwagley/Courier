@@ -65,14 +65,11 @@ var last_dir = "down"
 var magic_dir = "down"
 #Other
 var roll_shake: bool = false
-var cam_set: bool = false
-var cam_timer: int = 30
+var form_menu: bool = false
+var pause_menu: bool = false
 var t1: int = 0
 var t_stamina: int = 0
 var t_dead: int = 300
-var form_menu: bool = false
-var pause_menu: bool = false
-var sync_pos = Vector2(0,0)
 #
 #Built-In Methods
 #
@@ -87,7 +84,7 @@ func _physics_process(_delta):
 	if is_dead == false:
 		update_process()
 		handle_input()
-		update_cam_tilemap()
+		#update_cam_tilemap()
 		menu_input()
 	else:
 		t_dead = t_dead - 1
@@ -101,7 +98,6 @@ func _physics_process(_delta):
 #Signal Methods
 #
 func _on_hitbox_area_entered(area):
-	if is_knockback == true: return
 	if is_roll == true: return
 	if area.name == "MeleeWeapon": #This likely will need updated for other hitboxes
 		if is_hurt == false:
@@ -135,7 +131,7 @@ func move_input():
 	else:
 			velocity.x = 0
 			velocity.y = 0
-	sync_pos = global_position
+	#sync_pos = global_position
 	#global_position = global_position.lerp(sync_pos, .5)
 #
 func roll_input():
@@ -211,7 +207,7 @@ func roll_collision():
 #
 func hurt_by_enemy(area):
 	#CM: _on_hit_area_area_entered
-	update_health(area.damage)
+	apply_damage(area.damage)
 	if autoload_game.audio_mute == false:
 		hurt_audio.play()
 	camera.is_shaking = true
@@ -219,11 +215,12 @@ func hurt_by_enemy(area):
 	is_hurt = true
 	form.is_hurt = true
 	if area.inflict_kb == true:
-		is_knockback = true
-		form.is_knockback = true
-		autoload_entity.knockback(self,area.global_position,area.kb_power,5)
+		if is_knockback == false:
+			is_knockback = true
+			form.is_knockback = true
+			autoload_entity.knockback(self,area.global_position,area.kb_power,5)
 #
-func update_health(_damage):
+func apply_damage(_damage):
 	#CM: hurt_by_enemy
 	hp = hp - _damage
 	if hp <= 0:
@@ -234,7 +231,6 @@ func update_health(_damage):
 		dead_gui.set_visible(true)
 		t_dead = 300
 		is_dead = true
-	#health_gui.value = hp * 100 / max_hp
 	health_gui.update()
 #
 func update_process():
@@ -260,13 +256,10 @@ func update_special():
 			stamina = stamina + 1
 			stamina_gui.update()
 #
-func update_cam_tilemap():
-	#CM: Spawner Script
-	if cam_set == false:
-		cam_timer = cam_timer - 1 
-		if cam_timer <= 0:
-			camera.tilemap = tilemap
-			cam_set = true
+func update_cam_tilemap() -> void:
+	#CM: Room _ready()
+	camera.tilemap = tilemap
+	camera.update_camera(tilemap)
 #
 func menu_input():
 	if Input.is_action_just_pressed("pause_game"):

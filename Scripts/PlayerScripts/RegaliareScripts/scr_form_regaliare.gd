@@ -40,6 +40,7 @@ func _ready():
 	sprite._set("is_swap",true)
 	sprite.apply_intensity_fade(1.0,0.0,0.5)
 	player = get_parent()
+	magic.player = player
 #
 func _physics_process(delta):
 	if is_swap == true:
@@ -89,8 +90,6 @@ func form_melee():
 #
 func form_magic():
 	if is_magic == true:
-		magic.player = player
-		#
 		_pVel = player.velocity
 		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
 		magic_dir = autoload_player.cursor_direction(cdir)

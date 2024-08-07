@@ -1,23 +1,18 @@
+#Player Pause Menu
+#
 extends CanvasLayer
-
-signal opened
-signal closed
+#
+#signal opened
+#signal closed
 var is_open: bool = false
 var player: CharacterBody2D
 #
 #Built-In Methods
 #
 func _ready():
-	#inventory.updated.connect(update)
 	player = get_parent()
 	visible = false
 	is_open = false
-#
-func _physics_process(_delta):
-	#if is_open == true:
-		#if Input.is_action_just_pressed("pause_game"):
-			#get_tree().pause = false
-	pass
 #
 #Signal Methods
 #
@@ -37,6 +32,7 @@ func _on_exit_button_pressed() -> void:
 #Custom Methods
 #
 func toggle_menu() -> void:
+	#CM: Player > menu_input()
 	if is_open == false:
 		open()
 	else:
@@ -45,14 +41,12 @@ func toggle_menu() -> void:
 func open() -> void:
 	visible = true
 	is_open = true
-	#opened.emit()
 #
 func close() -> void:
 	visible = false
 	is_open = false
 	player.form_menu = false
 	player.pause_menu = false
-	#closed.emit()
 
 
 
