@@ -1,16 +1,19 @@
+#Form 0: Regaliare
+#
 extends Node2D
-
+#
 @export var knockback_power = 50
-
+#
 @onready var sprite: Sprite2D = $CharacterSprite
 @onready var animations: AnimationPlayer = $AnimationPlayer
 @onready var weapon: Node2D = $MeleeSkill
 @onready var magic: Node2D = $MagicSkill
 @onready var special: Node2D = $SpecialSkill
+@onready var special_timer: Timer = $SpecialSkill/SpecialTimer
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var move_audio: AudioStreamPlayer = $MovementSFX
 @onready var player: CharacterBody2D
-
+#
 var form_id: int = 0
 var form_menu: bool = false
 var is_invincible: bool = false
@@ -101,6 +104,14 @@ func form_magic():
 				animations.play("anim_regaliare_idleCast_" + last_dir)
 #
 func form_special():
+	if is_attack == false && is_roll == false:
+		if Input.is_action_just_pressed("special_skill"):
+			if special_timer.get_time_left() <= 0:
+				special_timer.start()
+				player.is_attack = true
+				player.is_special = true
+				is_attack = true
+				is_special = true
 	if is_special == true:
 		special.is_special = true
 		special.player = player

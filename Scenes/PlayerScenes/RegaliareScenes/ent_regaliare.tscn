@@ -720,6 +720,10 @@ projectile_scene = ExtResource("8_2by46")
 stream = ExtResource("15_0x30o")
 volume_db = -10.0
 
+[node name="SpecialTimer" type="Timer" parent="SpecialSkill"]
+wait_time = 1.5
+one_shot = true
+
 [node name="HurtTimer" type="Timer" parent="."]
 wait_time = 0.5
 

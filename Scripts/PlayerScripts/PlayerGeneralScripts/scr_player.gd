@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var primary_gui: TextureProgressBar = $PlayerHUD/PrimaryBar
 @onready var special_gui: TextureProgressBar = $PlayerHUD/SpecialBar
 @onready var dead_gui: Label = $PlayerHUD/DeadLabel
+@onready var dead_timer: Timer = $PlayerHUD/DeadTimer
 @onready var form_controller: CanvasLayer = $FormSwapMenu
 @onready var form_timer: Timer = $FormSwapMenu/FormSwapTimer
 @onready var pause_controller: CanvasLayer = $PauseMenu
@@ -24,7 +25,8 @@ var load_form: PackedScene
 var form_id: int = 0
 var form_type: int = 0
 #Stats
-var hp: int = 200
+#Stats that are upgradable should be moved to autoload
+var hp: int = 50
 var max_hp: int = 200
 var stamina: int = 200
 var speed: int = 65
@@ -67,9 +69,7 @@ var magic_dir = "down"
 var roll_shake: bool = false
 var form_menu: bool = false
 var pause_menu: bool = false
-var t1: int = 0
-var t_stamina: int = 0
-var t_dead: int = 300
+var _tStamina: int = 0
 #
 #Built-In Methods
 #
@@ -84,16 +84,14 @@ func _physics_process(_delta):
 	if is_dead == false:
 		update_process()
 		handle_input()
-		#update_cam_tilemap()
 		menu_input()
 	else:
-		t_dead = t_dead - 1
 		visible = false
-		if t_dead <= 0:
+		if dead_timer.get_time_left() <= 0:
 			is_dead = false
-			t_dead = 300
 			dead_gui.visible = false
-			form.effects.play("anim_swap_in")
+			form.sprite._set("is_swap",true)
+			form.sprite.apply_intensity_fade(1.0,0.0,0.5)
 #
 #Signal Methods
 #
@@ -116,7 +114,7 @@ func handle_input():
 			roll_input()
 			melee_input()
 			magic_input()
-			special_input()
+			#special_input()
 #
 func move_input():
 	#CM: handle_input
@@ -135,6 +133,7 @@ func move_input():
 	#global_position = global_position.lerp(sync_pos, .5)
 #
 func roll_input():
+	#Offload to form
 	#CM: handle_input
 	if is_attack == false && is_swap == false:
 		if is_roll == false:
@@ -149,6 +148,7 @@ func roll_input():
 					stamina_gui.update()
 #
 func melee_input():
+	#Offload to Form
 	#CM: handle_input
 	if is_roll == true: return
 	if is_attack == false:
@@ -163,6 +163,7 @@ func melee_input():
 			form.last_dir = autoload_player.cursor_direction(cdir)
 #
 func magic_input():
+	#Offload to Form
 	#CM: handle_input
 	if is_attack == false && is_roll == false:
 		if Input.is_action_pressed("magic_skill"):
@@ -183,17 +184,17 @@ func magic_input():
 			speed = 60
 			form.magic.update()
 #
-func special_input():
-	#CM: handle_input
-	if is_roll == true: return
-	if is_attack == false:
-		if Input.is_action_just_pressed("special_skill"):
-			if t1 <= 0:
-				t1 = 90
-				is_attack = true
-				is_special = true
-				form.is_attack = true
-				form.is_special = true
+#func special_input():
+	##CM: handle_input
+	#if is_roll == true: return
+	#if is_attack == false:
+		#if Input.is_action_just_pressed("special_skill"):
+			#if t1 <= 0:
+				#t1 = 90
+				#is_attack = true
+				#is_special = true
+				#form.is_attack = true
+				#form.is_special = true
 #
 func roll_collision():
 	if is_roll == true:
@@ -229,32 +230,20 @@ func apply_damage(_damage):
 			if spawn.name == str(0):
 				global_position = spawn.global_position
 		dead_gui.set_visible(true)
-		t_dead = 300
+		dead_timer.start()
 		is_dead = true
 	health_gui.update()
 #
 func update_process():
 	#CM: _physics_process
 	visible = true
-	if t1 > 0:
-		t1 = t1 - 1
 	if stamina < max_stamina:
-		if t_stamina > 0:
-			t_stamina = t_stamina - 1
-		if t_stamina <= 0:
-			t_stamina = 3
+		if _tStamina > 0:
+			_tStamina = _tStamina - 1
+		if _tStamina <= 0:
+			_tStamina = 3
 			stamina = stamina + 1
 			stamina_gui.update() 
-#
-func update_special():
-	#CM: _physics_process
-	if stamina < max_stamina:
-		if t_stamina > 0:
-			t_stamina = t_stamina - 1
-		if t_stamina <= 0:
-			t_stamina = 3
-			stamina = stamina + 1
-			stamina_gui.update()
 #
 func update_cam_tilemap() -> void:
 	#CM: Room _ready()
