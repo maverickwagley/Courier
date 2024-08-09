@@ -8,3 +8,15 @@ func knockback(_receiveKB: CharacterBody2D, _kbSourcePos: Vector2, _power: int, 
 	receiver.kb_timer = _dur
 	receiver.is_knockback = true
 	#source.move_and_slide()
+
+func set_status():
+	var is_invincible: bool = false
+	var is_swap: bool = false
+	var is_hurt: bool = false
+	var is_dead: bool = false
+	var is_knockback: bool = false
+	var is_roll: bool = false
+	var is_attack: bool = false
+	var is_melee: bool = false
+	var is_magic: bool = false
+	var is_special: bool = false

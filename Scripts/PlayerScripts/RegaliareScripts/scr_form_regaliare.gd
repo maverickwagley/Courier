@@ -1,39 +1,6 @@
 #Form 0: Regaliare
 #
-extends Node2D
-#
-@export var knockback_power = 50
-#
-@onready var sprite: Sprite2D = $CharacterSprite
-@onready var animations: AnimationPlayer = $AnimationPlayer
-@onready var weapon: Node2D = $MeleeSkill
-@onready var magic: Node2D = $MagicSkill
-@onready var special: Node2D = $SpecialSkill
-@onready var special_timer: Timer = $SpecialSkill/SpecialTimer
-@onready var hurt_timer: Timer = $HurtTimer
-@onready var move_audio: AudioStreamPlayer = $MovementSFX
-@onready var player: CharacterBody2D
-#
-var form_id: int = 0
-var form_menu: bool = false
-var is_invincible: bool = false
-var is_swap: bool = false
-var is_hurt: bool = false
-var is_knockback: bool = false
-var is_roll: bool = false
-var is_attack: bool = false
-var is_melee: bool = false
-var is_magic: bool = false
-var is_special: bool = false
-var direction = "down"
-var last_dir = "down"
-var magic_dir = "down"
-var melee_dir = "down"
-var sync_pos = Vector2(0,0)
-var _pVel: Vector2
-var _tSpecial: int = 5
-var _tMove: int = 0
-var _tSwap: int = 15
+extends Form
 #
 #Built-In Methods
 #
@@ -43,7 +10,9 @@ func _ready():
 	sprite._set("is_swap",true)
 	sprite.apply_intensity_fade(1.0,0.0,0.5)
 	player = get_parent()
+	melee.player = player
 	magic.player = player
+	special.player = player
 #
 func _physics_process(delta):
 	if is_swap == true:
@@ -70,6 +39,7 @@ func _physics_process(delta):
 #
 #Custom Methods
 func form_roll():
+	roll_input()
 	if is_roll == true:
 		animations.play("anim_regaliare_roll_" + last_dir)
 		await animations.animation_finished
@@ -80,23 +50,24 @@ func form_roll():
 		is_invincible = false
 #
 func form_melee():
+	melee_input()
 	if is_melee == true:
-		weapon.enable(player)
-		weapon.parent_velocity = player.velocity
+		melee.enable(player)
+		melee.parent_velocity = player.velocity
 		animations.play("anim_regaliare_slash_" + last_dir)
 		await animations.animation_finished
-		weapon.disable()
+		melee.disable()
 		player.is_attack = false
 		player.is_melee = false
 		is_attack = false
 		is_melee = false
 #
 func form_magic():
+	magic_input()
 	if is_magic == true:
 		_pVel = player.velocity
-		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
-		magic_dir = autoload_player.cursor_direction(cdir)
-		last_dir = autoload_player.cursor_direction(cdir)
+		magic_dir = player.cursor_direction()
+		last_dir = player.cursor_direction()
 		if animations:
 			if _pVel.length() != 0:
 				animations.play("anim_regaliare_runCast_" + magic_dir)

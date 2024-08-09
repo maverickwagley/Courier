@@ -7,6 +7,7 @@ var form_array = [form0,form1]
 
 #
 func cursor_direction(_cdir):
+	#var cdir = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))
 	_cdir = wrapi(_cdir,0,360)
 	if _cdir < 0:
 		_cdir = 360 - _cdir

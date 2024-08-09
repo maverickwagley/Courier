@@ -1,4 +1,5 @@
 #Player
+#
 extends CharacterBody2D
 #Prep Nodes
 @onready var camera: Camera2D = $Camera2D
@@ -86,6 +87,7 @@ func _physics_process(_delta):
 		handle_input()
 		menu_input()
 	else:
+		#death_process()
 		visible = false
 		if dead_timer.get_time_left() <= 0:
 			is_dead = false
@@ -104,17 +106,31 @@ func _on_hitbox_area_entered(area):
 #
 #Custom Methods
 #
+func update_process():
+	#CM: _physics_process
+	visible = true
+	if stamina < max_stamina:
+		if _tStamina > 0:
+			_tStamina = _tStamina - 1
+		if _tStamina <= 0:
+			_tStamina = 3
+			stamina = stamina + 1
+			stamina_gui.update() 
+#
 func handle_input():
 	#CM: _phsyics_process
 	if move_and_slide():
 		roll_collision()
 	if is_knockback == false:
 		move_input()
+#
+func menu_input():
+	if Input.is_action_just_pressed("pause_game"):
 		if form_menu == false:
-			roll_input()
-			melee_input()
-			magic_input()
-			#special_input()
+			if pause_menu == false:
+				pause_menu = true
+				get_tree().paused = true
+				pause_controller.toggle_menu()
 #
 func move_input():
 	#CM: handle_input
@@ -129,72 +145,6 @@ func move_input():
 	else:
 			velocity.x = 0
 			velocity.y = 0
-	#sync_pos = global_position
-	#global_position = global_position.lerp(sync_pos, .5)
-#
-func roll_input():
-	#Offload to form
-	#CM: handle_input
-	if is_attack == false && is_swap == false:
-		if is_roll == false:
-			if stamina >= 50:
-				if Input.is_action_just_pressed("roll"):
-					stamina = stamina - 50
-					velocity = velocity * 2
-					is_roll = true
-					is_invincible = true
-					form.is_roll = true
-					form.is_invincible = true
-					stamina_gui.update()
-#
-func melee_input():
-	#Offload to Form
-	#CM: handle_input
-	if is_roll == true: return
-	if is_attack == false:
-		if Input.is_action_just_pressed("melee_skill"):
-			is_attack = true
-			is_melee = true
-			form.is_attack = true
-			form.is_melee = true
-			#if melee_aim = true
-			var cdir = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))
-			form.melee_dir = autoload_player.cursor_direction(cdir)
-			form.last_dir = autoload_player.cursor_direction(cdir)
-#
-func magic_input():
-	#Offload to Form
-	#CM: handle_input
-	if is_attack == false && is_roll == false:
-		if Input.is_action_pressed("magic_skill"):
-			is_attack = true
-			is_magic = true
-			cursor.form_cursor.visible = true
-			form.is_attack = true
-			form.is_magic = true
-			speed = 40
-			form.magic.update()
-	if is_magic == true:
-		if Input.is_action_just_released("magic_skill"):
-			is_attack = false
-			is_magic = false
-			cursor.form_cursor.visible = false
-			form.is_attack = false
-			form.is_magic = false
-			speed = 60
-			form.magic.update()
-#
-#func special_input():
-	##CM: handle_input
-	#if is_roll == true: return
-	#if is_attack == false:
-		#if Input.is_action_just_pressed("special_skill"):
-			#if t1 <= 0:
-				#t1 = 90
-				#is_attack = true
-				#is_special = true
-				#form.is_attack = true
-				#form.is_special = true
 #
 func roll_collision():
 	if is_roll == true:
@@ -234,29 +184,29 @@ func apply_damage(_damage):
 		is_dead = true
 	health_gui.update()
 #
-func update_process():
-	#CM: _physics_process
-	visible = true
-	if stamina < max_stamina:
-		if _tStamina > 0:
-			_tStamina = _tStamina - 1
-		if _tStamina <= 0:
-			_tStamina = 3
-			stamina = stamina + 1
-			stamina_gui.update() 
+func cursor_direction():
+	var _cdir = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))
+	_cdir = wrapi(_cdir,0,360)
+	if _cdir < 0:
+		_cdir = 360 - _cdir
+	if _cdir < 45:
+			return "right"
+	if _cdir >= 45:
+		if _cdir < 135:
+			return "down"
+	if _cdir >= 135:
+		if _cdir < 225:
+			return "left"
+	if _cdir >= 225:
+		if _cdir < 315:
+			return "up"
+	if _cdir >= 315:
+		return "right"
 #
 func update_cam_tilemap() -> void:
 	#CM: Room _ready()
 	camera.tilemap = tilemap
 	camera.update_camera(tilemap)
-#
-func menu_input():
-	if Input.is_action_just_pressed("pause_game"):
-		if form_menu == false:
-			if pause_menu == false:
-				pause_menu = true
-				get_tree().paused = true
-				pause_controller.toggle_menu()
 #
 func form_update(_formNum,_formType):
 	#CM: Form Swap Menu > _on_button_name_down
