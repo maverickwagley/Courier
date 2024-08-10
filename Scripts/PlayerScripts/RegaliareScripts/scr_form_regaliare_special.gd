@@ -10,7 +10,8 @@ extends Node2D
 var parent_velocity: Vector2
 
 var is_special: bool = false
-var t1: int = 0
+var special_rate: int = 90
+var t_special: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,11 +20,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	t1 = t1 - 1
+	if t_special >= 0:
+		t_special = t_special - 1
 	#Spawn Projectile
 	if is_special == true:
-		if t1 <= 0:
-			t1 = 90
+		if t_special <= 0:
 			if player.yellow_special >= 100:
 				player.yellow_special = player.yellow_special - 100
 				player.special_gui.update()
@@ -33,4 +34,5 @@ func _process(delta):
 				projectile.global_position = player.global_position
 				projectile.player = player
 				player.add_child(projectile)
+				t_special = special_rate
 			is_special = false

@@ -1,26 +1,25 @@
 extends Node2D
 
-class_name Magic
-
 @export var projectile_scene: PackedScene
 
 @onready var flash = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_particle_goldBolt_flash.tscn")
 @onready var sprite: Sprite2D = $MagicSprite #Players Rotating Arm
 @onready var spawner: Node2D = $ProjectileSpawn
 @onready var magic_audio: AudioStreamPlayer = $MagicSFX
+@onready var magic_timer: Timer = $MagicTimer
 @onready var parent = get_parent()
 @onready var player = CharacterBody2D
 
 var parent_velocity: Vector2
-
-var t1: int
-var is_magic = false
+var is_magic: bool = false
+var magic_rate: int = 10
+var t_magic: int = 0
 
 func _ready():
 	visible = false
 	position.x = 0
 	position.y = 0
-	t1 = 0
+	t_magic = 0
 
 func update():
 	if parent.is_magic == true:
@@ -29,7 +28,8 @@ func update():
 		visible = false
 
 func _physics_process(delta):
-	t1 = t1 - 1
+	if t_magic >= 0:
+		t_magic = t_magic - 1
 	if parent.is_magic == true:
 		var rot = get_global_mouse_position()
 		look_at(rot)
@@ -54,11 +54,8 @@ func _physics_process(delta):
 				position.y = -7
 				sprite.flip_v = true
 				z_index = 0
-
-		
 		#Spawn Projectile
-		if t1 <= 0:
-			t1 = 10
+		if t_magic <= 0:
 			if player.yellow_primary >= 5:
 				var projectile = projectile_scene.instantiate()
 				autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)
@@ -73,3 +70,4 @@ func _physics_process(delta):
 				projectile.global_rotation = sprite.global_rotation
 				get_tree().current_scene.add_child(projectile)
 				projectile.player = player
+				t_magic = magic_rate

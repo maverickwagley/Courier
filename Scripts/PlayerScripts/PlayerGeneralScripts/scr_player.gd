@@ -215,7 +215,7 @@ func form_update(_formNum,_formType):
 	is_swap = true
 	cursor.update(form_id)
 	form.is_swap = true
-	form._tSwap = 30
+	form.t_swap = 30
 	form.sprite._set("is_swap",true)
 	form.sprite.apply_intensity_fade(0.0,1.0,0.5)
 	form_timer.start()
@@ -224,14 +224,7 @@ func form_update(_formNum,_formType):
 	velocity.x = 0
 	velocity.y = 0
 	form.queue_free()
-	is_hurt = false
-	is_swap = false
-	is_attack = false
-	is_roll = false
-	is_attack = false
-	is_melee = false
-	is_magic = false
-	is_special = false
+	form.status_reset()
 	load_form = autoload_player.form_array[_formNum]
 	form = load_form.instantiate()
 	add_child(form)
