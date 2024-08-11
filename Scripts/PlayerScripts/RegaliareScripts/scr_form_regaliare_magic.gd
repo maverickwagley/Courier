@@ -6,7 +6,6 @@ extends Node2D
 @onready var sprite: Sprite2D = $MagicSprite #Players Rotating Arm
 @onready var spawner: Node2D = $ProjectileSpawn
 @onready var magic_audio: AudioStreamPlayer = $MagicSFX
-@onready var magic_timer: Timer = $MagicTimer
 @onready var parent = get_parent()
 @onready var player = CharacterBody2D
 
@@ -45,7 +44,7 @@ func _physics_process(delta):
 				sprite.flip_v = true
 				z_index = - 1
 			"left":
-				position.x = -2
+				position.x = -1
 				position.y = -7
 				sprite.flip_v = true
 				z_index = 0

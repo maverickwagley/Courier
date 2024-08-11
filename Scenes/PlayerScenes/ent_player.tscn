@@ -583,6 +583,7 @@ script = ExtResource("1_xyui8")
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]
 show_behind_parent = true
+position = Vector2(0, -1)
 texture = ExtResource("2_mttb0")
 
 [node name="Movebox" type="CollisionShape2D" parent="."]
@@ -608,6 +609,7 @@ drag_vertical_enabled = true
 script = ExtResource("2_y6y5c")
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("3_ldtj5")
 
 [node name="HealthBar" type="TextureProgressBar" parent="PlayerHUD"]
@@ -694,6 +696,7 @@ visible = false
 wait_time = 0.5
 
 [node name="PauseMenu" parent="." instance=ExtResource("18_crtwj")]
+visible = false
 
 [node name="Cursor" type="CanvasLayer" parent="."]
 process_mode = 3

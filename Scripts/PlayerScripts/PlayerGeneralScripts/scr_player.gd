@@ -212,6 +212,8 @@ func form_update(_formNum,_formType):
 	#CM: Form Swap Menu > _on_button_name_down
 	form_id = _formNum
 	form_type = _formType
+	direction = form.direction
+	last_dir = form.last_dir
 	is_swap = true
 	cursor.update(form_id)
 	form.is_swap = true
@@ -224,13 +226,15 @@ func form_update(_formNum,_formType):
 	velocity.x = 0
 	velocity.y = 0
 	form.queue_free()
-	form.status_reset()
+	form.form_status_reset()
 	load_form = autoload_player.form_array[_formNum]
 	form = load_form.instantiate()
 	add_child(form)
 	form.global_position = form_pos
 	form.player = self
 	form.is_swap = true
+	form.direction = direction
+	form.last_dir = direction
 	health_gui.update()
 	stamina_gui.update()
 	primary_gui.update()
