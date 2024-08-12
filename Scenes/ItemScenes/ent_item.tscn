@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dno3k311ngslt"]
+[gd_scene load_steps=15 format=3 uid="uid://dno3k311ngslt"]
 
 [ext_resource type="Script" path="res://Scripts/ItemScripts/scr_item.gd" id="1_suk8v"]
 [ext_resource type="Texture2D" uid="uid://j7havktcm2jk" path="res://Sprites/ItemSprites/spr_items_all.png" id="2_55l10"]
@@ -8,6 +8,9 @@ size = Vector2(7, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aarp5"]
 size = Vector2(7, 7)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_va6pj"]
+radius = 16.0
 
 [sub_resource type="Animation" id="Animation_whoua"]
 length = 0.001
@@ -54,16 +57,96 @@ tracks/0/keys = {
 "values": [Vector2i(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_f6qjh"]
+resource_name = "anim_item_ess_green"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r4wki"]
+resource_name = "anim_item_ess_blue"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vphq4"]
+resource_name = "anim_item_ess_orange"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qjupd"]
+resource_name = "anim_item_ess_red"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ggfr2"]
+resource_name = "anim_item_ess_life"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(6, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w32ba"]
 _data = {
 "RESET": SubResource("Animation_whoua"),
+"anim_item_ess_blue": SubResource("Animation_r4wki"),
+"anim_item_ess_green": SubResource("Animation_f6qjh"),
+"anim_item_ess_life": SubResource("Animation_ggfr2"),
+"anim_item_ess_orange": SubResource("Animation_vphq4"),
+"anim_item_ess_red": SubResource("Animation_qjupd"),
 "anim_item_ess_violet": SubResource("Animation_2us8l"),
 "anim_item_ess_yellow": SubResource("Animation_epsxs")
 }
 
 [node name="Item" type="CharacterBody2D"]
 y_sort_enabled = true
-collision_layer = 0
+collision_layer = 1024
 collision_mask = 0
 script = ExtResource("1_suk8v")
 
@@ -82,9 +165,17 @@ collision_mask = 3
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="PlayerCollision"]
 shape = SubResource("RectangleShape2D_aarp5")
 
+[node name="MagnetismArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetismArea"]
+shape = SubResource("CircleShape2D_va6pj")
+
 [node name="ItemAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_w32ba")
 }
 
 [connection signal="area_entered" from="PlayerCollision" to="." method="_on_player_collision_area_entered"]
+[connection signal="area_entered" from="MagnetismArea" to="." method="_on_magnetism_area_entered"]

@@ -16,6 +16,8 @@ func _ready():
 #
 func update() -> void:
 	#CM: Player > apply_damage()
+	if player.hp > player.max_hp:
+		player.hp = player.max_hp
 	value = player.hp * 100 / player.max_hp
 	player_num = player.form_id
 	sprite.frame = player_num

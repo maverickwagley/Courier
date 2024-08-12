@@ -155,23 +155,29 @@ func hurt_and_damage(area):
 	if hp <= 0:
 		if is_dead == false:
 			is_dead = true
-			var current_death = death_particle.instantiate()
-			var current_energy = item_drop.instantiate()
-			for current_world in get_tree().get_nodes_in_group("World"):
-				if current_world.name == "World":
-					current_world.add_child(current_death) 
-					current_world.call_deferred("add_child",current_energy)
-			current_death.global_position = global_position
-			current_energy.global_position = global_position
-			current_energy.item_class = 0
-			current_energy.item_id = area.type
-			current_energy.amount = randi_range(5,25)
-			current_energy.classed = true
+			drop_essence(area.type,10,15)
+			var _rType = randi_range(0,5)
+			drop_essence(_rType,5,25)
+			drop_essence(6,3,7)
 			#current_energy.update()
 			queue_free()
 	sig_health_changed.emit()
 	if area.inflict_kb == true:
 		autoload_entity.knockback(self, area.global_position, area.kb_power, 5)
+#
+func drop_essence(_id,_min,_max):
+	var current_death = death_particle.instantiate()
+	var current_energy = item_drop.instantiate()
+	for current_world in get_tree().get_nodes_in_group("World"):
+		if current_world.name == "World":
+			current_world.add_child(current_death) 
+			current_world.call_deferred("add_child",current_energy)
+	current_death.global_position = global_position
+	current_energy.global_position = global_position
+	current_energy.item_class = 0
+	current_energy.item_id = _id
+	current_energy.amount = randi_range(_min,_max)
+	current_energy.classed = true
 #
 func aggro_drop():
 	if is_aggro == false:
