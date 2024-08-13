@@ -9,6 +9,8 @@ signal sig_health_changed
 @export var limit: float = .5
 @export var target_node: Node2D = null
 
+
+@onready var sprite: Sprite2D = $EnemySprite
 @onready var animations: AnimationPlayer = $AnimationPlayer
 @onready var effects: AnimationPlayer = $Effects
 @onready var hurt_timer: Timer = $HurtTimer
@@ -219,6 +221,8 @@ func _on_hitbox_area_entered(area):
 	if area == $MeleeWeapon: return
 	if area == $HitArea: return
 	is_hurt = true
+	sprite.apply_intensity_fade(1.0,0.0,0.25)
+	sprite._set("is_hurt",true)
 	if hurt_areas.find(area) == -1:
 		hurt_areas.append(area)
 #

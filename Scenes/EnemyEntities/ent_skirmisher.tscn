@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b87153mqpcmem"]
+[gd_scene load_steps=36 format=3 uid="uid://b87153mqpcmem"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_skirmisher.gd" id="1_6dh1p"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_dadce"]
@@ -8,14 +8,45 @@
 [ext_resource type="Texture2D" uid="uid://cwrrdkhu6gqv3" path="res://Sprites/EnemySprites/spr_enemy_skirmisher.png" id="5_48ily"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_skirmisher_melee.gd" id="6_om3n6"]
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="8_cahhk"]
+[ext_resource type="Script" path="res://Scenes/EnemyEntities/spr_enemy_sprite.gd" id="8_hhgfp"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="9_au4yb"]
+
+[sub_resource type="Shader" id="Shader_b7b28"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+//uniform sampler2D screen_texture: hint_screen_texture;
+uniform vec4 hurt_color: source_color = vec4(0.6,0.2,0.2,1.0);
+uniform float blink_intensity = 0;
+uniform bool is_hurt = false;
+
+
+void fragment() {
+	//Get Screen Color
+	//vec4 screen_color = texture(screen_texture,SCREEN_UV);
+	//Sample Sprite Color
+	if (is_hurt == true){
+		vec4 sprite_color = texture(TEXTURE,UV);
+		sprite_color = mix(sprite_color,hurt_color,blink_intensity * sprite_color.a);
+		COLOR = sprite_color;
+	}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cd5b5"]
+resource_local_to_scene = true
+shader = SubResource("Shader_b7b28")
+shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 1)
+shader_parameter/blink_intensity = 0.0
+shader_parameter/is_hurt = false
 
 [sub_resource type="Animation" id="Animation_doyhu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("EnemySprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -51,7 +82,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame_coords")
+tracks/3/path = NodePath("EnemySprite:frame_coords")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -66,7 +97,7 @@ resource_name = "anim_skirmisher_idle_down"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("EnemySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -81,7 +112,7 @@ resource_name = "anim_skirmisher_idle_left"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("EnemySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,7 +127,7 @@ resource_name = "anim_skirmisher_idle_right"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("EnemySprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -111,7 +142,7 @@ resource_name = "anim_skirmisher_idle_up"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("EnemySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -152,7 +183,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame_coords")
+tracks/2/path = NodePath("EnemySprite:frame_coords")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -193,7 +224,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame_coords")
+tracks/2/path = NodePath("EnemySprite:frame_coords")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -234,7 +265,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame_coords")
+tracks/2/path = NodePath("EnemySprite:frame_coords")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -275,7 +306,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame_coords")
+tracks/2/path = NodePath("EnemySprite:frame_coords")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -291,7 +322,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("EnemySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -331,7 +362,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("EnemySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -371,7 +402,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("EnemySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -411,7 +442,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("EnemySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -467,7 +498,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/path = NodePath("EnemySprite/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -483,7 +514,7 @@ length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/path = NodePath("EnemySprite/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -544,15 +575,17 @@ texture_under = ExtResource("2_y5y7o")
 texture_progress = ExtResource("3_jv2b4")
 script = ExtResource("4_pmxve")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="EnemySprite" type="Sprite2D" parent="."]
 clip_children = 2
+material = SubResource("ShaderMaterial_cd5b5")
 texture = ExtResource("5_48ily")
 offset = Vector2(0, -7)
 hframes = 20
 vframes = 20
 frame = 1
+script = ExtResource("8_hhgfp")
 
-[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+[node name="ColorRect" type="ColorRect" parent="EnemySprite"]
 offset_left = -20.0
 offset_top = -40.0
 offset_right = 20.0

@@ -91,8 +91,10 @@ func _physics_process(_delta):
 		visible = false
 		if dead_timer.get_time_left() <= 0:
 			is_dead = false
+			is_swap = true
 			dead_gui.visible = false
-			form.sprite._set("is_swap",true)
+			form.sprite._set("is_hurt",false)
+			form.form_swap_in()
 			form.sprite.apply_intensity_fade(1.0,0.0,0.5)
 #
 #Signal Methods

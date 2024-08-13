@@ -136,6 +136,12 @@ func form_swap_process():
 			sprite._set("is_swap",false)
 			t_swap = 30
 #
+func form_swap_in():
+	is_swap = true
+	t_swap = 30
+	sprite._set("is_swap",true)
+	sprite.apply_intensity_fade(1.0,0.0,0.5)
+#
 func form_special_timer(_type) -> void:
 	if is_special == false:
 		match _type:

@@ -6,10 +6,7 @@ extends Form
 #
 func _ready():
 	form_id = 0
-	is_swap = true
-	t_swap = 30
-	sprite._set("is_swap",true)
-	sprite.apply_intensity_fade(1.0,0.0,0.5)
+	form_swap_in()
 	player = get_parent()
 	melee.player = player
 	magic.player = player
