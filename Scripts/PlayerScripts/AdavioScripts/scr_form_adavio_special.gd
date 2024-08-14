@@ -1,29 +1,27 @@
+#Adavio Special Skill
+#
 extends Node2D
-
-class_name Special
-
+#
 @export var projectile_scene: PackedScene
-
+#
 @onready var special_collision: Area2D = $SpecialArea
 @onready var special_snd: AudioStreamPlayer = $SpecialSFX
 @onready var parent: Node2D
 @onready var player: CharacterBody2D
-
+#
 var parent_velocity: Vector2
-
 var is_special: bool = false
 var special_use: bool = false
 var t1: int
 var t2: int
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
+#
+#Built-In Methods
+#
+func _ready() -> void:
 	special_collision.disable()
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+#
+func _process(delta) -> void:
 	if is_special == true:
 		if special_use == true:
 			t1 = t1 - 1
@@ -53,7 +51,9 @@ func _process(delta):
 					player.is_attack = false
 					special_collision.disable()
 #
-func special_check():
+#Custom Methods
+#
+func special_check() -> bool:
 	#Check Line of Sight w/ Raycast
 	#special_collision.set_collision_mask_value(6,false)
 	var _playPos: Vector2 = player.global_position

@@ -1,28 +1,22 @@
+#Regaliare Special Skill
+#
 extends Node2D
-
-#dclass_name Special
-
+#
 @export var projectile_scene: PackedScene
-
+#
 @onready var player: CharacterBody2D
 @onready var special_snd: AudioStreamPlayer = $SpecialSFX
-
+#
 var parent_velocity: Vector2
-
 var is_special: bool = false
 var special_rate: int = 90
 var t_special: int = 0
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+#
+#Built-In Methods
+#
+func _process(delta) -> void:
 	if t_special >= 0:
 		t_special = t_special - 1
-	#Spawn Projectile
 	if is_special == true:
 		if t_special <= 0:
 			if player.yellow_special >= 100:

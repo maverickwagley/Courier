@@ -12,6 +12,6 @@ extends CanvasLayer
 #
 #Built-in Methods
 #
-func _ready():
+func _ready() -> void:
 	visible = true
 

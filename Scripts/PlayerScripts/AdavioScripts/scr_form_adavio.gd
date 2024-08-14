@@ -4,12 +4,12 @@ extends Form
 #
 #Built-In Methods
 #
-func _ready():
+func _ready() -> void:
 	form_id = 1
 	form_swap_in()
 	player = get_parent()
 #
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	form_swap_process()
 	form_special_timer("violet")
 	adavio_roll()
@@ -19,7 +19,7 @@ func _physics_process(delta):
 	adavio_run()
 #
 #Custom Methods
-func adavio_roll():
+func adavio_roll() -> void:
 	form_roll_input()
 	if is_roll == true:
 		animations.play("anim_adavio_roll_" + last_dir)
@@ -29,7 +29,7 @@ func adavio_roll():
 		is_roll = false
 		is_invincible = false
 #
-func adavio_melee():
+func adavio_melee() -> void:
 	form_melee_input()
 	if is_melee == true:
 		melee.enable()
@@ -42,7 +42,7 @@ func adavio_melee():
 		is_attack = false
 		is_melee = false
 #
-func adavio_magic():
+func adavio_magic() -> void:
 	form_magic_input()
 	var player_velocity = player.velocity
 	if is_magic == true:
@@ -56,7 +56,7 @@ func adavio_magic():
 			else:
 				animations.play("anim_adavio_idleCast_" + last_dir)
 #
-func adavio_special():
+func adavio_special() -> void:
 	form_special_input()
 	if is_special == true:
 		special.parent = self
@@ -107,7 +107,7 @@ func adavio_special():
 					special.special_use = false
 					special.special_collision.disable()
 #
-func adavio_run():
+func adavio_run() -> void:
 	#CM: _physics_process
 	if is_melee == true: return
 	if is_roll == true: return

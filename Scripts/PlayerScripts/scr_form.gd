@@ -41,7 +41,7 @@ var t_swap: int = 15
 # 
 #Custom Methods
 #
-func form_roll_input():
+func form_roll_input() -> void:
 	#CM: form_roll
 	if is_attack == false && is_swap == false:
 		if is_roll == false:
@@ -55,7 +55,7 @@ func form_roll_input():
 					is_invincible = true
 					player.stamina_gui.update()
 #
-func form_melee_input():
+func form_melee_input() -> void:
 	#CM: form_melee
 	if is_roll == true: return
 	if is_attack == false:
@@ -67,7 +67,7 @@ func form_melee_input():
 			melee_dir = player.cursor_direction()
 			last_dir = player.cursor_direction()
 #
-func form_magic_input():
+func form_magic_input() -> void:
 	#CM: form_magic
 	if is_attack == false && is_roll == false:
 		if Input.is_action_pressed("magic_skill"):
@@ -88,7 +88,7 @@ func form_magic_input():
 			player.speed = 60
 			magic.update()
 #
-func form_special_input():
+func form_special_input() -> void:
 	#CM: form_special
 	if is_attack == false && is_roll == false:
 		if Input.is_action_just_pressed("special_skill"):
@@ -97,7 +97,7 @@ func form_special_input():
 			is_attack = true
 			is_special = true
 #
-func form_hit():
+func form_hit() -> void:
 	sprite.apply_intensity_fade(1.0,0.0,0.25)
 	sprite._set("is_hurt",true)
 	hurt_timer.start()
@@ -108,7 +108,7 @@ func form_hit():
 	is_hurt = false
 	is_knockback = false
 #
-func form_status_reset():
+func form_status_reset() -> void:
 	is_invincible = false
 	is_swap = false
 	is_hurt = false
@@ -119,7 +119,7 @@ func form_status_reset():
 	is_magic = false
 	is_special = false
 #
-func form_move_audio(_stepSpeed):
+func form_move_audio(_stepSpeed) -> void:
 	if t_move >= 0:
 		t_move = t_move - 1
 	if t_move < 0:
@@ -127,7 +127,7 @@ func form_move_audio(_stepSpeed):
 		if autoload_game.audio_mute == false:
 			move_audio.play()
 #
-func form_swap_process():
+func form_swap_process() -> void:
 	if is_swap == true:
 		if t_swap > 0:
 			t_swap = t_swap - 1
@@ -136,7 +136,7 @@ func form_swap_process():
 			sprite._set("is_swap",false)
 			t_swap = 30
 #
-func form_swap_in():
+func form_swap_in() -> void:
 	is_swap = true
 	t_swap = 30
 	sprite._set("is_swap",true)

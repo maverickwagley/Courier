@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_healthbar_enemy.gd" id="4_pmxve"]
 [ext_resource type="Texture2D" uid="uid://cwrrdkhu6gqv3" path="res://Sprites/EnemySprites/spr_enemy_skirmisher.png" id="5_48ily"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_skirmisher_melee.gd" id="6_om3n6"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_enemy_sprite.gd" id="7_vus64"]
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="8_cahhk"]
-[ext_resource type="Script" path="res://Scenes/EnemyEntities/spr_enemy_sprite.gd" id="8_hhgfp"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="9_au4yb"]
 
 [sub_resource type="Shader" id="Shader_b7b28"]
@@ -565,7 +565,7 @@ wait_time = 0.15
 one_shot = true
 autostart = true
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="HealthBar" type="TextureProgressBar" parent="."]
 offset_left = -5.0
 offset_top = 1.0
 offset_right = 5.0
@@ -583,7 +583,7 @@ offset = Vector2(0, -7)
 hframes = 20
 vframes = 20
 frame = 1
-script = ExtResource("8_hhgfp")
+script = ExtResource("7_vus64")
 
 [node name="ColorRect" type="ColorRect" parent="EnemySprite"]
 offset_left = -20.0

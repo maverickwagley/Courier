@@ -4,7 +4,7 @@ extends Form
 #
 #Built-In Methods
 #
-func _ready():
+func _ready() -> void:
 	form_id = 0
 	form_swap_in()
 	player = get_parent()
@@ -12,7 +12,7 @@ func _ready():
 	magic.player = player
 	special.player = player
 #
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	form_swap_process()
 	form_special_timer("yellow")
 	regaliare_roll()
@@ -23,7 +23,7 @@ func _physics_process(delta):
 	
 #
 #Custom Methods
-func regaliare_roll():
+func regaliare_roll() -> void:
 	form_roll_input()
 	if is_roll == true:
 		animations.play("anim_regaliare_roll_" + last_dir)
@@ -34,7 +34,7 @@ func regaliare_roll():
 		is_roll = false
 		is_invincible = false
 #
-func regaliare_melee():
+func regaliare_melee() -> void:
 	form_melee_input()
 	if is_melee == true:
 		melee.enable(player)
@@ -47,7 +47,7 @@ func regaliare_melee():
 		is_attack = false
 		is_melee = false
 #
-func regaliare_magic():
+func regaliare_magic() -> void:
 	form_magic_input()
 	if is_magic == true:
 		player_velocity= player.velocity
@@ -59,7 +59,7 @@ func regaliare_magic():
 			else:
 				animations.play("anim_regaliare_idleCast_" + last_dir)
 #
-func regaliare_special():
+func regaliare_special() -> void:
 	form_special_input()
 	if is_special == true:
 		special.is_special = true
@@ -72,7 +72,7 @@ func regaliare_special():
 		is_special = false
 		special.is_special = false
 #
-func regaliare_run():
+func regaliare_run() -> void:
 	#CM: _physics_process
 	if is_roll == true: return
 	

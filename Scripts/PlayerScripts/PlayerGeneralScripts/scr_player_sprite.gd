@@ -1,7 +1,9 @@
+#Player Sprite (Generic)
+#
 extends Sprite2D
-
+#
 @onready var silhouette: Sprite2D = $Silhouette
-
+#
 @export var is_hurt: bool = false
 @export var is_swap: bool = false
 #
@@ -58,7 +60,7 @@ func load_shader_silhouette() -> void:
 	silhouette.frame = frame
 	silhouette.material.set_shader_parameter("active",true)
 #
-func apply_intensity_fade(_start,_finish,_length):
+func apply_intensity_fade(_start,_finish,_length) -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_method(set_shader_blinkIntensity,_start,_finish,_length)
 #

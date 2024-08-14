@@ -656,7 +656,6 @@ _data = {
 
 [node name="FormController" type="Node2D"]
 script = ExtResource("1_xud2j")
-knockback_power = null
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 clip_children = 2

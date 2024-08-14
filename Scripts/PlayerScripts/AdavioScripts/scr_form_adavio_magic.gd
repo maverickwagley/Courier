@@ -1,34 +1,29 @@
+#Adavio Magic SKill
+#
 extends Node2D
-
-#class_name Magic
-
+#
 @export var projectile_scene: PackedScene
-
+#
 @onready var flash = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_particle_voidBolt_flash.tscn")
 @onready var sprite: Sprite2D = $MagicSprite #Players Rotating Arm
 @onready var spawner: Node2D = $ProjectileSpawn
 @onready var magic_audio: AudioStreamPlayer = $MagicSFX
 @onready var player: CharacterBody2D
 @onready var parent = get_parent()
-
+#
 var parent_velocity: Vector2
-
 var t1: int
 var is_magic = false
-
-func _ready():
+#
+#Built-In Methods
+#
+func _ready() -> void:
 	visible = false
 	position.x = 0
 	position.y = 0
 	t1 = 0
-
-func update():
-	if parent.is_magic == true:
-		visible = true
-	else:
-		visible = false
-
-func _physics_process(delta):
+#
+func _physics_process(delta) -> void:
 	t1 = t1 - 1
 	if parent.is_magic == true:
 		var rot = get_global_mouse_position()
@@ -73,3 +68,11 @@ func _physics_process(delta):
 					player.primary_gui.update()
 					get_tree().current_scene.add_child(projectile)
 					projectile.z_index = 0
+#
+#Custom Methods
+#
+func update() -> void:
+	if parent.is_magic == true:
+		visible = true
+	else:
+		visible = false

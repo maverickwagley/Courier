@@ -1,19 +1,23 @@
+#Adavio Melee Skill
+#
 extends Node2D
-
-class_name Melee
-
+#
 @onready var melee_audio: AudioStreamPlayer = $MeleeSFX
-
+#
 var weapon: Area2D
 var parent_velocity: Vector2
 var audio_played: bool = false
-
-func _ready():
+#
+#Built-In Methods
+#
+func _ready() -> void:
 	if get_children().is_empty(): return
 	weapon = get_children()[0]
 	weapon.disable()
-
-func enable():
+#
+#Custom Methods
+#
+func enable() -> void:
 	if !weapon: return
 	if audio_played == false:
 		audio_played = true
@@ -22,8 +26,8 @@ func enable():
 	visible = true
 	weapon.parent_velocity = parent_velocity
 	weapon.enable()
-
-func disable():
+#
+func disable() -> void:
 	if !weapon: return
 	audio_played = false
 	visible = false

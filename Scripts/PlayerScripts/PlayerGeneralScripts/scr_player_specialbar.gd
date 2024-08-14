@@ -11,7 +11,7 @@ var player_num: int = 0
 #
 #Built-in Methods
 #
-func _ready():
+func _ready() -> void:
 	update()
 #
 #Custom Methods

@@ -12,7 +12,7 @@ var shake_strength: float = 0.0
 #
 #Built-in Methods
 #
-func _process(delta):
+func _process(delta) -> void:
 	#update_camera_limit()
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength,0,shake_fade * delta)

@@ -1,8 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://b2q8lspn432da"]
 
-[ext_resource type="PackedScene" uid="uid://b87153mqpcmem" path="res://Scenes/EnemyEntities/ent_skirmisher.tscn" id="2_5khr8"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_enemy.gd" id="1_hxfi1"]
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="CharacterBody2D"]
 texture_filter = 1
-
-[node name="Skirmisher" parent="." instance=ExtResource("2_5khr8")]
+script = ExtResource("1_hxfi1")

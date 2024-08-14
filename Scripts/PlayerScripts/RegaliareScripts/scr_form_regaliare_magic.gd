@@ -1,32 +1,30 @@
+#Regaliare Magic Skill
+#
 extends Node2D
-
+#
 @export var projectile_scene: PackedScene
-
+#
 @onready var flash = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_particle_goldBolt_flash.tscn")
 @onready var sprite: Sprite2D = $MagicSprite #Players Rotating Arm
 @onready var spawner: Node2D = $ProjectileSpawn
 @onready var magic_audio: AudioStreamPlayer = $MagicSFX
 @onready var parent = get_parent()
 @onready var player = CharacterBody2D
-
+#
 var parent_velocity: Vector2
 var is_magic: bool = false
 var magic_rate: int = 10
 var t_magic: int = 0
-
-func _ready():
+#
+#Built-In Methods
+#
+func _ready() -> void:
 	visible = false
 	position.x = 0
 	position.y = 0
 	t_magic = 0
-
-func update():
-	if parent.is_magic == true:
-		visible = true
-	else:
-		visible = false
-
-func _physics_process(delta):
+#
+func _physics_process(delta) -> void:
 	if t_magic >= 0:
 		t_magic = t_magic - 1
 	if parent.is_magic == true:
@@ -70,3 +68,11 @@ func _physics_process(delta):
 				get_tree().current_scene.add_child(projectile)
 				projectile.player = player
 				t_magic = magic_rate
+#
+#Custom Methods
+#
+func update() -> void:
+	if parent.is_magic == true:
+		visible = true
+	else:
+		visible = false

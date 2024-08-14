@@ -74,14 +74,14 @@ var _tStamina: int = 0
 #
 #Built-In Methods
 #
-func _ready():
+func _ready() -> void:
 	load_form = autoload_player.form_array[0]
 	form = load_form.instantiate()
 	add_child(form)
 	form_controller.player_form = 0
 	form_id = 0
 #
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	if is_dead == false:
 		update_process()
 		handle_input()
@@ -97,18 +97,9 @@ func _physics_process(_delta):
 			form.form_swap_in()
 			form.sprite.apply_intensity_fade(1.0,0.0,0.5)
 #
-#Signal Methods
-#
-func _on_hitbox_area_entered(area):
-	if is_roll == true: return
-	if area.name == "MeleeWeapon": #This likely will need updated for other hitboxes
-		if is_hurt == false:
-			hurt_by_enemy(area)
-			form.form_hit()
-#
 #Custom Methods
 #
-func update_process():
+func update_process() -> void:
 	#CM: _physics_process
 	visible = true
 	if stamina < max_stamina:
@@ -119,14 +110,14 @@ func update_process():
 			stamina = stamina + 1
 			stamina_gui.update() 
 #
-func handle_input():
+func handle_input() -> void:
 	#CM: _phsyics_process
 	if move_and_slide():
 		roll_collision()
 	if is_knockback == false:
 		move_input()
 #
-func menu_input():
+func menu_input() -> void:
 	if Input.is_action_just_pressed("pause_game"):
 		if form_menu == false:
 			if pause_menu == false:
@@ -134,7 +125,7 @@ func menu_input():
 				get_tree().paused = true
 				pause_controller.toggle_menu()
 #
-func move_input():
+func move_input() -> void:
 	#CM: handle_input
 	if is_roll == true: return
 	if is_melee == false:
@@ -148,7 +139,7 @@ func move_input():
 			velocity.x = 0
 			velocity.y = 0
 #
-func roll_collision():
+func roll_collision() -> void:
 	if is_roll == true:
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
@@ -158,7 +149,7 @@ func roll_collision():
 				camera.apply_shake(3)
 				roll_shake = true
 #
-func hurt_by_enemy(area):
+func hurt_by_enemy(area) -> void:
 	#CM: _on_hit_area_area_entered
 	apply_damage(area.damage)
 	if autoload_game.audio_mute == false:
@@ -173,7 +164,7 @@ func hurt_by_enemy(area):
 			form.is_knockback = true
 			autoload_entity.knockback(self,area.global_position,area.kb_power,5)
 #
-func apply_damage(_damage):
+func apply_damage(_damage) -> void:
 	#CM: hurt_by_enemy
 	hp = hp - _damage
 	if hp <= 0:
@@ -210,7 +201,7 @@ func update_cam_tilemap() -> void:
 	camera.tilemap = tilemap
 	camera.update_camera(tilemap)
 #
-func form_update(_formNum,_formType):
+func form_update(_formNum,_formType) -> void:
 	#CM: Form Swap Menu > _on_button_name_down
 	form_id = _formNum
 	form_type = _formType
@@ -241,3 +232,12 @@ func form_update(_formNum,_formType):
 	stamina_gui.update()
 	primary_gui.update()
 	special_gui.update()
+#
+#Signal Methods
+#
+func _on_hitbox_area_entered(area) -> void:
+	if is_roll == true: return
+	if area.name == "MeleeWeapon": #This likely will need updated for other hitboxes
+		if is_hurt == false:
+			hurt_by_enemy(area)
+			form.form_hit()

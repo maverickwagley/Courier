@@ -9,7 +9,7 @@ var player_num: int = 0
 #
 #Built-in Methods
 #
-func _ready():
+func _ready() -> void:
 	value = player.stamina * 100 / player.max_stamina
 #
 #Custom Methods

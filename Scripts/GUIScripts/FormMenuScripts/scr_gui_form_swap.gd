@@ -29,12 +29,12 @@ var form5: int = 5
 #
 #Built-In Methods
 #
-func _ready():
+func _ready() -> void:
 	player = get_parent()
 	visible = false
 	is_open = false
 #
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	if Input.is_action_just_pressed("switch_form"):
 		if is_open == true:
 			player.form_menu = false
@@ -45,9 +45,36 @@ func _physics_process(_delta):
 			get_tree().paused = true
 			open()
 #
+#Custom Methods
+#
+func toggle_menu() -> void:
+	if is_open == false:
+		open()
+	else:
+		close()
+#
+func open() -> void:
+	update()
+	visible = true
+	is_open = true
+#
+func close() -> void:
+	visible = false
+	is_open = false
+#
+func update() -> void:
+	#CM: open()
+	current_form.set_frame_and_progress(player.form_id,0.0)
+	health_bar.set_value(player.hp * 100 / player.max_hp)
+	stamina_bar.set_value(player.stamina * 100 / player.max_stamina)
+	yellow_special.set_value(player.yellow_special * 100 / player.current_max)
+	yellow_primary.set_value(player.yellow_primary * 100 / player.current_max)
+	violet_primary.set_value(player.violet_primary * 100 / player.current_max)
+	violet_special.set_value(player.violet_special * 100 / player.current_max)
+#
 #Signal Methods
 #
-func _on_yellow_form_button_pressed():
+func _on_yellow_form_button_pressed() -> void:
 	if player_form == 0:
 		player.form_menu = false
 		get_tree().paused = false
@@ -60,7 +87,7 @@ func _on_yellow_form_button_pressed():
 		get_tree().paused = false
 		close()
 #
-func _on_violet_form_button_pressed():
+func _on_violet_form_button_pressed() -> void:
 	if player_form == 1:
 		player.form_menu = false
 		get_tree().paused = false
@@ -72,34 +99,6 @@ func _on_violet_form_button_pressed():
 		player.form.is_swap = true
 		get_tree().paused = false
 		close()
-#
-#Custom Methods
-#
-func toggle_menu():
-	if is_open == false:
-		open()
-	else:
-		close()
-#
-func open():
-	update()
-	visible = true
-	is_open = true
-#
-func close():
-	visible = false
-	is_open = false
-#
-func update():
-	#CM: open()
-	current_form.set_frame_and_progress(player.form_id,0.0)
-	health_bar.set_value(player.hp * 100 / player.max_hp)
-	stamina_bar.set_value(player.stamina * 100 / player.max_stamina)
-	yellow_special.set_value(player.yellow_special * 100 / player.current_max)
-	yellow_primary.set_value(player.yellow_primary * 100 / player.current_max)
-	violet_primary.set_value(player.violet_primary * 100 / player.current_max)
-	violet_special.set_value(player.violet_special * 100 / player.current_max)
-
 
 
 

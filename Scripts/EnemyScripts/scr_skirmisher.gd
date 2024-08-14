@@ -1,95 +1,60 @@
 #Enemy Skirmisher
-extends CharacterBody2D
-
-class_name Enemy
-
-signal sig_health_changed
-
-@export var speed: int = 45
-@export var limit: float = .5
-@export var target_node: Node2D = null
-
-
-@onready var sprite: Sprite2D = $EnemySprite
-@onready var animations: AnimationPlayer = $AnimationPlayer
-@onready var effects: AnimationPlayer = $Effects
-@onready var hurt_timer: Timer = $HurtTimer
-@onready var hurt_areas: Array
-@onready var hurt_box = $HitArea/Hitbox
-@onready var melee = $MeleeWeapon
-@onready var melee_box = $MeleeWeapon
-@onready var melee_timer = $MeleeWeapon/MeleeTimer
-@onready var melee_detect = $Navigation/MeleeDetect/MeleeDetectCircle
-@onready var melee_targets: Array
-@onready var nav_agent = $Navigation/NavigationAgent2D
-@onready var hurt_audio = $HurtSFX
-@onready var blood_particle = preload("res://Scenes/GameScenes/ent_particle_blood.tscn")
-@onready var death_particle = preload("res://Scenes/GameScenes/ent_particle_death.tscn")
-@onready var item_drop = preload("res://Scenes/ItemScenes/ent_item.tscn")
-
-var hp: int = 69
-var max_hp: int = 69
-var knockback_power: int = 150
-var move_timer: int = randi_range(60,600)
-var kb_timer: int = 0
-var aggro_timer: int = 0
-var _tMelee: int = 0
-var objective_num: int = 0
-var is_hurt: bool = false
-var is_attack: bool = false
-var is_melee: bool = false
-var is_magic: bool = false
-var is_special: bool = false
-var is_knockback: bool = false
-var is_aggro: bool = false
-var is_dead: bool = false
-var move_dir: Vector2
-var direction = "down"
-var last_dir = "down"
-var magic_dir = "down"
 #
-func _ready():
-	call_deferred("navigation_setup")
-	melee_box.is_melee = false
+extends Enemy
 #
-func _physics_process(delta):
-	if is_knockback == true:
-		kb_timer = kb_timer - 1
-		if kb_timer < 1:
-			velocity.x = 0
-			velocity.y = 0
-			is_knockback = false
-	melee_state()
-	hurt_state()
-	update_velocity()
-	move_and_slide()
-	update_animation()
-	aggro_drop()
+#Built-In Methods
 #
-func melee_state():
-	if _tMelee > 0:
-		_tMelee = _tMelee - 1
+func _ready() -> void:
+	skirmisher_ready()
+	call_deferred("enemy_nav_setup")
+	melee.is_melee = false
+#
+func _physics_process(delta) -> void:
+	skirmisher_melee_state()
+	skirmisher_hurt_state()
+	skirmisher_navigation()
+	skirmisher_animation()
+#
+#Custom Methods
+#
+func skirmisher_ready() -> void:
+	sprite = $EnemySprite
+	animations = $AnimationPlayer
+	effects = $Effects
+	health = $HealthBar
+	hurt_timer = $HurtTimer
+	hurt_box = $HitArea/Hitbox
+	melee = $MeleeWeapon
+	melee_box = $MeleeWeapon/Damagebox
+	melee_timer = $MeleeWeapon/MeleeTimer
+	melee_detect = $Navigation/MeleeDetect/MeleeDetectCircle
+	nav_agent = $Navigation/NavigationAgent2D
+	hurt_audio = $HurtSFX
+#
+func skirmisher_melee_state() -> void:
+	if t_melee > 0:
+		t_melee = t_melee - 1
 	if is_melee == true:
 		velocity.x = 0
 		velocity.y = 0
-		if _tMelee <= 0:
-			_tMelee = 90
+		if t_melee <= 0:
+			t_melee = 90
 			melee.melee_aud_timer.start()
 			animations.play("anim_skirmisher_slash_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_skirmisher_idle_" + last_dir)
 			if melee_targets.size() < 1:
-				melee_box.is_melee = false
+				melee.is_melee = false
 				is_attack = false
 				is_melee = false
 #
-func hurt_state():
+func skirmisher_hurt_state() -> void:
 	if is_hurt == true:
 		if hurt_areas.size() > 0:
 			for i in hurt_areas.size():
 				var _damageArea = hurt_areas[i]
 				if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
-					hurt_and_damage(_damageArea)
+					enemy_apply_damage(_damageArea)
 			if hurt_timer.get_time_left() <= 0:
 				var _cryChance = randi_range(0,100)
 				if _cryChance >= 50:
@@ -99,18 +64,17 @@ func hurt_state():
 					autoload_player.player.damage_dealt_audio.play()
 				hurt_timer.start()
 #
-func navigation_setup():
-	await get_tree().physics_frame
-	
-	if target_node:
-		nav_agent.target_position = target_node.global_position
-	else:
-		for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
-			if spawn.name == str(0):
-				nav_agent.target_position  = spawn.global_position
-#
-func update_velocity():
-	if is_knockback == true: return
+func skirmisher_navigation() -> void:
+	move_and_slide()
+	enemy_aggro_drop()
+	#
+	if is_knockback == true:
+		t_knockback = t_knockback - 1
+		if t_knockback < 1:
+			velocity.x = 0
+			velocity.y = 0
+			is_knockback = false
+		return
 	if is_melee == true: return
 	if nav_agent.is_navigation_finished():
 		if is_aggro == true:
@@ -127,7 +91,7 @@ func update_velocity():
 	var next_path_position = nav_agent.get_next_path_position()
 	velocity = agent_current_pos.direction_to(next_path_position) * speed
 #
-func update_animation():
+func skirmisher_animation() -> void:
 	if is_melee == true: return
 	if is_knockback == true: return
 		
@@ -152,72 +116,34 @@ func update_animation():
 	else:
 		animations.play("anim_skirmisher_idle_" + last_dir)
 #
-func hurt_and_damage(area):
-	hp = hp - area.damage
-	if hp <= 0:
-		if is_dead == false:
-			is_dead = true
-			drop_essence(area.type,10,15)
-			var _rType = randi_range(0,5)
-			drop_essence(_rType,5,25)
-			drop_essence(6,3,7)
-			#current_energy.update()
-			queue_free()
-	sig_health_changed.emit()
-	if area.inflict_kb == true:
-		autoload_entity.knockback(self, area.global_position, area.kb_power, 5)
+#Signal Methods
 #
-func drop_essence(_id,_min,_max):
-	var current_death = death_particle.instantiate()
-	var current_energy = item_drop.instantiate()
-	for current_world in get_tree().get_nodes_in_group("World"):
-		if current_world.name == "World":
-			current_world.add_child(current_death) 
-			current_world.call_deferred("add_child",current_energy)
-	current_death.global_position = global_position
-	current_energy.global_position = global_position
-	current_energy.item_class = 0
-	current_energy.item_id = _id
-	current_energy.amount = randi_range(_min,_max)
-	current_energy.classed = true
-#
-func aggro_drop():
-	if is_aggro == false:
-		aggro_timer = aggro_timer - 1
-		if aggro_timer <= 0:
-			target_node = null
-#
-func manual_target_set(_trgt):
-	is_aggro = true
-	aggro_timer = 300
-	target_node = _trgt
-#
-func _on_melee_detect_area_entered(area):
+func _on_melee_detect_area_entered(area) -> void:
 	if melee_targets.find(area) == -1:
 		melee_targets.append(area)
 	if is_attack == false:
 		is_attack = true
 		is_melee = true
-		melee_box.is_melee = true
+		melee.is_melee = true
 #
-func _on_melee_detect_area_exited(area):
+func _on_melee_detect_area_exited(area) -> void:
 	var _targetInd = melee_targets.find(area)
 	if _targetInd != -1:
 		melee_targets.pop_at(_targetInd)
 #
-func _on_recalculate_timer_timeout():
+func _on_recalculate_timer_timeout() -> void:
 	if target_node:
 		nav_agent.target_position = target_node.global_position
 #
-func _on_aggro_detect_area_entered(area):
+func _on_aggro_detect_area_entered(area) -> void:
 	is_aggro = true
-	aggro_timer = 300
+	t_aggro = 300
 	target_node = area.owner
 #
-func _on_aggro_drop_area_exited(area):
+func _on_aggro_drop_area_exited(area) -> void:
 	is_aggro = false
 #
-func _on_hitbox_area_entered(area):
+func _on_hitbox_area_entered(area) -> void:
 	if area == $MeleeWeapon: return
 	if area == $HitArea: return
 	is_hurt = true
@@ -226,14 +152,14 @@ func _on_hitbox_area_entered(area):
 	if hurt_areas.find(area) == -1:
 		hurt_areas.append(area)
 #
-func _on_hitbox_area_exited(area):
+func _on_hitbox_area_exited(area) -> void:
 	var _targetInd = hurt_areas.find(area)
 	if _targetInd != -1:
 		hurt_areas.pop_at(_targetInd)
 	if hurt_areas.size() <= 0:
 		is_hurt = false
 #
-func _on_melee_audio_timer_timeout():
+func _on_melee_audio_timer_timeout() -> void:
 	if autoload_game.audio_mute == false:
 		melee.melee_audio.play()
 
