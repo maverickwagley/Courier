@@ -7,7 +7,7 @@ extends TextureProgressBar
 #Built-In Methods
 #
 func _ready():
-	update()
+	call_deferred("update")
 #
 #Custom Methods
 #

@@ -1,6 +1,7 @@
+#Enemy Sprite
+#
 extends Sprite2D
-
-
+#
 @export var is_hurt: bool = false
 #
 #Built-In Methods
@@ -16,7 +17,7 @@ func _set(property: StringName, value: Variant) -> bool:
 #
 #Custom Methods
 #
-func apply_intensity_fade(_start,_finish,_length):
+func apply_intensity_fade(_start,_finish,_length) -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_method(set_shader_blinkIntensity,_start,_finish,_length)
 #

@@ -7,9 +7,8 @@ extends Enemy
 func _ready() -> void:
 	skirmisher_ready()
 	call_deferred("enemy_nav_setup")
-	melee.is_melee = false
 #
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	skirmisher_melee_state()
 	skirmisher_hurt_state()
 	skirmisher_navigation()
@@ -18,6 +17,7 @@ func _physics_process(delta) -> void:
 #Custom Methods
 #
 func skirmisher_ready() -> void:
+	#Set Child Nodes
 	sprite = $EnemySprite
 	animations = $AnimationPlayer
 	effects = $Effects
@@ -30,6 +30,11 @@ func skirmisher_ready() -> void:
 	melee_detect = $Navigation/MeleeDetect/MeleeDetectCircle
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
+	#Set Stats
+	hp = 70
+	max_hp = 70
+	speed = 45
+	knockback_power= 150
 #
 func skirmisher_melee_state() -> void:
 	if t_melee > 0:

@@ -4,10 +4,7 @@ extends CharacterBody2D
 #
 class_name Enemy
 #
-@export var speed: int = 45
-@export var limit: float = .5
-@export var target_node: Node2D = null
-#
+@onready var target_node: Node2D
 @onready var sprite: Sprite2D
 @onready var animations: AnimationPlayer
 @onready var effects: AnimationPlayer
@@ -26,9 +23,10 @@ class_name Enemy
 @onready var death_particle = preload("res://Scenes/GameScenes/ent_particle_death.tscn")
 @onready var item_drop = preload("res://Scenes/ItemScenes/ent_item.tscn")
 #
-var hp: int = 70
-var max_hp: int = 70
-var knockback_power: int = 150
+var hp: int
+var max_hp: int
+var speed: int
+var knockback_power: int
 #Status
 var objective_num: int = 0
 var is_hurt: bool = false
@@ -82,7 +80,6 @@ func enemy_apply_damage(area) -> void:
 			var _rType = randi_range(0,5)
 			enemy_drop_essence(_rType,5,25)
 			enemy_drop_essence(6,3,7)
-			#current_energy.update()
 			queue_free()
 	health.update()
 	if area.inflict_kb == true:
