@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://drf5qkli8uwpe"]
 
-[ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_home.gd" id="1_4ef8p"]
+[ext_resource type="Script" path="res://Scripts/GUIScripts/GeneralGUI/scr_gui_home.gd" id="1_4ef8p"]
 [ext_resource type="Texture2D" uid="uid://di7nvbvr6d8af" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_title_gold.png" id="2_g7n6l"]
 [ext_resource type="Texture2D" uid="uid://cltqtq4ff4ets" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused.png" id="2_vaesu"]
 [ext_resource type="Texture2D" uid="uid://cj3vvxv3hbwvp" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_settings_button_pressed.png" id="3_3ssky"]

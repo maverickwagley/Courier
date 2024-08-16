@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cuumobgxb8km6"]
 
-[ext_resource type="Script" path="res://Scripts/GUIScripts/scr_gui_player_pause.gd" id="1_34n1t"]
+[ext_resource type="Script" path="res://Scripts/GUIScripts/GeneralGUI/scr_gui_player_pause.gd" id="1_34n1t"]
 [ext_resource type="Texture2D" uid="uid://cltqtq4ff4ets" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused.png" id="2_xg7f2"]
 [ext_resource type="Texture2D" uid="uid://j6rciykiytas" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_pressed.png" id="3_53ojo"]
 [ext_resource type="Texture2D" uid="uid://dnkxja2olddv1" path="res://Sprites/GUISprites/PauseMenuGUI/scr_gui_button_paused_hover.png" id="4_sppxc"]

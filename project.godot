@@ -22,10 +22,10 @@ buses/default_bus_layout="res://Audio/default_bus_layout.tres"
 
 [autoload]
 
-autoload_game="*res://Scripts/GameScripts/scr_autoload_game.gd"
+autoload_game="*res://Scripts/GameScripts/GeneralGame/scr_autoload_game.gd"
 autoload_player="*res://Scripts/PlayerScripts/PlayerGeneralScripts/scr_autoload_player.gd"
-autoload_enemy="*res://Scripts/EnemyScripts/scr_enemy_general.gd"
-autoload_entity="*res://Scripts/GameScripts/scr_autoload_entity.gd"
+autoload_enemy="*res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy_general.gd"
+autoload_entity="*res://Scripts/GameScripts/GeneralGame/scr_autoload_entity.gd"
 
 [display]
 

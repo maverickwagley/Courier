@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b2q8lspn432da"]
 
-[ext_resource type="Script" path="res://Scripts/EnemyScripts/scr_enemy.gd" id="1_hxfi1"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy.gd" id="1_hxfi1"]
 
 [node name="Enemy" type="CharacterBody2D"]
 texture_filter = 1

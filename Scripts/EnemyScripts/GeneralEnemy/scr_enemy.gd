@@ -98,3 +98,48 @@ func enemy_drop_essence(_id,_min,_max) -> void:
 	current_energy.item_id = _id
 	current_energy.amount = randi_range(_min,_max)
 	current_energy.classed = true
+#
+func _on_melee_detect_area_entered(area) -> void:
+	if melee_targets.find(area) == -1:
+		melee_targets.append(area)
+	if is_attack == false:
+		is_attack = true
+		is_melee = true
+		melee.is_melee = true
+#
+func _on_melee_detect_area_exited(area) -> void:
+	var _targetInd = melee_targets.find(area)
+	if _targetInd != -1:
+		melee_targets.pop_at(_targetInd)
+#
+func _on_recalculate_timer_timeout() -> void:
+	if target_node:
+		nav_agent.target_position = target_node.global_position
+#
+func _on_aggro_detect_area_entered(area) -> void:
+	is_aggro = true
+	t_aggro = 300
+	target_node = area.owner
+#
+func _on_aggro_drop_area_exited(area) -> void:
+	is_aggro = false
+#
+func _on_hitbox_area_entered(area) -> void:
+	if area == $MeleeWeapon: return
+	if area == $HitArea: return
+	is_hurt = true
+	sprite.apply_intensity_fade(1.0,0.0,0.25)
+	sprite._set("is_hurt",true)
+	if hurt_areas.find(area) == -1:
+		hurt_areas.append(area)
+#
+func _on_hitbox_area_exited(area) -> void:
+	var _targetInd = hurt_areas.find(area)
+	if _targetInd != -1:
+		hurt_areas.pop_at(_targetInd)
+	if hurt_areas.size() <= 0:
+		is_hurt = false
+#
+func _on_melee_audio_timer_timeout() -> void:
+	if autoload_game.audio_mute == false:
+		melee.melee_audio.play()

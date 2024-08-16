@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ca7pf5s7vr3pd"]
 
-[ext_resource type="Script" path="res://Scripts/GameScripts/scr_rm_farway.gd" id="1_58377"]
+[ext_resource type="Script" path="res://Scripts/GameScripts/GeneralGame/scr_rm_farway.gd" id="1_58377"]
 [ext_resource type="PackedScene" uid="uid://n6tgp86xdidy" path="res://Scenes/PlayerScenes/ent_player.tscn" id="2_miyam"]
 [ext_resource type="TileSet" uid="uid://8udpdjwui71o" path="res://Sprites/tile_lenko_main.tres" id="3_im7pc"]
 [ext_resource type="Texture2D" uid="uid://bk3elhgx4vnrh" path="res://Sprites/WorldSprites/spr_tileset_lenko.png" id="4_xjco5"]

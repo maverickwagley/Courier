@@ -1,15 +1,15 @@
-[gd_scene load_steps=36 format=3 uid="uid://b87153mqpcmem"]
+[gd_scene load_steps=36 format=3 uid="uid://g76wr4a3tb2r"]
 
-[ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher.gd" id="1_3bh3k"]
-[ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_dadce"]
-[ext_resource type="Texture2D" uid="uid://cvjogw318t2h2" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy.png" id="2_y5y7o"]
-[ext_resource type="Texture2D" uid="uid://bpdkjgb0xdwfa" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy_fill.png" id="3_jv2b4"]
-[ext_resource type="Texture2D" uid="uid://cwrrdkhu6gqv3" path="res://Sprites/EnemySprites/spr_enemy_skirmisher.png" id="5_48ily"]
-[ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_healthbar_enemy.gd" id="5_r06ay"]
-[ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy_sprite.gd" id="7_nds5e"]
-[ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher_melee.gd" id="8_8cv0q"]
-[ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="8_cahhk"]
-[ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="9_au4yb"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter.gd" id="1_m5x75"]
+[ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_qnt1g"]
+[ext_resource type="Texture2D" uid="uid://cvjogw318t2h2" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy.png" id="3_bp4rq"]
+[ext_resource type="Texture2D" uid="uid://bpdkjgb0xdwfa" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy_fill.png" id="4_4oxt8"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_healthbar_enemy.gd" id="5_ptxr5"]
+[ext_resource type="Texture2D" uid="uid://b63e45g4pe5ek" path="res://Sprites/EnemySprites/spr_enemy_hunter.png" id="6_ibom3"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy_sprite.gd" id="7_13i3s"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher_melee.gd" id="8_52khj"]
+[ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="9_clvev"]
+[ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="10_cwx2p"]
 
 [sub_resource type="Shader" id="Shader_b7b28"]
 resource_local_to_scene = true
@@ -548,17 +548,17 @@ radius = 64.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_eei6g"]
 radius = 128.0
 
-[node name="Skirmisher" type="CharacterBody2D"]
+[node name="Hunter" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 16
 collision_mask = 273
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_3bh3k")
+script = ExtResource("1_m5x75")
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]
 show_behind_parent = true
-texture = ExtResource("2_dadce")
+texture = ExtResource("2_qnt1g")
 
 [node name="HurtTimer" type="Timer" parent="."]
 wait_time = 0.15
@@ -571,19 +571,19 @@ offset_top = 1.0
 offset_right = 5.0
 offset_bottom = 4.0
 value = 50.0
-texture_under = ExtResource("2_y5y7o")
-texture_progress = ExtResource("3_jv2b4")
-script = ExtResource("5_r06ay")
+texture_under = ExtResource("3_bp4rq")
+texture_progress = ExtResource("4_4oxt8")
+script = ExtResource("5_ptxr5")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 clip_children = 2
 material = SubResource("ShaderMaterial_cd5b5")
-texture = ExtResource("5_48ily")
+texture = ExtResource("6_ibom3")
 offset = Vector2(0, -7)
 hframes = 20
 vframes = 20
 frame = 1
-script = ExtResource("7_nds5e")
+script = ExtResource("7_13i3s")
 
 [node name="ColorRect" type="ColorRect" parent="EnemySprite"]
 offset_left = -20.0
@@ -611,7 +611,7 @@ position = Vector2(6, -4)
 rotation = 1.5708
 collision_layer = 64
 collision_mask = 2
-script = ExtResource("8_8cv0q")
+script = ExtResource("8_52khj")
 
 [node name="Damagebox" type="CollisionShape2D" parent="MeleeWeapon"]
 position = Vector2(-0.5, 9.53674e-07)
@@ -621,7 +621,7 @@ shape = SubResource("RectangleShape2D_grp8a")
 wait_time = 1.5
 
 [node name="MeleeSFX" type="AudioStreamPlayer" parent="MeleeWeapon"]
-stream = ExtResource("8_cahhk")
+stream = ExtResource("9_clvev")
 volume_db = -25.0
 pitch_scale = 0.5
 
@@ -671,7 +671,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_eei6g")
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_au4yb")
+stream = ExtResource("10_cwx2p")
 volume_db = -5.0
 
 [connection signal="timeout" from="MeleeWeapon/MeleeAudioTimer" to="." method="_on_melee_audio_timer_timeout"]
