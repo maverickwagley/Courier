@@ -1,4 +1,4 @@
-#Enemy Skirmisher
+#Enemy Skirmishers
 #
 extends Enemy
 #
@@ -24,10 +24,10 @@ func skirmisher_ready() -> void:
 	health = $HealthBar
 	hurt_timer = $HurtTimer
 	hurt_box = $HitArea/Hitbox
-	melee = $MeleeWeapon
-	melee_box = $MeleeWeapon/Damagebox
-	melee_timer = $MeleeWeapon/MeleeTimer
-	melee_detect = $Navigation/MeleeDetect/MeleeDetectCircle
+	attack1 = $Attack1Area
+	attack1_box = $Attack1Area/Attack1Damagebox
+	attack1_timer = $Attack1Area/Attack1Timer
+	attack1_detect = $Navigation/Attack1Detect/Attack1DetectCircle
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
 	#Set Stats
@@ -37,21 +37,21 @@ func skirmisher_ready() -> void:
 	knockback_power= 150
 #
 func skirmisher_melee_state() -> void:
-	if t_melee > 0:
-		t_melee = t_melee - 1
-	if is_melee == true:
+	if t_atk1 > 0:
+		t_atk1 = t_atk1 - 1
+	if is_attack1 == true:
 		velocity.x = 0
 		velocity.y = 0
-		if t_melee <= 0:
-			t_melee = 90
-			melee.melee_aud_timer.start()
+		if t_atk1 <= 0:
+			t_atk1 = 90
+			attack1.attack_aud_timer.start()
 			animations.play("anim_skirmisher_slash_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_skirmisher_idle_" + last_dir)
-			if melee_targets.size() < 1:
-				melee.is_melee = false
+			if attack1_targets.size() < 1:
+				attack1.is_attack = false
 				is_attack = false
-				is_melee = false
+				is_attack1 = false
 #
 func skirmisher_hurt_state() -> void:
 	if is_hurt == true:
@@ -80,7 +80,7 @@ func skirmisher_navigation() -> void:
 			velocity.y = 0
 			is_knockback = false
 		return
-	if is_melee == true: return
+	if is_attack1 == true: return
 	if nav_agent.is_navigation_finished():
 		if is_aggro == true:
 			velocity.x = 0
@@ -97,7 +97,7 @@ func skirmisher_navigation() -> void:
 	velocity = agent_current_pos.direction_to(next_path_position) * speed
 #
 func skirmisher_animation() -> void:
-	if is_melee == true: return
+	if is_attack1 == true: return
 	if is_knockback == true: return
 		
 	if velocity.length() != 0:
@@ -120,9 +120,6 @@ func skirmisher_animation() -> void:
 		animations.play("anim_skirmisher_run_" + direction)
 	else:
 		animations.play("anim_skirmisher_idle_" + last_dir)
-
-
-
 
 
 

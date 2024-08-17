@@ -237,7 +237,7 @@ func form_update(_formNum,_formType) -> void:
 #
 func _on_hitbox_area_entered(area) -> void:
 	if is_roll == true: return
-	if area.name == "MeleeWeapon": #This likely will need updated for other hitboxes
+	if area.name == "Attack1Area": #This likely will need updated for other hitboxes
 		if is_hurt == false:
 			hurt_by_enemy(area)
 			form.form_hit()

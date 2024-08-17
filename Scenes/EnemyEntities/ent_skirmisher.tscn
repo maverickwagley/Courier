@@ -58,7 +58,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
+tracks/1/path = NodePath("Attack1Area:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -70,7 +70,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeWeapon:rotation")
+tracks/2/path = NodePath("Attack1Area:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -159,7 +159,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeleeWeapon:position")
+tracks/0/path = NodePath("Attack1Area:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -171,7 +171,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:rotation")
+tracks/1/path = NodePath("Attack1Area:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -200,7 +200,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeleeWeapon:rotation")
+tracks/0/path = NodePath("Attack1Area:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -212,7 +212,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
+tracks/1/path = NodePath("Attack1Area:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -241,7 +241,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeleeWeapon:position")
+tracks/0/path = NodePath("Attack1Area:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -253,7 +253,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:rotation")
+tracks/1/path = NodePath("Attack1Area:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -282,7 +282,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeleeWeapon:position")
+tracks/0/path = NodePath("Attack1Area:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -294,7 +294,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:rotation")
+tracks/1/path = NodePath("Attack1Area:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -334,7 +334,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
+tracks/1/path = NodePath("Attack1Area:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -346,7 +346,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeWeapon:rotation")
+tracks/2/path = NodePath("Attack1Area:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -374,7 +374,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
+tracks/1/path = NodePath("Attack1Area:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -386,7 +386,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeWeapon:rotation")
+tracks/2/path = NodePath("Attack1Area:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -414,7 +414,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
+tracks/1/path = NodePath("Attack1Area:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -426,7 +426,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeWeapon:rotation")
+tracks/2/path = NodePath("Attack1Area:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -454,7 +454,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
+tracks/1/path = NodePath("Attack1Area:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -466,7 +466,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeWeapon:rotation")
+tracks/2/path = NodePath("Attack1Area:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -606,28 +606,28 @@ visible = false
 position = Vector2(-0.5, -3)
 shape = SubResource("RectangleShape2D_6p7tm")
 
-[node name="MeleeWeapon" type="Area2D" parent="."]
+[node name="Attack1Area" type="Area2D" parent="."]
 position = Vector2(6, -4)
 rotation = 1.5708
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("8_8cv0q")
 
-[node name="Damagebox" type="CollisionShape2D" parent="MeleeWeapon"]
-position = Vector2(-0.5, 9.53674e-07)
-shape = SubResource("RectangleShape2D_grp8a")
-
-[node name="MeleeTimer" type="Timer" parent="MeleeWeapon"]
+[node name="Attack1Timer" type="Timer" parent="Attack1Area"]
 wait_time = 1.5
 
-[node name="MeleeSFX" type="AudioStreamPlayer" parent="MeleeWeapon"]
+[node name="Attack1SFX" type="AudioStreamPlayer" parent="Attack1Area"]
 stream = ExtResource("8_cahhk")
 volume_db = -25.0
 pitch_scale = 0.5
 
-[node name="MeleeAudioTimer" type="Timer" parent="MeleeWeapon"]
+[node name="Attack1AudioTimer" type="Timer" parent="Attack1Area"]
 wait_time = 0.25
 one_shot = true
+
+[node name="Attack1Damagebox" type="CollisionShape2D" parent="Attack1Area"]
+position = Vector2(-0.5, 9.53674e-07)
+shape = SubResource("RectangleShape2D_grp8a")
 
 [node name="HitArea" type="Area2D" parent="."]
 collision_layer = 32
@@ -648,11 +648,11 @@ path_postprocessing = 1
 wait_time = 0.25
 autostart = true
 
-[node name="MeleeDetect" type="Area2D" parent="Navigation"]
+[node name="Attack1Detect" type="Area2D" parent="Navigation"]
 collision_layer = 64
 collision_mask = 2
 
-[node name="MeleeDetectCircle" type="CollisionShape2D" parent="Navigation/MeleeDetect"]
+[node name="Attack1DetectCircle" type="CollisionShape2D" parent="Navigation/Attack1Detect"]
 rotation = 1.5708
 shape = SubResource("CircleShape2D_nexmf")
 
@@ -674,11 +674,11 @@ shape = SubResource("CircleShape2D_eei6g")
 stream = ExtResource("9_au4yb")
 volume_db = -5.0
 
-[connection signal="timeout" from="MeleeWeapon/MeleeAudioTimer" to="." method="_on_melee_audio_timer_timeout"]
+[connection signal="timeout" from="Attack1Area/Attack1AudioTimer" to="." method="_on_attack1_audio_timer_timeout"]
 [connection signal="area_entered" from="HitArea" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="HitArea" to="." method="_on_hitbox_area_exited"]
 [connection signal="timeout" from="Navigation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]
-[connection signal="area_entered" from="Navigation/MeleeDetect" to="." method="_on_melee_detect_area_entered"]
-[connection signal="area_exited" from="Navigation/MeleeDetect" to="." method="_on_melee_detect_area_exited"]
+[connection signal="area_entered" from="Navigation/Attack1Detect" to="." method="_on_attack1_detect_area_entered"]
+[connection signal="area_exited" from="Navigation/Attack1Detect" to="." method="_on_attack1_detect_area_exited"]
 [connection signal="area_entered" from="Navigation/AggroDetect" to="." method="_on_aggro_detect_area_entered"]
 [connection signal="area_exited" from="Navigation/AggroDrop" to="." method="_on_aggro_drop_area_exited"]

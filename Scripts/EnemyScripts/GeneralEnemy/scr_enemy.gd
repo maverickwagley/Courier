@@ -4,6 +4,25 @@ extends CharacterBody2D
 #
 class_name Enemy
 #
+#Standard Attacks
+@onready var attack1: Area2D
+@onready var attack1_box: CollisionShape2D
+@onready var attack1_timer: Timer
+@onready var attack1_detect: CollisionShape2D
+@onready var attack1_targets: Array
+@onready var attack2: Area2D
+@onready var attack2_box: CollisionShape2D
+@onready var attack2_timer: Timer
+@onready var attack2_detect: CollisionShape2D
+@onready var attack2_targets: Array
+@onready var attack3: Area2D
+@onready var attack3_box: CollisionShape2D
+@onready var attack3_timer: Timer
+@onready var attack3_detect: CollisionShape2D
+@onready var attack3_targets: Array
+#Standard Basics
+@onready var nav_agent: NavigationAgent2D
+@onready var hurt_audio: AudioStreamPlayer
 @onready var target_node: Node2D
 @onready var sprite: Sprite2D
 @onready var animations: AnimationPlayer
@@ -12,13 +31,6 @@ class_name Enemy
 @onready var hurt_timer: Timer
 @onready var hurt_areas: Array
 @onready var hurt_box: CollisionShape2D
-@onready var melee: Area2D
-@onready var melee_box: CollisionShape2D
-@onready var melee_timer: Timer
-@onready var melee_detect: CollisionShape2D
-@onready var melee_targets: Array
-@onready var nav_agent: NavigationAgent2D
-@onready var hurt_audio: AudioStreamPlayer
 @onready var blood_particle = preload("res://Scenes/GameScenes/ent_particle_blood.tscn")
 @onready var death_particle = preload("res://Scenes/GameScenes/ent_particle_death.tscn")
 @onready var item_drop = preload("res://Scenes/ItemScenes/ent_item.tscn")
@@ -31,9 +43,9 @@ var knockback_power: int
 var objective_num: int = 0
 var is_hurt: bool = false
 var is_attack: bool = false
-var is_melee: bool = false
-var is_magic: bool = false
-var is_special: bool = false
+var is_attack1: bool = false
+var is_attack2: bool = false
+var is_attack3: bool = false
 var is_knockback: bool = false
 var is_aggro: bool = false
 var is_dead: bool = false
@@ -41,7 +53,9 @@ var is_dead: bool = false
 var t_move: int = randi_range(60,600)
 var t_knockback: int = 0
 var t_aggro: int = 0
-var t_melee: int = 0
+var t_atk1: int = 0
+var t_atk2: int = 0
+var t_atk3: int = 0
 #Direction
 var move_dir: Vector2
 var direction = "down"
@@ -99,18 +113,18 @@ func enemy_drop_essence(_id,_min,_max) -> void:
 	current_energy.amount = randi_range(_min,_max)
 	current_energy.classed = true
 #
-func _on_melee_detect_area_entered(area) -> void:
-	if melee_targets.find(area) == -1:
-		melee_targets.append(area)
+func _on_attack1_detect_area_entered(area) -> void:
+	if attack1_targets.find(area) == -1:
+		attack1_targets.append(area)
 	if is_attack == false:
 		is_attack = true
-		is_melee = true
-		melee.is_melee = true
+		is_attack1 = true
+		attack1.is_attack = true
 #
-func _on_melee_detect_area_exited(area) -> void:
-	var _targetInd = melee_targets.find(area)
+func _on_attack1_detect_area_exited(area) -> void:
+	var _targetInd = attack1_targets.find(area)
 	if _targetInd != -1:
-		melee_targets.pop_at(_targetInd)
+		attack1_targets.pop_at(_targetInd)
 #
 func _on_recalculate_timer_timeout() -> void:
 	if target_node:
@@ -140,6 +154,6 @@ func _on_hitbox_area_exited(area) -> void:
 	if hurt_areas.size() <= 0:
 		is_hurt = false
 #
-func _on_melee_audio_timer_timeout() -> void:
+func _on_attack1_audio_timer_timeout() -> void:
 	if autoload_game.audio_mute == false:
-		melee.melee_audio.play()
+		attack1.attack_audio.play()

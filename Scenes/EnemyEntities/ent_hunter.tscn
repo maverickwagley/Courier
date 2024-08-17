@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://g76wr4a3tb2r"]
+[gd_scene load_steps=37 format=3 uid="uid://g76wr4a3tb2r"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter.gd" id="1_m5x75"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_qnt1g"]
@@ -58,7 +58,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
+tracks/1/path = NodePath("Attack1Area:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -70,7 +70,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeWeapon:rotation")
+tracks/2/path = NodePath("Attack1Area:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -93,7 +93,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_r4bek"]
-resource_name = "anim_skirmisher_idle_down"
+resource_name = "anim_idle_down"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -108,7 +108,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_bsakv"]
-resource_name = "anim_skirmisher_idle_left"
+resource_name = "anim_idle_left"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -123,7 +123,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_ntwkt"]
-resource_name = "anim_skirmisher_idle_right"
+resource_name = "anim_idle_right"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -138,7 +138,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_io01p"]
-resource_name = "anim_skirmisher_idle_up"
+resource_name = "anim_idle_up"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -153,13 +153,13 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_i3kq2"]
-resource_name = "anim_skirmisher_run_down"
+resource_name = "anim_run_down"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeleeWeapon:position")
+tracks/0/path = NodePath("Attack1Area:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -171,7 +171,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:rotation")
+tracks/1/path = NodePath("Attack1Area:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -194,13 +194,13 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_1ntnc"]
-resource_name = "anim_skirmisher_run_left"
+resource_name = "anim_run_left"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeleeWeapon:rotation")
+tracks/0/path = NodePath("Attack1Area:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -212,7 +212,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
+tracks/1/path = NodePath("Attack1Area:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -235,13 +235,13 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_f4xjr"]
-resource_name = "anim_skirmisher_run_right"
+resource_name = "anim_run_right"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeleeWeapon:position")
+tracks/0/path = NodePath("Attack1Area:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -253,7 +253,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:rotation")
+tracks/1/path = NodePath("Attack1Area:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -276,13 +276,13 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_xx82t"]
-resource_name = "anim_skirmisher_run_up"
+resource_name = "anim_run_up"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeleeWeapon:position")
+tracks/0/path = NodePath("Attack1Area:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -294,7 +294,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:rotation")
+tracks/1/path = NodePath("Attack1Area:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -317,7 +317,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_f3g8u"]
-resource_name = "anim_skirmisher_slash_down"
+resource_name = "anim_slash_down"
 length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -334,7 +334,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
+tracks/1/path = NodePath("Attack1Area:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -346,7 +346,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeWeapon:rotation")
+tracks/2/path = NodePath("Attack1Area:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -356,88 +356,8 @@ tracks/2/keys = {
 "values": [1.5708, 1.5708, 2.35619, 3.14159, 3.92699]
 }
 
-[sub_resource type="Animation" id="Animation_r5q2o"]
-resource_name = "anim_skirmisher_slash_left"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(10, 2), Vector2i(11, 2), Vector2i(12, 2), Vector2i(13, 2), Vector2i(14, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 4), Vector2(0, 4), Vector2(-9, 2), Vector2(-11, -5), Vector2(-9, -13)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeWeapon:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [3.14159, 3.14159, 3.92699, 4.71239, 5.49779]
-}
-
-[sub_resource type="Animation" id="Animation_k57ix"]
-resource_name = "anim_skirmisher_slash_right"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(2, -19), Vector2(2, -19), Vector2(9, -14), Vector2(11, -5), Vector2(9, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeWeapon:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.785398, 1.5708, 2.35619]
-}
-
 [sub_resource type="Animation" id="Animation_ogq4y"]
-resource_name = "anim_skirmisher_slash_up"
+resource_name = "anim_slash_up"
 length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -454,7 +374,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeWeapon:position")
+tracks/1/path = NodePath("Attack1Area:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -466,7 +386,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeWeapon:rotation")
+tracks/2/path = NodePath("Attack1Area:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -476,21 +396,101 @@ tracks/2/keys = {
 "values": [-1.5708, -1.5708, -0.785398, 0.0, 0.785398]
 }
 
+[sub_resource type="Animation" id="Animation_k57ix"]
+resource_name = "anim_slash_right"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack1Area:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, -19), Vector2(2, -19), Vector2(9, -14), Vector2(11, -5), Vector2(9, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack1Area:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.785398, 1.5708, 2.35619]
+}
+
+[sub_resource type="Animation" id="Animation_r5q2o"]
+resource_name = "anim_slash_left"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(10, 2), Vector2i(11, 2), Vector2i(12, 2), Vector2i(13, 2), Vector2i(14, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack1Area:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 4), Vector2(0, 4), Vector2(-9, 2), Vector2(-11, -5), Vector2(-9, -13)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack1Area:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [3.14159, 3.14159, 3.92699, 4.71239, 5.49779]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_66d24"]
 _data = {
 "RESET": SubResource("Animation_doyhu"),
-"anim_skirmisher_idle_down": SubResource("Animation_r4bek"),
-"anim_skirmisher_idle_left": SubResource("Animation_bsakv"),
-"anim_skirmisher_idle_right": SubResource("Animation_ntwkt"),
-"anim_skirmisher_idle_up": SubResource("Animation_io01p"),
-"anim_skirmisher_run_down": SubResource("Animation_i3kq2"),
-"anim_skirmisher_run_left": SubResource("Animation_1ntnc"),
-"anim_skirmisher_run_right": SubResource("Animation_f4xjr"),
-"anim_skirmisher_run_up": SubResource("Animation_xx82t"),
-"anim_skirmisher_slash_down": SubResource("Animation_f3g8u"),
-"anim_skirmisher_slash_left": SubResource("Animation_r5q2o"),
-"anim_skirmisher_slash_right": SubResource("Animation_k57ix"),
-"anim_skirmisher_slash_up": SubResource("Animation_ogq4y")
+"anim_idle_down": SubResource("Animation_r4bek"),
+"anim_idle_left": SubResource("Animation_bsakv"),
+"anim_idle_right": SubResource("Animation_ntwkt"),
+"anim_idle_up": SubResource("Animation_io01p"),
+"anim_run_down": SubResource("Animation_i3kq2"),
+"anim_run_left": SubResource("Animation_1ntnc"),
+"anim_run_right": SubResource("Animation_f4xjr"),
+"anim_run_up": SubResource("Animation_xx82t"),
+"anim_slash_down": SubResource("Animation_f3g8u"),
+"anim_slash_left": SubResource("Animation_r5q2o"),
+"anim_slash_right": SubResource("Animation_k57ix"),
+"anim_slash_up": SubResource("Animation_ogq4y")
 }
 
 [sub_resource type="Animation" id="Animation_byxpr"]
@@ -542,8 +542,11 @@ size = Vector2(9, 9)
 [sub_resource type="CircleShape2D" id="CircleShape2D_nexmf"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhg10"]
+radius = 96.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_em0np"]
-radius = 64.0
+radius = 96.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eei6g"]
 radius = 128.0
@@ -606,26 +609,26 @@ visible = false
 position = Vector2(-0.5, -3)
 shape = SubResource("RectangleShape2D_6p7tm")
 
-[node name="MeleeWeapon" type="Area2D" parent="."]
+[node name="Attack1Area" type="Area2D" parent="."]
 position = Vector2(6, -4)
 rotation = 1.5708
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("8_52khj")
 
-[node name="Damagebox" type="CollisionShape2D" parent="MeleeWeapon"]
+[node name="Attack1Damagebox" type="CollisionShape2D" parent="Attack1Area"]
 position = Vector2(-0.5, 9.53674e-07)
 shape = SubResource("RectangleShape2D_grp8a")
 
-[node name="MeleeTimer" type="Timer" parent="MeleeWeapon"]
+[node name="Attack1Timer" type="Timer" parent="Attack1Area"]
 wait_time = 1.5
 
-[node name="MeleeSFX" type="AudioStreamPlayer" parent="MeleeWeapon"]
+[node name="Attack1SFX" type="AudioStreamPlayer" parent="Attack1Area"]
 stream = ExtResource("9_clvev")
 volume_db = -25.0
 pitch_scale = 0.5
 
-[node name="MeleeAudioTimer" type="Timer" parent="MeleeWeapon"]
+[node name="Attack1AudioTimer" type="Timer" parent="Attack1Area"]
 wait_time = 0.25
 one_shot = true
 
@@ -648,13 +651,20 @@ path_postprocessing = 1
 wait_time = 0.25
 autostart = true
 
-[node name="MeleeDetect" type="Area2D" parent="Navigation"]
+[node name="Attack1Detect" type="Area2D" parent="Navigation"]
 collision_layer = 64
 collision_mask = 2
 
-[node name="MeleeDetectCircle" type="CollisionShape2D" parent="Navigation/MeleeDetect"]
+[node name="Attack1DetectCircle" type="CollisionShape2D" parent="Navigation/Attack1Detect"]
 rotation = 1.5708
 shape = SubResource("CircleShape2D_nexmf")
+
+[node name="Attack2Detect" type="Area2D" parent="Navigation"]
+collision_layer = 64
+collision_mask = 2
+
+[node name="Attack2DetectCircle" type="CollisionShape2D" parent="Navigation/Attack2Detect"]
+shape = SubResource("CircleShape2D_vhg10")
 
 [node name="AggroDetect" type="Area2D" parent="Navigation"]
 collision_layer = 64
@@ -674,11 +684,11 @@ shape = SubResource("CircleShape2D_eei6g")
 stream = ExtResource("10_cwx2p")
 volume_db = -5.0
 
-[connection signal="timeout" from="MeleeWeapon/MeleeAudioTimer" to="." method="_on_melee_audio_timer_timeout"]
+[connection signal="timeout" from="Attack1Area/Attack1AudioTimer" to="." method="_on_melee_audio_timer_timeout"]
 [connection signal="area_entered" from="HitArea" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="HitArea" to="." method="_on_hitbox_area_exited"]
 [connection signal="timeout" from="Navigation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]
-[connection signal="area_entered" from="Navigation/MeleeDetect" to="." method="_on_melee_detect_area_entered"]
-[connection signal="area_exited" from="Navigation/MeleeDetect" to="." method="_on_melee_detect_area_exited"]
+[connection signal="area_entered" from="Navigation/Attack1Detect" to="." method="_on_melee_detect_area_entered"]
+[connection signal="area_exited" from="Navigation/Attack1Detect" to="." method="_on_melee_detect_area_exited"]
 [connection signal="area_entered" from="Navigation/AggroDetect" to="." method="_on_aggro_detect_area_entered"]
 [connection signal="area_exited" from="Navigation/AggroDrop" to="." method="_on_aggro_drop_area_exited"]

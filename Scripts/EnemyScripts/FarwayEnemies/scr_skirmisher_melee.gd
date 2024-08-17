@@ -1,12 +1,12 @@
-#Skirmisher Melee
+#Skrimisher Attack 1 - Slash
 #
 extends Area2D
 #
-@onready var meleebox = $Damagebox
-@onready var melee_audio = $MeleeSFX
-@onready var melee_aud_timer = $MeleeAudioTimer
+@onready var damagebox = $Attack1Damagebox
+@onready var attack_audio = $Attack1SFX
+@onready var attack_aud_timer = $Attack1AudioTimer
 #
-var is_melee: bool = false
+var is_attack: bool = false
 var inflict_kb: bool = false
 var kb_power: int = 0
 var damage: int = 10
@@ -15,10 +15,10 @@ var damage: int = 10
 #
 func _ready():
 	var parent = get_parent()
-	is_melee = false
+	is_attack = false
 #
 func _process(delta):
-	if is_melee == true:
-		meleebox.disabled = false
+	if is_attack == true:
+		damagebox.disabled = false
 	else:
-		meleebox.disabled = true
+		damagebox.disabled = true
