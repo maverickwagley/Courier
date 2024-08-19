@@ -1,4 +1,4 @@
-#Skrimisher Attack 1 - Slash
+#Skrimsiher Attack 1 - Slash
 #
 extends Area2D
 #

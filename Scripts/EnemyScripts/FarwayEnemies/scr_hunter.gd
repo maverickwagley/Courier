@@ -29,22 +29,21 @@ func hunter_ready() -> void:
 	attack1_box = $Attack1Area/Attack1Damagebox
 	attack1_timer = $Attack1Area/Attack1Timer
 	attack1_detect = $Navigation/Attack1Detect/Attack1DetectCircle
-	attack2 = $Attack2Area
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
 	#Set Stats
-	hp = 90
-	max_hp = 90
-	speed = 40
+	hp = 70
+	max_hp = 70
+	speed = 45
 	knockback_power= 150
 #
 func hunter_slash_state() -> void:
 	if t_atk1 > 0:
 		t_atk1 = t_atk1 - 1
 	if is_attack1 == true:
+		velocity.x = 0
+		velocity.y = 0
 		if t_atk1 <= 0:
-			velocity.x = 0
-			velocity.y = 0
 			t_atk1 = 90
 			attack1.attack_aud_timer.start()
 			animations.play("anim_slash_" + last_dir)
@@ -59,11 +58,11 @@ func hunter_bowshot_state() -> void:
 	if t_atk2 > 0:
 		t_atk2 = t_atk2 - 1
 	if is_attack2 == true:
+		velocity.x = 0
+		velocity.y = 0
 		if t_atk2 <= 0:
-			velocity.x = 0
-			velocity.y = 0
-			t_atk2 = 120
-			#attack1.attack_aud_timer.start()
+			t_atk2 = 90
+			attack2.attack_aud_timer.start()
 			animations.play("anim_bowshot_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_idle_" + last_dir)
