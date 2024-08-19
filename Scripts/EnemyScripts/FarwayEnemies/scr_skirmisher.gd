@@ -9,7 +9,7 @@ func _ready() -> void:
 	call_deferred("enemy_nav_setup")
 #
 func _physics_process(_delta) -> void:
-	skirmisher_melee_state()
+	skirmisher_slash_state()
 	skirmisher_hurt_state()
 	skirmisher_navigation()
 	skirmisher_animation()
@@ -36,7 +36,7 @@ func skirmisher_ready() -> void:
 	speed = 45
 	knockback_power= 150
 #
-func skirmisher_melee_state() -> void:
+func skirmisher_slash_state() -> void:
 	if t_atk1 > 0:
 		t_atk1 = t_atk1 - 1
 	if is_attack1 == true:

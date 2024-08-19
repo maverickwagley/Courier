@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cwrrdkhu6gqv3" path="res://Sprites/EnemySprites/spr_enemy_skirmisher.png" id="5_48ily"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_healthbar_enemy.gd" id="5_r06ay"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy_sprite.gd" id="7_nds5e"]
-[ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher_melee.gd" id="8_8cv0q"]
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="8_cahhk"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher_slash.gd" id="8_ecx3o"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="9_au4yb"]
 
 [sub_resource type="Shader" id="Shader_b7b28"]
@@ -611,7 +611,7 @@ position = Vector2(6, -4)
 rotation = 1.5708
 collision_layer = 64
 collision_mask = 2
-script = ExtResource("8_8cv0q")
+script = ExtResource("8_ecx3o")
 
 [node name="Attack1Timer" type="Timer" parent="Attack1Area"]
 wait_time = 1.5

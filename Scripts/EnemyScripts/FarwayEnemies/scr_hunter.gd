@@ -9,7 +9,8 @@ func _ready() -> void:
 	call_deferred("enemy_nav_setup")
 #
 func _physics_process(_delta) -> void:
-	hunter_melee_state()
+	hunter_slash_state()
+	hunter_bowshot_state()
 	hunter_hurt_state()
 	hunter_navigation()
 	hunter_animation()
@@ -28,6 +29,7 @@ func hunter_ready() -> void:
 	attack1_box = $Attack1Area/Attack1Damagebox
 	attack1_timer = $Attack1Area/Attack1Timer
 	attack1_detect = $Navigation/Attack1Detect/Attack1DetectCircle
+	attack2 = $Attack2Area
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
 	#Set Stats
@@ -36,13 +38,13 @@ func hunter_ready() -> void:
 	speed = 40
 	knockback_power= 150
 #
-func hunter_melee_state() -> void:
+func hunter_slash_state() -> void:
 	if t_atk1 > 0:
 		t_atk1 = t_atk1 - 1
 	if is_attack1 == true:
-		velocity.x = 0
-		velocity.y = 0
 		if t_atk1 <= 0:
+			velocity.x = 0
+			velocity.y = 0
 			t_atk1 = 90
 			attack1.attack_aud_timer.start()
 			animations.play("anim_slash_" + last_dir)
@@ -52,6 +54,23 @@ func hunter_melee_state() -> void:
 				attack1.is_attack = false
 				is_attack = false
 				is_attack1 = false
+#
+func hunter_bowshot_state() -> void:
+	if t_atk2 > 0:
+		t_atk2 = t_atk2 - 1
+	if is_attack2 == true:
+		if t_atk2 <= 0:
+			velocity.x = 0
+			velocity.y = 0
+			t_atk2 = 120
+			#attack1.attack_aud_timer.start()
+			animations.play("anim_bowshot_" + last_dir)
+			await animations.animation_finished
+			animations.play("anim_idle_" + last_dir)
+			if attack2_targets.size() < 1:
+				attack2.is_attack = false
+				is_attack = false
+				is_attack2 = false
 #
 func hunter_hurt_state() -> void:
 	if is_hurt == true:
@@ -120,4 +139,5 @@ func hunter_animation() -> void:
 		animations.play("anim_run_" + direction)
 	else:
 		animations.play("anim_idle_" + last_dir)
+
 
