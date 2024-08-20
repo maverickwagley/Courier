@@ -3,7 +3,8 @@
 extends Area2D
 #
 @onready var damagebox = $Attack2Damagebox
-@onready var attack_audio = $Attack1SFX
+@onready var attack_timer = $Attack2Timer
+@onready var attack_audio = $Attack2SFX
 @onready var attack_aud_timer = $Attack2AudioTimer
 #
 var is_attack: bool = false

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsvcj2vg6i56v"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_projectile_hunter_arrow.gd" id="1_v48wi"]
+[ext_resource type="Texture2D" uid="uid://8abtenpnxdd7" path="res://Sprites/EnemySprites/spr_enemy_rat_arrow.png" id="2_jhpml"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_projectile_arrow_collision.gd" id="3_1s3ec"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ent4a"]
+size = Vector2(14.25, 4.5)
+
+[node name="Projectile" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 64
+collision_mask = 514
+script = ExtResource("1_v48wi")
+
+[node name="MoveCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ent4a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jhpml")
+
+[node name="Collision" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 514
+script = ExtResource("3_1s3ec")
+
+[node name="EnemyCollisionShape" type="CollisionShape2D" parent="Collision"]
+shape = SubResource("RectangleShape2D_ent4a")
+
+[connection signal="area_entered" from="Collision" to="." method="_on_enemy_collision_area_entered"]

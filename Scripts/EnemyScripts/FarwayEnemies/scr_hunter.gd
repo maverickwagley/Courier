@@ -2,6 +2,8 @@
 #
 extends Enemy
 #
+@onready var arrow_scene = preload("res://Scenes/EnemyEntities/ent_projectile_hunter_arrow.tscn")
+#
 #Built-In Methods
 #
 func _ready() -> void:
@@ -29,6 +31,7 @@ func hunter_ready() -> void:
 	attack1_box = $Attack1Area/Attack1Damagebox
 	attack1_timer = $Attack1Area/Attack1Timer
 	attack1_detect = $Navigation/Attack1Detect/Attack1DetectCircle
+	attack2 = $Attack2Area
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
 	#Set Stats
@@ -58,10 +61,12 @@ func hunter_bowshot_state() -> void:
 	if t_atk2 > 0:
 		t_atk2 = t_atk2 - 1
 	if is_attack2 == true:
+		print_debug("ATK2")
 		velocity.x = 0
 		velocity.y = 0
 		if t_atk2 <= 0:
 			t_atk2 = 90
+			attack2.attack_timer.start()
 			attack2.attack_aud_timer.start()
 			animations.play("anim_bowshot_" + last_dir)
 			await animations.animation_finished
@@ -140,3 +145,14 @@ func hunter_animation() -> void:
 		animations.play("anim_idle_" + last_dir)
 
 
+
+
+func _on_attack2_timer_timeout():
+	var projectile = arrow_scene.instantiate()
+	#if autoload_game.audio_mute == false:
+		#magic_audio.play()
+	projectile.global_position = global_position #spawner.global_position
+	#projectile.global_rotation = sprite.global_rotation
+	get_tree().current_scene.add_child(projectile)
+	#projectile.player = player
+	#t_magic = magic_rate

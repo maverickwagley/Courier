@@ -116,9 +116,10 @@ func enemy_drop_essence(_id,_min,_max) -> void:
 func _on_attack1_detect_area_entered(area) -> void:
 	if attack1_targets.find(area) == -1:
 		attack1_targets.append(area)
+		is_attack1 = true
 	if is_attack == false:
 		is_attack = true
-		is_attack1 = true
+		#is_attack1 = true
 		attack1.is_attack = true
 #
 func _on_attack1_detect_area_exited(area) -> void:
@@ -127,19 +128,19 @@ func _on_attack1_detect_area_exited(area) -> void:
 		attack1_targets.pop_at(_targetInd)
 #
 func _on_attack2_detect_area_entered(area):
-	#if attack2_targets.find(area) == -1:
-		#attack2_targets.append(area)
-	pass
-	#if is_attack == false:
-		#is_attack = true
-		#is_attack2 = true
-		#attack2.is_attack = true
+	if attack2_targets.find(area) == -1:
+		attack2_targets.append(area)
+		is_attack2 = true
+	#pass
+	if is_attack == false:
+		is_attack = true
+		attack2.is_attack = true
 #
 func _on_attack2_detect_area_exited(area):
-	pass
-	#var _targetInd = attack2_targets.find(area)
-	#if _targetInd != -1:
-		#attack2_targets.pop_at(_targetInd)
+	#pass
+	var _targetInd = attack2_targets.find(area)
+	if _targetInd != -1:
+		attack2_targets.pop_at(_targetInd)
 #
 func _on_recalculate_timer_timeout() -> void:
 	if target_node:
