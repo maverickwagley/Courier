@@ -9,7 +9,7 @@ extends CharacterBody2D
 var speed = 250
 var sd_timer: int
 var direction: Vector2 = Vector2.RIGHT
-var damage: int = 6
+var damage: int = 15
 var inflict_kb: bool = false
 var kb_power: int = 0
 var parent_velocity: Vector2

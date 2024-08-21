@@ -742,7 +742,7 @@ autostart = true
 
 [node name="Attack1Detect" type="Area2D" parent="Navigation"]
 visible = false
-collision_layer = 64
+collision_layer = 0
 collision_mask = 2
 
 [node name="Attack1DetectCircle" type="CollisionShape2D" parent="Navigation/Attack1Detect"]
@@ -751,7 +751,7 @@ shape = SubResource("CircleShape2D_nexmf")
 
 [node name="Attack2Detect" type="Area2D" parent="Navigation"]
 visible = false
-collision_layer = 64
+collision_layer = 0
 collision_mask = 2
 
 [node name="Attack2DetectCircle" type="CollisionShape2D" parent="Navigation/Attack2Detect"]
@@ -760,7 +760,7 @@ shape = SubResource("CircleShape2D_nexmf")
 
 [node name="AggroDetect" type="Area2D" parent="Navigation"]
 visible = false
-collision_layer = 64
+collision_layer = 0
 collision_mask = 2
 
 [node name="AggroDetectCircle" type="CollisionShape2D" parent="Navigation/AggroDetect"]
@@ -768,7 +768,7 @@ shape = SubResource("CircleShape2D_em0np")
 
 [node name="AggroDrop" type="Area2D" parent="Navigation"]
 visible = false
-collision_layer = 64
+collision_layer = 0
 collision_mask = 2
 
 [node name="AggroDropCircle" type="CollisionShape2D" parent="Navigation/AggroDrop"]

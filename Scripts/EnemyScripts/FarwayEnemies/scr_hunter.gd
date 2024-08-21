@@ -61,7 +61,7 @@ func hunter_bowshot_state() -> void:
 	if t_atk2 > 0:
 		t_atk2 = t_atk2 - 1
 	if is_attack2 == true:
-		print_debug("ATK2")
+		last_dir = hunter_bowshot_direction()
 		velocity.x = 0
 		velocity.y = 0
 		if t_atk2 <= 0:
@@ -143,16 +143,37 @@ func hunter_animation() -> void:
 		animations.play("anim_run_" + direction)
 	else:
 		animations.play("anim_idle_" + last_dir)
-
-
-
-
+#
+func hunter_bowshot_direction():
+	if attack2_targets.size() >= 1:
+		var targetPos = attack2_targets[0].global_position
+		targetPos.y = targetPos.y - 8
+		var _cdir = rad_to_deg(global_position.angle_to_point(targetPos))
+		_cdir = wrapi(_cdir,0,360)
+		if _cdir < 0:
+			_cdir = 360 - _cdir
+		if _cdir < 45:
+				return "right"
+		if _cdir >= 45:
+			if _cdir < 135:
+				return "down"
+		if _cdir >= 135:
+			if _cdir < 225:
+				return "left"
+		if _cdir >= 225:
+			if _cdir < 315:
+				return "up"
+		if _cdir >= 315:
+			return "right"
+	else:
+		return last_dir
+	#
+#
 func _on_attack2_timer_timeout():
-	var projectile = arrow_scene.instantiate()
-	#if autoload_game.audio_mute == false:
-		#magic_audio.play()
-	projectile.global_position = global_position #spawner.global_position
-	#projectile.global_rotation = sprite.global_rotation
-	get_tree().current_scene.add_child(projectile)
-	#projectile.player = player
-	#t_magic = magic_rate
+	if attack2_targets.size() >= 1:
+		var projectile = arrow_scene.instantiate()
+		var targetPos = attack2_targets[0].global_position
+		targetPos.y = targetPos.y - 8
+		projectile.global_position = global_position #spawner.global_position
+		projectile.global_rotation = get_angle_to(targetPos)
+		get_tree().current_scene.add_child(projectile)

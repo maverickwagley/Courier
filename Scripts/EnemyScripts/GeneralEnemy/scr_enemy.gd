@@ -147,6 +147,7 @@ func _on_recalculate_timer_timeout() -> void:
 		nav_agent.target_position = target_node.global_position
 #
 func _on_aggro_detect_area_entered(area) -> void:
+	print_debug(area)
 	is_aggro = true
 	t_aggro = 300
 	target_node = area.owner
@@ -155,8 +156,8 @@ func _on_aggro_drop_area_exited(area) -> void:
 	is_aggro = false
 #
 func _on_hitbox_area_entered(area) -> void:
-	if area == $MeleeWeapon: return
-	if area == $HitArea: return
+	#if area == $MeleeWeapon: return
+	#if area == $HitArea: return
 	is_hurt = true
 	sprite.apply_intensity_fade(1.0,0.0,0.25)
 	sprite._set("is_hurt",true)

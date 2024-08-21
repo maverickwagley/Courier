@@ -649,7 +649,7 @@ wait_time = 0.25
 autostart = true
 
 [node name="Attack1Detect" type="Area2D" parent="Navigation"]
-collision_layer = 64
+collision_layer = 0
 collision_mask = 2
 
 [node name="Attack1DetectCircle" type="CollisionShape2D" parent="Navigation/Attack1Detect"]
@@ -657,14 +657,14 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_nexmf")
 
 [node name="AggroDetect" type="Area2D" parent="Navigation"]
-collision_layer = 64
+collision_layer = 0
 collision_mask = 2
 
 [node name="AggroDetectCircle" type="CollisionShape2D" parent="Navigation/AggroDetect"]
 shape = SubResource("CircleShape2D_em0np")
 
 [node name="AggroDrop" type="Area2D" parent="Navigation"]
-collision_layer = 64
+collision_layer = 0
 collision_mask = 2
 
 [node name="AggroDropCircle" type="CollisionShape2D" parent="Navigation/AggroDrop"]
