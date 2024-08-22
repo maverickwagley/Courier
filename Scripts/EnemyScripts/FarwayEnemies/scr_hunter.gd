@@ -60,21 +60,25 @@ func hunter_slash_state() -> void:
 func hunter_bowshot_state() -> void:
 	if t_atk2 > 0:
 		t_atk2 = t_atk2 - 1
-	if is_attack2 == true:
+	if t_atk2 <= 0 && is_attack2 == true:
 		last_dir = hunter_bowshot_direction()
+		print_debug(last_dir)
 		velocity.x = 0
 		velocity.y = 0
-		if t_atk2 <= 0:
-			t_atk2 = 90
-			attack2.attack_timer.start()
-			attack2.attack_aud_timer.start()
-			animations.play("anim_bowshot_" + last_dir)
-			await animations.animation_finished
-			animations.play("anim_idle_" + last_dir)
-			if attack2_targets.size() < 1:
-				attack2.is_attack = false
-				is_attack = false
-				is_attack2 = false
+		t_atk2 = 180
+		attack2.attack_timer.start()
+		attack2.attack_aud_timer.start()
+		animations.play("anim_bowshot_" + last_dir)
+		await animations.animation_finished
+		animations.play("anim_idle_" + last_dir)
+		print_debug("bowshot finished")
+		#enemy_reposition()
+		#is_attack = false
+		#is_attack2 = false
+		if attack2_targets.size() < 1:
+			attack2.is_attack = false
+			is_attack = false
+			is_attack2 = false
 #
 func hunter_hurt_state() -> void:
 	if is_hurt == true:
@@ -104,6 +108,7 @@ func hunter_navigation() -> void:
 			is_knockback = false
 		return
 	if is_attack1 == true: return
+	if is_attack2 == true: return
 	if nav_agent.is_navigation_finished():
 		if is_aggro == true:
 			velocity.x = 0
@@ -121,6 +126,7 @@ func hunter_navigation() -> void:
 #
 func hunter_animation() -> void:
 	if is_attack1 == true: return
+	if is_attack2 == true: return
 	if is_knockback == true: return
 		
 	if velocity.length() != 0:
@@ -175,5 +181,6 @@ func _on_attack2_timer_timeout():
 		var targetPos = attack2_targets[0].global_position
 		targetPos.y = targetPos.y - 8
 		projectile.global_position = global_position #spawner.global_position
+		projectile.global_position.y = projectile.global_position.y - 8
 		projectile.global_rotation = get_angle_to(targetPos)
 		get_tree().current_scene.add_child(projectile)

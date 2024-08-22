@@ -44,19 +44,19 @@ func _process(delta):
 #Custom Methods
 #
 func farway_enemy_spawner():
-	if enemy_count < 10:
+	if enemy_count < 1:
 		if enemy_spawn_timer > 0:
 			enemy_spawn_timer = enemy_spawn_timer - 1
 		if enemy_spawn_timer <= 0:
 			enemy_count = enemy_count + 1
 			enemy_spawn_timer = 300
-			var current_enemy0 = enemy0.instantiate()
+			#var current_enemy0 = enemy0.instantiate()
 			var current_enemy1 = enemy1.instantiate()
-			add_child(current_enemy0)
+			#add_child(current_enemy0)
 			add_child(current_enemy1)
 			for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
-					if spawn.name == str(0):
-						current_enemy0.global_position = spawn.global_position
+					#if spawn.name == str(0):
+						#current_enemy0.global_position = spawn.global_position
 					if spawn.name == str(1):
 						current_enemy1.global_position = spawn.global_position
 

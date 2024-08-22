@@ -79,6 +79,12 @@ func enemy_target_set(_trgt) -> void:
 	t_aggro = 300
 	target_node = _trgt
 #
+func enemy_reposition() -> void:
+	var _newX = global_position.x + randi_range(-16,16)
+	var _newY = global_position.y + randi_range(-16,16)
+	nav_agent.target_position.x = _newX
+	nav_agent.target_position.y = _newY
+#
 func enemy_aggro_drop() -> void:
 	if is_aggro == false:
 		t_aggro = t_aggro - 1
@@ -147,10 +153,10 @@ func _on_recalculate_timer_timeout() -> void:
 		nav_agent.target_position = target_node.global_position
 #
 func _on_aggro_detect_area_entered(area) -> void:
-	print_debug(area)
 	is_aggro = true
 	t_aggro = 300
 	target_node = area.owner
+	print_debug(target_node)
 #
 func _on_aggro_drop_area_exited(area) -> void:
 	is_aggro = false

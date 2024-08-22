@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cula7pwy4q455"]
+[gd_scene load_steps=42 format=3 uid="uid://cula7pwy4q455"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter.gd" id="1_m5x75"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_qnt1g"]
@@ -609,6 +609,8 @@ size = Vector2(5, 10)
 size = Vector2(9, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nexmf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_33kqs"]
 radius = 96.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_em0np"]
@@ -750,13 +752,12 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_nexmf")
 
 [node name="Attack2Detect" type="Area2D" parent="Navigation"]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="Attack2DetectCircle" type="CollisionShape2D" parent="Navigation/Attack2Detect"]
 rotation = 1.5708
-shape = SubResource("CircleShape2D_nexmf")
+shape = SubResource("CircleShape2D_33kqs")
 
 [node name="AggroDetect" type="Area2D" parent="Navigation"]
 visible = false
