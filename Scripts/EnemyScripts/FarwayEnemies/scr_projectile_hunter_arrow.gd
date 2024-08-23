@@ -20,7 +20,7 @@ var type: int = 0
 func _ready():
 	collision.damage = damage
 	collision.inflict_kb = inflict_kb
-	var rand_rot = global_rotation + randf_range(-0.1,0.1)
+	var rand_rot = global_rotation + randf_range(-0.05,0.05)
 	direction = Vector2.RIGHT.rotated(rand_rot)
 	sd_timer = 60
 #

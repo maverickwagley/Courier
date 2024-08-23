@@ -43,41 +43,41 @@ func hunter_ready() -> void:
 func hunter_slash_state() -> void:
 	if t_atk1 > 0:
 		t_atk1 = t_atk1 - 1
-	if is_attack1 == true:
-		velocity.x = 0
-		velocity.y = 0
-		if t_atk1 <= 0:
+	if is_attack2 == false:
+		if t_atk1 <= 0 && attack1_targets.size() > 0:
+			is_attack = true
+			is_attack1 = true
 			t_atk1 = 90
+			velocity.x = 0
+			velocity.y = 0
 			attack1.attack_aud_timer.start()
 			animations.play("anim_slash_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_idle_" + last_dir)
-			if attack1_targets.size() < 1:
-				attack1.is_attack = false
-				is_attack = false
-				is_attack1 = false
+			last_dir = enemy_attack_dir(attack1_targets)
+			attack1.is_attack = false
+			is_attack = false
+			is_attack1 = false
 #
 func hunter_bowshot_state() -> void:
 	if t_atk2 > 0:
 		t_atk2 = t_atk2 - 1
-	if t_atk2 <= 0 && is_attack2 == true:
-		last_dir = hunter_bowshot_direction()
-		print_debug(last_dir)
-		velocity.x = 0
-		velocity.y = 0
-		t_atk2 = 180
-		attack2.attack_timer.start()
-		attack2.attack_aud_timer.start()
-		animations.play("anim_bowshot_" + last_dir)
-		await animations.animation_finished
-		animations.play("anim_idle_" + last_dir)
-		print_debug("bowshot finished")
-		#enemy_reposition()
-		#is_attack = false
-		#is_attack2 = false
-		if attack2_targets.size() < 1:
+	if is_attack1 == false:
+		if t_atk2 <= 0 && attack2_targets.size() > 0:
+			print_debug("Attack 2 True")
+			t_atk2 = 180
+			is_attack2 = true
+			last_dir = enemy_attack_dir(attack2_targets)
+			velocity.x = 0
+			velocity.y = 0
+			attack2.attack_timer.start()
+			attack2.attack_aud_timer.start()
+			animations.play("anim_bowshot_" + last_dir)
+			await animations.animation_finished
+			animations.play("anim_idle_" + last_dir)
+			#enemy_reposition()
 			attack2.is_attack = false
-			is_attack = false
+			#is_attack = false
 			is_attack2 = false
 #
 func hunter_hurt_state() -> void:
@@ -150,36 +150,11 @@ func hunter_animation() -> void:
 	else:
 		animations.play("anim_idle_" + last_dir)
 #
-func hunter_bowshot_direction():
-	if attack2_targets.size() >= 1:
-		var targetPos = attack2_targets[0].global_position
-		targetPos.y = targetPos.y - 8
-		var _cdir = rad_to_deg(global_position.angle_to_point(targetPos))
-		_cdir = wrapi(_cdir,0,360)
-		if _cdir < 0:
-			_cdir = 360 - _cdir
-		if _cdir < 45:
-				return "right"
-		if _cdir >= 45:
-			if _cdir < 135:
-				return "down"
-		if _cdir >= 135:
-			if _cdir < 225:
-				return "left"
-		if _cdir >= 225:
-			if _cdir < 315:
-				return "up"
-		if _cdir >= 315:
-			return "right"
-	else:
-		return last_dir
-	#
-#
 func _on_attack2_timer_timeout():
 	if attack2_targets.size() >= 1:
 		var projectile = arrow_scene.instantiate()
 		var targetPos = attack2_targets[0].global_position
-		targetPos.y = targetPos.y - 8
+		targetPos.y = targetPos.y
 		projectile.global_position = global_position #spawner.global_position
 		projectile.global_position.y = projectile.global_position.y - 8
 		projectile.global_rotation = get_angle_to(targetPos)

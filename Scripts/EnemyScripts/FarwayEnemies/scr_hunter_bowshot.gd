@@ -17,10 +17,5 @@ var damage: int = 10
 func _ready():
 	var parent = get_parent()
 	is_attack = false
-#
-func _process(delta):
-	if is_attack == true:
-		damagebox.disabled = false
-	else:
-		damagebox.disabled = true
+	damagebox.disabled = true
 

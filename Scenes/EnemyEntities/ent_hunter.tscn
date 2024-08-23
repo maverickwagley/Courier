@@ -614,7 +614,7 @@ size = Vector2(9, 9)
 radius = 96.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_em0np"]
-radius = 64.0
+radius = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eei6g"]
 radius = 128.0
@@ -737,6 +737,7 @@ shape = SubResource("RectangleShape2D_eiyot")
 path_desired_distance = 8.0
 target_desired_distance = 8.0
 path_postprocessing = 1
+debug_enabled = true
 
 [node name="RecalculateTimer" type="Timer" parent="Navigation"]
 wait_time = 0.25
@@ -760,7 +761,6 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_33kqs")
 
 [node name="AggroDetect" type="Area2D" parent="Navigation"]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -768,7 +768,6 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_em0np")
 
 [node name="AggroDrop" type="Area2D" parent="Navigation"]
-visible = false
 collision_layer = 0
 collision_mask = 2
 

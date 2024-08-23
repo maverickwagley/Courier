@@ -85,11 +85,32 @@ func enemy_reposition() -> void:
 	nav_agent.target_position.x = _newX
 	nav_agent.target_position.y = _newY
 #
+func enemy_attack_dir(_array: Array):
+	if _array.size() >= 1:
+		var targetPos = _array[0].global_position
+		targetPos.y = targetPos.y
+		var _cdir = rad_to_deg(global_position.angle_to_point(targetPos))
+		_cdir = wrapi(_cdir,0,360)
+		if _cdir < 0:
+			_cdir = 360 - _cdir
+		if _cdir < 45:
+				return "right"
+		if _cdir >= 45:
+			if _cdir < 135:
+				return "down"
+		if _cdir >= 135:
+			if _cdir < 225:
+				return "left"
+		if _cdir >= 225:
+			if _cdir < 315:
+				return "up"
+		if _cdir >= 315:
+			return "right"
+	else:
+		return last_dir
+#
 func enemy_aggro_drop() -> void:
-	if is_aggro == false:
-		t_aggro = t_aggro - 1
-		if t_aggro <= 0:
-			target_node = null
+	pass
 #
 func enemy_apply_damage(area) -> void:
 	hp = hp - area.damage
@@ -122,7 +143,7 @@ func enemy_drop_essence(_id,_min,_max) -> void:
 func _on_attack1_detect_area_entered(area) -> void:
 	if attack1_targets.find(area) == -1:
 		attack1_targets.append(area)
-		is_attack1 = true
+		#is_attack1 = true
 	if is_attack == false:
 		is_attack = true
 		#is_attack1 = true
@@ -136,7 +157,7 @@ func _on_attack1_detect_area_exited(area) -> void:
 func _on_attack2_detect_area_entered(area):
 	if attack2_targets.find(area) == -1:
 		attack2_targets.append(area)
-		is_attack2 = true
+		#is_attack2 = true
 	#pass
 	if is_attack == false:
 		is_attack = true
@@ -160,6 +181,7 @@ func _on_aggro_detect_area_entered(area) -> void:
 #
 func _on_aggro_drop_area_exited(area) -> void:
 	is_aggro = false
+	#enemy_nav_setup()
 #
 func _on_hitbox_area_entered(area) -> void:
 	#if area == $MeleeWeapon: return

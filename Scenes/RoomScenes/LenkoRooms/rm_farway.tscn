@@ -3376,16 +3376,16 @@ position = Vector2(286, 213)
 position = Vector2(-1, 2)
 
 [node name="0" type="Node2D" parent="TileMap/EnemySpawns" groups=["EnemySpawnPoint"]]
-position = Vector2(88, 675)
+position = Vector2(127, 686)
 
 [node name="1" type="Node2D" parent="TileMap/EnemySpawns" groups=["EnemySpawnPoint"]]
-position = Vector2(73, 655)
+position = Vector2(111, 687)
 
 [node name="2" type="Node2D" parent="TileMap/EnemySpawns" groups=["EnemySpawnPoint"]]
-position = Vector2(126, 673)
+position = Vector2(94, 686)
 
 [node name="3" type="Node2D" parent="TileMap/EnemySpawns" groups=["EnemySpawnPoint"]]
-position = Vector2(111, 651)
+position = Vector2(77, 686)
 
 [node name="CollisionMap" type="TileMap" parent="."]
 visible = false

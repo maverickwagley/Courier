@@ -39,19 +39,19 @@ func skirmisher_ready() -> void:
 func skirmisher_slash_state() -> void:
 	if t_atk1 > 0:
 		t_atk1 = t_atk1 - 1
-	if is_attack1 == true:
-		velocity.x = 0
-		velocity.y = 0
-		if t_atk1 <= 0:
+	if t_atk1 <= 0 && attack1_targets.size() > 0:
+			is_attack1 = true
 			t_atk1 = 90
+			velocity.x = 0
+			velocity.y = 0
 			attack1.attack_aud_timer.start()
 			animations.play("anim_skirmisher_slash_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_skirmisher_idle_" + last_dir)
-			if attack1_targets.size() < 1:
-				attack1.is_attack = false
-				is_attack = false
-				is_attack1 = false
+			last_dir = enemy_attack_dir(attack1_targets)
+			attack1.is_attack = false
+			#is_attack = false
+			is_attack1 = false
 #
 func skirmisher_hurt_state() -> void:
 	if is_hurt == true:
