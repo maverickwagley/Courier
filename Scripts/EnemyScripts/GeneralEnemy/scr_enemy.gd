@@ -58,6 +58,7 @@ var t_atk2: int = 0
 var t_atk3: int = 0
 #Direction
 var move_dir: Vector2
+var target_pos: Vector2
 var direction = "down"
 var last_dir = "down"
 var magic_dir = "down"

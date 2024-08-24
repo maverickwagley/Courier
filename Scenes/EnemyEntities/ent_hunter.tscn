@@ -737,7 +737,6 @@ shape = SubResource("RectangleShape2D_eiyot")
 path_desired_distance = 8.0
 target_desired_distance = 8.0
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="RecalculateTimer" type="Timer" parent="Navigation"]
 wait_time = 0.25

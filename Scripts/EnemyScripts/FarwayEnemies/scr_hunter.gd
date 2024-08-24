@@ -72,6 +72,7 @@ func hunter_bowshot_state() -> void:
 			velocity.y = 0
 			attack2.attack_timer.start()
 			attack2.attack_aud_timer.start()
+			target_pos = attack2_targets[0].global_position
 			animations.play("anim_bowshot_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_idle_" + last_dir)
@@ -151,11 +152,8 @@ func hunter_animation() -> void:
 		animations.play("anim_idle_" + last_dir)
 #
 func _on_attack2_timer_timeout():
-	if attack2_targets.size() >= 1:
-		var projectile = arrow_scene.instantiate()
-		var targetPos = attack2_targets[0].global_position
-		targetPos.y = targetPos.y
-		projectile.global_position = global_position #spawner.global_position
-		projectile.global_position.y = projectile.global_position.y - 8
-		projectile.global_rotation = get_angle_to(targetPos)
-		get_tree().current_scene.add_child(projectile)
+	var projectile = arrow_scene.instantiate()
+	projectile.global_position = global_position #spawner.global_position
+	projectile.global_position.y = projectile.global_position.y - 8
+	projectile.global_rotation = get_angle_to(target_pos)
+	get_tree().current_scene.add_child(projectile)
