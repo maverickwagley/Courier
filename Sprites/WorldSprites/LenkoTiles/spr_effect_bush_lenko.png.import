@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cf5iymmvekaax"
-path="res://.godot/imported/spr_effect_bush_lenko.png-5b40cdc14346ffbc44a2bd955b1b3805.ctex"
+path="res://.godot/imported/spr_effect_bush_lenko.png-91e2859166aea59191f35a9f162be256.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/WorldSprites/spr_effect_bush_lenko.png"
-dest_files=["res://.godot/imported/spr_effect_bush_lenko.png-5b40cdc14346ffbc44a2bd955b1b3805.ctex"]
+source_file="res://Sprites/WorldSprites/LenkoTiles/spr_effect_bush_lenko.png"
+dest_files=["res://.godot/imported/spr_effect_bush_lenko.png-91e2859166aea59191f35a9f162be256.ctex"]
 
 [params]
 

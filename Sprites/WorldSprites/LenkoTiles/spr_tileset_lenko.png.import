@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bk3elhgx4vnrh"
-path="res://.godot/imported/spr_tileset_lenko.png-bc8f040287ffc99e5a89d031d781f361.ctex"
+path="res://.godot/imported/spr_tileset_lenko.png-35273e73a5b44d9519b97a1ba79cfc16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/WorldSprites/spr_tileset_lenko.png"
-dest_files=["res://.godot/imported/spr_tileset_lenko.png-bc8f040287ffc99e5a89d031d781f361.ctex"]
+source_file="res://Sprites/WorldSprites/LenkoTiles/spr_tileset_lenko.png"
+dest_files=["res://.godot/imported/spr_tileset_lenko.png-35273e73a5b44d9519b97a1ba79cfc16.ctex"]
 
 [params]
 

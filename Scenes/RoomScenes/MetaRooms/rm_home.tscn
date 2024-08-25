@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqyss5stfmc7d"]
 
-[ext_resource type="TileSet" uid="uid://8udpdjwui71o" path="res://Sprites/tile_lenko_main.tres" id="1_qvx14"]
+[ext_resource type="TileSet" uid="uid://8udpdjwui71o" path="res://Sprites/WorldSprites/LenkoTiles/tile_lenko_main.tres" id="1_qvx14"]
 [ext_resource type="PackedScene" uid="uid://drf5qkli8uwpe" path="res://Scenes/GUIScenes/gui_home.tscn" id="4_5fxpo"]
 [ext_resource type="PackedScene" uid="uid://dkyfocw87xutx" path="res://Scenes/GUIScenes/gui_cursor_manager.tscn" id="5_n3xh7"]
 
