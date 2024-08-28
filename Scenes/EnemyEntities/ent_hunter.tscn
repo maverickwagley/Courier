@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cula7pwy4q455"]
+[gd_scene load_steps=41 format=3 uid="uid://cula7pwy4q455"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter.gd" id="1_m5x75"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_qnt1g"]
@@ -614,10 +614,7 @@ size = Vector2(9, 9)
 radius = 96.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_em0np"]
-radius = 100.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_eei6g"]
-radius = 128.0
+radius = 135.0
 
 [node name="Hunter" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -766,13 +763,6 @@ collision_mask = 2
 [node name="AggroDetectCircle" type="CollisionShape2D" parent="Navigation/AggroDetect"]
 shape = SubResource("CircleShape2D_em0np")
 
-[node name="AggroDrop" type="Area2D" parent="Navigation"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="AggroDropCircle" type="CollisionShape2D" parent="Navigation/AggroDrop"]
-shape = SubResource("CircleShape2D_eei6g")
-
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_cwx2p")
 volume_db = -5.0
@@ -788,4 +778,3 @@ volume_db = -5.0
 [connection signal="area_entered" from="Navigation/Attack2Detect" to="." method="_on_attack2_detect_area_entered"]
 [connection signal="area_exited" from="Navigation/Attack2Detect" to="." method="_on_attack2_detect_area_exited"]
 [connection signal="area_entered" from="Navigation/AggroDetect" to="." method="_on_aggro_detect_area_entered"]
-[connection signal="area_exited" from="Navigation/AggroDrop" to="." method="_on_aggro_drop_area_exited"]

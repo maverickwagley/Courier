@@ -35,8 +35,8 @@ func hunter_ready() -> void:
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
 	#Set Stats
-	hp = 70
-	max_hp = 70
+	hp = 80
+	max_hp = 80
 	speed = 45
 	knockback_power= 150
 #
@@ -116,10 +116,12 @@ func hunter_navigation() -> void:
 			velocity.y = 0
 			return
 		else:
-			for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
-				if spawn.name == str(objective_num + 1):
-					nav_agent.target_position  = spawn.global_position
 			objective_num = objective_num + 1
+			if objective_num > 9:
+				objective_num = 0
+			for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
+				if spawn.name == str(objective_num):
+					nav_agent.target_position  = spawn.global_position
 		
 	var agent_current_pos = global_position
 	var next_path_position = nav_agent.get_next_path_position()

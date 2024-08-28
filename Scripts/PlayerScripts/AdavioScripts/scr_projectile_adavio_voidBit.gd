@@ -9,7 +9,7 @@ var sd_timer: int
 var direction: Vector2 = Vector2.RIGHT
 
 
-var damage: int = 10
+var damage: int = 14
 var inflict_kb: bool = false
 var kb_power: int = 0
 var parent_velocity: Vector2

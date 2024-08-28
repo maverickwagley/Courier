@@ -53,12 +53,12 @@ func _physics_process(delta) -> void:
 				z_index = 0
 		#Spawn Projectile
 		if t_magic <= 0:
-			if player.yellow_primary >= 5:
+			if player.yellow_primary >= 3:
 				var projectile = projectile_scene.instantiate()
 				autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)
 				if autoload_game.audio_mute == false:
 					magic_audio.play()
-				player.yellow_primary = player.yellow_primary - 5
+				player.yellow_primary = player.yellow_primary - 3
 				player.camera.is_shaking = true
 				player.camera.apply_shake(.75)
 				player.cursor.form_cursor.visible = true

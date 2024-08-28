@@ -54,8 +54,8 @@ func _physics_process(delta) -> void:
 		#Spawn Projectile
 		if t1 <= 0:
 			t1 = 50
-			if player.violet_primary >= 35:
-				player.violet_primary = player.violet_primary - 35
+			if player.violet_primary >= 25:
+				player.violet_primary = player.violet_primary - 25
 				autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)
 				if autoload_game.audio_mute == false:
 					magic_audio.play()
