@@ -59,7 +59,7 @@ func skirmisher_hurt_state() -> void:
 			for i in hurt_areas.size():
 				var _damageArea = hurt_areas[i]
 				if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
-					enemy_apply_damage(_damageArea)
+					enemy_apply_damage(_damageArea,3,7)
 			if hurt_timer.get_time_left() <= 0:
 				var _cryChance = randi_range(0,100)
 				if _cryChance >= 50:

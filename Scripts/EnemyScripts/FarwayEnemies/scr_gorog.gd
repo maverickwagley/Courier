@@ -1,4 +1,4 @@
-#Enemy Hunter
+#Enemy Gorog
 #
 extends Enemy
 #
@@ -7,19 +7,21 @@ extends Enemy
 #Built-In Methods
 #
 func _ready() -> void:
-	hunter_ready()
+	gorog_ready()
 	call_deferred("enemy_nav_setup")
 #
 func _physics_process(_delta) -> void:
-	hunter_slash_state()
-	hunter_bowshot_state()
-	hunter_hurt_state()
-	hunter_navigation()
-	hunter_animation()
+	gorog_slash_state()
+	#gorog_backslash_state
+	gorog_knifethrow_state()
+	#gorog_shield_state
+	gorog_hurt_state()
+	gorog_navigation()
+	gorog_animation()
 #
 #Custom Methods
 #
-func hunter_ready() -> void:
+func gorog_ready() -> void:
 	#Set Child Nodes
 	sprite = $EnemySprite
 	animations = $AnimationPlayer
@@ -35,12 +37,12 @@ func hunter_ready() -> void:
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
 	#Set Stats
-	hp = 80
-	max_hp = 80
+	hp = 140
+	max_hp = 140
 	speed = 45
 	knockback_power= 150
 #
-func hunter_slash_state() -> void:
+func gorog_slash_state() -> void:
 	if t_atk1 > 0:
 		t_atk1 = t_atk1 - 1
 	if is_attack2 == false:
@@ -59,7 +61,7 @@ func hunter_slash_state() -> void:
 			is_attack = false
 			is_attack1 = false
 #
-func hunter_bowshot_state() -> void:
+func gorog_knifethrow_state() -> void:
 	if t_atk2 > 0:
 		t_atk2 = t_atk2 - 1
 	if is_attack1 == false:
@@ -81,7 +83,7 @@ func hunter_bowshot_state() -> void:
 			#is_attack = false
 			is_attack2 = false
 #
-func hunter_hurt_state() -> void:
+func gorog_hurt_state() -> void:
 	if is_hurt == true:
 		if hurt_areas.size() > 0:
 			for i in hurt_areas.size():
@@ -97,7 +99,7 @@ func hunter_hurt_state() -> void:
 					autoload_player.player.damage_dealt_audio.play()
 				hurt_timer.start()
 #
-func hunter_navigation() -> void:
+func gorog_navigation() -> void:
 	move_and_slide()
 	enemy_aggro_drop()
 	#
@@ -127,7 +129,7 @@ func hunter_navigation() -> void:
 	var next_path_position = nav_agent.get_next_path_position()
 	velocity = agent_current_pos.direction_to(next_path_position) * speed
 #
-func hunter_animation() -> void:
+func gorog_animation() -> void:
 	if is_attack1 == true: return
 	if is_attack2 == true: return
 	if is_knockback == true: return
@@ -153,9 +155,3 @@ func hunter_animation() -> void:
 	else:
 		animations.play("anim_idle_" + last_dir)
 #
-func _on_attack2_timer_timeout():
-	var projectile = arrow_scene.instantiate()
-	projectile.global_position = global_position #spawner.global_position
-	projectile.global_position.y = projectile.global_position.y - 8
-	projectile.global_rotation = get_angle_to(target_pos)
-	get_tree().current_scene.add_child(projectile)

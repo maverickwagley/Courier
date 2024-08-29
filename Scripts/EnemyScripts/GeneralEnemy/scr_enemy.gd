@@ -113,15 +113,15 @@ func enemy_attack_dir(_array: Array):
 func enemy_aggro_drop() -> void:
 	pass
 #
-func enemy_apply_damage(area) -> void:
+func enemy_apply_damage(area,_essMin,_essMax) -> void:
 	hp = hp - area.damage
 	if hp <= 0:
 		if is_dead == false:
 			is_dead = true
-			enemy_drop_essence(area.type,10,15)
+			enemy_drop_essence(area.type,_essMin,_essMax)
 			var _rType = randi_range(0,5)
-			enemy_drop_essence(_rType,5,25)
-			enemy_drop_essence(6,3,7)
+			enemy_drop_essence(_rType,_essMin,_essMax)
+			#enemy_drop_essence(6,3,7)
 			queue_free()
 	health.update()
 	if area.inflict_kb == true:
