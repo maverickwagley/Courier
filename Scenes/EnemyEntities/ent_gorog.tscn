@@ -221,6 +221,86 @@ tracks/0/keys = {
 "values": [Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_lng2y"]
+resource_name = "anim_slash_b_down"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack1Area/Attack1Damagebox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-9.99998, 6.00004), Vector2(-11, 6.00004), Vector2(3.00003, 7.99999), Vector2(0.999979, -6), Vector2(-11, -9.99996), Vector2(-11, -9.99996)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack1Area/Attack1Damagebox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [3.92699, 3.92699, 2.35619, 0.785398, -0.785398, -0.785398]
+}
+
+[sub_resource type="Animation" id="Animation_wlo4b"]
+resource_name = "anim_slash_b_left"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(12, 1), Vector2i(13, 1), Vector2i(14, 1), Vector2i(15, 1), Vector2i(16, 1), Vector2i(17, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack1Area/Attack1Damagebox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-13, -1.99995), Vector2(-13, -1.99995), Vector2(-13, 9.00005), Vector2(1.00003, 8), Vector2(1, -4), Vector2(1, -4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack1Area/Attack1Damagebox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [5.49779, 5.49779, 3.92699, 2.35619, 0.785398, 0.785398]
+}
+
 [sub_resource type="Animation" id="Animation_vypqf"]
 resource_name = "anim_slash_b_right"
 length = 0.9
@@ -246,7 +326,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(3.00002, 6.99999), Vector2(3.00002, 6.99999), Vector2(2.99996, -10), Vector2(-14, -11.9999), Vector2(-14, 5.00005), Vector2(-14, 5.00005)]
+"values": [Vector2(1, 5), Vector2(1, 5), Vector2(1, -7), Vector2(-12, -10), Vector2(-13, 3.00005), Vector2(-13, 3.00005)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -286,7 +366,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-4.26769e-05, -12), Vector2(-4.29153e-05, -12), Vector2(-17, -9.99994), Vector2(-17, 8.00006), Vector2(2.67029e-05, 8), Vector2(2.67029e-05, 8)]
+"values": [Vector2(-3.00004, -9.99999), Vector2(-3, -10), Vector2(-15, -7.99995), Vector2(-15, 6.00006), Vector2(-1.99998, 6.00001), Vector2(-2, 6)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -299,87 +379,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.785398, 0.785398, -0.785398, -2.35619, -3.92699, -3.92699]
-}
-
-[sub_resource type="Animation" id="Animation_wlo4b"]
-resource_name = "anim_slash_b_left"
-length = 0.9
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(12, 1), Vector2i(13, 1), Vector2i(14, 1), Vector2i(15, 1), Vector2i(16, 1), Vector2i(17, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Attack1Area/Attack1Damagebox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-15, -3.99995), Vector2(-15, -3.99995), Vector2(-15, 11.0001), Vector2(3.00004, 9.99999), Vector2(2.99998, -7.00001), Vector2(2.99998, -7.00001)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Attack1Area/Attack1Damagebox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [5.49779, 5.49779, 3.92699, 2.35619, 0.785398, 0.785398]
-}
-
-[sub_resource type="Animation" id="Animation_lng2y"]
-resource_name = "anim_slash_b_down"
-length = 0.9
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Attack1Area/Attack1Damagebox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-12, 8.00004), Vector2(-12, 8.00004), Vector2(3.00003, 7.99999), Vector2(2.99997, -9.00001), Vector2(-13, -11), Vector2(-13, -11)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Attack1Area/Attack1Damagebox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [3.92699, 3.92699, 2.35619, 0.785398, -0.785398, -0.785398]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5it5c"]
@@ -440,12 +439,13 @@ _data = {
 size = Vector2(7, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grp8a"]
-size = Vector2(5, 10)
+size = Vector2(5, 15.6066)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eiyot"]
 size = Vector2(9, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nexmf"]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_33kqs"]
 radius = 96.0
@@ -531,7 +531,6 @@ one_shot = true
 [node name="Attack1Damagebox" type="CollisionShape2D" parent="Attack1Area"]
 position = Vector2(-12, 7.00004)
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_grp8a")
 
 [node name="Attack2Area" type="Area2D" parent="."]
@@ -568,7 +567,6 @@ position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_eiyot")
 
 [node name="Navigation" type="Node2D" parent="."]
-visible = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
 path_desired_distance = 8.0
@@ -589,6 +587,7 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_nexmf")
 
 [node name="Attack2Detect" type="Area2D" parent="Navigation"]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -597,6 +596,7 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_33kqs")
 
 [node name="AggroDetect" type="Area2D" parent="Navigation"]
+visible = false
 collision_layer = 0
 collision_mask = 2
 

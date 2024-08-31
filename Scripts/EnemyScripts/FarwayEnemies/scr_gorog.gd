@@ -13,7 +13,7 @@ func _ready() -> void:
 func _physics_process(_delta) -> void:
 	gorog_slash_state()
 	#gorog_backslash_state
-	gorog_knifethrow_state()
+	#gorog_knifethrow_state()
 	#gorog_shield_state
 	gorog_hurt_state()
 	gorog_navigation()
@@ -49,11 +49,12 @@ func gorog_slash_state() -> void:
 		if t_atk1 <= 0 && attack1_targets.size() > 0:
 			is_attack = true
 			is_attack1 = true
+			attack1.is_attack = true
 			t_atk1 = 90
 			velocity.x = 0
 			velocity.y = 0
 			attack1.attack_aud_timer.start()
-			animations.play("anim_slash_" + last_dir)
+			animations.play("anim_slash_b_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_idle_" + last_dir)
 			last_dir = enemy_attack_dir(attack1_targets)
