@@ -56,11 +56,15 @@ func gorog_slash_state() -> void:
 			attack1.attack_aud_timer.start()
 			animations.play("anim_slash_b_" + last_dir)
 			await animations.animation_finished
-			animations.play("anim_idle_" + last_dir)
-			last_dir = enemy_attack_dir(attack1_targets)
-			attack1.is_attack = false
-			is_attack = false
-			is_attack1 = false
+			if attack1_targets.size() > 0:
+				last_dir = enemy_attack_dir(attack1_targets)
+				animations.play("anim_slash_f_" + last_dir)
+				await animations.animation_finished
+			else:
+				animations.play("anim_idle_" + last_dir)
+				attack1.is_attack = false
+				is_attack = false
+				is_attack1 = false
 #
 func gorog_knifethrow_state() -> void:
 	if t_atk2 > 0:
