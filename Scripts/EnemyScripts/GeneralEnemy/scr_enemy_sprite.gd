@@ -3,6 +3,7 @@
 extends Sprite2D
 #
 @export var is_hurt: bool = false
+@export var is_shielded: bool = false
 #
 #Built-In Methods
 #
@@ -13,6 +14,12 @@ func _set(property: StringName, value: Variant) -> bool:
 				material.set_shader_parameter("is_hurt",false)
 			else:
 				material.set_shader_parameter("is_hurt",true)
+		"is_shielded":
+			if value == false:
+				material.set_shader_parameter("is_shielded",false)
+			else:
+				print_debug(value)
+				material.set_shader_parameter("is_shielded",true)
 	return false
 #
 #Custom Methods

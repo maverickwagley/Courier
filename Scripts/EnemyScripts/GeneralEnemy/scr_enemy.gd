@@ -38,6 +38,8 @@ class_name Enemy
 var hp: int
 var max_hp: int
 var speed: int
+var shield: int
+var max_shield: int
 var knockback_power: int
 #Status
 var objective_num: int = 0
@@ -47,6 +49,7 @@ var is_attack1: bool = false
 var is_attack2: bool = false
 var is_attack3: bool = false
 var is_knockback: bool = false
+var is_shielded: bool = false
 var is_aggro: bool = false
 var is_dead: bool = false
 #Timers
@@ -114,7 +117,14 @@ func enemy_aggro_drop() -> void:
 	pass
 #
 func enemy_apply_damage(area,_essMin,_essMax) -> void:
-	hp = hp - area.damage
+	if is_shielded == false:
+		hp = hp - area.damage
+		if area.inflict_kb == true:
+			autoload_entity.knockback(self, area.global_position, area.kb_power, 5)
+	else:
+		if area.is_kinetic == true:
+			var shieldDMG = int(area.damage * .5)
+			hp = hp - shieldDMG
 	if hp <= 0:
 		if is_dead == false:
 			is_dead = true
@@ -124,8 +134,6 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 			#enemy_drop_essence(6,3,7)
 			queue_free()
 	health.update()
-	if area.inflict_kb == true:
-		autoload_entity.knockback(self, area.global_position, area.kb_power, 5)
 #
 func enemy_drop_essence(_id,_min,_max) -> void:
 	var current_death = death_particle.instantiate()
@@ -188,8 +196,12 @@ func _on_hitbox_area_entered(area) -> void:
 	#if area == $MeleeWeapon: return
 	#if area == $HitArea: return
 	is_hurt = true
+	if is_shielded == true:
+		#print_debug("Shielded")
+		sprite._set("is_shielded",true)
+	#else:
+		#sprite._set("is_hurt",true)
 	sprite.apply_intensity_fade(1.0,0.0,0.25)
-	sprite._set("is_hurt",true)
 	if hurt_areas.find(area) == -1:
 		hurt_areas.append(area)
 #

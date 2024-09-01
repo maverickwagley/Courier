@@ -12,9 +12,7 @@ func _ready() -> void:
 #
 func _physics_process(_delta) -> void:
 	gorog_slash_state()
-	#gorog_backslash_state
-	#gorog_knifethrow_state()
-	#gorog_shield_state
+	gorog_shield_state()
 	gorog_hurt_state()
 	gorog_navigation()
 	gorog_animation()
@@ -41,6 +39,8 @@ func gorog_ready() -> void:
 	max_hp = 140
 	speed = 45
 	knockback_power= 150
+	shield = 100
+	max_shield = 100
 #
 func gorog_slash_state() -> void:
 	if t_atk1 > 0:
@@ -50,6 +50,7 @@ func gorog_slash_state() -> void:
 			is_attack = true
 			is_attack1 = true
 			attack1.is_attack = true
+			is_shielded = false
 			t_atk1 = 90
 			velocity.x = 0
 			velocity.y = 0
@@ -60,33 +61,48 @@ func gorog_slash_state() -> void:
 				last_dir = enemy_attack_dir(attack1_targets)
 				animations.play("anim_slash_f_" + last_dir)
 				await animations.animation_finished
+				attack1.is_attack = false
+				is_attack = false
+				is_attack1 = false
 			else:
 				animations.play("anim_idle_" + last_dir)
 				attack1.is_attack = false
 				is_attack = false
 				is_attack1 = false
 #
-func gorog_knifethrow_state() -> void:
+func gorog_shield_state() -> void:
 	if t_atk2 > 0:
 		t_atk2 = t_atk2 - 1
 	if is_attack1 == false:
-		if t_atk2 <= 0 && attack2_targets.size() > 0:
-			print_debug("Attack 2 True")
-			t_atk2 = 180
-			is_attack2 = true
-			last_dir = enemy_attack_dir(attack2_targets)
-			velocity.x = 0
-			velocity.y = 0
-			attack2.attack_timer.start()
-			attack2.attack_aud_timer.start()
-			target_pos = attack2_targets[0].global_position
-			animations.play("anim_bowshot_" + last_dir)
-			await animations.animation_finished
-			animations.play("anim_idle_" + last_dir)
-			#enemy_reposition()
-			attack2.is_attack = false
-			#is_attack = false
-			is_attack2 = false
+		#Shield Up or Down (while walking)
+		if is_aggro == true:
+			if shield > 0:
+				is_shielded = true
+				speed = 20
+			else:
+				is_shielded = false
+				speed = 45
+		else:
+			is_shielded = false
+			speed = 45
+		#Attack
+		#if t_atk2 <= 0 && attack2_targets.size() > 0:
+			#print_debug("Attack 2 True")
+			#t_atk2 = 480
+			#is_attack2 = true
+			#last_dir = enemy_attack_dir(attack2_targets)
+			#velocity.x = 0
+			#velocity.y = 0
+			#attack2.attack_timer.start()
+			#attack2.attack_aud_timer.start()
+			#target_pos = attack2_targets[0].global_position
+			#animations.play("anim_shield_bash_" + last_dir)
+			#await animations.animation_finished
+			#animations.play("anim_idle_" + last_dir)
+			##enemy_reposition()
+			#attack2.is_attack = false
+			##is_attack = false
+			#is_attack2 = false
 #
 func gorog_hurt_state() -> void:
 	if is_hurt == true:
@@ -155,8 +171,10 @@ func gorog_animation() -> void:
 		if round(move_dir.y) > 0: 
 			direction = "down"
 			last_dir = "down"
-		
-		animations.play("anim_run_" + direction)
+		if is_shielded == true:
+			animations.play("anim_shield_move_" + direction)
+		else:
+			animations.play("anim_run_" + direction)
 	else:
 		animations.play("anim_idle_" + last_dir)
 #

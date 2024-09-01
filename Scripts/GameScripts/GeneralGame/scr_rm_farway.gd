@@ -45,7 +45,7 @@ func _process(delta):
 #Custom Methods
 #
 func farway_enemy_spawner():
-	if enemy_count < 4:
+	if enemy_count < 1:
 		if enemy_spawn_timer > 0:
 			enemy_spawn_timer = enemy_spawn_timer - 1
 		if enemy_spawn_timer <= 0:

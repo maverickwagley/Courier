@@ -4,6 +4,8 @@ extends Area2D
 
 var damage: int
 var inflict_kb: bool = false
+var is_magic: bool = true
+var is_kinetic: bool = false
 var kb_power: int = 250
 var enemy_hit: Array
 var t1: int = 0

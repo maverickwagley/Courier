@@ -7,6 +7,8 @@ extends Area2D
 var parent_velocity: Vector2
 var damage: int = 35
 var inflict_kb: bool = true
+var is_magic: bool = false
+var is_kinetic: bool = true
 var kb_power: int = 150
 var enemy_hit: Array
 var type: int = 1
