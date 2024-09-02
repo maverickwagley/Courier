@@ -21,7 +21,8 @@ func skirmisher_ready() -> void:
 	sprite = $EnemySprite
 	animations = $AnimationPlayer
 	effects = $Effects
-	health = $HealthBar
+	healthbar = $HealthBar
+	shieldbar = $ShieldBar
 	hurt_timer = $HurtTimer
 	hurt_box = $HitArea/Hitbox
 	attack1 = $Attack1Area
@@ -33,6 +34,9 @@ func skirmisher_ready() -> void:
 	#Set Stats
 	hp = 70
 	max_hp = 70
+	shield = 0
+	max_shield = 0
+	shieldbar.visible = false
 	speed = 45
 	knockback_power= 150
 #

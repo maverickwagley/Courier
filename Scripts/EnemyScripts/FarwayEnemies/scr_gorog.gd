@@ -24,7 +24,8 @@ func gorog_ready() -> void:
 	sprite = $EnemySprite
 	animations = $AnimationPlayer
 	effects = $Effects
-	health = $HealthBar
+	healthbar = $HealthBar
+	shieldbar = $ShieldBar
 	hurt_timer = $HurtTimer
 	hurt_box = $HitArea/Hitbox
 	attack1 = $Attack1Area
@@ -73,18 +74,33 @@ func gorog_slash_state() -> void:
 func gorog_shield_state() -> void:
 	if t_atk2 > 0:
 		t_atk2 = t_atk2 - 1
+	if is_shielded == false:
+		shieldbar.visible = false
+		if shield < max_shield:
+			if t_shield > 0:
+				t_shield = t_shield - 1
+		if t_shield <= 0:
+			t_shield = 3
+			shieldbar.update()
+			shield = shield + 1
 	if is_attack1 == false:
 		#Shield Up or Down (while walking)
 		if is_aggro == true:
-			if shield > 0:
+			if shield > 49:
+				shieldbar.visible = true
 				is_shielded = true
 				speed = 20
-			else:
+			if shield <= 0:
+				shieldbar.visible = false
 				is_shielded = false
 				speed = 45
 		else:
+			shieldbar.visible = false
 			is_shielded = false
 			speed = 45
+	else:
+		shieldbar.visible = false
+		is_shielded = false
 		#Attack
 		#if t_atk2 <= 0 && attack2_targets.size() > 0:
 			#print_debug("Attack 2 True")

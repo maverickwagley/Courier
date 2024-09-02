@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b87153mqpcmem"]
+[gd_scene load_steps=37 format=3 uid="uid://b87153mqpcmem"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher.gd" id="1_3bh3k"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_dadce"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bpdkjgb0xdwfa" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy_fill.png" id="3_jv2b4"]
 [ext_resource type="Texture2D" uid="uid://cwrrdkhu6gqv3" path="res://Sprites/EnemySprites/spr_enemy_skirmisher.png" id="5_48ily"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_healthbar_enemy.gd" id="5_r06ay"]
+[ext_resource type="Texture2D" uid="uid://dftmg2gat04v4" path="res://Sprites/GUISprites/EnemyGUI/spr_shieldbar_enemy_fill.png" id="6_6w2v6"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy_sprite.gd" id="7_nds5e"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_shieldbar_enemy.gd" id="7_tttst"]
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="8_cahhk"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher_slash.gd" id="8_ecx3o"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="9_au4yb"]
@@ -571,6 +573,16 @@ value = 50.0
 texture_under = ExtResource("2_y5y7o")
 texture_progress = ExtResource("3_jv2b4")
 script = ExtResource("5_r06ay")
+
+[node name="ShieldBar" type="TextureProgressBar" parent="."]
+offset_left = -5.0
+offset_top = 1.0
+offset_right = 5.0
+offset_bottom = 4.0
+value = 50.0
+texture_under = ExtResource("2_y5y7o")
+texture_progress = ExtResource("6_6w2v6")
+script = ExtResource("7_tttst")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 clip_children = 2

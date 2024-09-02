@@ -14,11 +14,11 @@ func _set(property: StringName, value: Variant) -> bool:
 				material.set_shader_parameter("is_hurt",false)
 			else:
 				material.set_shader_parameter("is_hurt",true)
+				material.set_shader_parameter("is_shielded",false)
 		"is_shielded":
 			if value == false:
 				material.set_shader_parameter("is_shielded",false)
 			else:
-				print_debug(value)
 				material.set_shader_parameter("is_shielded",true)
 	return false
 #
@@ -27,6 +27,6 @@ func _set(property: StringName, value: Variant) -> bool:
 func apply_intensity_fade(_start,_finish,_length) -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_method(set_shader_blinkIntensity,_start,_finish,_length)
-#
+#s
 func set_shader_blinkIntensity(_newValue: float) -> void:
 	material.set_shader_parameter("blink_intensity", _newValue)

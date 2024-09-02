@@ -27,7 +27,8 @@ class_name Enemy
 @onready var sprite: Sprite2D
 @onready var animations: AnimationPlayer
 @onready var effects: AnimationPlayer
-@onready var health: TextureProgressBar 
+@onready var healthbar: TextureProgressBar 
+@onready var shieldbar: TextureProgressBar
 @onready var hurt_timer: Timer
 @onready var hurt_areas: Array
 @onready var hurt_box: CollisionShape2D
@@ -55,6 +56,7 @@ var is_dead: bool = false
 #Timers
 var t_move: int = randi_range(60,600)
 var t_knockback: int = 0
+var t_shield: int = 0
 var t_aggro: int = 0
 var t_atk1: int = 0
 var t_atk2: int = 0
@@ -122,9 +124,14 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 		if area.inflict_kb == true:
 			autoload_entity.knockback(self, area.global_position, area.kb_power, 5)
 	else:
-		if area.is_kinetic == true:
-			var shieldDMG = int(area.damage * .5)
-			hp = hp - shieldDMG
+		if shield > 0:
+			if shield >= area.damage:
+				shield = shield - area.damage
+			else:
+				hp = hp - (area.damage - shield)
+				shield = 0
+		else:
+			hp = hp - area.damage
 	if hp <= 0:
 		if is_dead == false:
 			is_dead = true
@@ -133,7 +140,8 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 			enemy_drop_essence(_rType,_essMin,_essMax)
 			#enemy_drop_essence(6,3,7)
 			queue_free()
-	health.update()
+	shieldbar.update()
+	healthbar.update()
 #
 func enemy_drop_essence(_id,_min,_max) -> void:
 	var current_death = death_particle.instantiate()
@@ -199,8 +207,8 @@ func _on_hitbox_area_entered(area) -> void:
 	if is_shielded == true:
 		#print_debug("Shielded")
 		sprite._set("is_shielded",true)
-	#else:
-		#sprite._set("is_hurt",true)
+	else:
+		sprite._set("is_hurt",true)
 	sprite.apply_intensity_fade(1.0,0.0,0.25)
 	if hurt_areas.find(area) == -1:
 		hurt_areas.append(area)
