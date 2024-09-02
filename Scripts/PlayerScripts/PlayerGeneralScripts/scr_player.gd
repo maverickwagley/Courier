@@ -25,9 +25,10 @@ var form: Node2D
 var load_form: PackedScene
 var form_id: int = 0
 var form_type: int = 0
+var entity_type:int = 0 
 #Stats
 #Stats that are upgradable should be moved to autoload
-var hp: int = 50
+var hp: int = 200
 var max_hp: int = 200
 var stamina: int = 200
 var speed: int = 65

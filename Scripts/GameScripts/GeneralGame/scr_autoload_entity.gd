@@ -4,6 +4,7 @@ extends Node
 func knockback(_receiveKB: CharacterBody2D, _kbSourcePos: Vector2, _power: int, _dur : int):
 	var receiver = _receiveKB
 	var knockback_dir = _kbSourcePos.direction_to(receiver.global_position)
+	receiver.knockback_power = _power
 	receiver.velocity = knockback_dir * _power
 	receiver.t_knockback = _dur
 	receiver.is_knockback = true

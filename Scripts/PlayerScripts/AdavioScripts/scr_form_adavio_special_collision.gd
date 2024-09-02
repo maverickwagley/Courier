@@ -5,7 +5,7 @@ extends Area2D
 @onready var shape = $SpecialShape
 #
 var parent_velocity: Vector2
-var damage: int = 35
+var damage: int = 80
 var inflict_kb: bool = true
 var is_magic: bool = true
 var is_kinetic: bool = false

@@ -7,7 +7,7 @@ var speed = 250
 var sd_timer: int
 #var direction: Vector2
 var direction: Vector2 = Vector2.RIGHT
-
+var entity_type: int = 2 #Projectile (Player, Enemy, Projectile, NPC)
 
 var damage: int = 14
 var inflict_kb: bool = false

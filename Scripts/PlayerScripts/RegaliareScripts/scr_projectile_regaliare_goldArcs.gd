@@ -9,7 +9,7 @@ var sd_timer: int
 #var direction: Vector2
 var direction: Vector2
 var ary_collision: Array
-
+var entity_type: int = 2 #Projectile (Player, Enemy, Projectile, NPC)
 
 var damage: int = 25
 var inflict_kb: bool = true

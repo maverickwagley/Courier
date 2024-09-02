@@ -78,6 +78,7 @@ func skirmisher_navigation() -> void:
 	enemy_aggro_drop()
 	#
 	if is_knockback == true:
+		enemy_knockback_stack()
 		t_knockback = t_knockback - 1
 		if t_knockback < 1:
 			velocity.x = 0

@@ -68,7 +68,6 @@ func hunter_bowshot_state() -> void:
 		t_atk2 = t_atk2 - 1
 	if is_attack1 == false:
 		if t_atk2 <= 0 && attack2_targets.size() > 0:
-			print_debug("Attack 2 True")
 			t_atk2 = 180
 			is_attack2 = true
 			last_dir = enemy_attack_dir(attack2_targets)
@@ -106,6 +105,7 @@ func hunter_navigation() -> void:
 	enemy_aggro_drop()
 	#
 	if is_knockback == true:
+		enemy_knockback_stack()
 		t_knockback = t_knockback - 1
 		if t_knockback < 1:
 			velocity.x = 0

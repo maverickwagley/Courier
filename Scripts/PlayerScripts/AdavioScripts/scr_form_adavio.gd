@@ -8,6 +8,8 @@ func _ready() -> void:
 	form_id = 1
 	form_swap_in()
 	player = get_parent()
+	special.parent = self
+	special.player = player
 #
 func _physics_process(delta) -> void:
 	form_swap_process()
@@ -59,15 +61,15 @@ func adavio_magic() -> void:
 func adavio_special() -> void:
 	form_special_input()
 	if is_special == true:
-		special.parent = self
-		special.player = player
+		#Check for line of sight with stage
 		var _check = special.special_check()
 		player.cursor.adavio_special_cursor(_check)
-		if special_start == false:
-			print_debug("try special")
+		if special_start == false: 
+			#Animate, then enter state if enough charge
+			#print_debug("try special")
 			animations.play("anim_adavio_special_cast")
 			await animations.animation_finished
-			if player.violet_special >= 75:
+			if player.violet_special >= 75: 
 				special_start = true
 				special.is_special = true
 			else:
@@ -81,8 +83,9 @@ func adavio_special() -> void:
 				player.is_attack = false
 				player.is_special = false
 		
-		if Input.is_action_just_pressed("magic_skill"):
-			if special_use == false:
+		if Input.is_action_just_pressed("magic_skill"): 
+			#If not already using skill
+			if special_use == false: 
 				if _check == false:
 					player.violet_special = player.violet_special - 75
 					player.special_gui.update()

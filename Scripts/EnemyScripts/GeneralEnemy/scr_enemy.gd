@@ -42,6 +42,7 @@ var speed: int
 var shield: int
 var max_shield: int
 var knockback_power: int
+var entity_type:int = 1
 #Status
 var objective_num: int = 0
 var is_hurt: bool = false
@@ -143,6 +144,17 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 	shieldbar.update()
 	healthbar.update()
 #
+func enemy_knockback_stack() -> void:
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider.is_class("CharacterBody2D"):
+			if collider.entity_type == 1:
+				if collider.is_shielded == false:
+					if collider.is_knockback == false:
+						autoload_entity.knockback(collider, global_position, knockback_power, t_knockback)
+						collider.is_knockback = true
+#
 func enemy_drop_essence(_id,_min,_max) -> void:
 	var current_death = death_particle.instantiate()
 	var current_energy = item_drop.instantiate()
@@ -194,7 +206,7 @@ func _on_aggro_detect_area_entered(area) -> void:
 	is_aggro = true
 	t_aggro = 300
 	target_node = area.owner
-	print_debug(target_node)
+	#print_debug(target_node)
 #
 func _on_aggro_drop_area_exited(area) -> void:
 	is_aggro = false

@@ -704,7 +704,7 @@ collision_mask = 288
 script = ExtResource("8_6jp02")
 
 [node name="SpecialShape" type="CollisionShape2D" parent="SpecialSkill/SpecialArea"]
-position = Vector2(0, 31.6667)
+position = Vector2(0, 30)
 shape = SubResource("CircleShape2D_cd7yv")
 
 [node name="SpecialSFX" type="AudioStreamPlayer" parent="SpecialSkill"]
