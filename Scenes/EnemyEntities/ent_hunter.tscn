@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cula7pwy4q455"]
+[gd_scene load_steps=43 format=3 uid="uid://cula7pwy4q455"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter.gd" id="1_m5x75"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_qnt1g"]
@@ -10,12 +10,19 @@
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy_sprite.gd" id="7_13i3s"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_shieldbar_enemy.gd" id="7_yjqx6"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter_slash.gd" id="8_2dolj"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/sdr_enemy.gdshader" id="8_4jk3b"]
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="9_clvev"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter_bowshot.gd" id="10_1dfv7"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="10_cwx2p"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cd5b5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xj6bs"]
 resource_local_to_scene = true
+shader = ExtResource("8_4jk3b")
+shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 1)
+shader_parameter/shield_color = Color(0.67, 0.59, 0.16, 0.7)
+shader_parameter/blink_intensity = 0.0
+shader_parameter/is_hurt = false
+shader_parameter/is_shielded = false
 
 [sub_resource type="Animation" id="Animation_doyhu"]
 length = 0.001
@@ -630,7 +637,7 @@ script = ExtResource("7_yjqx6")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 clip_children = 2
-material = SubResource("ShaderMaterial_cd5b5")
+material = SubResource("ShaderMaterial_xj6bs")
 texture = ExtResource("6_ibom3")
 offset = Vector2(0, -7)
 hframes = 20

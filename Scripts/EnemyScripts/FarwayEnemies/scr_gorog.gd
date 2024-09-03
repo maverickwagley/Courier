@@ -3,6 +3,7 @@
 extends Enemy
 #
 @onready var arrow_scene = preload("res://Scenes/EnemyEntities/ent_projectile_hunter_arrow.tscn")
+@onready var shieldBash_smear = $Attack2Area/Attack2Sprite
 #
 #Built-In Methods
 #
@@ -102,23 +103,31 @@ func gorog_shield_state() -> void:
 		shieldbar.visible = false
 		is_shielded = false
 		#Attack
-		#if t_atk2 <= 0 && attack2_targets.size() > 0:
-			#print_debug("Attack 2 True")
-			#t_atk2 = 480
-			#is_attack2 = true
-			#last_dir = enemy_attack_dir(attack2_targets)
-			#velocity.x = 0
-			#velocity.y = 0
+		if t_atk2 <= 0 && attack2_targets.size() > 0:
+			print_debug("Attack 2 True")
+			t_atk2 = 480
+			is_attack2 = true
+			last_dir = enemy_attack_dir(attack2_targets)
+			velocity.x = 0
+			velocity.y = 0
 			#attack2.attack_timer.start()
-			#attack2.attack_aud_timer.start()
-			#target_pos = attack2_targets[0].global_position
-			#animations.play("anim_shield_bash_" + last_dir)
-			#await animations.animation_finished
-			#animations.play("anim_idle_" + last_dir)
-			##enemy_reposition()
-			#attack2.is_attack = false
-			##is_attack = false
-			#is_attack2 = false
+			attack2.attack_aud_timer.start()
+			target_pos = attack2_targets[0].global_position
+			animations.play("anim_shield_bash_" + last_dir)
+			shieldBash_smear.play("default")
+			shieldBash_smear.visible = true
+			shieldBash_smear.rotation = get_angle_to(target_pos)
+			await animations.animation_finished
+			shieldBash_smear.stop()
+			shieldBash_smear.visible = false
+			animations.play("anim_idle_" + last_dir)
+			#enemy_reposition()
+			attack2.is_attack = false
+			#is_attack = false
+			is_attack2 = false
+#
+func gorog_shield_bash_state() -> void:
+	pass
 #
 func gorog_hurt_state() -> void:
 	if is_hurt == true:
