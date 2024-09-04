@@ -53,6 +53,7 @@ func skirmisher_slash_state() -> void:
 			await animations.animation_finished
 			animations.play("anim_skirmisher_idle_" + last_dir)
 			last_dir = enemy_attack_dir(attack1_targets)
+			attack1.targets_hit.clear()
 			attack1.is_attack = false
 			#is_attack = false
 			is_attack1 = false

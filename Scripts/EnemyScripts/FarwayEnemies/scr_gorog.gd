@@ -60,10 +60,12 @@ func gorog_slash_state() -> void:
 			attack1.attack_aud_timer.start()
 			animations.play("anim_slash_b_" + last_dir)
 			await animations.animation_finished
+			attack1.targets_hit.clear()
 			if attack1_targets.size() > 0:
 				last_dir = enemy_attack_dir(attack1_targets)
 				animations.play("anim_slash_f_" + last_dir)
 				await animations.animation_finished
+				attack1.targets_hit.clear()
 				attack1.is_attack = false
 				is_attack = false
 				is_attack1 = false
@@ -106,6 +108,10 @@ func gorog_shield_state() -> void:
 	
 	if is_shielded == true:
 		#Attack
+		if attack2.targets_hit.size() > 0:
+			velocity.x = 0
+			velocity.y = 0
+		
 		if t_atk2 <= 0 && attack2_targets.size() > 0:
 			t_atk2 = 480
 			is_attack2 = true
@@ -118,6 +124,8 @@ func gorog_shield_state() -> void:
 			animations.play("anim_shield_bash_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_idle_" + last_dir)
+			attack2_box.disabled = true
+			attack2.targets_hit.clear()
 			attack2.is_attack = false
 			is_attack = false
 			is_attack2 = false

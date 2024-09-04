@@ -20,7 +20,7 @@ func hitbox_area_entered(area,particle,global_position):
 					current_world.add_child(current_part) 
 			current_part.particle.amount = randi_range(1,3)
 			current_part.global_position = global_position
-			current_part.global_rotation = area.global_rotation - 3.14
+			current_part.global_rotation = area.global_rotation - PI
 		return true
 	else:
 		return false

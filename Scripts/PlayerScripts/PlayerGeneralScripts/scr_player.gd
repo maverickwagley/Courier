@@ -240,5 +240,7 @@ func _on_hitbox_area_entered(area) -> void:
 	if is_roll == true: return
 	if area.name == "Hitbox": return
 	if is_hurt == false:
+		if area.targets_hit.find(self) ==  -1:
+			area.targets_hit.append(self)
 		hurt_by_enemy(area)
 		form.form_hit()
