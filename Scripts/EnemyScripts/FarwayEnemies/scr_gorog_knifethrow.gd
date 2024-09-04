@@ -1,4 +1,4 @@
-#Hunter Attack 2 - Bowshot
+#Gorog Attack 2 - Shield and Shield Bash
 #
 extends Area2D
 #
@@ -10,7 +10,7 @@ extends Area2D
 var is_attack: bool = false
 var inflict_kb: bool = false
 var kb_power: int = 0
-var damage: int = 10
+var damage: int = 40
 #
 #Built-In Methods
 #

@@ -9,7 +9,7 @@ extends Area2D
 var is_attack: bool = false
 var inflict_kb: bool = false
 var kb_power: int = 0
-var damage: int = 10
+var damage: int = 30
 #
 #Built-In Methods
 #
