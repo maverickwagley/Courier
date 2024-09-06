@@ -18,7 +18,7 @@ func _physics_process(delta) -> void:
 	adavio_melee()
 	adavio_magic()
 	adavio_special()
-	adavio_run()
+	adavio_base()
 #
 #Custom Methods
 func adavio_roll() -> void:
@@ -89,7 +89,9 @@ func adavio_special() -> void:
 				if _check == false:
 					player.violet_special = player.violet_special - 75
 					player.special_gui.update()
+					player.is_invincible = true
 					special_use = true
+					#is_invincible = true
 					animations.play("anim_adavio_special_exit")
 					if autoload_game.audio_mute == false:
 						special.special_snd.play()
@@ -102,6 +104,7 @@ func adavio_special() -> void:
 					await animations.animation_finished
 					player.is_attack = false
 					player.is_special = false
+					player.is_invincible = false
 					is_attack = false
 					is_special = false
 					special_start = false
@@ -110,7 +113,7 @@ func adavio_special() -> void:
 					special.special_use = false
 					special.special_collision.disable()
 #
-func adavio_run() -> void:
+func adavio_base() -> void:
 	#CM: _physics_process
 	if is_melee == true: return
 	if is_roll == true: return

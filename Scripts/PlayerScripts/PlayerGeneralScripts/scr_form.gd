@@ -98,15 +98,16 @@ func form_special_input() -> void:
 			is_special = true
 #
 func form_hit() -> void:
-	sprite.apply_intensity_fade(1.0,0.0,0.25)
-	sprite._set("is_hurt",true)
-	hurt_timer.start()
-	await hurt_timer.timeout
-	sprite._set("is_hurt",false)
-	player.is_hurt = false
-	player.is_knockback = false
-	is_hurt = false
-	is_knockback = false
+	if player.is_invincible == false:
+		sprite.apply_intensity_fade(1.0,0.0,0.25)
+		sprite._set("is_hurt",true)
+		hurt_timer.start()
+		await hurt_timer.timeout
+		sprite._set("is_hurt",false)
+		player.is_hurt = false
+		player.is_knockback = false
+		is_hurt = false
+		is_knockback = false
 #
 func form_status_reset() -> void:
 	is_invincible = false

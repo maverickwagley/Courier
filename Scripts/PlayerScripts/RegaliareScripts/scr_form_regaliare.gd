@@ -19,7 +19,7 @@ func _physics_process(delta) -> void:
 	regaliare_melee()
 	regaliare_magic()
 	regaliare_special()
-	regaliare_run()
+	regaliare_base()
 	
 #
 #Custom Methods
@@ -66,13 +66,14 @@ func regaliare_special() -> void:
 		special.player = player
 		animations.play("anim_regaliare_special_" + last_dir)
 		await animations.animation_finished
+		player.inv_timer.set_wait_time(1)
 		player.is_attack = false
 		player.is_special = false
 		is_attack = false
 		is_special = false
 		special.is_special = false
 #
-func regaliare_run() -> void:
+func regaliare_base() -> void:
 	#CM: _physics_process
 	if is_roll == true: return
 	

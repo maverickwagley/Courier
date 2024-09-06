@@ -581,6 +581,17 @@ collision_mask = 273
 motion_mode = 1
 script = ExtResource("1_xyui8")
 
+[node name="StatusController" type="Node2D" parent="."]
+
+[node name="DeadTimer" type="Timer" parent="StatusController"]
+wait_time = 5.0
+one_shot = true
+
+[node name="InvincibleTimer" type="Timer" parent="StatusController"]
+
+[node name="FormSwapTimer" type="Timer" parent="StatusController"]
+wait_time = 0.5
+
 [node name="ShadowSprite" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(0, -1)
@@ -684,16 +695,9 @@ offset_bottom = 167.0
 text = "DEAD"
 label_settings = SubResource("LabelSettings_l41wf")
 
-[node name="DeadTimer" type="Timer" parent="PlayerHUD"]
-wait_time = 5.0
-one_shot = true
-
 [node name="FormSwapMenu" parent="." instance=ExtResource("7_yggh5")]
 process_mode = 3
 visible = false
-
-[node name="FormSwapTimer" type="Timer" parent="FormSwapMenu"]
-wait_time = 0.5
 
 [node name="PauseMenu" parent="." instance=ExtResource("18_crtwj")]
 visible = false
@@ -711,4 +715,5 @@ volume_db = -25.0
 stream = ExtResource("19_p0sud")
 volume_db = -5.0
 
+[connection signal="timeout" from="StatusController/InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -1,20 +1,23 @@
 #Player
 #
 extends CharacterBody2D
-#Prep Nodes
-@onready var camera: Camera2D = $Camera2D
-@onready var hurt_box: Area2D = $Hitbox
+#GUI and Display
 @onready var player_hud: CanvasLayer = $PlayerHUD
 @onready var health_gui: TextureProgressBar = $PlayerHUD/HealthBar
 @onready var stamina_gui: TextureProgressBar = $PlayerHUD/StaminaBar
 @onready var primary_gui: TextureProgressBar = $PlayerHUD/PrimaryBar
 @onready var special_gui: TextureProgressBar = $PlayerHUD/SpecialBar
 @onready var dead_gui: Label = $PlayerHUD/DeadLabel
-@onready var dead_timer: Timer = $PlayerHUD/DeadTimer
 @onready var form_controller: CanvasLayer = $FormSwapMenu
-@onready var form_timer: Timer = $FormSwapMenu/FormSwapTimer
 @onready var pause_controller: CanvasLayer = $PauseMenu
 @onready var cursor: Node2D = $Cursor/CursorManager
+#Status
+@onready var dead_timer: Timer = $StatusController/DeadTimer
+@onready var form_timer: Timer = $StatusController/FormSwapTimer
+@onready var inv_timer: Timer = $StatusController/InvincibleTimer
+#Other
+@onready var camera: Camera2D = $Camera2D
+@onready var hurt_box: Area2D = $Hitbox
 @onready var damage_dealt_audio: AudioStreamPlayer = $DamageSFX
 @onready var hurt_audio: AudioStreamPlayer = $HurtSFX
 #Room
@@ -31,8 +34,10 @@ var entity_type:int = 0
 var hp: int = 200
 var max_hp: int = 200
 var stamina: int = 200
-var speed: int = 65
 var max_stamina: int = 200
+var shield: int = 0
+var max_shied: int = 0
+var speed: int = 65
 var yellow_primary: int = 200
 var violet_primary: int = 200
 var green_primary: int = 200
@@ -54,6 +59,7 @@ var red_max: int = 200
 var current_max: int = 200
 #Status
 var is_invincible: bool = false
+var is_shielded: bool = false
 var is_swap: bool = false
 var is_hurt: bool = false
 var is_dead: bool = false
@@ -152,18 +158,19 @@ func roll_collision() -> void:
 #
 func hurt_by_enemy(area) -> void:
 	#CM: _on_hit_area_area_entered
-	apply_damage(area.damage)
-	if autoload_game.audio_mute == false:
-		hurt_audio.play()
-	camera.is_shaking = true
-	camera.apply_shake(3)
-	is_hurt = true
-	form.is_hurt = true
-	if area.inflict_kb == true:
-		if is_knockback == false:
-			is_knockback = true
-			form.is_knockback = true
-			autoload_entity.knockback(self,area.global_position,area.kb_power,5)
+	if is_invincible == false:
+		apply_damage(area.damage)
+		if autoload_game.audio_mute == false:
+			hurt_audio.play()
+		camera.is_shaking = true
+		camera.apply_shake(3)
+		is_hurt = true
+		form.is_hurt = true
+		if area.inflict_kb == true:
+			if is_knockback == false:
+				is_knockback = true
+				form.is_knockback = true
+				autoload_entity.knockback(self,area.global_position,area.kb_power,5)
 #
 func apply_damage(_damage) -> void:
 	#CM: hurt_by_enemy
@@ -239,8 +246,13 @@ func form_update(_formNum,_formType) -> void:
 func _on_hitbox_area_entered(area) -> void:
 	if is_roll == true: return
 	if area.name == "Hitbox": return
-	if is_hurt == false:
-		if area.targets_hit.find(self) ==  -1:
-			area.targets_hit.append(self)
-		hurt_by_enemy(area)
-		form.form_hit()
+	if is_dead == false:
+		if is_hurt == false:
+			if area.targets_hit.find(self) ==  -1:
+				area.targets_hit.append(self)
+			hurt_by_enemy(area)
+			form.form_hit()
+#
+func _on_invincible_timer_timeout():
+	is_invincible = false
+	form.is_invincible = false
