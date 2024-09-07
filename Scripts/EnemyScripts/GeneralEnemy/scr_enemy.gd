@@ -46,6 +46,7 @@ var entity_type:int = 1
 #Status
 var objective_num: int = 0
 var is_hurt: bool = false
+var is_invincible: bool = false
 var is_attack: bool = false
 var is_attack1: bool = false
 var is_attack2: bool = false
@@ -168,6 +169,8 @@ func enemy_drop_essence(_id,_min,_max) -> void:
 	current_energy.item_id = _id
 	current_energy.amount = randi_range(_min,_max)
 	current_energy.classed = true
+#
+#Signal Methods
 #
 func _on_attack1_detect_area_entered(area) -> void:
 	if attack1_targets.find(area) == -1:

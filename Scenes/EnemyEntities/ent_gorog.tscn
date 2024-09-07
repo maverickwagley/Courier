@@ -13,8 +13,8 @@
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy_sprite.gd" id="7_mxkmc"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_gorog_slash.gd" id="8_33vkm"]
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="9_bk87b"]
-[ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_gorog_knifethrow.gd" id="10_7oyfl"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="11_jsfp2"]
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_gorog_shieldbash.gd" id="14_ixgrf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bytxk"]
 resource_local_to_scene = true
@@ -942,7 +942,7 @@ position = Vector2(6, -4)
 rotation = 1.5708
 collision_layer = 64
 collision_mask = 2
-script = ExtResource("10_7oyfl")
+script = ExtResource("14_ixgrf")
 
 [node name="Attack2Timer" type="Timer" parent="Attack2Area"]
 one_shot = true

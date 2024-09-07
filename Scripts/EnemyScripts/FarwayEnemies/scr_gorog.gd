@@ -63,6 +63,7 @@ func gorog_slash_state() -> void:
 			attack1.targets_hit.clear()
 			if attack1_targets.size() > 0:
 				last_dir = enemy_attack_dir(attack1_targets)
+				attack1.attack_aud_timer.start()
 				animations.play("anim_slash_f_" + last_dir)
 				await animations.animation_finished
 				attack1.targets_hit.clear()
@@ -120,7 +121,7 @@ func gorog_shield_state() -> void:
 			last_dir = enemy_attack_dir(attack2_targets)
 			velocity = global_position.direction_to(target_pos) * 110
 			#attack2.attack_timer.start()
-			attack2.attack_aud_timer.start()
+			attack2.attack_audio.play()
 			animations.play("anim_shield_bash_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_idle_" + last_dir)
