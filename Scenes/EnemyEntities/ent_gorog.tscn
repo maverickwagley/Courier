@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://xn6nhv4kc0lf"]
+[gd_scene load_steps=53 format=3 uid="uid://xn6nhv4kc0lf"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_gorog.gd" id="1_bfsqs"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_ut5r2"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="9_bk87b"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="11_jsfp2"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_gorog_shieldbash.gd" id="14_ixgrf"]
+[ext_resource type="AudioStream" uid="uid://daqsc0bgj2ni2" path="res://Audio/GameAudio/snd_hit_shielded.wav" id="16_dj84p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bytxk"]
 resource_local_to_scene = true
@@ -975,6 +976,10 @@ shape = SubResource("RectangleShape2D_eiyot")
 path_desired_distance = 8.0
 target_desired_distance = 8.0
 path_postprocessing = 1
+avoidance_enabled = true
+radius = 8.0
+avoidance_layers = 16
+avoidance_mask = 16
 
 [node name="RecalculateTimer" type="Timer" parent="Navigation"]
 wait_time = 0.25
@@ -1008,6 +1013,10 @@ shape = SubResource("CircleShape2D_em0np")
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_jsfp2")
+volume_db = -5.0
+
+[node name="ShieldedSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_dj84p")
 volume_db = -5.0
 
 [connection signal="timeout" from="Attack1Area/Attack1AudioTimer" to="." method="_on_attack1_audio_timer_timeout"]

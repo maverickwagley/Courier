@@ -23,6 +23,7 @@ class_name Enemy
 #Standard Basics
 @onready var nav_agent: NavigationAgent2D
 @onready var hurt_audio: AudioStreamPlayer
+@onready var shielded_audio: AudioStreamPlayer
 @onready var target_node: Node2D
 @onready var sprite: Sprite2D
 @onready var animations: AnimationPlayer
@@ -222,6 +223,8 @@ func _on_hitbox_area_entered(area) -> void:
 	if is_shielded == true:
 		#print_debug("Shielded")
 		sprite._set("is_shielded",true)
+		if autoload_game.audio_mute == false:
+			shielded_audio.play()
 	else:
 		sprite._set("is_hurt",true)
 	sprite.apply_intensity_fade(1.0,0.0,0.25)

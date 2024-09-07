@@ -37,6 +37,7 @@ func gorog_ready() -> void:
 	attack2_box = $Attack2Area/Attack2Damagebox
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
+	shielded_audio = $ShieldedSFX
 	#Set Stats
 	hp = 140
 	max_hp = 140
