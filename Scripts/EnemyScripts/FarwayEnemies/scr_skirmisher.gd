@@ -9,7 +9,7 @@ func _ready() -> void:
 	call_deferred("enemy_nav_calc")
 #
 func _physics_process(_delta) -> void:
-	skirmisher_slash_state()
+	#skirmisher_slash_state()
 	enemy_hurt()
 	enemy_navigation()
 	skirmisher_animation()
@@ -38,6 +38,7 @@ func skirmisher_ready() -> void:
 	max_shield = 0
 	shieldbar.visible = false
 	speed = 45
+	nav_agent.max_speed = speed
 	knockback_power= 150
 #
 func skirmisher_slash_state() -> void:
@@ -54,6 +55,7 @@ func skirmisher_slash_state() -> void:
 			await animations.animation_finished
 			animations.play("anim_skirmisher_idle_" + last_dir)
 			last_dir = enemy_attack_dir(attack1_targets)
+			enemy_nav_calc()
 			attack1.targets_hit.clear()
 			attack1.is_attack = false
 			is_attack = false

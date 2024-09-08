@@ -2,7 +2,7 @@
 #
 extends Enemy
 #
-@onready var arrow_scene = preload("res://Scenes/EnemyEntities/ent_projectile_hunter_arrow.tscn")
+#@onready var arrow_scene = preload("res://Scenes/EnemyEntities/ent_projectile_hunter_arrow.tscn")
 #@onready var shieldBash_smear = $Attack2Area/Attack2Sprite
 #
 #Built-In Methods
@@ -67,12 +67,15 @@ func gorog_slash_state() -> void:
 				attack1.attack_aud_timer.start()
 				animations.play("anim_slash_f_" + last_dir)
 				await animations.animation_finished
+				animations.play("anim_idle_" + last_dir)
 				attack1.targets_hit.clear()
+				enemy_nav_calc()
 				attack1.is_attack = false
-				is_attack = false
+				is_attack = false 
 				is_attack1 = false
 			else:
 				animations.play("anim_idle_" + last_dir)
+				enemy_nav_calc()
 				attack1.is_attack = false
 				is_attack = false
 				is_attack1 = false
@@ -127,61 +130,12 @@ func gorog_shield_state() -> void:
 			animations.play("anim_shield_bash_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_idle_" + last_dir)
+			enemy_nav_calc()
 			attack2_box.disabled = true
 			attack2.targets_hit.clear()
 			attack2.is_attack = false
 			is_attack = false
 			is_attack2 = false
-#
-func gorog_shield_bash_state() -> void:
-	pass
-#
-func gorog_hurt_state() -> void:
-	if is_hurt == true:
-		if hurt_areas.size() > 0:
-			for i in hurt_areas.size():
-				var _damageArea = hurt_areas[i]
-				if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
-					enemy_apply_damage(_damageArea,4,10)
-			if hurt_timer.get_time_left() <= 0:
-				var _cryChance = randi_range(0,100)
-				if _cryChance >= 50:
-					if autoload_game.audio_mute == false:
-						hurt_audio.play()
-				if autoload_game.audio_mute == false:
-					autoload_player.player.damage_dealt_audio.play()
-				hurt_timer.start()
-#
-func gorog_navigation() -> void:
-	move_and_slide()
-	enemy_aggro_drop()
-	#
-	if is_knockback == true:
-		enemy_knockback_stack()
-		t_knockback = t_knockback - 1
-		if t_knockback < 1:
-			velocity.x = 0
-			velocity.y = 0
-			is_knockback = false
-		return
-	if is_attack1 == true: return
-	if is_attack2 == true: return
-	if nav_agent.is_navigation_finished():
-		if is_aggro == true:
-			velocity.x = 0
-			velocity.y = 0
-			return
-		else:
-			objective_num = objective_num + 1
-			if objective_num > 9:
-				objective_num = 0
-			for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
-				if spawn.name == str(objective_num):
-					nav_agent.target_position  = spawn.global_position
-		
-	var agent_current_pos = global_position
-	var next_path_position = nav_agent.get_next_path_position()
-	velocity = agent_current_pos.direction_to(next_path_position) * speed
 #
 func gorog_animation() -> void:
 	if is_attack1 == true: return

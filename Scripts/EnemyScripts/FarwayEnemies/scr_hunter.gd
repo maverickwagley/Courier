@@ -59,6 +59,7 @@ func hunter_slash_state() -> void:
 			await animations.animation_finished
 			animations.play("anim_idle_" + last_dir)
 			last_dir = enemy_attack_dir(attack1_targets)
+			enemy_nav_calc()
 			attack1.targets_hit.clear()
 			attack1.is_attack = false
 			is_attack = false
@@ -81,6 +82,7 @@ func hunter_bowshot_state() -> void:
 			animations.play("anim_bowshot_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_idle_" + last_dir)
+			enemy_nav_calc()
 			#enemy_reposition()
 			attack2.is_attack = false
 			is_attack = false

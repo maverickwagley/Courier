@@ -77,7 +77,7 @@ func enemy_nav_calc() -> void:
 	await get_tree().physics_frame
 	
 	if target_node:
-		print_debug(target_node.name)
+		#print_debug(target_node.name)
 		nav_agent.target_position = target_node.global_position
 	else:
 		for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
@@ -178,14 +178,9 @@ func enemy_navigation() -> void:
 		return
 	if is_attack == true: 
 		return
-		
-	var agent_current_pos = global_position
-	var next_path_position = nav_agent.get_next_path_position()
-	#velocity = agent_current_pos.direction_to(next_path_position) * speed
-	var intended_vel = agent_current_pos.direction_to(next_path_position) * speed
-	nav_agent.set_velocity(intended_vel)
-	
+	#print_debug("running nav")
 	if nav_agent.is_navigation_finished():
+		print_debug("nav finished")
 		if is_aggro == true:
 			velocity.x = 0
 			velocity.y = 0
@@ -197,6 +192,12 @@ func enemy_navigation() -> void:
 			for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
 				if spawn.name == str(objective_num):
 					nav_agent.target_position  = spawn.global_position
+	
+	var agent_current_pos = global_position
+	var next_path_position = nav_agent.get_next_path_position()
+	#velocity = agent_current_pos.direction_to(next_path_position) * speed
+	var intended_vel = agent_current_pos.direction_to(next_path_position) * speed
+	nav_agent.set_velocity(intended_vel)
 #
 func enemy_knockback_stack() -> void:
 	for i in get_slide_collision_count():
@@ -257,17 +258,17 @@ func _on_attack2_detect_area_exited(area):
 #
 func _on_recalculate_timer_timeout() -> void:
 	enemy_nav_calc()
+	var agent_current_pos = global_position
+	var next_path_position = nav_agent.get_next_path_position()
+	#velocity = agent_current_pos.direction_to(next_path_position) * speed
+	var intended_vel = agent_current_pos.direction_to(next_path_position) * speed
+	nav_agent.set_velocity(intended_vel)
 #
 func _on_aggro_detect_area_entered(area) -> void:
 	is_aggro = true
 	t_aggro = 300
 	target_node = area.owner
 	#print_debug(target_node)
-#
-func _on_aggro_drop_area_exited(area) -> void:
-	pass
-	#is_aggro = false
-	#enemy_nav_setup()
 #
 func _on_hitbox_area_entered(area) -> void:
 	#if area == $MeleeWeapon: return
@@ -298,5 +299,7 @@ func _on_attack1_audio_timer_timeout() -> void:
 func _on_navigation_velocity_computed(safe_velocity):
 	if is_attack == true: return
 	if is_knockback == true: return
+	#if nav_agent.is_navigation_finished(): return
+	#print_debug("velocity set")
 	velocity = safe_velocity
 	#move_and_slide()
