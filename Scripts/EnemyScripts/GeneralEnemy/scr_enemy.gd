@@ -73,14 +73,15 @@ var magic_dir = "down"
 #
 #Custom Methods
 #
-func enemy_nav_setup() -> void:
+func enemy_nav_calc() -> void:
 	await get_tree().physics_frame
 	
 	if target_node:
+		print_debug(target_node.name)
 		nav_agent.target_position = target_node.global_position
 	else:
 		for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
-			if spawn.name == str(0):
+			if spawn.name == str(objective_num):
 				nav_agent.target_position  = spawn.global_position
 #
 func enemy_target_set(_trgt) -> void:
@@ -89,10 +90,11 @@ func enemy_target_set(_trgt) -> void:
 	target_node = _trgt
 #
 func enemy_reposition() -> void:
-	var _newX = global_position.x + randi_range(-16,16)
-	var _newY = global_position.y + randi_range(-16,16)
-	nav_agent.target_position.x = _newX
-	nav_agent.target_position.y = _newY
+	pass
+	#var _newX = global_position.x + randi_range(-16,16)
+	#var _newY = global_position.y + randi_range(-16,16)
+	#nav_agent.target_position.x = _newX
+	#nav_agent.target_position.y = _newY
 #
 func enemy_attack_dir(_array: Array):
 	if _array.size() >= 1:
@@ -121,6 +123,22 @@ func enemy_attack_dir(_array: Array):
 func enemy_aggro_drop() -> void:
 	pass
 #
+func enemy_hurt() -> void:
+	if is_hurt == true:
+		if hurt_areas.size() > 0:
+			for i in hurt_areas.size():
+				var _damageArea = hurt_areas[i]
+				if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
+					enemy_apply_damage(_damageArea,3,7)
+			if hurt_timer.get_time_left() <= 0:
+				var _cryChance = randi_range(0,100)
+				if _cryChance >= 50:
+					if autoload_game.audio_mute == false:
+						hurt_audio.play()
+				if autoload_game.audio_mute == false:
+					autoload_player.player.damage_dealt_audio.play()
+				hurt_timer.start()
+#
 func enemy_apply_damage(area,_essMin,_essMax) -> void:
 	if is_shielded == false:
 		hp = hp - area.damage
@@ -146,10 +164,45 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 	shieldbar.update()
 	healthbar.update()
 #
+func enemy_navigation() -> void:
+	#enemy_aggro_drop()
+	move_and_slide()
+	#
+	if is_knockback == true:
+		enemy_knockback_stack()
+		t_knockback = t_knockback - 1
+		if t_knockback < 1:
+			velocity.x = 0
+			velocity.y = 0
+			is_knockback = false
+		return
+	if is_attack == true: 
+		return
+		
+	var agent_current_pos = global_position
+	var next_path_position = nav_agent.get_next_path_position()
+	#velocity = agent_current_pos.direction_to(next_path_position) * speed
+	var intended_vel = agent_current_pos.direction_to(next_path_position) * speed
+	nav_agent.set_velocity(intended_vel)
+	
+	if nav_agent.is_navigation_finished():
+		if is_aggro == true:
+			velocity.x = 0
+			velocity.y = 0
+			return
+		else:
+			objective_num = objective_num + 1
+			if objective_num > 9:
+				objective_num = 0
+			for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
+				if spawn.name == str(objective_num):
+					nav_agent.target_position  = spawn.global_position
+#
 func enemy_knockback_stack() -> void:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
+		#if collider != null:
 		if collider.is_class("CharacterBody2D"):
 			if collider.entity_type == 1:
 				if collider.is_shielded == false:
@@ -203,8 +256,7 @@ func _on_attack2_detect_area_exited(area):
 		attack2_targets.pop_at(_targetInd)
 #
 func _on_recalculate_timer_timeout() -> void:
-	if target_node:
-		nav_agent.target_position = target_node.global_position
+	enemy_nav_calc()
 #
 func _on_aggro_detect_area_entered(area) -> void:
 	is_aggro = true
@@ -213,7 +265,8 @@ func _on_aggro_detect_area_entered(area) -> void:
 	#print_debug(target_node)
 #
 func _on_aggro_drop_area_exited(area) -> void:
-	is_aggro = false
+	pass
+	#is_aggro = false
 	#enemy_nav_setup()
 #
 func _on_hitbox_area_entered(area) -> void:
@@ -241,3 +294,9 @@ func _on_hitbox_area_exited(area) -> void:
 func _on_attack1_audio_timer_timeout() -> void:
 	if autoload_game.audio_mute == false:
 		attack1.attack_audio.play()
+#
+func _on_navigation_velocity_computed(safe_velocity):
+	if is_attack == true: return
+	if is_knockback == true: return
+	velocity = safe_velocity
+	#move_and_slide()

@@ -9,13 +9,13 @@ extends Enemy
 #
 func _ready() -> void:
 	gorog_ready()
-	call_deferred("enemy_nav_setup")
+	call_deferred("enemy_nav_calc")
 #
 func _physics_process(_delta) -> void:
 	gorog_slash_state()
 	gorog_shield_state()
-	gorog_hurt_state()
-	gorog_navigation()
+	enemy_hurt()
+	enemy_navigation()
 	gorog_animation()
 #
 #Custom Methods
@@ -116,6 +116,7 @@ func gorog_shield_state() -> void:
 		
 		if t_atk2 <= 0 && attack2_targets.size() > 0:
 			t_atk2 = 480
+			is_attack = true
 			is_attack2 = true
 			attack2_box.disabled = false
 			target_pos = attack2_targets[0].global_position

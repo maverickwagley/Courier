@@ -8,13 +8,13 @@ extends Enemy
 #
 func _ready() -> void:
 	hunter_ready()
-	call_deferred("enemy_nav_setup")
+	call_deferred("enemy_nav_calc")
 #
 func _physics_process(_delta) -> void:
 	hunter_slash_state()
 	hunter_bowshot_state()
-	hunter_hurt_state()
-	hunter_navigation()
+	enemy_hurt()
+	enemy_navigation()
 	hunter_animation()
 #
 #Custom Methods
@@ -70,6 +70,7 @@ func hunter_bowshot_state() -> void:
 	if is_attack1 == false:
 		if t_atk2 <= 0 && attack2_targets.size() > 0:
 			t_atk2 = 180
+			is_attack = true
 			is_attack2 = true
 			last_dir = enemy_attack_dir(attack2_targets)
 			velocity.x = 0
@@ -82,55 +83,8 @@ func hunter_bowshot_state() -> void:
 			animations.play("anim_idle_" + last_dir)
 			#enemy_reposition()
 			attack2.is_attack = false
-			#is_attack = false
+			is_attack = false
 			is_attack2 = false
-#
-func hunter_hurt_state() -> void:
-	if is_hurt == true:
-		if hurt_areas.size() > 0:
-			for i in hurt_areas.size():
-				var _damageArea = hurt_areas[i]
-				if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
-					enemy_apply_damage(_damageArea,4,10)
-			if hurt_timer.get_time_left() <= 0:
-				var _cryChance = randi_range(0,100)
-				if _cryChance >= 50:
-					if autoload_game.audio_mute == false:
-						hurt_audio.play()
-				if autoload_game.audio_mute == false:
-					autoload_player.player.damage_dealt_audio.play()
-				hurt_timer.start()
-#
-func hunter_navigation() -> void:
-	move_and_slide()
-	enemy_aggro_drop()
-	#
-	if is_knockback == true:
-		enemy_knockback_stack()
-		t_knockback = t_knockback - 1
-		if t_knockback < 1:
-			velocity.x = 0
-			velocity.y = 0
-			is_knockback = false
-		return
-	if is_attack1 == true: return
-	if is_attack2 == true: return
-	if nav_agent.is_navigation_finished():
-		if is_aggro == true:
-			velocity.x = 0
-			velocity.y = 0
-			return
-		else:
-			objective_num = objective_num + 1
-			if objective_num > 9:
-				objective_num = 0
-			for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
-				if spawn.name == str(objective_num):
-					nav_agent.target_position  = spawn.global_position
-		
-	var agent_current_pos = global_position
-	var next_path_position = nav_agent.get_next_path_position()
-	velocity = agent_current_pos.direction_to(next_path_position) * speed
 #
 func hunter_animation() -> void:
 	if is_attack1 == true: return

@@ -652,6 +652,10 @@ shape = SubResource("RectangleShape2D_eiyot")
 path_desired_distance = 8.0
 target_desired_distance = 8.0
 path_postprocessing = 1
+avoidance_enabled = true
+radius = 8.0
+max_speed = 50.0
+debug_enabled = true
 
 [node name="RecalculateTimer" type="Timer" parent="Navigation"]
 wait_time = 0.25
@@ -679,6 +683,7 @@ volume_db = -5.0
 [connection signal="timeout" from="Attack1Area/Attack1AudioTimer" to="." method="_on_attack1_audio_timer_timeout"]
 [connection signal="area_entered" from="HitArea" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="HitArea" to="." method="_on_hitbox_area_exited"]
+[connection signal="velocity_computed" from="Navigation/NavigationAgent2D" to="." method="_on_navigation_velocity_computed"]
 [connection signal="timeout" from="Navigation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]
 [connection signal="area_entered" from="Navigation/Attack1Detect" to="." method="_on_attack1_detect_area_entered"]
 [connection signal="area_exited" from="Navigation/Attack1Detect" to="." method="_on_attack1_detect_area_exited"]
