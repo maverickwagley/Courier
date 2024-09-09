@@ -249,6 +249,7 @@ func _on_hitbox_area_entered(area) -> void:
 	if is_dead == false:
 		if is_hurt == false:
 			if area.targets_hit.find(self) ==  -1:
+				#print_debug("Added to hit list of " + str(area.name))
 				area.targets_hit.append(self)
 			hurt_by_enemy(area)
 			form.form_hit()

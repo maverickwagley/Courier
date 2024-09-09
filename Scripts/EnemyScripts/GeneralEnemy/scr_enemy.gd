@@ -165,22 +165,16 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 	healthbar.update()
 #
 func enemy_navigation() -> void:
-	#enemy_aggro_drop()
-	move_and_slide()
-	#
 	if is_knockback == true:
-		enemy_knockback_stack()
+		#enemy_knockback_stack()
 		t_knockback = t_knockback - 1
 		if t_knockback < 1:
 			velocity.x = 0
 			velocity.y = 0
 			is_knockback = false
 		return
-	if is_attack == true: 
-		return
-	#print_debug("running nav")
 	if nav_agent.is_navigation_finished():
-		print_debug("nav finished")
+		#print_debug("nav finished")
 		if is_aggro == true:
 			velocity.x = 0
 			velocity.y = 0
@@ -192,11 +186,11 @@ func enemy_navigation() -> void:
 			for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
 				if spawn.name == str(objective_num):
 					nav_agent.target_position  = spawn.global_position
+	#if is_attack == true: 
+		#return
 	
-	var agent_current_pos = global_position
-	var next_path_position = nav_agent.get_next_path_position()
-	#velocity = agent_current_pos.direction_to(next_path_position) * speed
-	var intended_vel = agent_current_pos.direction_to(next_path_position) * speed
+	var axis = to_local(nav_agent.get_next_path_position()).normalized()
+	var intended_vel = axis * speed
 	nav_agent.set_velocity(intended_vel)
 #
 func enemy_knockback_stack() -> void:
@@ -258,11 +252,11 @@ func _on_attack2_detect_area_exited(area):
 #
 func _on_recalculate_timer_timeout() -> void:
 	enemy_nav_calc()
-	var agent_current_pos = global_position
-	var next_path_position = nav_agent.get_next_path_position()
-	#velocity = agent_current_pos.direction_to(next_path_position) * speed
-	var intended_vel = agent_current_pos.direction_to(next_path_position) * speed
-	nav_agent.set_velocity(intended_vel)
+	#var agent_current_pos = global_position
+	#var next_path_position = nav_agent.get_next_path_position()
+	##velocity = agent_current_pos.direction_to(next_path_position) * speed
+	#var intended_vel = agent_current_pos.direction_to(next_path_position) * speed
+	#nav_agent.set_velocity(intended_vel)
 #
 func _on_aggro_detect_area_entered(area) -> void:
 	is_aggro = true
@@ -284,7 +278,7 @@ func _on_hitbox_area_entered(area) -> void:
 	sprite.apply_intensity_fade(1.0,0.0,0.25)
 	if hurt_areas.find(area) == -1:
 		hurt_areas.append(area)
-#
+#d
 func _on_hitbox_area_exited(area) -> void:
 	var _targetInd = hurt_areas.find(area)
 	if _targetInd != -1:
@@ -297,9 +291,9 @@ func _on_attack1_audio_timer_timeout() -> void:
 		attack1.attack_audio.play()
 #
 func _on_navigation_velocity_computed(safe_velocity):
-	if is_attack == true: return
+	#if is_attack == true: return
 	if is_knockback == true: return
 	#if nav_agent.is_navigation_finished(): return
-	#print_debug("velocity set")
+	#print_debug("velocity set:" + str(velocity))
 	velocity = safe_velocity
-	#move_and_slide()
+	move_and_slide()
