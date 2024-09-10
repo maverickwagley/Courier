@@ -55,15 +55,22 @@ var is_attack3: bool = false
 var is_knockback: bool = false
 var is_shielded: bool = false
 var is_aggro: bool = false
+var is_stopped: bool = false
 var is_dead: bool = false
 #Timers
 var t_move: int = randi_range(60,600)
 var t_knockback: int = 0
 var t_shield: int = 0
 var t_aggro: int = 0
-var t_atk1: int = 0
-var t_atk2: int = 0
-var t_atk3: int = 0
+var t_atk1C: int = 0 #Cooldown
+var t_atk1D: int = 0 #Delay
+var t_atk1S: int = 0 #Special
+var t_atk2C: int = 0
+var t_atk2D: int = 0
+var t_atk2S: int = 0
+var t_atk3C: int = 0
+var t_atk3D: int = 0
+var t_atk3S: int = 0
 #Direction
 var move_dir: Vector2
 var target_pos: Vector2
@@ -72,6 +79,26 @@ var last_dir = "down"
 var magic_dir = "down"
 #
 #Custom Methods
+#
+func enemy_timers(delta: float) -> void:
+	if t_atk1C > 0:
+		t_atk1C = t_atk1C - delta
+	if t_atk1D > 0:
+		t_atk1D = t_atk1D - delta
+	if t_atk1S > 0:
+		t_atk1S = t_atk1S - delta
+	if t_atk2C > 0:
+		t_atk2C = t_atk2C - delta
+	if t_atk2D > 0:
+		t_atk2D = t_atk2D - delta
+	if t_atk2S > 0:
+		t_atk2S = t_atk2S - delta
+	if t_atk3C > 0:
+		t_atk3C = t_atk3C - delta
+	if t_atk3D > 0:
+		t_atk3D = t_atk3D - delta
+	if t_atk3S > 0:
+		t_atk3S = t_atk3S - delta
 #
 func enemy_nav_calc() -> void:
 	await get_tree().physics_frame
@@ -278,7 +305,7 @@ func _on_hitbox_area_entered(area) -> void:
 	sprite.apply_intensity_fade(1.0,0.0,0.25)
 	if hurt_areas.find(area) == -1:
 		hurt_areas.append(area)
-#d
+#
 func _on_hitbox_area_exited(area) -> void:
 	var _targetInd = hurt_areas.find(area)
 	if _targetInd != -1:
@@ -291,7 +318,7 @@ func _on_attack1_audio_timer_timeout() -> void:
 		attack1.attack_audio.play()
 #
 func _on_navigation_velocity_computed(safe_velocity):
-	#if is_attack == true: return
+	if is_stopped == true: return
 	if is_knockback == true: return
 	#if nav_agent.is_navigation_finished(): return
 	#print_debug("velocity set:" + str(velocity))

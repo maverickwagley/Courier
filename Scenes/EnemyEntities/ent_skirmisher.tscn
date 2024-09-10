@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b87153mqpcmem"]
+[gd_scene load_steps=34 format=3 uid="uid://b87153mqpcmem"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher.gd" id="1_3bh3k"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_dadce"]
@@ -495,43 +495,6 @@ _data = {
 "anim_skirmisher_slash_up": SubResource("Animation_ogq4y")
 }
 
-[sub_resource type="Animation" id="Animation_byxpr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_3l53d"]
-resource_name = "anim_hurt_blink"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.843137, 0.0235294, 0.145098, 0.498039), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2x4x"]
-_data = {
-"RESET": SubResource("Animation_byxpr"),
-"anim_hurt_blink": SubResource("Animation_3l53d")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6p7tm"]
 size = Vector2(7, 6)
 
@@ -605,11 +568,6 @@ libraries = {
 "": SubResource("AnimationLibrary_66d24")
 }
 
-[node name="Effects" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_k2x4x")
-}
-
 [node name="Movebox" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(-0.5, -3)
@@ -621,14 +579,6 @@ rotation = 1.5708
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("8_ecx3o")
-
-[node name="Attack1Timer" type="Timer" parent="Attack1Area"]
-wait_time = 1.5
-one_shot = true
-
-[node name="Attack1Windup" type="Timer" parent="Attack1Area"]
-wait_time = 0.3
-one_shot = true
 
 [node name="Attack1SFX" type="AudioStreamPlayer" parent="Attack1Area"]
 stream = ExtResource("8_cahhk")

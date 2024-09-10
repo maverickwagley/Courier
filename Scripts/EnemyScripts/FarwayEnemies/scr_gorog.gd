@@ -11,11 +11,16 @@ func _ready() -> void:
 	gorog_ready()
 	call_deferred("enemy_nav_calc")
 #
-func _physics_process(_delta) -> void:
+func _physics_process(delta) -> void:
+	#Generic Status
+	enemy_timers(delta)
+	enemy_hurt()
+	#Custom Attacks
 	gorog_slash_state()
 	gorog_shield_state()
-	enemy_hurt()
+	#Generic Naviation
 	enemy_navigation()
+	#Custom Animation
 	gorog_animation()
 #
 #Custom Methods
@@ -31,7 +36,6 @@ func gorog_ready() -> void:
 	hurt_box = $HitArea/Hitbox
 	attack1 = $Attack1Area
 	attack1_box = $Attack1Area/Attack1Damagebox
-	attack1_timer = $Attack1Area/Attack1Timer
 	attack1_detect = $Navigation/Attack1Detect/Attack1DetectCircle
 	attack2 = $Attack2Area
 	attack2_box = $Attack2Area/Attack2Damagebox
@@ -47,42 +51,50 @@ func gorog_ready() -> void:
 	max_shield = 100
 #
 func gorog_slash_state() -> void:
-	if t_atk1 > 0:
-		t_atk1 = t_atk1 - 1
-	if is_attack2 == false:
-		if t_atk1 <= 0 && attack1_targets.size() > 0:
-			is_attack = true
-			is_attack1 = true
-			attack1.is_attack = true
-			is_shielded = false
-			t_atk1 = 90
-			velocity.x = 0
-			velocity.y = 0
-			attack1.attack_aud_timer.start()
-			animations.play("anim_slash_b_" + last_dir)
-			await animations.animation_finished
+	if is_shielded == false: return
+	if is_attack1 == true && t_atk1D <= 0:
+		t_atk1D = t_atk1C
+		attack1.targets_hit.clear()
+		attack1.damagebox.disabled = false
+	if t_atk1C <= 0 && attack1_targets.size() > 0:
+		attack1.is_attack = true
+		is_attack1 = true
+		is_attack = true
+		is_stopped = true
+		t_atk1C = 90
+		t_atk1D = 12
+		velocity.x = 0
+		velocity.y = 0
+		attack1.attack_aud_timer.start()
+		last_dir = enemy_attack_dir(attack1_targets)
+		animations.play("anim_slash_b_" + last_dir)
+		await animations.animation_finished
+		if attack1_targets.size() > 0:
+			t_atk1C = 90
 			attack1.targets_hit.clear()
-			if attack1_targets.size() > 0:
-				last_dir = enemy_attack_dir(attack1_targets)
-				attack1.attack_aud_timer.start()
-				animations.play("anim_slash_f_" + last_dir)
-				await animations.animation_finished
-				animations.play("anim_idle_" + last_dir)
-				attack1.targets_hit.clear()
-				enemy_nav_calc()
-				attack1.is_attack = false
-				is_attack = false 
-				is_attack1 = false
-			else:
-				animations.play("anim_idle_" + last_dir)
-				enemy_nav_calc()
-				attack1.is_attack = false
-				is_attack = false
-				is_attack1 = false
+			last_dir = enemy_attack_dir(attack1_targets)
+			animations.play("anim_slash_f_" + last_dir)
+			await animations.animation_finished
+			animations.play("anim_idle_" + last_dir)
+			last_dir = enemy_attack_dir(attack1_targets)
+			enemy_nav_calc()
+			is_stopped = false
+			attack1.is_attack = false
+			attack1.damagebox.disabled = true
+			is_attack = false
+			is_attack1 = false
+		else:
+			animations.play("anim_idle_" + last_dir)
+			last_dir = enemy_attack_dir(attack1_targets)
+			enemy_nav_calc()
+			is_stopped = false
+			attack1.is_attack = false
+			attack1.damagebox.disabled = true
+			is_attack = false
+			is_attack1 = false
 #
 func gorog_shield_state() -> void:
-	if t_atk2 > 0:
-		t_atk2 = t_atk2 - 1
+	if is_attack1 == true: return
 	if is_shielded == false:
 		shieldbar.visible = false
 		if shield < max_shield:
@@ -92,39 +104,31 @@ func gorog_shield_state() -> void:
 			t_shield = 3
 			shieldbar.update()
 			shield = shield + 1
-	if is_attack1 == false:
-		#Shield Up or Down (while walking)
-		if is_aggro == true:
-			if shield > 49:
-				shieldbar.visible = true
-				is_shielded = true
-				speed = 20
-			if shield <= 0:
-				shieldbar.visible = false
-				is_shielded = false
-				speed = 45
-		else:
+	#Shield Up or Down (while walking)
+	if is_aggro == true:
+		if shield > 49:
+			shieldbar.visible = true
+			is_shielded = true
+			speed = 20
+		if shield <= 0:
 			shieldbar.visible = false
 			is_shielded = false
 			speed = 45
 	else:
 		shieldbar.visible = false
 		is_shielded = false
-	
+		speed = 45
+		
 	if is_shielded == true:
 		#Attack
-		if attack2.targets_hit.size() > 0:
-			velocity.x = 0
-			velocity.y = 0
-		
-		if t_atk2 <= 0 && attack2_targets.size() > 0:
-			t_atk2 = 480
+		if t_atk2C <= 0 && attack2_targets.size() > 0:
+			t_atk2C = 480
 			is_attack = true
 			is_attack2 = true
+			is_stopped = false
 			attack2_box.disabled = false
 			target_pos = attack2_targets[0].global_position
 			last_dir = enemy_attack_dir(attack2_targets)
-			velocity = global_position.direction_to(target_pos) * 110
 			#attack2.attack_timer.start()
 			attack2.attack_audio.play()
 			animations.play("anim_shield_bash_" + last_dir)
