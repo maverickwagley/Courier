@@ -45,7 +45,7 @@ func _process(delta):
 #Custom Methods
 #
 func farway_enemy_spawner():
-	if enemy_count < 1:
+	if enemy_count < 4:
 		if enemy_spawn_timer > 0:
 			enemy_spawn_timer = enemy_spawn_timer - 1
 		if enemy_spawn_timer <= 0:
@@ -54,29 +54,29 @@ func farway_enemy_spawner():
 			farway_wave_main()
 #
 func farway_wave_main():
-	#var current_enemy0 = enemy0.instantiate()
-	#var current_enemy1 = enemy0.instantiate()
-	#var current_enemy2 = enemy0.instantiate()
-	#var current_enemy3 = enemy1.instantiate()
-	#var current_enemy4 = enemy1.instantiate()
+	var current_enemy0 = enemy0.instantiate()
+	var current_enemy1 = enemy0.instantiate()
+	var current_enemy2 = enemy0.instantiate()
+	var current_enemy3 = enemy1.instantiate()
+	var current_enemy4 = enemy1.instantiate()
 	var current_enemy5 = enemy2.instantiate()
-	#add_child(current_enemy0)
-	#add_child(current_enemy1)
-	#add_child(current_enemy2)
-	#add_child(current_enemy3)
-	#add_child(current_enemy4)
+	add_child(current_enemy0)
+	add_child(current_enemy1)
+	add_child(current_enemy2)
+	add_child(current_enemy3)
+	add_child(current_enemy4)
 	add_child(current_enemy5)
 	for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
-		#if spawn.name == str(0):
-			#current_enemy0.global_position = spawn.global_position
-		#if spawn.name == str(1):
-			#current_enemy1.global_position = spawn.global_position
-		#if spawn.name == str(2):
-			#current_enemy2.global_position = spawn.global_position
-		#if spawn.name == str(3):
-			#current_enemy3.global_position = spawn.global_position
-		#if spawn.name == str(4):
-			#current_enemy4.global_position = spawn.global_position
+		if spawn.name == str(0):
+			current_enemy0.global_position = spawn.global_position
+		if spawn.name == str(1):
+			current_enemy1.global_position = spawn.global_position
+		if spawn.name == str(2):
+			current_enemy2.global_position = spawn.global_position
+		if spawn.name == str(3):
+			current_enemy3.global_position = spawn.global_position
+		if spawn.name == str(4):
+			current_enemy4.global_position = spawn.global_position
 		if spawn.name == str(5):
 			current_enemy5.global_position = spawn.global_position
 ##

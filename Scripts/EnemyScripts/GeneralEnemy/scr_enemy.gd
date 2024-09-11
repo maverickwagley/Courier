@@ -60,6 +60,7 @@ var is_dead: bool = false
 #Timers
 var t_move: int = randi_range(60,600)
 var t_knockback: int = 0
+var t_hurt: int = 0
 var t_shield: int = 0
 var t_aggro: int = 0
 var t_atk1C: int = 0 #Cooldown
@@ -99,6 +100,8 @@ func enemy_timers(delta: float) -> void:
 		t_atk3D = t_atk3D - delta
 	if t_atk3S > 0:
 		t_atk3S = t_atk3S - delta
+	if t_hurt > 0:
+		t_hurt = t_hurt - delta
 #
 func enemy_nav_calc() -> void:
 	await get_tree().physics_frame
@@ -157,14 +160,14 @@ func enemy_hurt() -> void:
 				var _damageArea = hurt_areas[i]
 				if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
 					enemy_apply_damage(_damageArea,3,7)
-			if hurt_timer.get_time_left() <= 0:
+			if t_hurt <= 0:
 				var _cryChance = randi_range(0,100)
 				if _cryChance >= 50:
 					if autoload_game.audio_mute == false:
 						hurt_audio.play()
 				if autoload_game.audio_mute == false:
 					autoload_player.player.damage_dealt_audio.play()
-				hurt_timer.start()
+				t_hurt = 9
 #
 func enemy_apply_damage(area,_essMin,_essMax) -> void:
 	if is_shielded == false:
@@ -192,14 +195,17 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 	healthbar.update()
 #
 func enemy_navigation() -> void:
+	#CM: _physics_process() Per Enemy
 	if is_knockback == true:
-		#enemy_knockback_stack()
+		move_and_slide()
+		enemy_knockback_stack()
 		t_knockback = t_knockback - 1
 		if t_knockback < 1:
 			velocity.x = 0
 			velocity.y = 0
 			is_knockback = false
 		return
+	if is_stopped == true: return
 	if nav_agent.is_navigation_finished():
 		#print_debug("nav finished")
 		if is_aggro == true:
@@ -215,7 +221,6 @@ func enemy_navigation() -> void:
 					nav_agent.target_position  = spawn.global_position
 	#if is_attack == true: 
 		#return
-	
 	var axis = to_local(nav_agent.get_next_path_position()).normalized()
 	var intended_vel = axis * speed
 	nav_agent.set_velocity(intended_vel)

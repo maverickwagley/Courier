@@ -29,10 +29,9 @@ func gorog_ready() -> void:
 	#Set Child Nodes
 	sprite = $EnemySprite
 	animations = $AnimationPlayer
-	effects = $Effects
+	#effects = $Effects
 	healthbar = $HealthBar
 	shieldbar = $ShieldBar
-	hurt_timer = $HurtTimer
 	hurt_box = $HitArea/Hitbox
 	attack1 = $Attack1Area
 	attack1_box = $Attack1Area/Attack1Damagebox
@@ -49,14 +48,16 @@ func gorog_ready() -> void:
 	knockback_power= 150
 	shield = 100
 	max_shield = 100
+	#is_stopped = false
 #
 func gorog_slash_state() -> void:
-	if is_shielded == false: return
+	if is_shielded == true: return
 	if is_attack1 == true && t_atk1D <= 0:
 		t_atk1D = t_atk1C
 		attack1.targets_hit.clear()
 		attack1.damagebox.disabled = false
 	if t_atk1C <= 0 && attack1_targets.size() > 0:
+		is_shielded = false
 		attack1.is_attack = true
 		is_attack1 = true
 		is_attack = true
@@ -105,30 +106,40 @@ func gorog_shield_state() -> void:
 			shieldbar.update()
 			shield = shield + 1
 	#Shield Up or Down (while walking)
-	if is_aggro == true:
-		if shield > 49:
-			shieldbar.visible = true
-			is_shielded = true
-			speed = 20
-		if shield <= 0:
+	if is_attack2 == false:
+		if is_aggro == true:
+			if shield > 49:
+				shieldbar.visible = true
+				is_shielded = true
+				speed = 20
+			if shield <= 0:
+				shieldbar.visible = false
+				is_shielded = false
+				speed = 45
+		else:
 			shieldbar.visible = false
 			is_shielded = false
 			speed = 45
-	else:
-		shieldbar.visible = false
-		is_shielded = false
-		speed = 45
-		
+	#Dash Forward
+	if is_attack2 == true:
+		if attack2.targets_hit.size() > 0:
+			velocity.x = 0
+			velocity.y = 0
+		move_and_slide()
+	#Initiate if shield isn't recharging
 	if is_shielded == true:
-		#Attack
+		#initiate Attack
 		if t_atk2C <= 0 && attack2_targets.size() > 0:
 			t_atk2C = 480
+			is_stopped = true
 			is_attack = true
 			is_attack2 = true
-			is_stopped = false
 			attack2_box.disabled = false
 			target_pos = attack2_targets[0].global_position
+			var axis = to_local(nav_agent.get_next_path_position()).normalized()
+			velocity = axis * 110
 			last_dir = enemy_attack_dir(attack2_targets)
+			#speed = 110
 			#attack2.attack_timer.start()
 			attack2.attack_audio.play()
 			animations.play("anim_shield_bash_" + last_dir)
@@ -138,6 +149,11 @@ func gorog_shield_state() -> void:
 			attack2_box.disabled = true
 			attack2.targets_hit.clear()
 			attack2.is_attack = false
+			is_shielded = true
+			shield = shield + 50
+			if shield > max_shield:
+				shield = max_shield
+			is_stopped = false
 			is_attack = false
 			is_attack2 = false
 #

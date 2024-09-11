@@ -28,7 +28,7 @@ func hunter_ready() -> void:
 	#Set Child Nodes
 	sprite = $EnemySprite
 	animations = $AnimationPlayer
-	effects = $Effects
+	#effects = $Effects
 	healthbar = $HealthBar
 	shieldbar = $ShieldBar
 	hurt_timer = $HurtTimer
@@ -108,7 +108,6 @@ func hunter_bowshot_state() -> void:
 		projectile.global_position.y = projectile.global_position.y - 8
 		projectile.global_rotation = get_angle_to(target_pos)
 		get_tree().current_scene.add_child(projectile)
-		
 #
 func hunter_animation() -> void:
 	if is_attack1 == true: return

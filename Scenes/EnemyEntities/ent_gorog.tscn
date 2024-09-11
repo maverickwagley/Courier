@@ -946,7 +946,6 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_nexmf")
 
 [node name="Attack2Detect" type="Area2D" parent="Navigation"]
-visible = false
 collision_layer = 0
 collision_mask = 2
 

@@ -25,7 +25,7 @@ func skirmisher_ready() -> void:
 	#Set Child Nodes
 	sprite = $EnemySprite
 	animations = $AnimationPlayer
-	effects = $Effects
+	#effects = $Effects
 	healthbar = $HealthBar
 	shieldbar = $ShieldBar
 	hurt_timer = $HurtTimer
