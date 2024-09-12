@@ -15,7 +15,7 @@ var damage: int = 10
 #Built-In Methods
 #
 func _ready():
-	var parent = get_parent()
+	#var parent = get_parent()
 	is_attack = false
 	damagebox.disabled = true
 

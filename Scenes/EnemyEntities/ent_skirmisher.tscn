@@ -95,7 +95,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_r4bek"]
-resource_name = "anim_skirmisher_idle_down"
+resource_name = "anim_idle_down"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,7 +110,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_bsakv"]
-resource_name = "anim_skirmisher_idle_left"
+resource_name = "anim_idle_left"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -125,7 +125,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_ntwkt"]
-resource_name = "anim_skirmisher_idle_right"
+resource_name = "anim_idle_right"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -140,7 +140,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_io01p"]
-resource_name = "anim_skirmisher_idle_up"
+resource_name = "anim_idle_up"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -155,7 +155,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_i3kq2"]
-resource_name = "anim_skirmisher_run_down"
+resource_name = "anim_run_down"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -196,7 +196,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_1ntnc"]
-resource_name = "anim_skirmisher_run_left"
+resource_name = "anim_run_left"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -237,7 +237,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_f4xjr"]
-resource_name = "anim_skirmisher_run_right"
+resource_name = "anim_run_right"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -278,7 +278,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_xx82t"]
-resource_name = "anim_skirmisher_run_up"
+resource_name = "anim_run_up"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -319,7 +319,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_f3g8u"]
-resource_name = "anim_skirmisher_slash_down"
+resource_name = "anim_slash_down"
 length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -359,7 +359,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_r5q2o"]
-resource_name = "anim_skirmisher_slash_left"
+resource_name = "anim_slash_left"
 length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -399,7 +399,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_k57ix"]
-resource_name = "anim_skirmisher_slash_right"
+resource_name = "anim_slash_right"
 length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -439,7 +439,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_ogq4y"]
-resource_name = "anim_skirmisher_slash_up"
+resource_name = "anim_slash_up"
 length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -481,18 +481,18 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_66d24"]
 _data = {
 "RESET": SubResource("Animation_doyhu"),
-"anim_skirmisher_idle_down": SubResource("Animation_r4bek"),
-"anim_skirmisher_idle_left": SubResource("Animation_bsakv"),
-"anim_skirmisher_idle_right": SubResource("Animation_ntwkt"),
-"anim_skirmisher_idle_up": SubResource("Animation_io01p"),
-"anim_skirmisher_run_down": SubResource("Animation_i3kq2"),
-"anim_skirmisher_run_left": SubResource("Animation_1ntnc"),
-"anim_skirmisher_run_right": SubResource("Animation_f4xjr"),
-"anim_skirmisher_run_up": SubResource("Animation_xx82t"),
-"anim_skirmisher_slash_down": SubResource("Animation_f3g8u"),
-"anim_skirmisher_slash_left": SubResource("Animation_r5q2o"),
-"anim_skirmisher_slash_right": SubResource("Animation_k57ix"),
-"anim_skirmisher_slash_up": SubResource("Animation_ogq4y")
+"anim_idle_down": SubResource("Animation_r4bek"),
+"anim_idle_left": SubResource("Animation_bsakv"),
+"anim_idle_right": SubResource("Animation_ntwkt"),
+"anim_idle_up": SubResource("Animation_io01p"),
+"anim_run_down": SubResource("Animation_i3kq2"),
+"anim_run_left": SubResource("Animation_1ntnc"),
+"anim_run_right": SubResource("Animation_f4xjr"),
+"anim_run_up": SubResource("Animation_xx82t"),
+"anim_slash_down": SubResource("Animation_f3g8u"),
+"anim_slash_left": SubResource("Animation_r5q2o"),
+"anim_slash_right": SubResource("Animation_k57ix"),
+"anim_slash_up": SubResource("Animation_ogq4y")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6p7tm"]
@@ -521,11 +521,6 @@ script = ExtResource("1_3bh3k")
 [node name="ShadowSprite" type="Sprite2D" parent="."]
 show_behind_parent = true
 texture = ExtResource("2_dadce")
-
-[node name="HurtTimer" type="Timer" parent="."]
-wait_time = 0.15
-one_shot = true
-autostart = true
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 offset_left = -5.0

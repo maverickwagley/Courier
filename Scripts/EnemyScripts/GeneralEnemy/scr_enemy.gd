@@ -178,7 +178,6 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 		if shield > 0:
 			if shield >= area.damage:
 				shield = shield - area.damage
-				shieldbar.value = shield * 100 / max_shield
 			else:
 				hp = hp - (area.damage - shield)
 				shield = 0
@@ -192,7 +191,11 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 			enemy_drop_essence(_rType,_essMin,_essMax)
 			#enemy_drop_essence(6,3,7)
 			queue_free()
-	healthbar.update()
+	if hp > 0:
+		healthbar.value = hp * 100 / max_hp
+	if shield > 0:
+		shieldbar.value = shield * 100 / max_shield
+	#healthbar.update()
 #
 func enemy_navigation() -> void:
 	#CM: _physics_process() Per Enemy
@@ -236,6 +239,32 @@ func enemy_knockback_stack() -> void:
 					if collider.is_knockback == false:
 						autoload_entity.knockback(collider, global_position, knockback_power, t_knockback)
 						collider.is_knockback = true
+#
+func enemy_animation() -> void:
+	if is_attack1 == true: return
+	if is_attack2 == true: return
+	if is_knockback == true: return
+		
+	if velocity.length() != 0:
+		move_dir = velocity.normalized()
+		direction = "down"
+		last_dir = "down"
+		if round(move_dir.x) < 0: 
+			direction = "left"
+			last_dir = "left"
+		if round(move_dir.x) > 0: 
+			direction = "right"
+			last_dir = "right"
+		if round(move_dir.y) < 0: 
+			direction = "up"
+			last_dir = "up"
+		if round(move_dir.y) > 0: 
+			direction = "down"
+			last_dir = "down"
+		
+		animations.play("anim_run_" + direction)
+	else:
+		animations.play("anim_idle_" + last_dir)
 #
 func enemy_drop_essence(_id,_min,_max) -> void:
 	var current_death = death_particle.instantiate()

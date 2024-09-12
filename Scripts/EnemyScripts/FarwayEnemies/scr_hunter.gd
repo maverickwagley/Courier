@@ -17,10 +17,9 @@ func _physics_process(delta) -> void:
 	#Custom Attacks
 	hunter_slash_state()
 	hunter_bowshot_state()
-	#Generic Naviation
+	#Generic Nav and Anim
 	enemy_navigation()
-	#Generic Animation
-	hunter_animation()
+	enemy_animation()
 #
 #Custom Methods
 #
@@ -108,31 +107,4 @@ func hunter_bowshot_state() -> void:
 		projectile.global_position.y = projectile.global_position.y - 8
 		projectile.global_rotation = get_angle_to(target_pos)
 		get_tree().current_scene.add_child(projectile)
-#
-func hunter_animation() -> void:
-	if is_attack1 == true: return
-	if is_attack2 == true: return
-	if is_knockback == true: return
-		
-	if velocity.length() != 0:
-		move_dir = velocity.normalized()
-		direction = "down"
-		last_dir = "down"
-		if round(move_dir.x) < 0: 
-			direction = "left"
-			last_dir = "left"
-		if round(move_dir.x) > 0: 
-			direction = "right"
-			last_dir = "right"
-		if round(move_dir.y) < 0: 
-			direction = "up"
-			last_dir = "up"
-		if round(move_dir.y) > 0: 
-			direction = "down"
-			last_dir = "down"
-		
-		animations.play("anim_run_" + direction)
-	else:
-		animations.play("anim_idle_" + last_dir)
 
-	

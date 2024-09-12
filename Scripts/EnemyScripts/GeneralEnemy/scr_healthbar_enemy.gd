@@ -7,9 +7,10 @@ extends TextureProgressBar
 #Built-In Methods
 #
 func _ready():
-	call_deferred("update")
+	value = 100
+	#call_deferred("update")
 #
 #Custom Methods
 #
-func update():
-	value = enemy.hp * 100 / enemy.max_hp
+#func update():
+	#value = enemy.hp * 100 / enemy.max_hp

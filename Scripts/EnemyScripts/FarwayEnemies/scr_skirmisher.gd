@@ -14,10 +14,10 @@ func _physics_process(delta) -> void:
 	enemy_hurt()
 	#Custom Attacks
 	skirmisher_slash_state()
-	#Generic Naviation
+	#Generic Nav and Anim
 	enemy_navigation()
-	#Generic Animation
-	skirmisher_animation()
+	#skirmisher_animation()
+	enemy_animation()
 #
 #Custom Methods
 #
@@ -61,9 +61,9 @@ func skirmisher_slash_state() -> void:
 		velocity.y = 0
 		attack1.attack_aud_timer.start()
 		last_dir = enemy_attack_dir(attack1_targets)
-		animations.play("anim_skirmisher_slash_" + last_dir)
+		animations.play("anim_slash_" + last_dir)
 		await animations.animation_finished
-		animations.play("anim_skirmisher_idle_" + last_dir)
+		animations.play("anim_idle_" + last_dir)
 		last_dir = enemy_attack_dir(attack1_targets)
 		enemy_nav_calc()
 		is_stopped = false
@@ -72,29 +72,29 @@ func skirmisher_slash_state() -> void:
 		is_attack = false
 		is_attack1 = false
 #
-func skirmisher_animation() -> void:
-	if is_attack1 == true: return
-	if is_knockback == true: return
-		
-	if velocity.length() != 0:
-		move_dir = velocity.normalized()
-		direction = "down"
-		last_dir = "down"
-		if round(move_dir.x) < 0: 
-			direction = "left"
-			last_dir = "left"
-		if round(move_dir.x) > 0: 
-			direction = "right"
-			last_dir = "right"
-		if round(move_dir.y) < 0: 
-			direction = "up"
-			last_dir = "up"
-		if round(move_dir.y) > 0: 
-			direction = "down"
-			last_dir = "down"
-		
-		animations.play("anim_skirmisher_run_" + direction)
-	else:
-		animations.play("anim_skirmisher_idle_" + last_dir)
+#func skirmisher_animation() -> void:
+	#if is_attack1 == true: return
+	#if is_knockback == true: return
+		#
+	#if velocity.length() != 0:
+		#move_dir = velocity.normalized()
+		#direction = "down"
+		#last_dir = "down"
+		#if round(move_dir.x) < 0: 
+			#direction = "left"
+			#last_dir = "left"
+		#if round(move_dir.x) > 0: 
+			#direction = "right"
+			#last_dir = "right"
+		#if round(move_dir.y) < 0: 
+			#direction = "up"
+			#last_dir = "up"
+		#if round(move_dir.y) > 0: 
+			#direction = "down"
+			#last_dir = "down"
+		#
+		#animations.play("anim_skirmisher_run_" + direction)
+	#else:
+		#animations.play("anim_skirmisher_idle_" + last_dir)
 
 

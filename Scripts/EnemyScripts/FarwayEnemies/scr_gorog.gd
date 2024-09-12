@@ -142,7 +142,8 @@ func gorog_shield_state() -> void:
 			last_dir = enemy_attack_dir(attack2_targets)
 			#speed = 110
 			#attack2.attack_timer.start()
-			attack2.attack_audio.play()
+			if autoload_game.audio_mute == false:
+				attack2.attack_audio.play()
 			animations.play("anim_shield_bash_" + last_dir)
 			await animations.animation_finished
 			animations.play("anim_idle_" + last_dir)
