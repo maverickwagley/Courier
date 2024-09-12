@@ -178,6 +178,7 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 		if shield > 0:
 			if shield >= area.damage:
 				shield = shield - area.damage
+				shieldbar.value = shield * 100 / max_shield
 			else:
 				hp = hp - (area.damage - shield)
 				shield = 0
@@ -191,7 +192,6 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 			enemy_drop_essence(_rType,_essMin,_essMax)
 			#enemy_drop_essence(6,3,7)
 			queue_free()
-	shieldbar.update()
 	healthbar.update()
 #
 func enemy_navigation() -> void:

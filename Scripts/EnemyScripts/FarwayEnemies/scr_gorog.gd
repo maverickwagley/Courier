@@ -48,6 +48,7 @@ func gorog_ready() -> void:
 	knockback_power= 150
 	shield = 100
 	max_shield = 100
+	
 	#is_stopped = false
 #
 func gorog_slash_state() -> void:
@@ -103,7 +104,7 @@ func gorog_shield_state() -> void:
 				t_shield = t_shield - 1
 		if t_shield <= 0:
 			t_shield = 3
-			shieldbar.update()
+			shieldbar.value = shield * 100 / max_shield
 			shield = shield + 1
 	#Shield Up or Down (while walking)
 	if is_attack2 == false:
