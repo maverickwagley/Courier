@@ -30,7 +30,6 @@ func hunter_ready() -> void:
 	#effects = $Effects
 	healthbar = $HealthBar
 	shieldbar = $ShieldBar
-	hurt_timer = $HurtTimer
 	hurt_box = $HitArea/Hitbox
 	attack1 = $Attack1Area
 	attack1_box = $Attack1Area/Attack1Damagebox

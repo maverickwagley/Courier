@@ -87,15 +87,7 @@ func form_magic_input() -> void:
 			is_magic = false
 			player.speed = 60
 			magic.update()
-#
-func form_special_input() -> void:
-	#CM: form_special
-	if is_attack == false && is_roll == false:
-		if Input.is_action_just_pressed("special_skill"):
-			player.is_attack = true
-			player.is_special = true
-			is_attack = true
-			is_special = true
+
 #
 func form_hit() -> void:
 	if player.is_invincible == false:

@@ -60,13 +60,12 @@ func regaliare_magic() -> void:
 				animations.play("anim_regaliare_idleCast_" + last_dir)
 #
 func regaliare_special() -> void:
-	form_special_input()
 	if is_special == true:
 		special.is_special = true
 		special.player = player
 		animations.play("anim_regaliare_special_" + last_dir)
 		await animations.animation_finished
-		player.inv_timer.set_wait_time(1)
+		#player.inv_timer.set_wait_time(1)
 		player.is_attack = false
 		player.is_special = false
 		is_attack = false

@@ -59,7 +59,7 @@ func adavio_magic() -> void:
 				animations.play("anim_adavio_idleCast_" + last_dir)
 #
 func adavio_special() -> void:
-	form_special_input()
+	#form_special_input()
 	if is_special == true:
 		#Check for line of sight with stage
 		var _check = special.special_check()

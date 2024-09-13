@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dskbnpd2lcvxh" path="res://Sprites/GUISprites/PlayerGUI/spr_gui_special_all.png" id="15_155dg"]
 [ext_resource type="PackedScene" uid="uid://cuumobgxb8km6" path="res://Scenes/GUIScenes/gui_player_pause.tscn" id="18_crtwj"]
 [ext_resource type="AudioStream" uid="uid://bhxij0kehmm0p" path="res://Audio/GameAudio/snd_damaged_generic.wav" id="18_x247h"]
-[ext_resource type="AudioStream" uid="uid://ff6pqu2jkro3" path="res://Audio/PlayerAudio/PlayerGeneralAudio/snd_player_hurt_generic.wav" id="19_p0sud"]
+[ext_resource type="AudioStream" uid="uid://b0tte3v1dcbfx" path="res://Audio/PlayerAudio/PlayerGeneralAudio/snd_player_hurt_general.wav" id="21_7y4oa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd4rm"]
 size = Vector2(7, 6)
@@ -587,8 +587,6 @@ script = ExtResource("1_xyui8")
 wait_time = 5.0
 one_shot = true
 
-[node name="InvincibleTimer" type="Timer" parent="StatusController"]
-
 [node name="FormSwapTimer" type="Timer" parent="StatusController"]
 wait_time = 0.5
 
@@ -712,8 +710,7 @@ stream = ExtResource("18_x247h")
 volume_db = -25.0
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_p0sud")
-volume_db = -5.0
+stream = ExtResource("21_7y4oa")
+volume_db = -10.0
 
-[connection signal="timeout" from="StatusController/InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

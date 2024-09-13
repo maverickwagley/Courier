@@ -59,6 +59,7 @@ var red_max: int = 200
 var current_max: int = 200
 #Status
 var is_invincible: bool = false
+
 var is_shielded: bool = false
 var is_swap: bool = false
 var is_hurt: bool = false
@@ -69,6 +70,10 @@ var is_attack: bool = false
 var is_melee: bool = false
 var is_magic: bool = false
 var is_special: bool = false
+#Timers
+var t_stamina: int = 0
+var t_invincible: float = 0.0
+var t_shield: float = 0.0
 #Animation
 var direction = "down"
 var last_dir = "down"
@@ -77,7 +82,6 @@ var magic_dir = "down"
 var roll_shake: bool = false
 var form_menu: bool = false
 var pause_menu: bool = false
-var _tStamina: int = 0
 #
 #Built-In Methods
 #
@@ -106,16 +110,21 @@ func _physics_process(_delta) -> void:
 #
 #Custom Methods
 #
-func update_process() -> void:
+func update_status(delta) -> void:
 	#CM: _physics_process
 	visible = true
 	if stamina < max_stamina:
-		if _tStamina > 0:
-			_tStamina = _tStamina - 1
-		if _tStamina <= 0:
-			_tStamina = 3
+		if t_stamina > 0:
+			t_stamina = t_stamina - 1
+		if t_stamina <= 0:
+			t_stamina = 3
 			stamina = stamina + 1
 			stamina_gui.update() 
+	if t_invincible > 0:
+		t_invincible = t_invincible - delta
+	if t_invincible <= 0:
+		is_invincible = false
+
 #
 func handle_input() -> void:
 	#CM: _phsyics_process
@@ -123,6 +132,7 @@ func handle_input() -> void:
 		roll_collision()
 	if is_knockback == false:
 		move_input()
+		special_input()
 #
 func menu_input() -> void:
 	if Input.is_action_just_pressed("pause_game"):
@@ -145,6 +155,15 @@ func move_input() -> void:
 	else:
 			velocity.x = 0
 			velocity.y = 0
+#
+func special_input() -> void:
+	#CM: handle_input
+	if is_attack == false && is_roll == false:
+		if Input.is_action_just_pressed("special_skill"):
+			form.is_attack = true
+			form.is_special = true
+			is_attack = true
+			is_special = true
 #
 func roll_collision() -> void:
 	if is_roll == true:
