@@ -19,6 +19,7 @@ func _process(delta) -> void:
 		t_special = t_special - 1
 	if is_special == true:
 		if t_special <= 0:
+			#Move to form controller
 			if player.yellow_special >= 100:
 				player.yellow_special = player.yellow_special - 100
 				player.special_gui.update()

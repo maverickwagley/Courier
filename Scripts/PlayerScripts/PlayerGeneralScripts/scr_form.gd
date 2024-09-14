@@ -3,6 +3,8 @@
 class_name Form
 extends Node
 #
+signal status_set
+#
 @export var knockback_power = 50
 #
 @onready var sprite: Sprite2D = $CharacterSprite
@@ -157,3 +159,4 @@ func form_special_timer(_type) -> void:
 						player.special_gui.update()
 				return
 #
+

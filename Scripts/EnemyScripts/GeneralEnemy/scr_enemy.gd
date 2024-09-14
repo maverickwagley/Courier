@@ -81,27 +81,28 @@ var magic_dir = "down"
 #
 #Custom Methods
 #
-func enemy_timers(delta: float) -> void:
+func enemy_timers() -> void:
 	if t_atk1C > 0:
-		t_atk1C = t_atk1C - delta
+		t_atk1C = t_atk1C - 1
+		print_debug(t_atk1C)
 	if t_atk1D > 0:
-		t_atk1D = t_atk1D - delta
+		t_atk1D = t_atk1D - 1
 	if t_atk1S > 0:
-		t_atk1S = t_atk1S - delta
+		t_atk1S = t_atk1S - 1
 	if t_atk2C > 0:
-		t_atk2C = t_atk2C - delta
+		t_atk2C = t_atk2C - 1
 	if t_atk2D > 0:
-		t_atk2D = t_atk2D - delta
+		t_atk2D = t_atk2D - 1
 	if t_atk2S > 0:
-		t_atk2S = t_atk2S - delta
+		t_atk2S = t_atk2S - 1
 	if t_atk3C > 0:
-		t_atk3C = t_atk3C - delta
+		t_atk3C = t_atk3C - 1
 	if t_atk3D > 0:
-		t_atk3D = t_atk3D - delta
+		t_atk3D = t_atk3D - 1
 	if t_atk3S > 0:
-		t_atk3S = t_atk3S - delta
+		t_atk3S = t_atk3S - 1
 	if t_hurt > 0:
-		t_hurt = t_hurt - delta
+		t_hurt = t_hurt - 1
 #
 func enemy_nav_calc() -> void:
 	await get_tree().physics_frame

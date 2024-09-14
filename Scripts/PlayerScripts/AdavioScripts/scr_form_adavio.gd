@@ -38,6 +38,7 @@ func adavio_melee() -> void:
 		melee.parent_velocity = player.velocity
 		animations.play("anim_adavio_hook_" + last_dir)
 		await animations.animation_finished
+		#print_debug("Adavio Melee Test")
 		melee.disable()
 		player.is_attack = false
 		player.is_melee = false

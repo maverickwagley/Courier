@@ -14,7 +14,7 @@ extends CharacterBody2D
 #Status
 @onready var dead_timer: Timer = $StatusController/DeadTimer
 @onready var form_timer: Timer = $StatusController/FormSwapTimer
-@onready var inv_timer: Timer = $StatusController/InvincibleTimer
+#@onready var inv_timer: Timer = $StatusController/InvincibleTimer
 #Other
 @onready var camera: Camera2D = $Camera2D
 @onready var hurt_box: Area2D = $Hitbox
@@ -89,12 +89,13 @@ func _ready() -> void:
 	load_form = autoload_player.form_array[0]
 	form = load_form.instantiate()
 	add_child(form)
+	form.connect("status_set",status_set)
 	form_controller.player_form = 0
 	form_id = 0
 #
 func _physics_process(_delta) -> void:
+	update_status()
 	if is_dead == false:
-		update_process()
 		handle_input()
 		menu_input()
 	else:
@@ -110,7 +111,7 @@ func _physics_process(_delta) -> void:
 #
 #Custom Methods
 #
-func update_status(delta) -> void:
+func update_status() -> void:
 	#CM: _physics_process
 	visible = true
 	if stamina < max_stamina:
@@ -121,9 +122,11 @@ func update_status(delta) -> void:
 			stamina = stamina + 1
 			stamina_gui.update() 
 	if t_invincible > 0:
-		t_invincible = t_invincible - delta
+		t_invincible = t_invincible - 1
+		print_debug(t_invincible)
 	if t_invincible <= 0:
 		is_invincible = false
+		form.is_invincible = false
 
 #
 func handle_input() -> void:
@@ -273,6 +276,16 @@ func _on_hitbox_area_entered(area) -> void:
 			hurt_by_enemy(area)
 			form.form_hit()
 #
-func _on_invincible_timer_timeout():
-	is_invincible = false
-	form.is_invincible = false
+#func _on_invincible_timer_timeout():
+	#is_invincible = false
+	#form.is_invincible = false
+#
+func status_set():
+	is_attack = false
+	is_special = false
+	form.is_attack = false
+	form.is_special = false
+	is_invincible = true
+	form.is_invincible = true
+	t_invincible = 60
+	

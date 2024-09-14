@@ -13,6 +13,7 @@ config_version=5
 config/name="Courier"
 run/main_scene="res://Scenes/RoomScenes/MetaRooms/rm_home.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+run/max_fps=60
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://Sprites/icon.svg"
 

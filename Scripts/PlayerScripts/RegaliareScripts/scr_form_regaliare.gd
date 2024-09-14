@@ -65,12 +65,11 @@ func regaliare_special() -> void:
 		special.player = player
 		animations.play("anim_regaliare_special_" + last_dir)
 		await animations.animation_finished
-		#player.inv_timer.set_wait_time(1)
-		player.is_attack = false
-		player.is_special = false
+		emit_signal("status_set")
 		is_attack = false
 		is_special = false
 		special.is_special = false
+
 #
 func regaliare_base() -> void:
 	#CM: _physics_process

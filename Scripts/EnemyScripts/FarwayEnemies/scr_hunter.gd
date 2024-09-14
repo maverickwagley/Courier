@@ -10,9 +10,9 @@ func _ready() -> void:
 	hunter_ready()
 	call_deferred("enemy_nav_calc")
 #
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	#Generic Status
-	enemy_timers(delta)
+	enemy_timers()
 	enemy_hurt()
 	#Custom Attacks
 	hunter_slash_state()

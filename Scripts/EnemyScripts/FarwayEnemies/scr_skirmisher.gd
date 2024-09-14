@@ -10,7 +10,7 @@ func _ready() -> void:
 #
 func _physics_process(delta) -> void:
 	#Generic Status
-	enemy_timers(delta)
+	enemy_timers()
 	enemy_hurt()
 	#Custom Attacks
 	skirmisher_slash_state()
