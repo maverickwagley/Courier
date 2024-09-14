@@ -46,7 +46,7 @@ func adavio_melee() -> void:
 		is_melee = false
 #
 func adavio_magic() -> void:
-	form_magic_input()
+	#form_magic_input()
 	var player_velocity = player.velocity
 	if is_magic == true:
 		magic.player = player
@@ -99,8 +99,8 @@ func adavio_special() -> void:
 					await animations.animation_finished
 					player.global_position = player.get_global_mouse_position()
 					special.special_use = true
-					special.t1 = 60
-					special.t2 = 70
+					special.t1 = 24
+					special.t2 = 42
 					animations.play("anim_adavio_special_enter")
 					await animations.animation_finished
 					player.is_attack = false

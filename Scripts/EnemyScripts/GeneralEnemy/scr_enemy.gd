@@ -84,7 +84,6 @@ var magic_dir = "down"
 func enemy_timers() -> void:
 	if t_atk1C > 0:
 		t_atk1C = t_atk1C - 1
-		print_debug(t_atk1C)
 	if t_atk1D > 0:
 		t_atk1D = t_atk1D - 1
 	if t_atk1S > 0:

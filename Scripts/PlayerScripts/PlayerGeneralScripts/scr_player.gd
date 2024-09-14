@@ -59,7 +59,6 @@ var red_max: int = 200
 var current_max: int = 200
 #Status
 var is_invincible: bool = false
-
 var is_shielded: bool = false
 var is_swap: bool = false
 var is_hurt: bool = false
@@ -72,8 +71,8 @@ var is_magic: bool = false
 var is_special: bool = false
 #Timers
 var t_stamina: int = 0
-var t_invincible: float = 0.0
-var t_shield: float = 0.0
+var t_invincible: int = 0
+var t_shield: int = 0
 #Animation
 var direction = "down"
 var last_dir = "down"
@@ -135,6 +134,7 @@ func handle_input() -> void:
 		roll_collision()
 	if is_knockback == false:
 		move_input()
+		magic_input()
 		special_input()
 #
 func menu_input() -> void:
@@ -158,6 +158,27 @@ func move_input() -> void:
 	else:
 			velocity.x = 0
 			velocity.y = 0
+#
+func magic_input() -> void:
+	#CM: form_magic
+	if is_attack == false && is_roll == false:
+		if Input.is_action_pressed("magic_skill"):
+			is_attack = true
+			is_magic = true
+			speed = 40
+			cursor.form_cursor.visible = true
+			form.is_attack = true
+			form.is_magic = true
+			form.magic.update()
+	if is_magic == true:
+		if Input.is_action_just_released("magic_skill"):
+			is_attack = false
+			is_magic = false
+			speed = 60
+			cursor.form_cursor.visible = false
+			form.is_attack = false
+			form.is_magic = false
+			form.magic.update()
 #
 func special_input() -> void:
 	#CM: handle_input
@@ -258,13 +279,27 @@ func form_update(_formNum,_formType) -> void:
 	form.is_swap = true
 	form.direction = direction
 	form.last_dir = direction
+	form.connect("status_set",status_set)
 	health_gui.update()
 	stamina_gui.update()
 	primary_gui.update()
 	special_gui.update()
+	
+	#
+	is_invincible = false
+	is_shielded = false
+	is_swap = false
+	is_hurt = false
+	is_dead = false
+	is_knockback = false
+	is_roll = false
+	is_attack = false
+	is_melee = false
+	is_magic = false
+	is_special = false
 #
 #Signal Methods
-#
+#dd
 func _on_hitbox_area_entered(area) -> void:
 	if is_roll == true: return
 	if area.name == "Hitbox": return
@@ -280,12 +315,19 @@ func _on_hitbox_area_entered(area) -> void:
 	#is_invincible = false
 	#form.is_invincible = false
 #
-func status_set():
-	is_attack = false
-	is_special = false
-	form.is_attack = false
-	form.is_special = false
-	is_invincible = true
-	form.is_invincible = true
-	t_invincible = 60
+func status_set(atk: bool,mle: bool,mgc: bool,spc: bool,inv: bool,t_inv: int):
+	#print_debug(atk)
+	is_attack = atk
+	is_melee = mle
+	is_magic = mgc
+	is_special = spc
+	is_invincible = inv
+	t_invincible = t_inv
+	
+	#is_shielded = false
+	#is_swap = false
+	#is_hurt = false
+	#is_dead = false
+	#is_knockback = false
+	#is_roll = false
 	

@@ -132,7 +132,16 @@ func form_swap_process() -> void:
 			t_swap = 30
 #
 func form_swap_in() -> void:
+	emit_signal("status_set",false,false,false,false,false,0)
 	is_swap = true
+	is_attack = false
+	is_special = false
+	is_melee = false
+	is_magic = false
+	is_invincible = false
+	special_start = false
+	special_use = false
+	special.is_special = false
 	t_swap = 30
 	sprite._set("is_swap",true)
 	sprite.apply_intensity_fade(1.0,0.0,0.5)

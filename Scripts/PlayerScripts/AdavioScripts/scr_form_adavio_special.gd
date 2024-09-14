@@ -21,14 +21,16 @@ func _ready() -> void:
 	special_collision.disable()
 	pass # Replace with function body.
 #
-func _process(delta) -> void:
+func _physics_process(_delta) -> void:
 	if is_special == true:
 		if special_use == true:
 			t1 = t1 - 1
+			print_debug("t1: " + str(t1))
 			if t1 <= 0:
 				special_collision.enable()
 				t1 = 70
 			t2 = t2 - 1
+			print_debug("t2: " + str(t2))
 			if t2 <= 0:
 				player.camera.apply_shake(3)
 				for i in 5:

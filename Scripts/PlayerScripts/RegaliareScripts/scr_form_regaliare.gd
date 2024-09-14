@@ -48,7 +48,7 @@ func regaliare_melee() -> void:
 		is_melee = false
 #
 func regaliare_magic() -> void:
-	form_magic_input()
+	#form_magic_input()
 	if is_magic == true:
 		player_velocity= player.velocity
 		magic_dir = player.cursor_direction()
@@ -65,7 +65,9 @@ func regaliare_special() -> void:
 		special.player = player
 		animations.play("anim_regaliare_special_" + last_dir)
 		await animations.animation_finished
-		emit_signal("status_set")
+		emit_signal("status_set",false,false,false,false,true,60)
+		is_invincible = true
+		is_roll = false
 		is_attack = false
 		is_special = false
 		special.is_special = false
