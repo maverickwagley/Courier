@@ -13,7 +13,7 @@ func _ready() -> void:
 #
 func _physics_process(delta) -> void:
 	form_swap_process()
-	form_special_timer("violet")
+	#form_special_timer("violet")
 	adavio_roll()
 	adavio_melee()
 	adavio_magic()
@@ -22,17 +22,17 @@ func _physics_process(delta) -> void:
 #
 #Custom Methods
 func adavio_roll() -> void:
-	form_roll_input()
+	#form_roll_input()
 	if is_roll == true:
 		animations.play("anim_adavio_roll_" + last_dir)
 		await animations.animation_finished
-		player.is_roll = false
-		player.is_invincible = false
+		emit_signal("status_set","is_roll",false)
+		emit_signal("status_set","is_invincible",false)
 		is_roll = false
 		is_invincible = false
 #
 func adavio_melee() -> void:
-	form_melee_input()
+	#form_melee_input()
 	if is_melee == true:
 		melee.enable()
 		melee.parent_velocity = player.velocity
@@ -40,19 +40,19 @@ func adavio_melee() -> void:
 		await animations.animation_finished
 		#print_debug("Adavio Melee Test")
 		melee.disable()
-		player.is_attack = false
-		player.is_melee = false
+		emit_signal("status_set","is_attack",false)
+		emit_signal("status_set","is_melee",false)
 		is_attack = false
 		is_melee = false
 #
 func adavio_magic() -> void:
 	#form_magic_input()
-	var player_velocity = player.velocity
+	#var player_velocity = player.velocity
 	if is_magic == true:
 		magic.player = player
 		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
-		magic_dir = autoload_player.cursor_direction(cdir)
-		last_dir = autoload_player.cursor_direction(cdir)
+		magic_dir = form_cursor_direction(cdir)
+		last_dir = form_cursor_direction(cdir)
 		if animations:
 			if player_velocity.length() != 0:
 				animations.play("anim_adavio_runCast_" + magic_dir)

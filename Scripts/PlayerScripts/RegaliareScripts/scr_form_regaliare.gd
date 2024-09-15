@@ -14,7 +14,6 @@ func _ready() -> void:
 #
 func _physics_process(delta) -> void:
 	form_swap_process()
-	form_special_timer("yellow")
 	regaliare_roll()
 	regaliare_melee()
 	regaliare_magic()
@@ -24,35 +23,35 @@ func _physics_process(delta) -> void:
 #
 #Custom Methods
 func regaliare_roll() -> void:
-	form_roll_input()
+	#form_roll_input()
 	if is_roll == true:
 		animations.play("anim_regaliare_roll_" + last_dir)
 		await animations.animation_finished
-		player.is_roll = false
-		player.is_invincible = false
-		player.roll_shake = false
+		emit_signal("status_set","is_roll",false)
+		emit_signal("status_set","is_invincible",true)
+		emit_signal("status_set","roll_shake",false)
 		is_roll = false
 		is_invincible = false
 #
 func regaliare_melee() -> void:
-	form_melee_input()
+	#form_melee_input()
 	if is_melee == true:
 		melee.enable(player)
 		melee.parent_velocity = player.velocity
 		animations.play("anim_regaliare_slash_" + last_dir)
 		await animations.animation_finished
 		melee.disable()
-		player.is_attack = false
-		player.is_melee = false
+		emit_signal("status_set","is_attack",false)
+		emit_signal("status_set","is_melee",false)
 		is_attack = false
 		is_melee = false
 #
 func regaliare_magic() -> void:
 	#form_magic_input()
 	if is_magic == true:
-		player_velocity= player.velocity
-		magic_dir = player.cursor_direction()
-		last_dir = player.cursor_direction()
+		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
+		magic_dir = form_cursor_direction(cdir)
+		last_dir = form_cursor_direction(cdir)
 		if animations:
 			if player_velocity.length() != 0:
 				animations.play("anim_regaliare_runCast_" + magic_dir)
@@ -65,13 +64,15 @@ func regaliare_special() -> void:
 		special.player = player
 		animations.play("anim_regaliare_special_" + last_dir)
 		await animations.animation_finished
-		emit_signal("status_set",false,false,false,false,true,60)
+		emit_signal("status_reset")
+		emit_signal("status_set","is_attack",false)
+		emit_signal("status_set","is_invincible",true)
+		emit_signal("status_set","t_invincible",60)
 		is_invincible = true
 		is_roll = false
 		is_attack = false
 		is_special = false
 		special.is_special = false
-
 #
 func regaliare_base() -> void:
 	#CM: _physics_process

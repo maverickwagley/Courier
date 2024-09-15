@@ -11,10 +11,6 @@ extends CharacterBody2D
 @onready var form_controller: CanvasLayer = $FormSwapMenu
 @onready var pause_controller: CanvasLayer = $PauseMenu
 @onready var cursor: Node2D = $Cursor/CursorManager
-#Status
-@onready var dead_timer: Timer = $StatusController/DeadTimer
-@onready var form_timer: Timer = $StatusController/FormSwapTimer
-#@onready var inv_timer: Timer = $StatusController/InvincibleTimer
 #Other
 @onready var camera: Camera2D = $Camera2D
 @onready var hurt_box: Area2D = $Hitbox
@@ -72,7 +68,10 @@ var is_special: bool = false
 #Timers
 var t_stamina: int = 0
 var t_invincible: int = 0
+var t_special: int = 0
 var t_shield: int = 0
+var t_dead: int = 0
+var t_swap: int = 0
 #Animation
 var direction = "down"
 var last_dir = "down"
@@ -88,19 +87,19 @@ func _ready() -> void:
 	load_form = autoload_player.form_array[0]
 	form = load_form.instantiate()
 	add_child(form)
-	form.connect("status_set",status_set)
+	form.connect("status_set",_on_status_set)
+	form.connect("status_reset",_on_status_reset)
 	form_controller.player_form = 0
 	form_id = 0
 #
 func _physics_process(_delta) -> void:
-	update_status()
+	player_update_status()
 	if is_dead == false:
-		handle_input()
-		menu_input()
+		player_handle_input()
 	else:
-		#death_process()
+		#player_death_process()
 		visible = false
-		if dead_timer.get_time_left() <= 0:
+		if t_dead <= 0:
 			is_dead = false
 			is_swap = true
 			dead_gui.visible = false
@@ -110,9 +109,16 @@ func _physics_process(_delta) -> void:
 #
 #Custom Methods
 #
-func update_status() -> void:
+func player_update_status() -> void:
 	#CM: _physics_process
 	visible = true
+	if t_dead > 0:
+		t_dead = t_dead - 1
+	if is_swap == true:
+		if t_swap > 0:
+			t_swap = t_swap - 1
+		if t_swap <= 0:
+			player_form_swap()
 	if stamina < max_stamina:
 		if t_stamina > 0:
 			t_stamina = t_stamina - 1
@@ -122,31 +128,28 @@ func update_status() -> void:
 			stamina_gui.update() 
 	if t_invincible > 0:
 		t_invincible = t_invincible - 1
-		print_debug(t_invincible)
+		#print_debug(t_invincible)
 	if t_invincible <= 0:
 		is_invincible = false
 		form.is_invincible = false
-
+	if is_special == false:
+		player_special_timer()
 #
-func handle_input() -> void:
+func player_handle_input() -> void:
 	#CM: _phsyics_process
 	if move_and_slide():
-		roll_collision()
+		player_roll_collision()
 	if is_knockback == false:
-		move_input()
-		magic_input()
-		special_input()
+		player_move_input()
+		player_roll_input()
+		player_melee_input()
+		player_magic_input()
+		player_special_input()
+	#
+	player_menu_input()
 #
-func menu_input() -> void:
-	if Input.is_action_just_pressed("pause_game"):
-		if form_menu == false:
-			if pause_menu == false:
-				pause_menu = true
-				get_tree().paused = true
-				pause_controller.toggle_menu()
-#
-func move_input() -> void:
-	#CM: handle_input
+func player_move_input() -> void:
+	#CM: player_handle_input
 	if is_roll == true: return
 	if is_melee == false:
 		if is_special == false:
@@ -159,8 +162,34 @@ func move_input() -> void:
 			velocity.x = 0
 			velocity.y = 0
 #
-func magic_input() -> void:
-	#CM: form_magic
+func player_roll_input() -> void:
+	#CM: player_handle_input
+	if is_attack == false && is_swap == false:
+		if is_roll == false:
+			if Input.is_action_just_pressed("roll"):
+				if stamina >= 50:
+					stamina = stamina - 50
+					velocity = velocity * 2
+					is_roll = true
+					is_invincible = true
+					form.is_roll = true
+					form.is_invincible = true
+					stamina_gui.update()
+#
+func player_melee_input() -> void:
+	#CM: player_handle_input
+	if is_roll == true: return
+	if is_attack == false:
+		if Input.is_action_just_pressed("melee_skill"):
+			is_attack = true
+			is_melee = true
+			form.is_attack = true
+			form.is_melee = true
+			form.melee_dir = player_cursor_direction()
+			form.last_dir = player_cursor_direction()
+#
+func player_magic_input() -> void:
+	#CM: player_handle_input
 	if is_attack == false && is_roll == false:
 		if Input.is_action_pressed("magic_skill"):
 			is_attack = true
@@ -171,6 +200,7 @@ func magic_input() -> void:
 			form.is_magic = true
 			form.magic.update()
 	if is_magic == true:
+		form.player_velocity = velocity
 		if Input.is_action_just_released("magic_skill"):
 			is_attack = false
 			is_magic = false
@@ -180,8 +210,8 @@ func magic_input() -> void:
 			form.is_magic = false
 			form.magic.update()
 #
-func special_input() -> void:
-	#CM: handle_input
+func player_special_input() -> void:
+	#CM: player_handle_input
 	if is_attack == false && is_roll == false:
 		if Input.is_action_just_pressed("special_skill"):
 			form.is_attack = true
@@ -189,7 +219,17 @@ func special_input() -> void:
 			is_attack = true
 			is_special = true
 #
-func roll_collision() -> void:
+func player_menu_input() -> void:
+	#CM: player_handle_input
+	if Input.is_action_just_pressed("pause_game"):
+		if form_menu == false:
+			if pause_menu == false:
+				pause_menu = true
+				get_tree().paused = true
+				pause_controller.toggle_menu()
+#
+func player_roll_collision() -> void:
+	#CM: player_handle_input
 	if is_roll == true:
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
@@ -199,10 +239,10 @@ func roll_collision() -> void:
 				camera.apply_shake(3)
 				roll_shake = true
 #
-func hurt_by_enemy(area) -> void:
+func player_hurt_by_enemy(area) -> void:
 	#CM: _on_hit_area_area_entered
 	if is_invincible == false:
-		apply_damage(area.damage)
+		player_apply_damage(area.damage)
 		if autoload_game.audio_mute == false:
 			hurt_audio.play()
 		camera.is_shaking = true
@@ -215,8 +255,8 @@ func hurt_by_enemy(area) -> void:
 				form.is_knockback = true
 				autoload_entity.knockback(self,area.global_position,area.kb_power,5)
 #
-func apply_damage(_damage) -> void:
-	#CM: hurt_by_enemy
+func player_apply_damage(_damage) -> void:
+	#CM: player_hurt_by_enemy
 	hp = hp - _damage
 	if hp <= 0:
 		hp = max_hp
@@ -224,11 +264,11 @@ func apply_damage(_damage) -> void:
 			if spawn.name == str(0):
 				global_position = spawn.global_position
 		dead_gui.set_visible(true)
-		dead_timer.start()
+		t_dead = 300
 		is_dead = true
 	health_gui.update()
 #
-func cursor_direction():
+func player_cursor_direction():
 	var _cdir = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))
 	_cdir = wrapi(_cdir,0,360)
 	if _cdir < 0:
@@ -247,12 +287,12 @@ func cursor_direction():
 	if _cdir >= 315:
 		return "right"
 #
-func update_cam_tilemap() -> void:
+func player_update_cam_tilemap() -> void:
 	#CM: Room _ready()
 	camera.tilemap = tilemap
 	camera.update_camera(tilemap)
 #
-func form_update(_formNum,_formType) -> void:
+func player_form_swap_set(_formNum,_formType) -> void:
 	#CM: Form Swap Menu > _on_button_name_down
 	form_id = _formNum
 	form_type = _formType
@@ -264,14 +304,36 @@ func form_update(_formNum,_formType) -> void:
 	form.t_swap = 30
 	form.sprite._set("is_swap",true)
 	form.sprite.apply_intensity_fade(0.0,1.0,0.5)
-	form_timer.start()
-	await form_timer.timeout
+	t_swap = 30
+#
+func player_special_timer() -> void:
+	match form_type:
+		0:
+			if yellow_special < current_max:
+				if t_special > 0:
+					t_special = t_special - 1
+				if t_special < 1:
+					t_special = 5
+					yellow_special = yellow_special + 1
+					special_gui.update()
+			return
+		1:
+			if violet_special < current_max:
+				if t_special > 0:
+					t_special = t_special - 1
+				if t_special < 1:
+					t_special = 5
+					violet_special = violet_special + 1
+					special_gui.update()
+			return
+#
+func player_form_swap():
 	var form_pos = form.global_position
 	velocity.x = 0
 	velocity.y = 0
 	form.queue_free()
 	form.form_status_reset()
-	load_form = autoload_player.form_array[_formNum]
+	load_form = autoload_player.form_array[form_id]
 	form = load_form.instantiate()
 	add_child(form)
 	form.global_position = form_pos
@@ -279,13 +341,16 @@ func form_update(_formNum,_formType) -> void:
 	form.is_swap = true
 	form.direction = direction
 	form.last_dir = direction
-	form.connect("status_set",status_set)
+	form.connect("status_set",_on_status_set)
+	form.connect("status_reset",_on_status_reset)
 	health_gui.update()
 	stamina_gui.update()
 	primary_gui.update()
 	special_gui.update()
-	
 	#
+	player_status_reset()
+#
+func player_status_reset():
 	is_invincible = false
 	is_shielded = false
 	is_swap = false
@@ -299,7 +364,7 @@ func form_update(_formNum,_formType) -> void:
 	is_special = false
 #
 #Signal Methods
-#dd
+#
 func _on_hitbox_area_entered(area) -> void:
 	if is_roll == true: return
 	if area.name == "Hitbox": return
@@ -308,26 +373,46 @@ func _on_hitbox_area_entered(area) -> void:
 			if area.targets_hit.find(self) ==  -1:
 				#print_debug("Added to hit list of " + str(area.name))
 				area.targets_hit.append(self)
-			hurt_by_enemy(area)
-			form.form_hit()
+			player_hurt_by_enemy(area)
+			if is_invincible == false:
+				form.form_hit()
 #
-#func _on_invincible_timer_timeout():
-	#is_invincible = false
-	#form.is_invincible = false
+func _on_status_reset() -> void:
+	player_status_reset()
 #
-func status_set(atk: bool,mle: bool,mgc: bool,spc: bool,inv: bool,t_inv: int):
-	#print_debug(atk)
-	is_attack = atk
-	is_melee = mle
-	is_magic = mgc
-	is_special = spc
-	is_invincible = inv
-	t_invincible = t_inv
-	
-	#is_shielded = false
-	#is_swap = false
-	#is_hurt = false
-	#is_dead = false
-	#is_knockback = false
-	#is_roll = false
-	
+func _on_status_set(property: StringName,value: Variant) -> bool:
+	match property:
+		"is_attack":
+			is_attack = value
+			return true
+		"is_melee":
+			is_melee = value
+			return true
+		"is_magic":
+			is_magic = value
+			return true
+		"is_special":
+			is_special = value
+			return true
+		"is_invincible":
+			is_invincible = value
+			return true
+		"is_shielded":
+			is_shielded = value
+			return true
+		"t_invincible":
+			t_invincible = value
+			return true
+		"is_hurt":
+			is_hurt = value
+			return true
+		"is_knockback":
+			is_knockback = value
+			return true
+		"is_roll":
+			is_roll = value
+			return true
+		"roll_shake":
+			roll_shake = value
+			return true
+	return false

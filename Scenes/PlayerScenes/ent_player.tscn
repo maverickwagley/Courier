@@ -581,15 +581,6 @@ collision_mask = 273
 motion_mode = 1
 script = ExtResource("1_xyui8")
 
-[node name="StatusController" type="Node2D" parent="."]
-
-[node name="DeadTimer" type="Timer" parent="StatusController"]
-wait_time = 5.0
-one_shot = true
-
-[node name="FormSwapTimer" type="Timer" parent="StatusController"]
-wait_time = 0.5
-
 [node name="ShadowSprite" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(0, -1)

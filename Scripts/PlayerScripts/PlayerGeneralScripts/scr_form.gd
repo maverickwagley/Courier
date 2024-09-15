@@ -4,6 +4,7 @@ class_name Form
 extends Node
 #
 signal status_set
+signal status_reset
 #
 @export var knockback_power = 50
 #
@@ -43,76 +44,17 @@ var t_swap: int = 15
 # 
 #Custom Methods
 #
-func form_roll_input() -> void:
-	#CM: form_roll
-	if is_attack == false && is_swap == false:
-		if is_roll == false:
-			if Input.is_action_just_pressed("roll"):
-				if player.stamina >= 50:
-					player.stamina = player.stamina - 50
-					player.velocity = player.velocity * 2
-					player.is_roll = true
-					player.is_invincible = true
-					is_roll = true
-					is_invincible = true
-					player.stamina_gui.update()
-#
-func form_melee_input() -> void:
-	#CM: form_melee
-	if is_roll == true: return
-	if is_attack == false:
-		if Input.is_action_just_pressed("melee_skill"):
-			player.is_attack = true
-			player.is_melee = true
-			is_attack = true
-			is_melee = true
-			melee_dir = player.cursor_direction()
-			last_dir = player.cursor_direction()
-#
-func form_magic_input() -> void:
-	#CM: form_magic
-	if is_attack == false && is_roll == false:
-		if Input.is_action_pressed("magic_skill"):
-			is_attack = true
-			is_magic = true
-			player.cursor.form_cursor.visible = true
-			is_attack = true
-			is_magic = true
-			player.speed = 40
-			magic.update()
-	if is_magic == true:
-		if Input.is_action_just_released("magic_skill"):
-			is_attack = false
-			is_magic = false
-			player.cursor.form_cursor.visible = false
-			is_attack = false
-			is_magic = false
-			player.speed = 60
-			magic.update()
-
-#
 func form_hit() -> void:
-	if player.is_invincible == false:
-		sprite.apply_intensity_fade(1.0,0.0,0.25)
-		sprite._set("is_hurt",true)
-		hurt_timer.start()
-		await hurt_timer.timeout
-		sprite._set("is_hurt",false)
-		player.is_hurt = false
-		player.is_knockback = false
-		is_hurt = false
-		is_knockback = false
-#
-func form_status_reset() -> void:
-	is_invincible = false
-	is_swap = false
+	#CM: Player > _on_hitbox_area_entered
+	sprite.apply_intensity_fade(1.0,0.0,0.25)
+	sprite._set("is_hurt",true)
+	hurt_timer.start()
+	await hurt_timer.timeout
+	sprite._set("is_hurt",false)
+	emit_signal("status_set","is_hurt",false)
+	emit_signal("status_set","is_knockback",false)
 	is_hurt = false
 	is_knockback = false
-	is_roll = false
-	is_attack = false
-	is_melee = false
-	is_magic = false
-	is_special = false
 #
 func form_move_audio(_stepSpeed) -> void:
 	if t_move >= 0:
@@ -121,6 +63,25 @@ func form_move_audio(_stepSpeed) -> void:
 		t_move = _stepSpeed
 		if autoload_game.audio_mute == false:
 			move_audio.play()
+#
+func form_cursor_direction(_cdir):
+	#var cdir = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))
+	_cdir = wrapi(_cdir,0,360)
+	if _cdir < 0:
+		_cdir = 360 - _cdir
+	if _cdir < 45:
+			return "right"
+	if _cdir >= 45:
+		if _cdir < 135:
+			return "down"
+	if _cdir >= 135:
+		if _cdir < 225:
+			return "left"
+	if _cdir >= 225:
+		if _cdir < 315:
+			return "up"
+	if _cdir >= 315:
+			return "right"
 #
 func form_swap_process() -> void:
 	if is_swap == true:
@@ -132,7 +93,7 @@ func form_swap_process() -> void:
 			t_swap = 30
 #
 func form_swap_in() -> void:
-	emit_signal("status_set",false,false,false,false,false,0)
+	emit_signal("status_reset")
 	is_swap = true
 	is_attack = false
 	is_special = false
@@ -146,26 +107,15 @@ func form_swap_in() -> void:
 	sprite._set("is_swap",true)
 	sprite.apply_intensity_fade(1.0,0.0,0.5)
 #
-func form_special_timer(_type) -> void:
-	if is_special == false:
-		match _type:
-			"yellow":
-				if player.yellow_special < player.current_max:
-					if t_special > 0:
-						t_special = t_special - 1
-					if t_special < 1:
-						t_special = 5
-						player.yellow_special = player.yellow_special + 1
-						player.special_gui.update()
-				return
-			"violet":
-				if player.violet_special < player.current_max:
-					if t_special > 0:
-						t_special = t_special - 1
-					if t_special < 1:
-						t_special = 5
-						player.violet_special = player.violet_special + 1
-						player.special_gui.update()
-				return
+func form_status_reset() -> void:
+	is_invincible = false
+	is_swap = false
+	is_hurt = false
+	is_knockback = false
+	is_roll = false
+	is_attack = false
+	is_melee = false
+	is_magic = false
+	is_special = false
 #
 
