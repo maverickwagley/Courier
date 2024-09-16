@@ -151,6 +151,7 @@ func player_handle_input() -> void:
 func player_move_input() -> void:
 	#CM: player_handle_input
 	if is_roll == true: return
+	#
 	if is_melee == false:
 		if is_special == false:
 			var moveDirection = Input.get_vector("move_left","move_right","move_up","move_down")
@@ -161,6 +162,8 @@ func player_move_input() -> void:
 	else:
 			velocity.x = 0
 			velocity.y = 0
+	#
+	form.player_velocity = velocity
 #
 func player_roll_input() -> void:
 	#CM: player_handle_input

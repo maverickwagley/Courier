@@ -79,9 +79,9 @@ func farway_wave_main():
 			#current_enemy4.global_position = spawn.global_position
 		if spawn.name == str(5):
 			current_enemy5.global_position = spawn.global_position
-##
+#
 func _on_inventory_gui_closed():
 	get_tree().paused = false
-
+#
 func _on_inventory_gui_opened():
 	get_tree().paused = true

@@ -118,9 +118,7 @@ func adavio_base() -> void:
 	#CM: _physics_process
 	if is_melee == true: return
 	if is_roll == true: return
-	
-	var player_velocity = player.velocity
-
+	#
 	if is_attack == false:
 		if player_velocity.length() != 0:
 			form_move_audio(18)
