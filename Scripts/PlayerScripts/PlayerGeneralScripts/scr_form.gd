@@ -20,6 +20,7 @@ signal status_reset
 var form_id: int = 0
 var form_menu: bool = false
 var is_invincible: bool = false
+var is_shielded: bool = false
 var is_swap: bool = false
 var is_hurt: bool = false
 var is_knockback: bool = false
@@ -45,16 +46,22 @@ var t_swap: int = 15
 #Custom Methods
 #
 func form_hit() -> void:
-	#CM: Player > _on_hitbox_area_entered
-	sprite.apply_intensity_fade(1.0,0.0,0.25)
-	sprite._set("is_hurt",true)
-	hurt_timer.start()
-	await hurt_timer.timeout
-	sprite._set("is_hurt",false)
-	emit_signal("status_set","is_hurt",false)
-	emit_signal("status_set","is_knockback",false)
-	is_hurt = false
-	is_knockback = false
+	if is_invincible == false:
+		sprite.apply_intensity_fade(1.0,0.0,0.25)
+		sprite._set("is_hurt",true)
+	else:
+		sprite.apply_intensity_fade(1.0,0.0,0.5)
+		sprite._set("is_invincible",true)
+	#CM: Player > _on_hitbox_area_entered	#sprite.apply_intensity_fade(1.0,0.0,0.25)
+	#sprite._set("is_hurt",true)
+	#hurt_timer.start()
+	#await hurt_timer.timeout
+	#sprite._set("is_hurt",false)
+	#emit_signal("status_set","is_hurt",false)
+	#emit_signal("status_set","is_knockback",false)
+	#is_hurt = false
+	#is_knockback = false
+
 #
 func form_move_audio(_stepSpeed) -> void:
 	if t_move >= 0:

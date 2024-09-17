@@ -67,6 +67,7 @@ var is_magic: bool = false
 var is_special: bool = false
 #Timers
 var t_stamina: int = 0
+var t_hurt: int = 0
 var t_invincible: int = 0
 var t_special: int = 0
 var t_shield: int = 0
@@ -112,8 +113,9 @@ func _physics_process(_delta) -> void:
 func player_update_status() -> void:
 	#CM: _physics_process
 	visible = true
-	if t_dead > 0:
-		t_dead = t_dead - 1
+	if is_dead == true:
+		if t_dead > 0:
+			t_dead = t_dead - 1
 	if is_swap == true:
 		if t_swap > 0:
 			t_swap = t_swap - 1
@@ -126,12 +128,24 @@ func player_update_status() -> void:
 			t_stamina = 3
 			stamina = stamina + 1
 			stamina_gui.update() 
-	if t_invincible > 0:
-		t_invincible = t_invincible - 1
-		#print_debug(t_invincible)
-	if t_invincible <= 0:
-		is_invincible = false
-		form.is_invincible = false
+	if is_hurt == true:
+		if t_hurt > 0:
+			t_hurt = t_hurt - 1
+		if t_hurt <= 0:
+			is_hurt = false
+			is_knockback = false
+			form.is_hurt = false
+			form.is_knockback = false
+			form.sprite._set("is_hurt",false)
+	if is_invincible == true:
+		if t_invincible > 0:
+			t_invincible = t_invincible - 1
+		if t_invincible <= 0:
+			is_invincible = false
+			form.is_invincible = false
+			form.sprite._set("is_invincible",false)
+	if is_shielded == true:
+		pass
 	if is_special == false:
 		player_special_timer()
 #
@@ -251,6 +265,7 @@ func player_hurt_by_enemy(area) -> void:
 		camera.is_shaking = true
 		camera.apply_shake(3)
 		is_hurt = true
+		t_hurt = 30
 		form.is_hurt = true
 		if area.inflict_kb == true:
 			if is_knockback == false:
@@ -377,8 +392,7 @@ func _on_hitbox_area_entered(area) -> void:
 				#print_debug("Added to hit list of " + str(area.name))
 				area.targets_hit.append(self)
 			player_hurt_by_enemy(area)
-			if is_invincible == false:
-				form.form_hit()
+			form.form_hit()
 #
 func _on_status_reset() -> void:
 	player_status_reset()

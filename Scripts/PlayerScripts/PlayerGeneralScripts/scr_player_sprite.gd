@@ -38,6 +38,13 @@ func _set(property: StringName, value: Variant) -> bool:
 				else:
 					silhouette.material.set_shader_parameter("active", false)
 					material.set_shader_parameter("is_hurt",true)
+			"is_invincible":
+				if value == false:
+					silhouette.material.set_shader_parameter("active",true)
+					material.set_shader_parameter("is_invincible",false)
+				else:
+					silhouette.material.set_shader_parameter("active", false)
+					material.set_shader_parameter("is_invincible",true)
 			"is_swap":
 				if value == false:
 					silhouette.material.set_shader_parameter("active",true)

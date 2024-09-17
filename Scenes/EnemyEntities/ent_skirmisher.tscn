@@ -11,37 +11,19 @@
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_shieldbar_enemy.gd" id="7_tttst"]
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="8_cahhk"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher_slash.gd" id="8_ecx3o"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/sdr_enemy.gdshader" id="8_rjokd"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="9_au4yb"]
-
-[sub_resource type="Shader" id="Shader_b7b28"]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-//uniform sampler2D screen_texture: hint_screen_texture;
-uniform vec4 hurt_color: source_color = vec4(0.6,0.2,0.2,1.0);
-uniform float blink_intensity = 0;
-uniform bool is_hurt = false;
-
-
-void fragment() {
-	//Get Screen Color
-	//vec4 screen_color = texture(screen_texture,SCREEN_UV);
-	//Sample Sprite Color
-	if (is_hurt == true){
-		vec4 sprite_color = texture(TEXTURE,UV);
-		sprite_color = mix(sprite_color,hurt_color,blink_intensity * sprite_color.a);
-		COLOR = sprite_color;
-	}
-}
-
-"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cd5b5"]
 resource_local_to_scene = true
-shader = SubResource("Shader_b7b28")
-shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 1)
+shader = ExtResource("8_rjokd")
+shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 0.7)
+shader_parameter/inv_color = Color(0.67, 0.59, 0.16, 0.7)
+shader_parameter/shield_color = Color(0.5, 0.5, 1, 0.7)
 shader_parameter/blink_intensity = 0.0
 shader_parameter/is_hurt = false
+shader_parameter/is_invincible = false
+shader_parameter/is_shielded = false
 
 [sub_resource type="Animation" id="Animation_doyhu"]
 length = 0.001

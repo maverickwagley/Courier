@@ -18,10 +18,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xj6bs"]
 resource_local_to_scene = true
 shader = ExtResource("8_4jk3b")
-shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 1)
-shader_parameter/shield_color = Color(0.67, 0.59, 0.16, 0.7)
+shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 0.7)
+shader_parameter/inv_color = Color(0.67, 0.59, 0.16, 0.7)
+shader_parameter/shield_color = Color(0.5, 0.5, 1, 0.7)
 shader_parameter/blink_intensity = 0.0
 shader_parameter/is_hurt = false
+shader_parameter/is_invincible = false
 shader_parameter/is_shielded = false
 
 [sub_resource type="Animation" id="Animation_doyhu"]
