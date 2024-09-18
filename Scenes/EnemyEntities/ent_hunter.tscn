@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy_sprite.gd" id="7_13i3s"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_shieldbar_enemy.gd" id="7_yjqx6"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter_slash.gd" id="8_2dolj"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/sdr_enemy.gdshader" id="8_4jk3b"]
+[ext_resource type="Shader" path="res://Scripts/sdr_enemy.gdshader" id="8_4jk3b"]
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="9_clvev"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter_bowshot.gd" id="10_1dfv7"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="10_cwx2p"]
