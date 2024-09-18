@@ -17,11 +17,12 @@
 [ext_resource type="AudioStream" uid="uid://bcmosdfyhm30c" path="res://Audio/PlayerAudio/PlayerGeneralAudio/snd_walk_grass.wav" id="12_67c71"]
 [ext_resource type="AudioStream" uid="uid://boj366eara6h7" path="res://Audio/PlayerAudio/RegaliareAudio/snd_goldArcs.wav" id="15_0x30o"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wukk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1a1p1"]
+resource_local_to_scene = true
 shader = ExtResource("2_ed74n")
-shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 0.7)
-shader_parameter/inv_color = Color(0.67, 0.59, 0.16, 0.7)
-shader_parameter/shield_color = Color(0.8, 0.8, 1, 0.5)
+shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 1)
+shader_parameter/inv_color = Color(0.67, 0.59, 0.16, 1)
+shader_parameter/shield_color = Color(0.8, 0.8, 1, 1)
 shader_parameter/swap_color = Color(1, 1, 1, 1)
 shader_parameter/blink_intensity = 0.0
 shader_parameter/is_hurt = false
@@ -663,7 +664,7 @@ script = ExtResource("1_xud2j")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 clip_children = 2
-material = SubResource("ShaderMaterial_7wukk")
+material = SubResource("ShaderMaterial_1a1p1")
 position = Vector2(0, -8)
 texture = ExtResource("9_ph3mt")
 hframes = 16

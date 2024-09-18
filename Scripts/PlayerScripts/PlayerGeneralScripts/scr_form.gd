@@ -47,7 +47,7 @@ var t_swap: int = 15
 #
 func form_hit() -> void:
 	if is_invincible == false:
-		sprite.apply_intensity_fade(1.0,0.0,0.25)
+		sprite.apply_intensity_fade(1.0,0.0,0.5)
 		sprite._set("is_hurt",true)
 	else:
 		sprite.apply_intensity_fade(1.0,0.0,0.5)

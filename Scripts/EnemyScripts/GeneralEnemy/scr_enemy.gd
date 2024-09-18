@@ -331,12 +331,14 @@ func _on_hitbox_area_entered(area) -> void:
 	is_hurt = true
 	if is_shielded == true:
 		#print_debug("Shielded")
+		sprite.apply_intensity_fade(1.0,0.0,0.25)
 		sprite._set("is_shielded",true)
 		if autoload_game.audio_mute == false:
 			shielded_audio.play()
 	else:
+		sprite.apply_intensity_fade(1.0,0.0,0.25)
 		sprite._set("is_hurt",true)
-	sprite.apply_intensity_fade(1.0,0.0,0.25)
+	
 	if hurt_areas.find(area) == -1:
 		hurt_areas.append(area)
 #

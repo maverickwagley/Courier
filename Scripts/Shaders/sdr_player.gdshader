@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
 //uniform sampler2D screen_texture: hint_screen_texture;
-uniform vec4 hurt_color: source_color = vec4(0.6,0.2,0.2,0.7);
-uniform vec4 inv_color: source_color = vec4(0.67,0.59,0.16,0.7);
-uniform vec4 shield_color: source_color = vec4(0.8,0.8,1.0,0.5);
+uniform vec4 hurt_color: source_color = vec4(0.6,0.2,0.2,1.0);
+uniform vec4 inv_color: source_color = vec4(0.67,0.59,0.16,1.0);
+uniform vec4 shield_color: source_color = vec4(0.8,0.8,1.0,1.0);
 uniform vec4 swap_color: source_color = vec4(1.0,1.0,1.0,1.0);
 uniform float blink_intensity = 0;
 uniform bool is_hurt = false;

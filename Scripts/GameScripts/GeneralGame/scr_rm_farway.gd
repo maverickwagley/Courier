@@ -59,13 +59,13 @@ func farway_wave_main():
 	#var current_enemy2 = enemy0.instantiate()
 	#var current_enemy3 = enemy1.instantiate()
 	#var current_enemy4 = enemy1.instantiate()
-	#var current_enemy5 = enemy2.instantiate()
+	var current_enemy5 = enemy2.instantiate()
 	add_child(current_enemy0)
 	#add_child(current_enemy1)
 	#add_child(current_enemy2)
 	#add_child(current_enemy3)
 	#add_child(current_enemy4)
-	#add_child(current_enemy5)
+	add_child(current_enemy5)
 	for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
 		if spawn.name == str(0):
 			current_enemy0.global_position = spawn.global_position
@@ -77,8 +77,8 @@ func farway_wave_main():
 			#current_enemy3.global_position = spawn.global_position
 		#if spawn.name == str(4):
 			#current_enemy4.global_position = spawn.global_position
-		#if spawn.name == str(5):
-			#current_enemy5.global_position = spawn.global_position
+		if spawn.name == str(5):
+			current_enemy5.global_position = spawn.global_position
 #
 func _on_inventory_gui_closed():
 	get_tree().paused = false

@@ -5,24 +5,24 @@
 [ext_resource type="Texture2D" uid="uid://cvjogw318t2h2" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy.png" id="3_mhyul"]
 [ext_resource type="Texture2D" uid="uid://bpdkjgb0xdwfa" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy_fill.png" id="4_ut68w"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_healthbar_enemy.gd" id="5_1so0t"]
-[ext_resource type="Shader" path="res://Scripts/sdr_enemy.gdshader" id="6_7twrh"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_shieldbar_enemy.gd" id="6_fvj1s"]
 [ext_resource type="Texture2D" uid="uid://dftmg2gat04v4" path="res://Sprites/GUISprites/EnemyGUI/spr_shieldbar_enemy_fill.png" id="6_ifcm4"]
 [ext_resource type="Texture2D" uid="uid://c6176xyp6tp0e" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_unfilled_enemy.png" id="6_qwnwv"]
 [ext_resource type="Texture2D" uid="uid://by07iwkn47nyy" path="res://Sprites/EnemySprites/spr_enemy_gorog.png" id="6_vleb2"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy_sprite.gd" id="7_mxkmc"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_gorog_slash.gd" id="8_33vkm"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/sdr_enemy.gdshader" id="9_4ll0m"]
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="9_bk87b"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="11_jsfp2"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_gorog_shieldbash.gd" id="14_ixgrf"]
 [ext_resource type="AudioStream" uid="uid://daqsc0bgj2ni2" path="res://Audio/GameAudio/snd_hit_shielded.wav" id="16_dj84p"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1dfhv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_35fl7"]
 resource_local_to_scene = true
-shader = ExtResource("6_7twrh")
-shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 0.7)
-shader_parameter/inv_color = Color(0.67, 0.59, 0.16, 0.7)
-shader_parameter/shield_color = Color(0.2, 0.2, 0.9, 0.4)
+shader = ExtResource("9_4ll0m")
+shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 1)
+shader_parameter/inv_color = Color(0.67, 0.59, 0.16, 1)
+shader_parameter/shield_color = Color(0.2, 0.2, 0.9, 1)
 shader_parameter/blink_intensity = 0.0
 shader_parameter/is_hurt = false
 shader_parameter/is_invincible = false
@@ -846,7 +846,7 @@ script = ExtResource("6_fvj1s")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 clip_children = 2
-material = SubResource("ShaderMaterial_1dfhv")
+material = SubResource("ShaderMaterial_35fl7")
 texture = ExtResource("6_vleb2")
 offset = Vector2(0, -8)
 hframes = 20

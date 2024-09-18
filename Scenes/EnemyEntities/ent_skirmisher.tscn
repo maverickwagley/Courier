@@ -9,17 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://dftmg2gat04v4" path="res://Sprites/GUISprites/EnemyGUI/spr_shieldbar_enemy_fill.png" id="6_6w2v6"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy_sprite.gd" id="7_nds5e"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_shieldbar_enemy.gd" id="7_tttst"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/sdr_enemy.gdshader" id="8_6idt4"]
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="8_cahhk"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher_slash.gd" id="8_ecx3o"]
-[ext_resource type="Shader" path="res://Scripts/sdr_enemy.gdshader" id="8_xi6cf"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="9_au4yb"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cd5b5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7pvv1"]
 resource_local_to_scene = true
-shader = ExtResource("8_xi6cf")
-shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 0.7)
-shader_parameter/inv_color = Color(0.67, 0.59, 0.16, 0.7)
-shader_parameter/shield_color = Color(0.2, 0.2, 0.9, 0.4)
+shader = ExtResource("8_6idt4")
+shader_parameter/hurt_color = Color(0.6, 0.2, 0.2, 1)
+shader_parameter/inv_color = Color(0.67, 0.59, 0.16, 1)
+shader_parameter/shield_color = Color(0.2, 0.2, 0.9, 1)
 shader_parameter/blink_intensity = 0.0
 shader_parameter/is_hurt = false
 shader_parameter/is_invincible = false
@@ -526,7 +526,7 @@ script = ExtResource("7_tttst")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 clip_children = 2
-material = SubResource("ShaderMaterial_cd5b5")
+material = SubResource("ShaderMaterial_7pvv1")
 texture = ExtResource("5_48ily")
 offset = Vector2(0, -7)
 hframes = 20
