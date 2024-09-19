@@ -47,10 +47,14 @@ var t_swap: int = 15
 #
 func form_hit() -> void:
 	if is_invincible == false:
-		sprite.apply_intensity_fade(1.0,0.0,0.5)
-		sprite._set("is_hurt",true)
+		if is_shielded == false:
+			sprite.apply_intensity_fade(1.0,0.0,0.5)
+			sprite._set("is_hurt",true)
+		else:
+			sprite.apply_intensity_fade(1.0,0.0,0.5)
+			sprite._set("is_shielded",true)
 	else:
-		sprite.apply_intensity_fade(1.0,0.0,0.5)
+		sprite.apply_intensity_fade(0.5,0.0,0.25)
 		sprite._set("is_invincible",true)
 	#CM: Player > _on_hitbox_area_entered	#sprite.apply_intensity_fade(1.0,0.0,0.25)
 	#sprite._set("is_hurt",true)
@@ -109,7 +113,7 @@ func form_swap_in() -> void:
 	is_invincible = false
 	special_start = false
 	special_use = false
-	special.is_special = false
+	#special.is_special = false
 	t_swap = 30
 	sprite._set("is_swap",true)
 	sprite.apply_intensity_fade(1.0,0.0,0.5)

@@ -59,20 +59,33 @@ func regaliare_magic() -> void:
 				animations.play("anim_regaliare_idleCast_" + last_dir)
 #
 func regaliare_special() -> void:
+	if t_special > 0:
+		t_special = t_special - 1
 	if is_special == true:
-		special.is_special = true
-		special.player = player
 		animations.play("anim_regaliare_special_" + last_dir)
 		await animations.animation_finished
-		emit_signal("status_reset")
-		emit_signal("status_set","is_attack",false)
-		emit_signal("status_set","is_invincible",true)
-		emit_signal("status_set","t_invincible",60)
-		is_invincible = true
-		is_roll = false
-		is_attack = false
-		is_special = false
-		special.is_special = false
+		if t_special <= 0:
+			t_special = 60
+			if player.yellow_special >= 100:
+				player.yellow_special = player.yellow_special - 100
+				is_invincible = true
+				special.regaliare_special_projectile_create()
+				special.player = player
+				player.special_gui.update()
+				emit_signal("status_reset")
+				emit_signal("status_set","is_attack",false)
+				emit_signal("status_set","is_invincible",true)
+				emit_signal("status_set","t_invincible",60)
+				is_roll = false
+				is_attack = false
+				is_special = false
+		else:
+			emit_signal("status_reset")
+			is_roll = false
+			is_attack = false
+			is_special = false
+			
+		
 #
 func regaliare_base() -> void:
 	#CM: _physics_process

@@ -8,26 +8,16 @@ extends Node2D
 @onready var special_snd: AudioStreamPlayer = $SpecialSFX
 #
 var parent_velocity: Vector2
-var is_special: bool = false
 var special_rate: int = 90
-var t_special: int = 0
 #
 #Built-In Methods
 #
-func _process(delta) -> void:
-	if t_special >= 0:
-		t_special = t_special - 1
-	if is_special == true:
-		if t_special <= 0:
-			#Move to form controller
-			if player.yellow_special >= 100:
-				player.yellow_special = player.yellow_special - 100
-				player.special_gui.update()
-				if autoload_game.audio_mute == false:
-					special_snd.play()
-				var projectile = projectile_scene.instantiate()
-				projectile.global_position = player.global_position
-				projectile.player = player
-				player.add_child(projectile)
-				t_special = special_rate
-			is_special = false
+func regaliare_special_projectile_create() -> void:
+	#Move to form controller()
+	if autoload_game.audio_mute == false:
+		special_snd.play()
+	var projectile = projectile_scene.instantiate()
+	projectile.global_position = global_position
+	print_debug(global_position)
+	#projectile.player = player
+	add_child(projectile)

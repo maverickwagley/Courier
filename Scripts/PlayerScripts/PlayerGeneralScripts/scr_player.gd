@@ -380,6 +380,7 @@ func player_status_reset():
 	is_melee = false
 	is_magic = false
 	is_special = false
+	print_debug(is_special)
 #
 #Signal Methods
 #
