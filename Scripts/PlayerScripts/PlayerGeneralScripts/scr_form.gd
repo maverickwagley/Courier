@@ -32,6 +32,25 @@ var is_special: bool = false
 var special_start: bool = false
 var special_use: bool = false
 #
+var yellow_primary: int = 200
+var violet_primary: int = 200
+var green_primary: int = 200
+var blue_primary: int = 200
+var orange_primary: int = 200
+var red_primary: int = 200
+var yellow_special: int = 200
+var violet_special: int = 200
+var green_special: int = 200
+var blue_special: int = 200
+var orange_special: int = 200
+var red_special: int = 200
+var yellow_max: int = 200
+var violet_max: int = 200
+var green_max: int = 200
+var blue_max: int = 200
+var orange_max: int = 200
+var red_max: int = 200
+#
 var direction = "down"
 var last_dir = "down"
 var magic_dir = "down"

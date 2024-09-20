@@ -2,7 +2,7 @@ extends Area2D
 
 
 @onready var shape = $Damagebox
-@onready var player: CharacterBody2D
+#@onready var player: CharacterBody2D
 
 var parent_velocity: Vector2
 var damage: int = 35

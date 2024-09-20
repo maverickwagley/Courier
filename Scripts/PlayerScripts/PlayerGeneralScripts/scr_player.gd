@@ -231,6 +231,7 @@ func player_special_input() -> void:
 	#CM: player_handle_input
 	if is_attack == false && is_roll == false:
 		if Input.is_action_just_pressed("special_skill"):
+			player_form_charge_update()
 			form.is_attack = true
 			form.is_special = true
 			is_attack = true
@@ -324,6 +325,26 @@ func player_form_swap_set(_formNum,_formType) -> void:
 	form.sprite.apply_intensity_fade(0.0,1.0,0.5)
 	t_swap = 30
 #
+func player_form_charge_update() -> void:
+	form.yellow_primary = yellow_primary
+	form.violet_primary = violet_primary
+	form.green_primary = green_primary
+	form.blue_primary = blue_primary
+	form.orange_primary = orange_primary
+	form.red_primary = red_primary
+	form.yellow_special = yellow_special
+	form.violet_special = violet_special
+	form.green_special = green_special
+	form.blue_special = blue_special 
+	form.orange_special = orange_special
+	form.red_special = red_special
+	form.yellow_max = yellow_max
+	form.violet_max = violet_max
+	form.green_max = green_max
+	form.blue_max = blue_max
+	form.orange_max = orange_max
+	form.red_max = red_max
+#
 func player_special_timer() -> void:
 	match form_type:
 		0:
@@ -380,7 +401,6 @@ func player_status_reset():
 	is_melee = false
 	is_magic = false
 	is_special = false
-	print_debug(is_special)
 #
 #Signal Methods
 #

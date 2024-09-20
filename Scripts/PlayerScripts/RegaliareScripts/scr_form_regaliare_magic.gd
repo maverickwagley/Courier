@@ -11,6 +11,7 @@ extends Node2D
 @onready var parent = get_parent()
 @onready var player = CharacterBody2D
 #
+var last_dir = "down"
 var parent_velocity: Vector2
 var is_magic: bool = false
 var magic_rate: int = 10
@@ -27,10 +28,10 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	if t_magic >= 0:
 		t_magic = t_magic - 1
-	if parent.is_magic == true:
+	if is_magic == true:
 		var rot = get_global_mouse_position()
 		look_at(rot)
-		match parent.last_dir:
+		match last_dir:
 			"right":
 				position.x = 0
 				position.y = -7

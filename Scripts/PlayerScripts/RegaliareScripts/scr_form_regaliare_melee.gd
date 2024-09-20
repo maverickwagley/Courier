@@ -18,9 +18,7 @@ func _ready() -> void:
 #
 #Custom Methods
 #
-func enable(_player) -> void:
-	player = _player
-	melee_area.player = _player
+func enable() -> void:
 	if !weapon: return
 	if audio_played == false:
 		audio_played = true

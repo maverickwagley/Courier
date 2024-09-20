@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var collision: Area2D = $EnemyCollision
 @onready var animations: AnimationPlayer = $AnimationPlayer
 @onready var player: CharacterBody2D
+@onready var parent: Node2D
 
 var SPEED = 0
 var sd_timer: int
@@ -17,7 +18,6 @@ var parent_velocity: Vector2
 var type: int = 0
 
 func _ready():
-	#z_index = -1
 	collision.damage = damage
 	collision.inflict_kb = inflict_kb
 	animations.play("anim_goldArcs")
@@ -27,7 +27,8 @@ func _ready():
 func _physics_process(delta):
 	sd_timer = sd_timer - 1
 	#print_debug(sd_timer)
-	#global_position = player.global_position
+	global_position = parent.global_position
+	global_position.y = parent.global_position.y - 3
 	#velocity = direction * SPEED * delta
 	#var collision = move_and_collide(velocity)
 	#if collision:

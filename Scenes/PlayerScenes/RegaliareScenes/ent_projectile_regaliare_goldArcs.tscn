@@ -55,21 +55,20 @@ collision_mask = 544
 script = ExtResource("1_bhnwe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -3)
 texture = ExtResource("2_aorx2")
 hframes = 4
 
 [node name="MoveCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_m1g3f")
 
 [node name="EnemyCollision" type="Area2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(6, -2)
 collision_layer = 4
 collision_mask = 288
 script = ExtResource("3_8iq3r")
 
 [node name="EnemyCollisionShape" type="CollisionShape2D" parent="EnemyCollision"]
+position = Vector2(-6, 2)
 shape = SubResource("CircleShape2D_cqevs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

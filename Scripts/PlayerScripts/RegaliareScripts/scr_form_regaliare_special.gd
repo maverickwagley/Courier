@@ -12,12 +12,14 @@ var special_rate: int = 90
 #
 #Built-In Methods
 #
+	
 func regaliare_special_projectile_create() -> void:
 	#Move to form controller()
 	if autoload_game.audio_mute == false:
 		special_snd.play()
 	var projectile = projectile_scene.instantiate()
 	projectile.global_position = global_position
+	projectile.parent = self
 	print_debug(global_position)
 	#projectile.player = player
 	add_child(projectile)

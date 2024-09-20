@@ -36,8 +36,8 @@ func regaliare_roll() -> void:
 func regaliare_melee() -> void:
 	#form_melee_input()
 	if is_melee == true:
-		melee.enable(player)
-		melee.parent_velocity = player.velocity
+		melee.enable()
+		melee.parent_velocity = Vector2(0,0)
 		animations.play("anim_regaliare_slash_" + last_dir)
 		await animations.animation_finished
 		melee.disable()
@@ -49,14 +49,18 @@ func regaliare_melee() -> void:
 func regaliare_magic() -> void:
 	#form_magic_input()
 	if is_magic == true:
+		magic.is_magic == false
 		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
 		magic_dir = form_cursor_direction(cdir)
 		last_dir = form_cursor_direction(cdir)
+		magic.lad_dir = last_dir
 		if animations:
 			if player_velocity.length() != 0:
 				animations.play("anim_regaliare_runCast_" + magic_dir)
 			else:
 				animations.play("anim_regaliare_idleCast_" + last_dir)
+	else:
+		magic.is_magic == false
 #
 func regaliare_special() -> void:
 	if t_special > 0:
