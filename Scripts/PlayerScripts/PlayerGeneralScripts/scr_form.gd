@@ -5,6 +5,7 @@ extends Node
 #
 signal status_set
 signal status_reset
+signal gui_update
 #
 @export var knockback_power = 50
 #
@@ -61,6 +62,7 @@ var player_velocity: Vector2
 var t_special: int = 5
 var t_move: int = 0
 var t_swap: int = 15
+var t_magic: int = 0
 # 
 #Custom Methods
 #

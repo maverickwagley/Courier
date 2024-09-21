@@ -90,6 +90,7 @@ func _ready() -> void:
 	add_child(form)
 	form.connect("status_set",_on_status_set)
 	form.connect("status_reset",_on_status_reset)
+	form.connect("gui_update",_on_gui_update)
 	form_controller.player_form = 0
 	form_id = 0
 #
@@ -217,6 +218,7 @@ func player_magic_input() -> void:
 			form.is_magic = true
 			form.magic.update()
 	if is_magic == true:
+		player_form_charge_update()
 		form.player_velocity = velocity
 		if Input.is_action_just_released("magic_skill"):
 			is_attack = false
@@ -382,6 +384,7 @@ func player_form_swap():
 	form.last_dir = direction
 	form.connect("status_set",_on_status_set)
 	form.connect("status_reset",_on_status_reset)
+	form.connect("gui_update",_on_gui_update)
 	health_gui.update()
 	stamina_gui.update()
 	primary_gui.update()
@@ -454,3 +457,6 @@ func _on_status_set(property: StringName,value: Variant) -> bool:
 			roll_shake = value
 			return true
 	return false
+#
+func _on_gui_update() -> void:
+	player_hud.gui_update_all()

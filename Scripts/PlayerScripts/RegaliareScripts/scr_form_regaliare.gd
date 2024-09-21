@@ -49,18 +49,18 @@ func regaliare_melee() -> void:
 func regaliare_magic() -> void:
 	#form_magic_input()
 	if is_magic == true:
-		magic.is_magic == false
+		magic.is_magic = true
 		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
 		magic_dir = form_cursor_direction(cdir)
 		last_dir = form_cursor_direction(cdir)
-		magic.lad_dir = last_dir
+		magic.last_dir = last_dir
 		if animations:
 			if player_velocity.length() != 0:
 				animations.play("anim_regaliare_runCast_" + magic_dir)
 			else:
 				animations.play("anim_regaliare_idleCast_" + last_dir)
 	else:
-		magic.is_magic == false
+		magic.is_magic = false
 #
 func regaliare_special() -> void:
 	if t_special > 0:
@@ -75,7 +75,7 @@ func regaliare_special() -> void:
 				is_invincible = true
 				special.regaliare_special_projectile_create()
 				special.player = player
-				player.special_gui.update()
+				emit_signal("gui_update")
 				emit_signal("status_reset")
 				emit_signal("status_set","is_attack",false)
 				emit_signal("status_set","is_invincible",true)
@@ -88,8 +88,6 @@ func regaliare_special() -> void:
 			is_roll = false
 			is_attack = false
 			is_special = false
-			
-		
 #
 func regaliare_base() -> void:
 	#CM: _physics_process

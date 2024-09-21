@@ -14,4 +14,11 @@ extends CanvasLayer
 #
 func _ready() -> void:
 	visible = true
-
+#
+#Custom Methods
+#
+func gui_update_all() -> void:
+	healthbar.update()
+	staminabar.update()
+	primarybar.update()
+	specialbar.update()

@@ -25,7 +25,7 @@ func _ready() -> void:
 	position.y = 0
 	t_magic = 0
 #
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	if t_magic >= 0:
 		t_magic = t_magic - 1
 	if is_magic == true:
@@ -55,20 +55,7 @@ func _physics_process(delta) -> void:
 		#Spawn Projectile
 		if t_magic <= 0:
 			if player.yellow_primary >= 3:
-				var projectile = projectile_scene.instantiate()
-				autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)
-				if autoload_game.audio_mute == false:
-					magic_audio.play()
-				player.yellow_primary = player.yellow_primary - 3
-				player.camera.is_shaking = true
-				player.camera.apply_shake(.75)
-				player.cursor.form_cursor.visible = true
-				player.primary_gui.update()
-				projectile.global_position = spawner.global_position
-				projectile.global_rotation = sprite.global_rotation
-				get_tree().current_scene.add_child(projectile)
-				projectile.player = player
-				t_magic = magic_rate
+				projectile_spawn()
 #
 #Custom Methods
 #
@@ -77,3 +64,19 @@ func update() -> void:
 		visible = true
 	else:
 		visible = false
+#
+func projectile_spawn() -> void:
+	var projectile = projectile_scene.instantiate()
+	autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)
+	if autoload_game.audio_mute == false:
+		magic_audio.play()
+	player.yellow_primary = player.yellow_primary - 3
+	player.camera.is_shaking = true
+	player.camera.apply_shake(.75)
+	player.cursor.form_cursor.visible = true
+	player.primary_gui.update()
+	projectile.global_position = spawner.global_position
+	projectile.global_rotation = sprite.global_rotation
+	get_tree().current_scene.add_child(projectile)
+	projectile.player = player
+	t_magic = magic_rate
