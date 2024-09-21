@@ -10,7 +10,13 @@ func _ready() -> void:
 	player = get_parent()
 	melee.player = player
 	magic.player = player
-	special.player = player
+	#special.player = player
+	special.connect("special_end",_on_special_end)
+	special.connect("check_cost",_on_check_cost)
+	special.connect("player_status_set",_on_player_status_set)
+	special.connect("player_gui_update",_on_player_gui_update)
+	special.connect("form_status_set",_on_form_status_set)
+	special.connect("player_charge_use",_on_player_charge_use)
 	special_cost = special.special_cost
 #
 func _physics_process(delta) -> void:
@@ -20,7 +26,6 @@ func _physics_process(delta) -> void:
 	regaliare_magic()
 	regaliare_special()
 	regaliare_base()
-	
 #
 #Custom Methods
 func regaliare_roll() -> void:
@@ -70,24 +75,7 @@ func regaliare_special() -> void:
 		animations.play("anim_regaliare_special_" + last_dir)
 		await animations.animation_finished
 		t_special = 60
-		if player.yellow_special >= 100:
-			player.yellow_special = player.yellow_special - 100
-			is_invincible = true
-			special.regaliare_special_projectile_create()
-			special.player = player
-			emit_signal("gui_update")
-			emit_signal("status_reset")
-			emit_signal("status_set","is_attack",false)
-			emit_signal("status_set","is_invincible",true)
-			emit_signal("status_set","t_invincible",60)
-			is_roll = false
-			is_attack = false
-			is_special = false
-		else:
-			emit_signal("status_reset")
-			is_roll = false
-			is_attack = false
-			is_special = false
+		special.is_special = true
 #
 func regaliare_base() -> void:
 	#CM: _physics_process
@@ -110,5 +98,3 @@ func regaliare_base() -> void:
 			animations.play("anim_regaliare_walk_" + direction)
 		else:
 			animations.play("anim_regaliare_idle_" + last_dir)
-#
-

@@ -8,8 +8,8 @@ extends Node2D
 @onready var sprite: Sprite2D = $MagicSprite #Players Rotating Arm
 @onready var spawner: Node2D = $ProjectileSpawn
 @onready var magic_audio: AudioStreamPlayer = $MagicSFX
-@onready var parent = get_parent()
-@onready var player = CharacterBody2D
+@onready var parent: Node2D = get_parent()
+@onready var player: CharacterBody2D
 #
 var last_dir = "down"
 var parent_velocity: Vector2

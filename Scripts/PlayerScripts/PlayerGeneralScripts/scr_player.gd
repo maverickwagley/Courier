@@ -93,6 +93,8 @@ func _ready() -> void:
 	form.connect("status_set",_on_status_set)
 	form.connect("status_reset",_on_status_reset)
 	form.connect("gui_update",_on_gui_update)
+	form.connect("check_cost",_on_check_cost)
+	form.connect("charge_use",_on_charge_use)
 	form_controller.player_form = 0
 	form_id = 0
 #
@@ -235,10 +237,12 @@ func player_special_input() -> void:
 	#CM: player_handle_input
 	if is_attack == false && is_roll == false:
 		if Input.is_action_just_pressed("special_skill"):
-			if form.t_special <= 0 && form.special_cost <= current_special:
+			if form.t_special <= 0:
+				#if player_special_use_check(form.special_cost) == true:
 				player_form_charge_update()
 				form.is_attack = true
 				form.is_special = true
+				#form.t_special = 90
 				is_attack = true
 				is_special = true
 #
@@ -390,6 +394,7 @@ func player_form_swap():
 	form.connect("status_set",_on_status_set)
 	form.connect("status_reset",_on_status_reset)
 	form.connect("gui_update",_on_gui_update)
+	form.connect("check_cost",_on_check_cost)
 	health_gui.update()
 	stamina_gui.update()
 	primary_gui.update()
@@ -426,41 +431,60 @@ func _on_hitbox_area_entered(area) -> void:
 func _on_status_reset() -> void:
 	player_status_reset()
 #
-func _on_status_set(property: StringName,value: Variant) -> bool:
+func _on_status_set(property: StringName,value: Variant) -> void:
+	set(property,value)
+#
+func _on_check_cost(property: StringName,value: int) -> bool:
 	match property:
-		"is_attack":
-			is_attack = value
-			return true
-		"is_melee":
-			is_melee = value
-			return true
-		"is_magic":
-			is_magic = value
-			return true
-		"is_special":
-			is_special = value
-			return true
-		"is_invincible":
-			is_invincible = value
-			return true
-		"is_shielded":
-			is_shielded = value
-			return true
-		"t_invincible":
-			t_invincible = value
-			return true
-		"is_hurt":
-			is_hurt = value
-			return true
-		"is_knockback":
-			is_knockback = value
-			return true
-		"is_roll":
-			is_roll = value
-			return true
-		"roll_shake":
-			roll_shake = value
-			return true
+		"yellow_primary":
+			if yellow_primary >= value:
+				return true
+			else:
+				return false
+		"yellow_special":
+			if yellow_special >= value:
+				form.special.cost_check = true
+				return true
+			else:
+				return false
+		"violet_primary":
+			if violet_primary >= value:
+				return true
+			else:
+				return false
+		"violet_special":
+			if violet_special >= value:
+				return true
+			else:
+				return false
+	return false
+#
+func _on_charge_use(property: StringName,value: Variant) -> bool:
+	match property:
+		"yellow_primary":
+			if yellow_primary >= value:
+				yellow_primary = yellow_primary - value
+				return true
+			else:
+				return false
+		"yellow_special":
+			if yellow_special >= value:
+				yellow_special = yellow_special - value
+				return true
+			else:
+				return false
+		"violet_primary":
+			if violet_primary >= value:
+				violet_primary = violet_primary - value
+				return true
+			else:
+				return false
+		"violet_special":
+			if violet_special >= value:
+				violet_special = violet_special - value
+				return true
+			else:
+				return false
 	return false
 #
 func _on_gui_update() -> void:

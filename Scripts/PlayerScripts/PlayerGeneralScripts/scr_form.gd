@@ -6,6 +6,8 @@ extends Node
 signal status_set
 signal status_reset
 signal gui_update
+signal check_cost
+signal charge_use
 #
 @export var knockback_power = 50
 #
@@ -88,7 +90,6 @@ func form_hit() -> void:
 	#emit_signal("status_set","is_knockback",false)
 	#is_hurt = false
 	#is_knockback = false
-
 #
 func form_move_audio(_stepSpeed) -> void:
 	if t_move >= 0:
@@ -152,4 +153,25 @@ func form_status_reset() -> void:
 	is_magic = false
 	is_special = false
 #
-
+#Signal Methods
+#
+func _on_player_status_set(property: StringName,value: Variant) -> void:
+	emit_signal("status_set",property,value)
+#
+func _on_special_end() -> void:
+	is_roll = false
+	is_attack = false
+	is_special = false
+	emit_signal("status_reset")
+#
+func _on_check_cost(_property: StringName,_cost: int) -> void:
+	emit_signal("check_cost",_property,_cost)
+#
+func _on_player_gui_update() -> void:
+	emit_signal("gui_update")
+#
+func _on_player_charge_use(property: StringName,value: Variant) -> void:
+	emit_signal("charge_use",property,value)
+#
+func _on_form_status_set(property: StringName,value: Variant) -> void:
+	set(property,value)
