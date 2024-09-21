@@ -9,6 +9,7 @@ extends Node2D
 #
 var parent_velocity: Vector2
 var special_rate: int = 90
+var special_cost: int = 100
 #
 #Built-In Methods
 #
@@ -20,6 +21,6 @@ func regaliare_special_projectile_create() -> void:
 	var projectile = projectile_scene.instantiate()
 	projectile.global_position = global_position
 	projectile.parent = self
-	print_debug(global_position)
+	#print_debug(global_position)
 	#projectile.player = player
 	add_child(projectile)

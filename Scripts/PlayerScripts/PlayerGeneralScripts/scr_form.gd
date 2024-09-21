@@ -51,6 +51,8 @@ var green_max: int = 200
 var blue_max: int = 200
 var orange_max: int = 200
 var red_max: int = 200
+var magic_cost: int = 0
+var special_cost: int = 0
 #
 var direction = "down"
 var last_dir = "down"

@@ -40,12 +40,14 @@ var green_primary: int = 200
 var blue_primary: int = 200
 var orange_primary: int = 200
 var red_primary: int = 200
+var current_primary: int = 200
 var yellow_special: int = 200
 var violet_special: int = 200
 var green_special: int = 200
 var blue_special: int = 200
 var orange_special: int = 200
 var red_special: int = 200
+var current_special: int = 200
 var yellow_max: int = 200
 var violet_max: int = 200
 var green_max: int = 200
@@ -233,11 +235,12 @@ func player_special_input() -> void:
 	#CM: player_handle_input
 	if is_attack == false && is_roll == false:
 		if Input.is_action_just_pressed("special_skill"):
-			player_form_charge_update()
-			form.is_attack = true
-			form.is_special = true
-			is_attack = true
-			is_special = true
+			if form.t_special <= 0 && form.special_cost <= current_special:
+				player_form_charge_update()
+				form.is_attack = true
+				form.is_special = true
+				is_attack = true
+				is_special = true
 #
 func player_menu_input() -> void:
 	#CM: player_handle_input
@@ -357,6 +360,7 @@ func player_special_timer() -> void:
 					t_special = 5
 					yellow_special = yellow_special + 1
 					special_gui.update()
+			current_special = yellow_special
 			return
 		1:
 			if violet_special < current_max:
@@ -366,6 +370,7 @@ func player_special_timer() -> void:
 					t_special = 5
 					violet_special = violet_special + 1
 					special_gui.update()
+			current_special = violet_special
 			return
 #
 func player_form_swap():

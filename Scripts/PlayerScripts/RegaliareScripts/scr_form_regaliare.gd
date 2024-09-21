@@ -11,6 +11,7 @@ func _ready() -> void:
 	melee.player = player
 	magic.player = player
 	special.player = player
+	special_cost = special.special_cost
 #
 func _physics_process(delta) -> void:
 	form_swap_process()
@@ -68,21 +69,20 @@ func regaliare_special() -> void:
 	if is_special == true:
 		animations.play("anim_regaliare_special_" + last_dir)
 		await animations.animation_finished
-		if t_special <= 0:
-			t_special = 60
-			if player.yellow_special >= 100:
-				player.yellow_special = player.yellow_special - 100
-				is_invincible = true
-				special.regaliare_special_projectile_create()
-				special.player = player
-				emit_signal("gui_update")
-				emit_signal("status_reset")
-				emit_signal("status_set","is_attack",false)
-				emit_signal("status_set","is_invincible",true)
-				emit_signal("status_set","t_invincible",60)
-				is_roll = false
-				is_attack = false
-				is_special = false
+		t_special = 60
+		if player.yellow_special >= 100:
+			player.yellow_special = player.yellow_special - 100
+			is_invincible = true
+			special.regaliare_special_projectile_create()
+			special.player = player
+			emit_signal("gui_update")
+			emit_signal("status_reset")
+			emit_signal("status_set","is_attack",false)
+			emit_signal("status_set","is_invincible",true)
+			emit_signal("status_set","t_invincible",60)
+			is_roll = false
+			is_attack = false
+			is_special = false
 		else:
 			emit_signal("status_reset")
 			is_roll = false
