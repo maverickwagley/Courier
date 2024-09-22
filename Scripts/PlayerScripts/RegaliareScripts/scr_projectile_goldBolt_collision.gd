@@ -10,4 +10,3 @@ var is_magic: bool = true
 var is_kinetic: bool = false
 var enemy_hit: Array
 var type: int = 0
-

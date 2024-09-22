@@ -96,6 +96,7 @@ func _ready() -> void:
 	form.connect("check_cost",_on_check_cost)
 	form.connect("charge_use",_on_charge_use)
 	form.connect("camera_shake",_on_camera_shake)
+	form.connect("cursor_los_check",_on_cursor_los_check)
 	form_controller.player_form = 0
 	form_id = 0
 #
@@ -388,8 +389,8 @@ func player_form_swap():
 	load_form = autoload_player.form_array[form_id]
 	form = load_form.instantiate()
 	add_child(form)
-	form.global_position = form_pos
 	form.player = self
+	form.global_position = form_pos
 	form.is_swap = true
 	form.direction = direction
 	form.last_dir = direction
@@ -419,6 +420,21 @@ func player_status_reset():
 	is_magic = false
 	is_special = false
 #
+func player_cursor_los_check() -> bool:
+	#Check Line of Sight w/ Raycast
+	#special_collision.set_collision_mask_value(6,false)
+	var _playPos: Vector2 = global_position
+	var _cursPos: Vector2 = get_global_mouse_position()
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(_playPos, _cursPos)
+	query.set_collision_mask(0b00000000_00000000_00000001_00000000)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	if result:
+		return true
+	else: 
+		return false
+#
 #Signal Methods
 #
 func _on_hitbox_area_entered(area) -> void:
@@ -445,22 +461,28 @@ func _on_check_cost(property: StringName,value: int) -> bool:
 				form.magic.cost_check = true
 				return true
 			else:
+				form.magic.cost_check = false
 				return false
 		"yellow_special":
 			if yellow_special >= value:
 				form.special.cost_check = true
 				return true
 			else:
+				form.special.cost_check = false
 				return false
 		"violet_primary":
 			if violet_primary >= value:
+				form.magic.cost_check = true
 				return true
 			else:
+				form.magic.cost_check = false
 				return false
 		"violet_special":
 			if violet_special >= value:
+				form.special.cost_check = true
 				return true
 			else:
+				form.special.cost_check = false
 				return false
 	return false
 #
@@ -499,3 +521,8 @@ func _on_camera_shake(value) -> void:
 	camera.is_shaking = true
 	camera.apply_shake(value)
 	cursor.form_cursor.visible = true
+#
+func _on_cursor_los_check() -> void:
+	var _check = player_cursor_los_check()
+	form.cursor_los = _check
+	cursor.adavio_special_cursor(_check)

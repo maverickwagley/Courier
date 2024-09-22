@@ -9,6 +9,7 @@ signal gui_update
 signal check_cost
 signal charge_use
 signal camera_shake
+signal cursor_los_check
 #
 @export var knockback_power = 50
 #
@@ -35,6 +36,7 @@ var is_magic: bool = false
 var is_special: bool = false
 var special_start: bool = false
 var special_use: bool = false
+var cursor_los: bool = false
 #
 var yellow_primary: int = 200
 var violet_primary: int = 200
@@ -70,6 +72,21 @@ var t_swap: int = 15
 var t_magic: int = 0
 # 
 #Custom Methods
+#
+func form_player_signal_connections() -> void:
+	special.connect("special_end",_on_special_end)
+	special.connect("check_cost",_on_check_cost)
+	special.connect("player_status_set",_on_player_status_set)
+	special.connect("player_gui_update",_on_player_gui_update)
+	special.connect("form_status_set",_on_form_status_set)
+	special.connect("player_charge_use",_on_player_charge_use)
+	magic.connect("check_cost",_on_check_cost)
+	magic.connect("player_status_set",_on_player_status_set)
+	magic.connect("player_gui_update",_on_player_gui_update)
+	magic.connect("form_status_set",_on_form_status_set)
+	magic.connect("player_charge_use",_on_player_charge_use)
+	magic.connect("player_camera_shake",_on_player_camera_shake)
+	magic.connect("player_cursor_los",_on_player_cursor_los_check)
 #
 func form_hit() -> void:
 	if is_invincible == false:
@@ -179,3 +196,6 @@ func _on_form_status_set(property: StringName,value: Variant) -> void:
 #
 func _on_player_camera_shake(value) -> void:
 	emit_signal("camera_shake",value)
+#
+func _on_player_cursor_los_check() -> void:
+	emit_signal("cursor_los_check",special)

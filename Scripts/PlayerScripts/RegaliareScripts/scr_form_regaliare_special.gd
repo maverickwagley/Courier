@@ -8,6 +8,7 @@ signal form_status_set
 signal player_status_set
 signal player_gui_update
 signal player_charge_use
+signal player_cursor_los
 #
 @export var projectile_scene: PackedScene
 #
@@ -19,6 +20,7 @@ var special_rate: int = 90
 var special_cost: int = 100
 var is_special: bool = false
 var cost_check: bool = false
+var cursor_los_check: bool = false
 #
 #Built-In Methods
 #

@@ -7,13 +7,13 @@ extends Form
 func _ready() -> void:
 	form_id = 1
 	form_swap_in()
-	player = get_parent()
-	special.parent = self
+	form_player_signal_connections()
+	#player = get_parent()
+	#special.parent = self
 	special.player = player
 #
 func _physics_process(delta) -> void:
 	form_swap_process()
-	#form_special_timer("violet")
 	adavio_roll()
 	adavio_melee()
 	adavio_magic()
@@ -21,6 +21,7 @@ func _physics_process(delta) -> void:
 	adavio_base()
 #
 #Custom Methods
+#
 func adavio_roll() -> void:
 	#form_roll_input()
 	if is_roll == true:
@@ -47,47 +48,50 @@ func adavio_melee() -> void:
 #
 func adavio_magic() -> void:
 	#form_magic_input()
-	#var player_velocity = player.velocity
 	if is_magic == true:
-		magic.player = player
+		magic.is_magic = true
+		magic.visible = true
 		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
 		magic_dir = form_cursor_direction(cdir)
 		last_dir = form_cursor_direction(cdir)
+		magic.last_dir = last_dir
 		if animations:
 			if player_velocity.length() != 0:
 				animations.play("anim_adavio_runCast_" + magic_dir)
 			else:
 				animations.play("anim_adavio_idleCast_" + last_dir)
+	else:
+		magic.is_magic = false
+		magic.visible = false
+	#
+	#if is_magic == true:
+		#magic.player = player
+		#var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
+		#magic_dir = form_cursor_direction(cdir)
+		#last_dir = form_cursor_direction(cdir)
+		#if animations:
+			#if player_velocity.length() != 0:
+				#animations.play("anim_adavio_runCast_" + magic_dir)
+			#else:
+				#animations.play("anim_adavio_idleCast_" + last_dir)
 #
 func adavio_special() -> void:
-	#form_special_input()
+	if t_special > 0:
+		t_special = t_special - 1
 	if is_special == true:
 		#Check for line of sight with stage
-		var _check = special.special_check()
-		player.cursor.adavio_special_cursor(_check)
 		if special_start == false: 
+			emit_signal("cursor_los_check",special)
 			#Animate, then enter state if enough charge
-			#print_debug("try special")
 			animations.play("anim_adavio_special_cast")
 			await animations.animation_finished
-			if player.violet_special >= 75: 
-				special_start = true
-				special.is_special = true
-			else:
-				is_attack = false
-				is_special = false
-				special_start = false
-				special_use = false
-				special.is_special = false
-				special.special_use = false
-				special.special_collision.disable()
-				player.is_attack = false
-				player.is_special = false
+			special.is_special = true
+			
 		
 		if Input.is_action_just_pressed("magic_skill"): 
 			#If not already using skill
 			if special_use == false: 
-				if _check == false:
+				if cursor_los == false:
 					player.violet_special = player.violet_special - 75
 					player.special_gui.update()
 					player.is_invincible = true

@@ -7,22 +7,9 @@ extends Form
 func _ready() -> void:
 	form_id = 0
 	form_swap_in()
-	player = get_parent()
-	#melee.player = player
-	magic.player = player
-	#special.player = player
-	special.connect("special_end",_on_special_end)
-	special.connect("check_cost",_on_check_cost)
-	special.connect("player_status_set",_on_player_status_set)
-	special.connect("player_gui_update",_on_player_gui_update)
-	special.connect("form_status_set",_on_form_status_set)
-	special.connect("player_charge_use",_on_player_charge_use)
-	magic.connect("check_cost",_on_check_cost)
-	magic.connect("player_status_set",_on_player_status_set)
-	magic.connect("player_gui_update",_on_player_gui_update)
-	magic.connect("form_status_set",_on_form_status_set)
-	magic.connect("player_charge_use",_on_player_charge_use)
-	magic.connect("player_camera_shake",_on_player_camera_shake)
+	form_player_signal_connections()
+	#player = get_parent()
+	#magic.player = player
 	special_cost = special.special_cost
 #
 func _physics_process(delta) -> void:

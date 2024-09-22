@@ -6,6 +6,7 @@ extends Node2D
 #
 var weapon: Area2D
 var parent_velocity: Vector2
+var cursor_los_check: bool = false
 var audio_played: bool = false
 #
 #Built-In Methods
@@ -32,5 +33,3 @@ func disable() -> void:
 	audio_played = false
 	visible = false
 	weapon.disable()
-
-

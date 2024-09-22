@@ -52,5 +52,3 @@ func adavio_special_cursor(_check: bool) -> void:
 			cursor_sprite.texture = menu_cursor
 		else:
 			cursor_sprite.texture = basic_cursor
-
-

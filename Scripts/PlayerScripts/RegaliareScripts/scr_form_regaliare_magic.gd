@@ -8,6 +8,7 @@ signal player_status_set
 signal player_gui_update
 signal player_charge_use
 signal player_camera_shake
+signal player_cursor_los
 #
 @export var projectile_scene: PackedScene
 #
@@ -15,13 +16,14 @@ signal player_camera_shake
 @onready var sprite: Sprite2D = $MagicSprite #Players Rotating Arm
 @onready var spawner: Node2D = $ProjectileSpawn
 @onready var magic_audio: AudioStreamPlayer = $MagicSFX
-@onready var parent: Node2D = get_parent()
-@onready var player: CharacterBody2D
+#@onready var parent: Node2D = get_parent()
+#@onready var player: CharacterBody2D
 #
 var last_dir = "down"
 var parent_velocity: Vector2
 var is_magic: bool = false
 var cost_check: bool = false
+var cursor_los_check: bool = false
 var magic_cost: int = 3
 var magic_rate: int = 10
 var t_magic: int = 0
