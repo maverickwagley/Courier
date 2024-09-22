@@ -8,7 +8,7 @@ func _ready() -> void:
 	form_id = 0
 	form_swap_in()
 	player = get_parent()
-	melee.player = player
+	#melee.player = player
 	magic.player = player
 	#special.player = player
 	special.connect("special_end",_on_special_end)
@@ -17,6 +17,12 @@ func _ready() -> void:
 	special.connect("player_gui_update",_on_player_gui_update)
 	special.connect("form_status_set",_on_form_status_set)
 	special.connect("player_charge_use",_on_player_charge_use)
+	magic.connect("check_cost",_on_check_cost)
+	magic.connect("player_status_set",_on_player_status_set)
+	magic.connect("player_gui_update",_on_player_gui_update)
+	magic.connect("form_status_set",_on_form_status_set)
+	magic.connect("player_charge_use",_on_player_charge_use)
+	magic.connect("player_camera_shake",_on_player_camera_shake)
 	special_cost = special.special_cost
 #
 func _physics_process(delta) -> void:
@@ -56,6 +62,7 @@ func regaliare_magic() -> void:
 	#form_magic_input()
 	if is_magic == true:
 		magic.is_magic = true
+		magic.visible = true
 		var cdir = int(magic.get_rotation_degrees()) #magic.get_rotation_degrees()
 		magic_dir = form_cursor_direction(cdir)
 		last_dir = form_cursor_direction(cdir)
@@ -67,6 +74,7 @@ func regaliare_magic() -> void:
 				animations.play("anim_regaliare_idleCast_" + last_dir)
 	else:
 		magic.is_magic = false
+		magic.visible = false
 #
 func regaliare_special() -> void:
 	if t_special > 0:

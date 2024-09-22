@@ -2,6 +2,13 @@
 #
 extends Node2D
 #
+signal check_cost
+signal form_status_set
+signal player_status_set
+signal player_gui_update
+signal player_charge_use
+signal player_camera_shake
+#
 @export var projectile_scene: PackedScene
 #
 @onready var flash = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_particle_goldBolt_flash.tscn")
@@ -14,6 +21,8 @@ extends Node2D
 var last_dir = "down"
 var parent_velocity: Vector2
 var is_magic: bool = false
+var cost_check: bool = false
+var magic_cost: int = 3
 var magic_rate: int = 10
 var t_magic: int = 0
 #
@@ -29,6 +38,7 @@ func _physics_process(_delta) -> void:
 	if t_magic >= 0:
 		t_magic = t_magic - 1
 	if is_magic == true:
+		emit_signal("check_cost","yellow_primary",3)
 		var rot = get_global_mouse_position()
 		look_at(rot)
 		match last_dir:
@@ -54,29 +64,26 @@ func _physics_process(_delta) -> void:
 				z_index = 0
 		#Spawn Projectile
 		if t_magic <= 0:
-			if player.yellow_primary >= 3:
-				projectile_spawn()
+			if cost_check == true:
+				projectile_create()
 #
 #Custom Methods
 #
 func update() -> void:
-	if parent.is_magic == true:
+	if is_magic == true:
 		visible = true
 	else:
 		visible = false
 #
-func projectile_spawn() -> void:
+func projectile_create() -> void:
 	var projectile = projectile_scene.instantiate()
 	autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)
 	if autoload_game.audio_mute == false:
 		magic_audio.play()
-	player.yellow_primary = player.yellow_primary - 3
-	player.camera.is_shaking = true
-	player.camera.apply_shake(.75)
-	player.cursor.form_cursor.visible = true
-	player.primary_gui.update()
+	emit_signal("player_charge_use","yellow_primary",magic_cost)
+	emit_signal("player_camera_shake",.75)
+	emit_signal("player_gui_update")
 	projectile.global_position = spawner.global_position
 	projectile.global_rotation = sprite.global_rotation
 	get_tree().current_scene.add_child(projectile)
-	projectile.player = player
 	t_magic = magic_rate

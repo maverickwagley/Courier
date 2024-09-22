@@ -29,9 +29,9 @@ func _physics_process(_delta) -> void:
 		is_special = false
 	if cost_check == true:
 		cost_check = false
-		special_projectile_create()
+		projectile_create()
 	
-func special_projectile_create() -> void:
+func projectile_create() -> void:
 	#Move to form controller()
 	if autoload_game.audio_mute == false:
 		special_snd.play()

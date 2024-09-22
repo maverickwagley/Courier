@@ -2,7 +2,7 @@
 #
 extends Area2D
 #
-@onready var player: CharacterBody2D
+#@onready var player: CharacterBody2D
 #
 var damage: int
 var inflict_kb: bool = false

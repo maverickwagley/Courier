@@ -8,6 +8,7 @@ signal status_reset
 signal gui_update
 signal check_cost
 signal charge_use
+signal camera_shake
 #
 @export var knockback_power = 50
 #
@@ -175,3 +176,6 @@ func _on_player_charge_use(property: StringName,value: Variant) -> void:
 #
 func _on_form_status_set(property: StringName,value: Variant) -> void:
 	set(property,value)
+#
+func _on_player_camera_shake(value) -> void:
+	emit_signal("camera_shake",value)

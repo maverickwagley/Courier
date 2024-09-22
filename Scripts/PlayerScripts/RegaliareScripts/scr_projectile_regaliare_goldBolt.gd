@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var collision: Area2D = $EnemyCollision
 @onready var particle = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_particle_goldBolt.tscn")
-@onready var player: CharacterBody2D
+#@onready var player: CharacterBody2D
 
 var speed = 250
 var sd_timer: int
@@ -25,12 +25,9 @@ func _ready():
 
 func _physics_process(delta):
 	sd_timer = sd_timer - 1
-	collision.player = player
-	#position = position + direction.normalized() * SPEED * delta
 	velocity = direction * speed * delta
 	var collided = move_and_collide(velocity)
 	if collided:
-		collision.player = player
 		autoload_player.part_spawn(particle,global_position,global_rotation,-3.14)
 		queue_free()
 	visible = true

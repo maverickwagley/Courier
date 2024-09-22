@@ -95,6 +95,7 @@ func _ready() -> void:
 	form.connect("gui_update",_on_gui_update)
 	form.connect("check_cost",_on_check_cost)
 	form.connect("charge_use",_on_charge_use)
+	form.connect("camera_shake",_on_camera_shake)
 	form_controller.player_form = 0
 	form_id = 0
 #
@@ -220,7 +221,7 @@ func player_magic_input() -> void:
 			cursor.form_cursor.visible = true
 			form.is_attack = true
 			form.is_magic = true
-			form.magic.update()
+			#form.magic.update()
 	if is_magic == true:
 		player_form_charge_update()
 		form.player_velocity = velocity
@@ -231,7 +232,8 @@ func player_magic_input() -> void:
 			cursor.form_cursor.visible = false
 			form.is_attack = false
 			form.is_magic = false
-			form.magic.update()
+			#form.magic.update()
+			form.magic.is_magic == false
 #
 func player_special_input() -> void:
 	#CM: player_handle_input
@@ -395,6 +397,8 @@ func player_form_swap():
 	form.connect("status_reset",_on_status_reset)
 	form.connect("gui_update",_on_gui_update)
 	form.connect("check_cost",_on_check_cost)
+	form.connect("charge_use",_on_charge_use)
+	form.connect("camera_shake",_on_camera_shake)
 	health_gui.update()
 	stamina_gui.update()
 	primary_gui.update()
@@ -438,6 +442,7 @@ func _on_check_cost(property: StringName,value: int) -> bool:
 	match property:
 		"yellow_primary":
 			if yellow_primary >= value:
+				form.magic.cost_check = true
 				return true
 			else:
 				return false
@@ -489,3 +494,8 @@ func _on_charge_use(property: StringName,value: Variant) -> bool:
 #
 func _on_gui_update() -> void:
 	player_hud.gui_update_all()
+#
+func _on_camera_shake(value) -> void:
+	camera.is_shaking = true
+	camera.apply_shake(value)
+	cursor.form_cursor.visible = true
