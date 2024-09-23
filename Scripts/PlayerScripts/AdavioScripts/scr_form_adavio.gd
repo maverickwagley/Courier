@@ -8,8 +8,6 @@ func _ready() -> void:
 	form_id = 1
 	form_swap_in()
 	form_player_signal_connections()
-	#player = get_parent()
-	#special.parent = self
 	special.player = player
 #
 func _physics_process(delta) -> void:
@@ -28,7 +26,8 @@ func adavio_roll() -> void:
 		animations.play("anim_adavio_roll_" + last_dir)
 		await animations.animation_finished
 		emit_signal("status_set","is_roll",false)
-		emit_signal("status_set","is_invincible",false)
+		emit_signal("status_set","is_invincible",true)
+		emit_signal("status_set","roll_shake",false)
 		is_roll = false
 		is_invincible = false
 #
@@ -80,7 +79,7 @@ func adavio_special() -> void:
 		t_special = t_special - 1
 	if is_special == true:
 		#Check for line of sight with stage
-		emit_signal("cursor_los_check",special)
+		emit_signal("cursor_los_check")
 		if special_start == false: 
 			#Animate, then enter state if enough charge
 			special.is_special = true
@@ -99,30 +98,23 @@ func adavio_special() -> void:
 		if cursor_los == false:
 			special_use = false
 			var _cursPos = player.get_global_mouse_position()
-			#player.violet_special = player.violet_special - 75
-			#player.special_gui.update()
-			#player.is_invincible = true
 			emit_signal("status_set","is_invincible",true)
 			emit_signal("status_set","t_invincible",54)
-			#is_invincible = true
+			is_invincible = true
 			animations.play("anim_adavio_special_exit")
 			if autoload_game.audio_mute == false:
 				special.special_snd.play()
 			await animations.animation_finished
 			emit_signal("status_set","global_position",_cursPos)
-			#player.global_position = player.get_global_mouse_position()
-			#special.special_use = true
 			special.t1 = 24
 			special.t2 = 42
 			animations.play("anim_adavio_special_enter")
 			await animations.animation_finished
 			emit_signal("status_set","is_attack",false)
 			emit_signal("status_set","is_special",false)
-			#player.is_attack = false
-			#player.is_special = false
-			#player.is_invincible = false
 			is_attack = false
 			is_special = false
+			is_invincible = false
 			special_start = false
 			special_use = false
 			special.is_special = false
@@ -151,12 +143,5 @@ func adavio_base() -> void:
 			animations.play("anim_adavio_run_" + direction)
 		else:
 			animations.play("anim_adavio_idle_" + last_dir)
-#
-#func play_move_audio(_stepSpeed):
-	#if _tMove >= 0:
-		#_tMove = _tMove - 1
-	#if _tMove < 0:
-		#_tMove = _stepSpeed
-		#if autoload_game.audio_mute == false:
-			#move_audio.play()
+
 #

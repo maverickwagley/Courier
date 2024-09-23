@@ -3,6 +3,7 @@
 extends Node2D
 #
 @onready var melee_audio: AudioStreamPlayer = $MeleeSFX
+@onready var player: CharacterBody2D
 #
 var weapon: Area2D
 var parent_velocity: Vector2

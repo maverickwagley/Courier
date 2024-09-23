@@ -3,7 +3,7 @@
 extends Node2D
 #
 @export var player_scene: PackedScene
-@onready var tilemap = $TileMap
+@onready var tilemap = $TileMap/Base
 #
 var enemy_count: int = 0
 var enemy_spawn_timer: int = 0
@@ -57,13 +57,13 @@ func farway_wave_main():
 	#var current_enemy0 = enemy0.instantiate()
 	#var current_enemy1 = enemy0.instantiate()
 	#var current_enemy2 = enemy0.instantiate()
-	var current_enemy3 = enemy1.instantiate()
+	#var current_enemy3 = enemy1.instantiate()
 	#var current_enemy4 = enemy1.instantiate()
 	var current_enemy5 = enemy2.instantiate()
 	#add_child(current_enemy0)
 	#add_child(current_enemy1)
 	#add_child(current_enemy2)
-	add_child(current_enemy3)
+	#add_child(current_enemy3)
 	#add_child(current_enemy4)
 	add_child(current_enemy5)
 	for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
@@ -73,8 +73,8 @@ func farway_wave_main():
 			#current_enemy1.global_position = spawn.global_position
 		#if spawn.name == str(2):
 			#current_enemy2.global_position = spawn.global_position
-		if spawn.name == str(3):
-			current_enemy3.global_position = spawn.global_position
+		#if spawn.name == str(3):
+			#current_enemy3.global_position = spawn.global_position
 		#if spawn.name == str(4):
 			#current_enemy4.global_position = spawn.global_position
 		if spawn.name == str(5):

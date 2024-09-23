@@ -71,6 +71,7 @@ func regaliare_special() -> void:
 		animations.play("anim_regaliare_special_" + last_dir)
 		await animations.animation_finished
 		t_special = 60
+		is_special = false
 		special.is_special = true
 #
 func regaliare_base() -> void:

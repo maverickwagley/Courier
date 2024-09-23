@@ -18,4 +18,3 @@ func _ready():
 	#var parent = get_parent()
 	is_attack = false
 	damagebox.disabled = true
-

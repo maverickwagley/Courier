@@ -35,12 +35,12 @@ func _ready() -> void:
 #
 func _physics_process(_delta) -> void:
 	if is_special == true:
-		print_debug("SPECIAL IS SPECIAL")
+		#print_debug("SPECIAL IS SPECIAL")
 		if special_start == true:
-			print_debug("SPECIAL IS STARTED")
+			#print_debug("SPECIAL IS STARTED")
 			emit_signal("check_cost","violet_special",special_cost)
 			if cost_check == true: 
-				print_debug("Cost Check True")
+				#print_debug("Cost Check True")
 				special_start = false
 				special_use = true
 				emit_signal("player_charge_use","violet_special",special_cost)
@@ -60,12 +60,12 @@ func _physics_process(_delta) -> void:
 				special_collision.disable()
 	if special_use == true:
 		t1 = t1 - 1
-		print_debug("t1: " + str(t1))
+		#print_debug("t1: " + str(t1))
 		if t1 <= 0:
 			special_collision.enable()
 			t1 = 70
 		t2 = t2 - 1
-		print_debug("t2: " + str(t2))
+		#print_debug("t2: " + str(t2))
 		if t2 <= 0:
 			emit_signal("player_camera_shake",3)#player.camera.apply_shake(3)
 			for i in 5:

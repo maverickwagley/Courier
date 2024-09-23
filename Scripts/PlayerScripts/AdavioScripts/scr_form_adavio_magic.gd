@@ -17,7 +17,6 @@ signal player_cursor_los
 @onready var spawner: Node2D = $ProjectileSpawn
 @onready var magic_audio: AudioStreamPlayer = $MagicSFX
 @onready var player: CharacterBody2D
-@onready var parent = get_parent()
 #
 var parent_velocity: Vector2
 var cursor_los_check: bool = false

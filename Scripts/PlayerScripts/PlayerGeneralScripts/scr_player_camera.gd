@@ -7,7 +7,7 @@ extends Camera2D
 #
 var is_shaking: bool = false
 var rng = RandomNumberGenerator.new()
-var tilemap: TileMap
+var tilemap: TileMapLayer
 var shake_strength: float = 0.0
 #
 #Built-in Methods
@@ -31,7 +31,7 @@ func random_offset() -> Vector2:
 func update_camera(_tilemap) -> void:
 	tilemap = _tilemap
 	var map_rect = tilemap.get_used_rect()
-	var tile_size = tilemap.cell_quadrant_size
+	var tile_size = tilemap.rendering_quadrant_size
 	var world_size_px = map_rect.size * tile_size
 	limit_right = world_size_px.x
 	limit_bottom = world_size_px.y - 80

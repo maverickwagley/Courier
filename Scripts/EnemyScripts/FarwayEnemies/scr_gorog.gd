@@ -52,8 +52,9 @@ func gorog_ready() -> void:
 	#is_stopped = false
 #
 func gorog_slash_state() -> void:
-	if is_shielded == true: return
+	if is_attack2 == true: return
 	if is_attack1 == true && t_atk1D <= 0:
+		is_shielded = false
 		t_atk1D = t_atk1C
 		attack1.targets_hit.clear()
 		attack1.damagebox.disabled = false

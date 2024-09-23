@@ -17,7 +17,7 @@ extends CharacterBody2D
 @onready var damage_dealt_audio: AudioStreamPlayer = $DamageSFX
 @onready var hurt_audio: AudioStreamPlayer = $HurtSFX
 #Room
-var tilemap: TileMap 
+var tilemap: TileMapLayer 
 var room_space = get_parent()
 #Form
 var form: Node2D
@@ -90,13 +90,7 @@ func _ready() -> void:
 	load_form = autoload_player.form_array[0]
 	form = load_form.instantiate()
 	add_child(form)
-	form.connect("status_set",_on_status_set)
-	form.connect("status_reset",_on_status_reset)
-	form.connect("gui_update",_on_gui_update)
-	form.connect("check_cost",_on_check_cost)
-	form.connect("charge_use",_on_charge_use)
-	form.connect("camera_shake",_on_camera_shake)
-	form.connect("cursor_los_check",_on_cursor_los_check)
+	player_signal_connections()
 	form_controller.player_form = 0
 	form_id = 0
 #
@@ -116,6 +110,15 @@ func _physics_process(_delta) -> void:
 			form.sprite.apply_intensity_fade(1.0,0.0,0.5)
 #
 #Custom Methods
+#
+func player_signal_connections() -> void:
+	form.connect("status_set",_on_status_set)
+	form.connect("status_reset",_on_status_reset)
+	form.connect("gui_update",_on_gui_update)
+	form.connect("check_cost",_on_check_cost)
+	form.connect("charge_use",_on_charge_use)
+	form.connect("camera_shake",_on_camera_shake)
+	form.connect("cursor_los_check",_on_cursor_los_check)
 #
 func player_update_status() -> void:
 	#CM: _physics_process
@@ -394,12 +397,7 @@ func player_form_swap():
 	form.is_swap = true
 	form.direction = direction
 	form.last_dir = direction
-	form.connect("status_set",_on_status_set)
-	form.connect("status_reset",_on_status_reset)
-	form.connect("gui_update",_on_gui_update)
-	form.connect("check_cost",_on_check_cost)
-	form.connect("charge_use",_on_charge_use)
-	form.connect("camera_shake",_on_camera_shake)
+	player_signal_connections()
 	health_gui.update()
 	stamina_gui.update()
 	primary_gui.update()

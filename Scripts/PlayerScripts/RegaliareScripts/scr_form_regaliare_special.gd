@@ -14,6 +14,7 @@ signal player_cursor_los
 #
 #@onready var player: CharacterBody2D
 @onready var special_snd: AudioStreamPlayer = $SpecialSFX
+@onready var player: CharacterBody2D
 #
 var parent_velocity: Vector2
 var special_rate: int = 90
@@ -41,9 +42,10 @@ func projectile_create() -> void:
 	projectile.global_position = global_position
 	projectile.parent = self
 	add_child(projectile)
-	emit_signal("player_gui_update")
 	emit_signal("player_status_set","is_attack",false)
 	emit_signal("player_status_set","is_invincible",true)
 	emit_signal("player_status_set","t_invincible",60)
 	emit_signal("player_charge_use","yellow_special",special_cost)
 	emit_signal("form_status_set","is_invincible",true)
+	emit_signal("player_gui_update")
+	#emit_signal("special_end")
