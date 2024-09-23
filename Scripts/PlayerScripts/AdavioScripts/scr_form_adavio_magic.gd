@@ -91,9 +91,9 @@ func projectile_create():
 	autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)
 	if autoload_game.audio_mute == false:
 		magic_audio.play()
+	emit_signal("player_charge_use","violet_primary",magic_cost)
 	for i in 7:
 		var projectile = projectile_scene.instantiate()
-		emit_signal("player_charge_use","yellow_primary",magic_cost)
 		emit_signal("player_camera_shake",3)
 		emit_signal("player_gui_update")
 		#player.camera.is_shaking = true

@@ -80,43 +80,54 @@ func adavio_special() -> void:
 		t_special = t_special - 1
 	if is_special == true:
 		#Check for line of sight with stage
+		emit_signal("cursor_los_check",special)
 		if special_start == false: 
-			emit_signal("cursor_los_check",special)
 			#Animate, then enter state if enough charge
+			special.is_special = true
+			special_start = true
 			animations.play("anim_adavio_special_cast")
 			await animations.animation_finished
-			special.is_special = true
-			
-		
-		if Input.is_action_just_pressed("magic_skill"): 
-			#If not already using skill
-			if special_use == false: 
-				if cursor_los == false:
-					player.violet_special = player.violet_special - 75
-					player.special_gui.update()
-					player.is_invincible = true
-					special_use = true
-					#is_invincible = true
-					animations.play("anim_adavio_special_exit")
-					if autoload_game.audio_mute == false:
-						special.special_snd.play()
-					await animations.animation_finished
-					player.global_position = player.get_global_mouse_position()
-					special.special_use = true
-					special.t1 = 24
-					special.t2 = 42
-					animations.play("anim_adavio_special_enter")
-					await animations.animation_finished
-					player.is_attack = false
-					player.is_special = false
-					player.is_invincible = false
-					is_attack = false
-					is_special = false
-					special_start = false
-					special_use = false
-					special.is_special = false
-					special.special_use = false
-					special.special_collision.disable()
+			special.t1 = 60
+			special.t2 = 60
+	#
+	if special_start == true:
+		if Input.is_action_just_pressed("magic_skill"):
+			if cursor_los == false:
+				special.special_start = true
+	#
+	if special_use == true: 
+		if cursor_los == false:
+			special_use = false
+			var _cursPos = player.get_global_mouse_position()
+			#player.violet_special = player.violet_special - 75
+			#player.special_gui.update()
+			#player.is_invincible = true
+			emit_signal("status_set","is_invincible",true)
+			emit_signal("status_set","t_invincible",54)
+			#is_invincible = true
+			animations.play("anim_adavio_special_exit")
+			if autoload_game.audio_mute == false:
+				special.special_snd.play()
+			await animations.animation_finished
+			emit_signal("status_set","global_position",_cursPos)
+			#player.global_position = player.get_global_mouse_position()
+			#special.special_use = true
+			special.t1 = 24
+			special.t2 = 42
+			animations.play("anim_adavio_special_enter")
+			await animations.animation_finished
+			emit_signal("status_set","is_attack",false)
+			emit_signal("status_set","is_special",false)
+			#player.is_attack = false
+			#player.is_special = false
+			#player.is_invincible = false
+			is_attack = false
+			is_special = false
+			special_start = false
+			special_use = false
+			special.is_special = false
+			special.special_use = false
+			special.special_collision.disable()
 #
 func adavio_base() -> void:
 	#CM: _physics_process
