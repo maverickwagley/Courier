@@ -198,5 +198,5 @@ func _on_player_camera_shake(value) -> void:
 	emit_signal("camera_shake",value)
 #
 func _on_player_cursor_los_check() -> void:
-	print_debug("cursor check from form")
+	#print_debug("cursor check from form")
 	emit_signal("cursor_los_check",special)

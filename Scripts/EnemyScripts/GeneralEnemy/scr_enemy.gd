@@ -235,10 +235,11 @@ func enemy_knockback_stack() -> void:
 		#if collider != null:
 		if collider.is_class("CharacterBody2D"):
 			if collider.entity_type == 1:
-				if collider.is_shielded == false:
-					if collider.is_knockback == false:
-						autoload_entity.knockback(collider, global_position, knockback_power, t_knockback)
-						collider.is_knockback = true
+				#if collider.is_shielded == false:
+				if collider.is_knockback == false:
+					print_debug(collider)
+					autoload_entity.knockback(collider, global_position, knockback_power, t_knockback)
+					collider.is_knockback = true
 #
 func enemy_animation() -> void:
 	if is_attack1 == true: return

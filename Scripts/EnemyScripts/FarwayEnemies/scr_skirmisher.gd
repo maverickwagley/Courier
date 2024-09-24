@@ -95,5 +95,3 @@ func skirmisher_slash_state() -> void:
 		#animations.play("anim_skirmisher_run_" + direction)
 	#else:
 		#animations.play("anim_skirmisher_idle_" + last_dir)
-
-

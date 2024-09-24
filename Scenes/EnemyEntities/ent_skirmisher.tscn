@@ -489,8 +489,8 @@ size = Vector2(9, 9)
 [sub_resource type="CircleShape2D" id="CircleShape2D_nexmf"]
 radius = 8.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_em0np"]
-radius = 135.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmm5c"]
+size = Vector2(480, 270)
 
 [node name="Skirmisher" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -586,7 +586,7 @@ visible = false
 path_desired_distance = 8.0
 target_desired_distance = 8.0
 avoidance_enabled = true
-radius = 8.0
+radius = 6.0
 max_speed = 45.0
 
 [node name="RecalculateTimer" type="Timer" parent="Navigation"]
@@ -594,19 +594,23 @@ wait_time = 0.25
 autostart = true
 
 [node name="Attack1Detect" type="Area2D" parent="Navigation"]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="Attack1DetectCircle" type="CollisionShape2D" parent="Navigation/Attack1Detect"]
+visible = false
 rotation = 1.5708
 shape = SubResource("CircleShape2D_nexmf")
 
 [node name="AggroDetect" type="Area2D" parent="Navigation"]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="AggroDetectCircle" type="CollisionShape2D" parent="Navigation/AggroDetect"]
-shape = SubResource("CircleShape2D_em0np")
+visible = false
+shape = SubResource("RectangleShape2D_wmm5c")
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_au4yb")

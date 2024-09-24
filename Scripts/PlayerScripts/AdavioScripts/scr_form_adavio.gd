@@ -99,7 +99,7 @@ func adavio_special() -> void:
 			special_use = false
 			var _cursPos = player.get_global_mouse_position()
 			emit_signal("status_set","is_invincible",true)
-			emit_signal("status_set","t_invincible",54)
+			emit_signal("status_set","t_invincible",120)
 			is_invincible = true
 			animations.play("anim_adavio_special_exit")
 			if autoload_game.audio_mute == false:
@@ -114,7 +114,7 @@ func adavio_special() -> void:
 			emit_signal("status_set","is_special",false)
 			is_attack = false
 			is_special = false
-			is_invincible = false
+			#is_invincible = false
 			special_start = false
 			special_use = false
 			special.is_special = false
