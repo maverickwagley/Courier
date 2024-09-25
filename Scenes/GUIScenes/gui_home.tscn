@@ -18,20 +18,22 @@
 [node name="HomeControl" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 479.0
-offset_bottom = 269.0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 484.0
+offset_bottom = 268.0
 script = ExtResource("1_4ef8p")
 
 [node name="TitleSprite" type="Sprite2D" parent="."]
-position = Vector2(227, 57)
+position = Vector2(224, 96)
 texture = ExtResource("2_g7n6l")
 
 [node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 166.0
-offset_top = 127.0
-offset_right = 294.0
-offset_bottom = 161.0
+offset_left = 160.0
+offset_top = 136.0
+offset_right = 288.0
+offset_bottom = 170.0
 texture_normal = ExtResource("2_vaesu")
 texture_pressed = ExtResource("3_pcyfy")
 texture_hover = ExtResource("4_f2ap3")
@@ -49,10 +51,10 @@ text = "[center][font_size=16]PLAY"
 
 [node name="ExitButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 132.0
-offset_top = 127.0
-offset_right = 164.0
-offset_bottom = 159.0
+offset_left = 128.0
+offset_top = 136.0
+offset_right = 160.0
+offset_bottom = 168.0
 texture_normal = ExtResource("6_ir4qp")
 texture_pressed = ExtResource("7_yjt0q")
 texture_hover = ExtResource("7_ysy2t")
@@ -60,10 +62,10 @@ texture_click_mask = ExtResource("9_dfqki")
 
 [node name="SettingsButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 295.0
-offset_top = 128.0
-offset_right = 327.0
-offset_bottom = 160.0
+offset_left = 289.0
+offset_top = 136.0
+offset_right = 321.0
+offset_bottom = 168.0
 texture_normal = ExtResource("8_i0vq2")
 texture_pressed = ExtResource("3_3ssky")
 texture_hover = ExtResource("9_lpnw7")

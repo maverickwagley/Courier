@@ -26,6 +26,7 @@ var special_cost: int = 75
 var cost_check: bool = false
 var t1: int
 var t2: int
+var t3: int 
 #
 #Built-In Methods
 #
@@ -36,6 +37,7 @@ func _ready() -> void:
 func _physics_process(_delta) -> void:
 	if is_special == true:
 		#print_debug("SPECIAL IS SPECIAL")
+	
 		if special_start == true:
 			#print_debug("SPECIAL IS STARTED")
 			emit_signal("check_cost","violet_special",special_cost)
@@ -67,7 +69,8 @@ func _physics_process(_delta) -> void:
 		t2 = t2 - 1
 		#print_debug("t2: " + str(t2))
 		if t2 <= 0:
-			emit_signal("player_camera_shake",3)#player.camera.apply_shake(3)
+			print_debug("camera_shake")
+			emit_signal("player_camera_shake",3)
 			for i in 5:
 				var projectile = projectile_scene.instantiate()
 				projectile.global_position = global_position + projectile.direction.normalized() * 5

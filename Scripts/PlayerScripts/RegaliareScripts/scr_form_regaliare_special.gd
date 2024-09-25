@@ -9,6 +9,7 @@ signal player_status_set
 signal player_gui_update
 signal player_charge_use
 signal player_cursor_los
+signal player_camera_shake
 #
 @export var projectile_scene: PackedScene
 #

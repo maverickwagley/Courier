@@ -80,6 +80,7 @@ func form_player_signal_connections() -> void:
 	special.connect("player_gui_update",_on_player_gui_update)
 	special.connect("form_status_set",_on_form_status_set)
 	special.connect("player_charge_use",_on_player_charge_use)
+	special.connect("player_camera_shake",_on_player_camera_shake)
 	magic.connect("check_cost",_on_check_cost)
 	magic.connect("player_status_set",_on_player_status_set)
 	magic.connect("player_gui_update",_on_player_gui_update)

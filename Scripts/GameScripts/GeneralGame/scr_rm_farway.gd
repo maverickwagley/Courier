@@ -3,7 +3,7 @@
 extends Node2D
 #
 @export var player_scene: PackedScene
-@onready var tilemap = $TileMap/Base
+@onready var tilemap: TileMapLayer = $TileMap/Base
 #
 var enemy_count: int = 0
 var enemy_spawn_timer: int = 0
@@ -54,6 +54,7 @@ func farway_enemy_spawner():
 			farway_wave_main()
 #
 func farway_wave_main():
+	#pass
 	var current_enemy0 = enemy0.instantiate()
 	var current_enemy1 = enemy0.instantiate()
 	var current_enemy2 = enemy0.instantiate()
