@@ -1,9 +1,10 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://8udpdjwui71o"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://8udpdjwui71o"]
 
 [ext_resource type="Texture2D" uid="uid://cwps0kkqgamtg" path="res://Sprites/WorldSprites/LenkoTiles/spr_tree_lenko_all.png" id="1_4q5ca"]
 [ext_resource type="Texture2D" uid="uid://bk3elhgx4vnrh" path="res://Sprites/WorldSprites/LenkoTiles/spr_tileset_lenko.png" id="2_1un5r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ubi7"]
+resource_name = "Trees"
 texture = ExtResource("1_4q5ca")
 0:0/size_in_atlas = Vector2i(2, 5)
 0:0/0 = 0
@@ -42,6 +43,7 @@ texture = ExtResource("1_4q5ca")
 12:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bw6jl"]
+resource_name = "Main"
 texture = ExtResource("2_1un5r")
 1:0/0 = 0
 2:0/0 = 0
@@ -984,10 +986,35 @@ texture = ExtResource("2_1un5r")
 19:20/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -8, -12, 8, -12, 16, -8, 20, 8, 8, 12, -8, 12, -20, 8)
 19:20/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 16, 0, 8, 4, -8, 4, -16, 0)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rgld5"]
+resource_name = "TreesPass"
+texture = ExtResource("1_4q5ca")
+0:0/size_in_atlas = Vector2i(2, 5)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 19)
+2:0/size_in_atlas = Vector2i(2, 5)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 19)
+4:0/size_in_atlas = Vector2i(2, 5)
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, 19)
+6:0/size_in_atlas = Vector2i(2, 5)
+6:0/0 = 0
+6:0/0/texture_origin = Vector2i(0, 19)
+8:0/size_in_atlas = Vector2i(2, 5)
+8:0/0 = 0
+8:0/0/texture_origin = Vector2i(0, 19)
+10:0/size_in_atlas = Vector2i(2, 5)
+10:0/0 = 0
+10:0/0/texture_origin = Vector2i(0, 19)
+12:0/size_in_atlas = Vector2i(2, 5)
+12:0/0 = 0
+12:0/0/texture_origin = Vector2i(0, 19)
+
 [resource]
-physics_layer_0/collision_layer = 256
+physics_layer_0/collision_layer = 1
 physics_layer_1/collision_layer = 512
-physics_layer_1/collision_mask = 4
+physics_layer_1/collision_mask = 68
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "TallGrass"
 terrain_set_0/terrain_0/color = Color(0.631373, 0.219608, 0.882353, 1)
@@ -995,3 +1022,4 @@ terrain_set_0/terrain_1/name = "Cliff"
 terrain_set_0/terrain_1/color = Color(0.686275, 0.27451, 0.447059, 1)
 sources/0 = SubResource("TileSetAtlasSource_3ubi7")
 sources/1 = SubResource("TileSetAtlasSource_bw6jl")
+sources/3 = SubResource("TileSetAtlasSource_rgld5")
