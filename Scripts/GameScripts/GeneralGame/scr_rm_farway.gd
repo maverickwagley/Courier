@@ -55,31 +55,82 @@ func farway_enemy_spawner():
 #
 func farway_wave_main():
 	#pass
-	var current_enemy0 = enemy0.instantiate()
-	var current_enemy1 = enemy0.instantiate()
-	var current_enemy2 = enemy0.instantiate()
-	var current_enemy3 = enemy1.instantiate()
-	var current_enemy4 = enemy1.instantiate()
-	var current_enemy5 = enemy2.instantiate()
-	add_child(current_enemy0)
-	add_child(current_enemy1)
-	add_child(current_enemy2)
-	add_child(current_enemy3)
-	add_child(current_enemy4)
-	add_child(current_enemy5)
+	var _currentEnemy0 = enemy0.instantiate()
+	var _currentEnemy1 = enemy0.instantiate()
+	var _currentEnemy2 = enemy0.instantiate()
+	var _currentEnemy3 = enemy1.instantiate()
+	var _currentEnemy4 = enemy1.instantiate()
+	var _currentEnemy5 = enemy2.instantiate()
+	add_child(_currentEnemy0)
+	add_child(_currentEnemy1)
+	add_child(_currentEnemy2)
+	add_child(_currentEnemy3)
+	add_child(_currentEnemy4)
+	add_child(_currentEnemy5)
+	#Select Spawn
+	var _groupNum: int = 0
+	var _spawnDistance: float
+	var _spawn0: String = "00"
+	var _spawn1: String = "01"
+	var _spawn2: String = "02"
+	var _spawn3: String = "03"
+	var _spawn4: String = "04"
+	var _spawn5: String = "05"
+	#for group in get_tree().get_nodes_in_group("EnemySpawnGroup"):
+		#if group.collision_list[0] == null:
+			#var _dist: float = group.distance_to(player)
+			#if _dist < _spawnDistance:
+				#_spawnDistance = _dist
+			#match group.name:
+				#"SpawnGroupA":
+					#_groupNum = 0
+				#"SpawnGroupB":
+					#_groupNum = 1
+				#"SpawnGroupC":
+					#_groupNum = 2
+				#"SpawnGroupD":
+					#_groupNum = 3
+				#_spawn0 = str(_groupNum,_spawn0)
+				#_spawn1 = str(_groupNum,_spawn1)
+				#_spawn2 = str(_groupNum,_spawn2)
+				#_spawn3 = str(_groupNum,_spawn3)
+				#return
+		#else:
+			#_groupNum = randi_range(0,3)
+			#_spawn0 = str(_groupNum,_spawn0)
+			#_spawn1 = str(_groupNum,_spawn1)
+			#_spawn2 = str(_groupNum,_spawn2)
+			#_spawn3 = str(_groupNum,_spawn3)
+			
 	for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
-		if spawn.name == str(0):
-			current_enemy0.global_position = spawn.global_position
-		if spawn.name == str(1):
-			current_enemy1.global_position = spawn.global_position
-		if spawn.name == str(2):
-			current_enemy2.global_position = spawn.global_position
-		if spawn.name == str(3):
-			current_enemy3.global_position = spawn.global_position
-		if spawn.name == str(4):
-			current_enemy4.global_position = spawn.global_position
-		if spawn.name == str(5):
-			current_enemy5.global_position = spawn.global_position
+		match spawn.name:
+			_spawn0:
+				_currentEnemy0.global_position = spawn.global_position
+			_spawn1:
+				_currentEnemy1.global_position = spawn.global_position
+			_spawn2:
+				_currentEnemy2.global_position = spawn.global_position
+			_spawn3:
+				_currentEnemy3.global_position = spawn.global_position
+			_spawn4:
+				_currentEnemy4.global_position = spawn.global_position
+			_spawn5:
+				_currentEnemy5.global_position = spawn.global_position
+		#if spawn.name == str(00):
+			#_currentEnemy0.global_position = spawn.global_position
+		#if spawn.name == str(01):
+			#_currentEnemy1.global_position = spawn.global_position
+		#if spawn.name == str(02):
+			#_currentEnemy2.global_position = spawn.global_position
+		#if spawn.name == str(03):
+			#_currentEnemy3.global_position = spawn.global_position
+		#if spawn.name == str(04):
+			#_currentEnemy4.global_position = spawn.global_position
+		#if spawn.name == str(05):
+			#_currentEnemy5.global_position = spawn.global_position
+#
+func room_enemy_spawn_group():
+	pass
 #
 func _on_inventory_gui_closed():
 	get_tree().paused = false
