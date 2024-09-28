@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://ca7pf5s7vr3pd"]
+[gd_scene load_steps=12 format=4 uid="uid://ca7pf5s7vr3pd"]
 
 [ext_resource type="Script" path="res://Scripts/GameScripts/GeneralGame/scr_rm_farway.gd" id="1_58377"]
 [ext_resource type="PackedScene" uid="uid://n6tgp86xdidy" path="res://Scenes/PlayerScenes/ent_player.tscn" id="2_miyam"]
+[ext_resource type="Script" path="res://Scripts/GameScripts/Spawners/scr_spawner_group_enemy.gd" id="3_221il"]
 [ext_resource type="TileSet" uid="uid://8udpdjwui71o" path="res://Sprites/WorldSprites/LenkoTiles/tile_lenko_main.tres" id="3_im7pc"]
 [ext_resource type="TileSet" uid="uid://dkhj8kxydaoqb" path="res://Sprites/WorldSprites/LenkoTiles/tile_lenko_grass.tres" id="4_478jf"]
 [ext_resource type="Texture2D" uid="uid://bk3elhgx4vnrh" path="res://Sprites/WorldSprites/LenkoTiles/spr_tileset_lenko.png" id="4_xjco5"]
@@ -746,6 +747,7 @@ position = Vector2(-1, 2)
 
 [node name="SpawnGroupA" type="Node2D" parent="Markers/EnemySpawns" groups=["EnemySpawnGroup"]]
 position = Vector2(114, 673)
+script = ExtResource("3_221il")
 
 [node name="00" type="Node2D" parent="Markers/EnemySpawns/SpawnGroupA" groups=["EnemySpawnPoint"]]
 position = Vector2(-1, 14)
@@ -766,12 +768,14 @@ position = Vector2(-7, -12)
 position = Vector2(22, -10)
 
 [node name="SpawnArea" type="Area2D" parent="Markers/EnemySpawns/SpawnGroupA"]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Markers/EnemySpawns/SpawnGroupA/SpawnArea"]
 shape = SubResource("CircleShape2D_bi7pj")
 
 [node name="SpawnGroupB" type="Node2D" parent="Markers/EnemySpawns" groups=["EnemySpawnGroup"]]
 position = Vector2(277, 70)
+script = ExtResource("3_221il")
 
 [node name="10" type="Node2D" parent="Markers/EnemySpawns/SpawnGroupB" groups=["EnemySpawnPoint"]]
 position = Vector2(-35, 29)
@@ -790,6 +794,12 @@ position = Vector2(13, 26)
 
 [node name="15" type="Node2D" parent="Markers/EnemySpawns/SpawnGroupB" groups=["EnemySpawnPoint"]]
 position = Vector2(19, 0)
+
+[node name="SpawnArea" type="Area2D" parent="Markers/EnemySpawns/SpawnGroupB"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Markers/EnemySpawns/SpawnGroupB/SpawnArea"]
+shape = SubResource("CircleShape2D_bi7pj")
 
 [node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -855,3 +865,8 @@ tile_set = SubResource("TileSet_5447k")
 stream = ExtResource("6_iw75l")
 volume_db = -10.0
 bus = &"Music"
+
+[connection signal="area_entered" from="Markers/EnemySpawns/SpawnGroupA/SpawnArea" to="Markers/EnemySpawns" method="_on_spawn_area_entered"]
+[connection signal="area_exited" from="Markers/EnemySpawns/SpawnGroupA/SpawnArea" to="Markers/EnemySpawns" method="_on_spawn_area_exited"]
+[connection signal="area_entered" from="Markers/EnemySpawns/SpawnGroupB/SpawnArea" to="Markers/EnemySpawns/SpawnGroupB" method="_on_spawn_area_entered"]
+[connection signal="area_exited" from="Markers/EnemySpawns/SpawnGroupB/SpawnArea" to="Markers/EnemySpawns/SpawnGroupB" method="_on_spawn_area_exited"]

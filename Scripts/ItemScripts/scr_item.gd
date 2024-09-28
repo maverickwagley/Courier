@@ -99,6 +99,7 @@ func _on_player_collision_area_entered(area) -> void:
 	pass # Replace with function body.
 #
 func _on_magnetism_area_entered(area) -> void:
+	#print_debug(area.get_parent())
 	magnet = true
 	magnet_target = area.get_parent()
 	speed = 25

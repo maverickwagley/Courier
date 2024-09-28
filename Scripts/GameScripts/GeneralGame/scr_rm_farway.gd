@@ -4,6 +4,7 @@ extends Node2D
 #
 @export var player_scene: PackedScene
 @onready var tilemap: TileMapLayer = $TileMap/Base
+#@onready var groupA: Node2D = $Markers/EnemySpawns/SpawnGroupA
 #
 var enemy_count: int = 0
 var enemy_spawn_timer: int = 0
@@ -76,25 +77,25 @@ func farway_wave_main():
 	var _spawn3: String = "03"
 	var _spawn4: String = "04"
 	var _spawn5: String = "05"
-	#for group in get_tree().get_nodes_in_group("EnemySpawnGroup"):
-		#if group.collision_list[0] == null:
+	for group in get_tree().get_nodes_in_group("EnemySpawnGroup"):
+		if group.collision_list.size() <= 0:
 			#var _dist: float = group.distance_to(player)
 			#if _dist < _spawnDistance:
 				#_spawnDistance = _dist
-			#match group.name:
-				#"SpawnGroupA":
-					#_groupNum = 0
-				#"SpawnGroupB":
-					#_groupNum = 1
-				#"SpawnGroupC":
-					#_groupNum = 2
-				#"SpawnGroupD":
-					#_groupNum = 3
-				#_spawn0 = str(_groupNum,_spawn0)
-				#_spawn1 = str(_groupNum,_spawn1)
-				#_spawn2 = str(_groupNum,_spawn2)
-				#_spawn3 = str(_groupNum,_spawn3)
-				#return
+			match group.name:
+				"SpawnGroupA":
+					_groupNum = 0
+				"SpawnGroupB":
+					_groupNum = 1
+				"SpawnGroupC":
+					_groupNum = 2
+				"SpawnGroupD":
+					_groupNum = 3
+			_spawn0 = str(_groupNum,_spawn0)
+			_spawn1 = str(_groupNum,_spawn1)
+			_spawn2 = str(_groupNum,_spawn2)
+			_spawn3 = str(_groupNum,_spawn3)
+			#return
 		#else:
 			#_groupNum = randi_range(0,3)
 			#_spawn0 = str(_groupNum,_spawn0)
@@ -103,8 +104,10 @@ func farway_wave_main():
 			#_spawn3 = str(_groupNum,_spawn3)
 			
 	for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
+		print_debug("Enter match")
 		match spawn.name:
 			_spawn0:
+				print_debug(spawn.global_position)
 				_currentEnemy0.global_position = spawn.global_position
 			_spawn1:
 				_currentEnemy1.global_position = spawn.global_position
