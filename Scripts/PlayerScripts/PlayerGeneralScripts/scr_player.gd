@@ -293,6 +293,7 @@ func player_apply_damage(_damage) -> void:
 	#CM: player_hurt_by_enemy
 	hp = hp - _damage
 	if hp <= 0:
+		player_status_reset()
 		hp = max_hp
 		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
 			if spawn.name == str(0):

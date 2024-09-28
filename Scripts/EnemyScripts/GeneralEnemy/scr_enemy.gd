@@ -24,7 +24,7 @@ class_name Enemy
 @onready var nav_agent: NavigationAgent2D
 @onready var hurt_audio: AudioStreamPlayer
 @onready var shielded_audio: AudioStreamPlayer
-@onready var target_node: Node2D
+@onready var target_node: CharacterBody2D
 @onready var sprite: Sprite2D
 @onready var animations: AnimationPlayer
 @onready var effects: AnimationPlayer
@@ -54,7 +54,7 @@ var is_attack2: bool = false
 var is_attack3: bool = false
 var is_knockback: bool = false
 var is_shielded: bool = false
-var is_aggro: bool = false
+var is_aggro: bool = true
 var is_stopped: bool = false
 var is_dead: bool = false
 #Timers
@@ -105,14 +105,16 @@ func enemy_timers() -> void:
 #
 func enemy_nav_calc() -> void:
 	await get_tree().physics_frame
-	
-	if target_node:
+	for p in get_tree().get_nodes_in_group("Player"):
+		target_node = p
+	nav_agent.target_position = target_node.global_position
+	#if target_node:
 		#print_debug(target_node.name)
-		nav_agent.target_position = target_node.global_position
-	else:
-		for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
-			if spawn.name == str(objective_num):
-				nav_agent.target_position  = spawn.global_position
+		#nav_agent.target_position = target_node.global_position
+	#else:
+		#for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
+			#if spawn.name == str(objective_num):
+				#nav_agent.target_position  = spawn.global_position
 #
 func enemy_target_set(_trgt) -> void:
 	is_aggro = true
@@ -324,7 +326,7 @@ func _on_aggro_detect_area_entered(area) -> void:
 	is_aggro = true
 	t_aggro = 300
 	target_node = area.owner
-	#print_debug(target_node)
+	print_debug(target_node)
 #
 func _on_hitbox_area_entered(area) -> void:
 	#if area == $MeleeWeapon: return

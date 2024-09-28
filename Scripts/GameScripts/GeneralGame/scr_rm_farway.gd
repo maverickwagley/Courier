@@ -91,10 +91,13 @@ func farway_wave_main():
 					_groupNum = 2
 				"SpawnGroupD":
 					_groupNum = 3
-			_spawn0 = str(_groupNum,_spawn0)
-			_spawn1 = str(_groupNum,_spawn1)
-			_spawn2 = str(_groupNum,_spawn2)
-			_spawn3 = str(_groupNum,_spawn3)
+			_spawn0 = str(_groupNum,0)
+			_spawn1 = str(_groupNum,1)
+			_spawn2 = str(_groupNum,2)
+			_spawn3 = str(_groupNum,3)
+			_spawn4 = str(_groupNum,4)
+			_spawn5 = str(_groupNum,5)
+			print_debug(_spawn0)
 			#return
 		#else:
 			#_groupNum = randi_range(0,3)
@@ -104,7 +107,7 @@ func farway_wave_main():
 			#_spawn3 = str(_groupNum,_spawn3)
 			
 	for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
-		print_debug("Enter match")
+		#print_debug("Enter match")
 		match spawn.name:
 			_spawn0:
 				print_debug(spawn.global_position)
