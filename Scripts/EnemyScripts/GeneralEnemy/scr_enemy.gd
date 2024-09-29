@@ -107,7 +107,8 @@ func enemy_nav_calc() -> void:
 	await get_tree().physics_frame
 	for p in get_tree().get_nodes_in_group("Player"):
 		target_node = p
-	nav_agent.target_position = target_node.global_position
+	if target_node:
+		nav_agent.target_position = target_node.global_position
 	#if target_node:
 		#print_debug(target_node.name)
 		#nav_agent.target_position = target_node.global_position
@@ -234,12 +235,10 @@ func enemy_knockback_stack() -> void:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		#if collider != null:
 		if collider.is_class("CharacterBody2D"):
 			if collider.entity_type == 1:
-				#if collider.is_shielded == false:
 				if collider.is_knockback == false:
-					print_debug(collider)
+					#print_debug(collider)
 					autoload_entity.knockback(collider, global_position, knockback_power, t_knockback)
 					collider.is_knockback = true
 #
@@ -326,7 +325,7 @@ func _on_aggro_detect_area_entered(area) -> void:
 	is_aggro = true
 	t_aggro = 300
 	target_node = area.owner
-	print_debug(target_node)
+	#print_debug(target_node)
 #
 func _on_hitbox_area_entered(area) -> void:
 	#if area == $MeleeWeapon: return

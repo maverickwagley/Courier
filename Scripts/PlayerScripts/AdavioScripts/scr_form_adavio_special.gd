@@ -69,7 +69,6 @@ func _physics_process(_delta) -> void:
 		t2 = t2 - 1
 		#print_debug("t2: " + str(t2))
 		if t2 <= 0:
-			print_debug("camera_shake")
 			emit_signal("player_camera_shake",3)
 			for i in 5:
 				var projectile = projectile_scene.instantiate()

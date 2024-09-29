@@ -55,7 +55,19 @@ func farway_enemy_spawner():
 			farway_wave_main()
 #
 func farway_wave_main():
-	#pass
+	#Spawner Variables
+	var _groupAry: Array
+	var _groupNum: int = 0
+	var _randGroup: int
+	var _spawnDistance: float
+	var _spawn0: String = "00"
+	var _spawn1: String = "01"
+	var _spawn2: String = "02"
+	var _spawn3: String = "03"
+	var _spawn4: String = "04"
+	var _spawn5: String = "05"
+	
+	#Instantiate Enemies
 	var _currentEnemy0 = enemy0.instantiate()
 	var _currentEnemy1 = enemy0.instantiate()
 	var _currentEnemy2 = enemy0.instantiate()
@@ -68,49 +80,31 @@ func farway_wave_main():
 	add_child(_currentEnemy3)
 	add_child(_currentEnemy4)
 	add_child(_currentEnemy5)
-	#Select Spawn
-	var _groupNum: int = 0
-	var _spawnDistance: float
-	var _spawn0: String = "00"
-	var _spawn1: String = "01"
-	var _spawn2: String = "02"
-	var _spawn3: String = "03"
-	var _spawn4: String = "04"
-	var _spawn5: String = "05"
+	
+	#Spawner Selection
 	for group in get_tree().get_nodes_in_group("EnemySpawnGroup"):
 		if group.collision_list.size() <= 0:
-			#var _dist: float = group.distance_to(player)
-			#if _dist < _spawnDistance:
-				#_spawnDistance = _dist
 			match group.name:
 				"SpawnGroupA":
-					_groupNum = 0
+					_groupAry.append(0)
 				"SpawnGroupB":
-					_groupNum = 1
+					_groupAry.append(1)
 				"SpawnGroupC":
-					_groupNum = 2
-				"SpawnGroupD":
-					_groupNum = 3
-			_spawn0 = str(_groupNum,0)
-			_spawn1 = str(_groupNum,1)
-			_spawn2 = str(_groupNum,2)
-			_spawn3 = str(_groupNum,3)
-			_spawn4 = str(_groupNum,4)
-			_spawn5 = str(_groupNum,5)
-			print_debug(_spawn0)
-			#return
-		#else:
-			#_groupNum = randi_range(0,3)
-			#_spawn0 = str(_groupNum,_spawn0)
-			#_spawn1 = str(_groupNum,_spawn1)
-			#_spawn2 = str(_groupNum,_spawn2)
-			#_spawn3 = str(_groupNum,_spawn3)
-			
+					_groupAry.append(2)
+	_randGroup = randi_range(0,_groupAry.size()-1)
+	_groupNum = _groupAry[_randGroup]
+	print_debug(_groupNum)
+	_spawn0 = str(_groupNum,0)
+	_spawn1 = str(_groupNum,1)
+	_spawn2 = str(_groupNum,2)
+	_spawn3 = str(_groupNum,3)
+	_spawn4 = str(_groupNum,4)
+	_spawn5 = str(_groupNum,5)
+	
+	#Spawn Enemies
 	for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
-		#print_debug("Enter match")
 		match spawn.name:
 			_spawn0:
-				print_debug(spawn.global_position)
 				_currentEnemy0.global_position = spawn.global_position
 			_spawn1:
 				_currentEnemy1.global_position = spawn.global_position
@@ -122,18 +116,6 @@ func farway_wave_main():
 				_currentEnemy4.global_position = spawn.global_position
 			_spawn5:
 				_currentEnemy5.global_position = spawn.global_position
-		#if spawn.name == str(00):
-			#_currentEnemy0.global_position = spawn.global_position
-		#if spawn.name == str(01):
-			#_currentEnemy1.global_position = spawn.global_position
-		#if spawn.name == str(02):
-			#_currentEnemy2.global_position = spawn.global_position
-		#if spawn.name == str(03):
-			#_currentEnemy3.global_position = spawn.global_position
-		#if spawn.name == str(04):
-			#_currentEnemy4.global_position = spawn.global_position
-		#if spawn.name == str(05):
-			#_currentEnemy5.global_position = spawn.global_position
 #
 func room_enemy_spawn_group():
 	pass
