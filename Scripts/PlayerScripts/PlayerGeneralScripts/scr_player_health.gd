@@ -21,5 +21,3 @@ func update() -> void:
 	value = player.hp * 100 / player.max_hp
 	player_num = player.form_id
 	sprite.frame = player_num
-
-

@@ -4,10 +4,12 @@ extends Node2D
 #
 @export var player_scene: PackedScene
 @onready var tilemap: TileMapLayer = $TileMap/Base
+@onready var game_hud: CanvasLayer = $GameHUD
+@onready var enemy_prog: TextureProgressBar = $GameHUD/EnemyProgress
 #@onready var groupA: Node2D = $Markers/EnemySpawns/SpawnGroupA
 #
 var enemy_count: int = 0
-var enemy_spawn_timer: int = 0
+var enemy_spawn_timer: int = 60
 var form_menu: bool = false
 #
 var enemy0 = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
@@ -46,12 +48,14 @@ func _physics_process(_delta):
 #Custom Methods
 #
 func farway_enemy_spawner():
-	if enemy_count < 4:
+	var squads = 4
+	if enemy_count < squads:
 		if enemy_spawn_timer > 0:
 			enemy_spawn_timer = enemy_spawn_timer - 1
 		if enemy_spawn_timer <= 0:
 			enemy_count = enemy_count + 1
 			enemy_spawn_timer = 600
+			enemy_prog.update_enemy_progress((squads - enemy_count) * 100/squads)
 			farway_wave_main()
 #
 func farway_wave_main():
