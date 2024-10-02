@@ -28,6 +28,9 @@ func _ready() -> void:
 	update()
 #
 func _physics_process(delta) -> void:
+	if sd_timer > 0:
+		sd_timer = sd_timer - 1
+	#
 	if classed == true:
 		if class_update == false:
 			update()
@@ -43,6 +46,9 @@ func _physics_process(delta) -> void:
 			speed = speed + 1
 			velocity = direction * speed * delta
 	var collision = move_and_collide(velocity)
+	#
+	if sd_timer <= 0:
+		queue_free()
 #
 #Custom Scripts
 #

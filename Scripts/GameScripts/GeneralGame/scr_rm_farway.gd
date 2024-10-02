@@ -8,7 +8,11 @@ extends Node2D
 @onready var enemy_prog: TextureProgressBar = $GameHUD/EnemyProgress
 #@onready var groupA: Node2D = $Markers/EnemySpawns/SpawnGroupA
 #
+var local_wave: int = 0
+var game_wave: int = 0
 var enemy_count: int = 0
+var max_squads: int = 4
+var rem_squads: int = 4
 var enemy_spawn_timer: int = 60
 var form_menu: bool = false
 #
@@ -48,14 +52,13 @@ func _physics_process(_delta):
 #Custom Methods
 #
 func farway_enemy_spawner():
-	var squads = 4
-	if enemy_count < squads:
+	if rem_squads > 0:
 		if enemy_spawn_timer > 0:
 			enemy_spawn_timer = enemy_spawn_timer - 1
 		if enemy_spawn_timer <= 0:
-			enemy_count = enemy_count + 1
+			rem_squads = rem_squads - 1
 			enemy_spawn_timer = 600
-			enemy_prog.update_enemy_progress((squads - enemy_count) * 100/squads)
+			enemy_prog.update_enemy_progress((rem_squads) * 100/max_squads)
 			farway_wave_main()
 #
 func farway_wave_main():

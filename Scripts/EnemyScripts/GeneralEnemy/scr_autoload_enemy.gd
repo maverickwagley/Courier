@@ -1,5 +1,10 @@
 extends Node
-
+#
+var enemy0 = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
+var enemy1 = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
+var enemy2 = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
+var enemy_list: Array
+#enemy_list[0] = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
 
 
 #
@@ -24,3 +29,6 @@ func hitbox_area_entered(area,particle,global_position):
 		return true
 	else:
 		return false
+#
+func farway_spawn_primary_0():
+	pass
