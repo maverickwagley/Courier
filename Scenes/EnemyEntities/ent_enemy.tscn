@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_enemy.gd" id="1_hxfi1"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 texture_filter = 1
 script = ExtResource("1_hxfi1")

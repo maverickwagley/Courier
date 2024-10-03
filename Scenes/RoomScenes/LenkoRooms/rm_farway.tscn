@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ca7pf5s7vr3pd"]
+[gd_scene load_steps=19 format=4 uid="uid://ca7pf5s7vr3pd"]
 
 [ext_resource type="Script" path="res://Scripts/GameScripts/GeneralGame/scr_rm_farway.gd" id="1_58377"]
 [ext_resource type="PackedScene" uid="uid://n6tgp86xdidy" path="res://Scenes/PlayerScenes/ent_player.tscn" id="2_miyam"]
@@ -703,6 +703,12 @@ terrain_set_0/terrain_2/color = Color(0.909504, 0.937587, 0, 1)
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_ofd4p")
 
+[sub_resource type="SystemFont" id="SystemFont_8xgjf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0kose"]
+font = SubResource("SystemFont_8xgjf")
+font_size = 8
+
 [node name="World" type="Node2D" groups=["World"]]
 y_sort_enabled = true
 script = ExtResource("1_58377")
@@ -891,6 +897,23 @@ fill_mode = 4
 texture_under = ExtResource("9_0wrum")
 texture_progress = ExtResource("10_h4fum")
 script = ExtResource("11_65h7q")
+
+[node name="WaveLabel" type="Label" parent="GameHUD/EnemyProgress"]
+layout_mode = 0
+offset_left = -17.0
+offset_top = 12.0
+offset_right = 1.0
+offset_bottom = 21.0
+label_settings = SubResource("LabelSettings_0kose")
+horizontal_alignment = 2
+
+[node name="EnemyLabel" type="Label" parent="GameHUD/EnemyProgress"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 12.0
+offset_right = 48.0
+offset_bottom = 21.0
+label_settings = SubResource("LabelSettings_0kose")
 
 [connection signal="area_entered" from="Markers/EnemySpawns/SpawnGroupA/SpawnArea" to="Markers/EnemySpawns" method="_on_spawn_area_entered"]
 [connection signal="area_exited" from="Markers/EnemySpawns/SpawnGroupA/SpawnArea" to="Markers/EnemySpawns" method="_on_spawn_area_exited"]
