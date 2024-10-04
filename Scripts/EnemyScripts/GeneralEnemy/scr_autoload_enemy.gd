@@ -29,6 +29,3 @@ func hitbox_area_entered(area,particle,global_position):
 		return true
 	else:
 		return false
-#
-func farway_spawn_primary_0():
-	pass

@@ -11,11 +11,15 @@ extends Node2D
 #@onready var groupA: Node2D = $Markers/EnemySpawns/SpawnGroupA
 #
 var local_wave: int = 1
-var game_wave: int = 0
+var game_wave: int = 1
 var enemy_count: int = 0
 var max_squads: int = 4
+var squad_size: int = 1
 var rem_squads: int = 4
-var enemy_spawn_timer: int = 60
+var squad_comp: Array
+var enemy_spawn_timer: int = 0
+var prewave = 60
+var wave_started: bool = false
 var form_menu: bool = false
 #Spawner Variables
 var group_array: Array
@@ -66,7 +70,13 @@ func _ready() -> void:
 		pass 
 #
 func _physics_process(_delta) -> void:
-	farway_enemy_spawner()
+	if wave_started == false:
+		if prewave > 0:
+			prewave = prewave - 1
+		if prewave < 0:
+			prewave = 1800
+	if wave_started == true:
+		farway_enemy_spawner()
 #
 #Custom Methods
 #
@@ -76,13 +86,16 @@ func farway_enemy_spawner() -> void:
 			enemy_spawn_timer = enemy_spawn_timer - 1
 		if enemy_spawn_timer <= 0:
 			rem_squads = rem_squads - 1
-			enemy_spawn_timer = 600
+			enemy_spawn_timer = 300
 			enemy_prog.update_enemy_progress((rem_squads) * 100/max_squads)
-			farway_wave_main()
+			farway_spawn_group_select()
+			farway_spawn_comp_add()
+			room_instantiate_enemy()
+			#farway_wave_main()
 			update_labels()
 #
-func farway_wave_main() -> void:
-	#Spawner Selection
+func farway_spawn_group_select() -> void:
+	#Spawner Group Selection
 	for group in get_tree().get_nodes_in_group("EnemySpawnGroup"):
 		if group.collision_list.size() <= 0:
 			match group.name:
@@ -94,15 +107,22 @@ func farway_wave_main() -> void:
 					group_array.append(2)
 	group_rand = randi_range(0,group_array.size()-1)
 	group_num = group_array[group_rand]
-	print_debug(group_num)
-	
-	#Create Enemies
-	room_instantiate_enemy(0)
-	room_instantiate_enemy(1)
-	room_instantiate_enemy(2)
-	room_instantiate_enemy(3)
-	room_instantiate_enemy(4)
-	room_instantiate_enemy(5)
+#
+func farway_spawn_comp_add() -> void:
+	match local_wave:
+		0:
+			squad_comp.append(0)
+			#squad_comp[0] = 0#Create Enemies
+			#room_instantiate_enemy(0)
+			#room_instantiate_enemy(1)
+			#room_instantiate_enemy(2)
+			#room_instantiate_enemy(3)
+			#room_instantiate_enemy(4)
+			#room_instantiate_enemy(5)
+		1:
+			squad_comp.append(0)
+			squad_comp.append(0)
+			squad_comp.append(1)
 	
 	#Spawn Enemies
 	for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
