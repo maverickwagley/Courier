@@ -96,6 +96,9 @@ func farway_enemy_spawner() -> void:
 			for i in range(0,squad_size):
 				room_instantiate_enemy(i)
 			#farway_wave_main()
+			#local_wave = local_wave + 1
+			#wave_started == false
+			#prewave = 1800
 			update_labels()
 #
 func farway_spawn_group_select() -> void:
