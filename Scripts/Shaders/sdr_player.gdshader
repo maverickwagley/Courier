@@ -36,7 +36,6 @@ void fragment() {
 		sprite_color = mix(sprite_color,swap_color,blink_intensity * sprite_color.a);
 		COLOR = sprite_color;
 	}
-	
+
 
 }
-

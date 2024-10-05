@@ -73,8 +73,12 @@ func _physics_process(_delta) -> void:
 	if wave_started == false:
 		if prewave > 0:
 			prewave = prewave - 1
-		if prewave < 0:
+		if prewave <= 0:
+			print_debug("Wave Started")
 			prewave = 1800
+			wave_started = true
+			squad_comp.clear()
+			farway_spawn_comp_add()
 	if wave_started == true:
 		farway_enemy_spawner()
 #
@@ -89,8 +93,8 @@ func farway_enemy_spawner() -> void:
 			enemy_spawn_timer = 300
 			enemy_prog.update_enemy_progress((rem_squads) * 100/max_squads)
 			farway_spawn_group_select()
-			farway_spawn_comp_add()
-			room_instantiate_enemy()
+			for i in range(0,squad_size):
+				room_instantiate_enemy(i)
 			#farway_wave_main()
 			update_labels()
 #
@@ -123,22 +127,6 @@ func farway_spawn_comp_add() -> void:
 			squad_comp.append(0)
 			squad_comp.append(0)
 			squad_comp.append(1)
-	
-	#Spawn Enemies
-	for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
-		match spawn.name:
-			spawn0:
-				current_enemy0.global_position = spawn.global_position
-			spawn1:
-				current_enemy1.global_position = spawn.global_position
-			spawn2:
-				current_enemy2.global_position = spawn.global_position
-			spawn3:
-				current_enemy3.global_position = spawn.global_position
-			spawn4:
-				current_enemy4.global_position = spawn.global_position
-			spawn5:
-				current_enemy5.global_position = spawn.global_position
 #
 func room_instantiate_enemy(_spawnNum) -> void:
 	match _spawnNum:
@@ -146,34 +134,40 @@ func room_instantiate_enemy(_spawnNum) -> void:
 			current_enemy0 = enemy0.instantiate()
 			add_child(current_enemy0)
 			spawn0 = str(group_num,0)
-			#pass
+			room_enemy_spawn_position(spawn0,current_enemy0)
 		1:
 			current_enemy1 = enemy0.instantiate()
 			add_child(current_enemy1)
 			spawn1 = str(group_num,1)
-			#pass
+			room_enemy_spawn_position(spawn1,current_enemy1)
 		2:
 			current_enemy2 = enemy0.instantiate()
 			add_child(current_enemy2)
 			spawn2 = str(group_num,2)
-			#pass
+			room_enemy_spawn_position(spawn2,current_enemy2)
 		3:
 			current_enemy3 = enemy1.instantiate()
 			add_child(current_enemy3)
 			spawn3 = str(group_num,3)
+			room_enemy_spawn_position(spawn3,current_enemy3)
 		4: 
 			current_enemy4 = enemy1.instantiate()
 			add_child(current_enemy4)
 			spawn4 = str(group_num,4)
+			room_enemy_spawn_position(spawn4,current_enemy4)
 		5:
 			current_enemy5 = enemy2.instantiate()
 			add_child(current_enemy5)
 			spawn5 = str(group_num,5)
+			room_enemy_spawn_position(spawn5,current_enemy5)
 	enemy_count = get_tree().get_node_count_in_group("Enemy")
 	print_debug(enemy_count)
 #
-func room_enemy_spawn_group() -> void:
-	pass
+func room_enemy_spawn_position(_spawnName,_spawnEnemy) -> void:
+	#Spawn Enemies
+	for spawn in get_tree().get_nodes_in_group("EnemySpawnPoint"):
+		if spawn.name == _spawnName:
+			_spawnEnemy.global_position = spawn.global_position
 #
 func update_labels() -> void:
 	wave_label.text = str(local_wave)
