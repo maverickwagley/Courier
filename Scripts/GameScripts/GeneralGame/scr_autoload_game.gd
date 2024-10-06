@@ -4,8 +4,10 @@ extends Node
 #General Game
 var player = {}
 var mode: int = 0
-
+var room: Node2D
 #Wave Based Game
-
+var local_wave: int = 1
+var game_wave: int = 1
+var enemy_count: int = 0
 #Settings
 var audio_mute: bool = true

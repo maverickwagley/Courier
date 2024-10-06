@@ -193,6 +193,8 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 			var _rType = randi_range(0,5)
 			enemy_drop_essence(_rType,_essMin,_essMax)
 			#enemy_drop_essence(6,3,7)
+			autoload_game.enemy_count = autoload_game.enemy_count - 1
+			autoload_game.room.update_labels()
 			queue_free()
 	if hp > 0:
 		healthbar.value = hp * 100 / max_hp

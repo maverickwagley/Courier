@@ -10,9 +10,6 @@ extends Node2D
 @onready var enemy_label: Label = $GameHUD/EnemyProgress/EnemyLabel
 #@onready var groupA: Node2D = $Markers/EnemySpawns/SpawnGroupA
 #
-var local_wave: int = 1
-var game_wave: int = 1
-var enemy_count: int = 0
 var max_squads: int = 4
 var squad_size: int = 1
 var rem_squads: int = 4
@@ -47,6 +44,7 @@ var enemy2 = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
 #
 func _ready() -> void:
 	print_debug("Mode:" + str(autoload_game.mode))
+	autoload_game.room = self
 	if autoload_game.mode == 1:
 		var current_player = player_scene.instantiate()
 		add_child(current_player)
@@ -78,7 +76,7 @@ func _physics_process(_delta) -> void:
 			prewave = 1800
 			wave_started = true
 			squad_comp.clear()
-			farway_spawn_comp_add()
+			farway_spawn_setup()
 	if wave_started == true:
 		farway_enemy_spawner()
 #
@@ -93,13 +91,19 @@ func farway_enemy_spawner() -> void:
 			enemy_spawn_timer = 300
 			enemy_prog.update_enemy_progress((rem_squads) * 100/max_squads)
 			farway_spawn_group_select()
-			for i in range(0,squad_size):
+			for i in range(0,squad_comp.size()):
 				room_instantiate_enemy(i)
 			#farway_wave_main()
 			#local_wave = local_wave + 1
 			#wave_started == false
 			#prewave = 1800
 			update_labels()
+	if rem_squads <= 0 && autoload_game.enemy_count <= 0:
+		autoload_game.local_wave = autoload_game.local_wave + 1
+		autoload_game.game_wave = autoload_game.game_wave + 1
+		wave_started = false
+		prewave = 1800
+		update_labels()
 #
 func farway_spawn_group_select() -> void:
 	#Spawner Group Selection
@@ -115,21 +119,20 @@ func farway_spawn_group_select() -> void:
 	group_rand = randi_range(0,group_array.size()-1)
 	group_num = group_array[group_rand]
 #
-func farway_spawn_comp_add() -> void:
-	match local_wave:
-		0:
-			squad_comp.append(0)
-			#squad_comp[0] = 0#Create Enemies
-			#room_instantiate_enemy(0)
-			#room_instantiate_enemy(1)
-			#room_instantiate_enemy(2)
-			#room_instantiate_enemy(3)
-			#room_instantiate_enemy(4)
-			#room_instantiate_enemy(5)
+func farway_spawn_setup() -> void:
+	match autoload_game.local_wave:
 		1:
+			max_squads = 6
+			rem_squads = max_squads
+			squad_comp.append(0)
+			#squad_size = squad_size + 1
+		2:
+			max_squads = 8
+			rem_squads = max_squads
 			squad_comp.append(0)
 			squad_comp.append(0)
 			squad_comp.append(1)
+			#squad_size = squad_size + 3
 #
 func room_instantiate_enemy(_spawnNum) -> void:
 	match _spawnNum:
@@ -163,8 +166,8 @@ func room_instantiate_enemy(_spawnNum) -> void:
 			add_child(current_enemy5)
 			spawn5 = str(group_num,5)
 			room_enemy_spawn_position(spawn5,current_enemy5)
-	enemy_count = get_tree().get_node_count_in_group("Enemy")
-	print_debug(enemy_count)
+	autoload_game.enemy_count = get_tree().get_node_count_in_group("Enemy")
+	print_debug(autoload_game.enemy_count)
 #
 func room_enemy_spawn_position(_spawnName,_spawnEnemy) -> void:
 	#Spawn Enemies
@@ -173,9 +176,9 @@ func room_enemy_spawn_position(_spawnName,_spawnEnemy) -> void:
 			_spawnEnemy.global_position = spawn.global_position
 #
 func update_labels() -> void:
-	wave_label.text = str(local_wave)
-	if enemy_count > 0:
-		enemy_label.text = str(enemy_count)
+	wave_label.text = str(autoload_game.local_wave)
+	if autoload_game.enemy_count > 0:
+		enemy_label.text = str(autoload_game.enemy_count)
 	else:
 		enemy_label.text = str("")
 #
