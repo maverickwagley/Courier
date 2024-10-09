@@ -37,6 +37,7 @@ class_name Enemy
 @onready var death_particle = preload("res://Scenes/GameScenes/ent_particle_death.tscn")
 @onready var item_drop = preload("res://Scenes/ItemScenes/ent_item.tscn")
 #
+var fps: int = autoload_game.fps_target
 var hp: int
 var max_hp: int
 var speed: int
@@ -81,27 +82,27 @@ var magic_dir = "down"
 #
 #Custom Methods
 #
-func enemy_timers() -> void:
+func enemy_timers(delta) -> void:
 	if t_atk1C > 0:
-		t_atk1C = t_atk1C - 1
+		t_atk1C = t_atk1C - (delta * fps)
 	if t_atk1D > 0:
-		t_atk1D = t_atk1D - 1
+		t_atk1D = t_atk1D - (delta * fps)
 	if t_atk1S > 0:
-		t_atk1S = t_atk1S - 1
+		t_atk1S = t_atk1S - (delta * fps)
 	if t_atk2C > 0:
-		t_atk2C = t_atk2C - 1
+		t_atk2C = t_atk2C - (delta * fps)
 	if t_atk2D > 0:
-		t_atk2D = t_atk2D - 1
+		t_atk2D = t_atk2D - (delta * fps)
 	if t_atk2S > 0:
-		t_atk2S = t_atk2S - 1
+		t_atk2S = t_atk2S - (delta * fps)
 	if t_atk3C > 0:
-		t_atk3C = t_atk3C - 1
+		t_atk3C = t_atk3C - (delta * fps)
 	if t_atk3D > 0:
-		t_atk3D = t_atk3D - 1
+		t_atk3D = t_atk3D - (delta * fps)
 	if t_atk3S > 0:
-		t_atk3S = t_atk3S - 1
+		t_atk3S = t_atk3S - (delta * fps)
 	if t_hurt > 0:
-		t_hurt = t_hurt - 1
+		t_hurt = t_hurt - (delta * fps)
 #
 func enemy_nav_calc() -> void:
 	await get_tree().physics_frame
@@ -202,12 +203,12 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 		shieldbar.value = shield * 100 / max_shield
 	#healthbar.update()
 #
-func enemy_navigation() -> void:
+func enemy_navigation(delta) -> void:
 	#CM: _physics_process() Per Enemy
 	if is_knockback == true:
 		move_and_slide()
 		enemy_knockback_stack()
-		t_knockback = t_knockback - 1
+		t_knockback = t_knockback - (delta * fps)
 		if t_knockback < 1:
 			velocity.x = 0
 			velocity.y = 0

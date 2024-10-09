@@ -10,6 +10,7 @@ extends Node2D
 @onready var enemy_label: Label = $GameHUD/EnemyProgress/EnemyLabel
 #@onready var groupA: Node2D = $Markers/EnemySpawns/SpawnGroupA
 #
+var fps: int = autoload_game.fps_target 
 var max_squads: int = 4
 var squad_size: int = 1
 var rem_squads: int = 4
@@ -67,36 +68,31 @@ func _ready() -> void:
 				current_player.room_space = self
 		pass 
 #
-func _physics_process(_delta) -> void:
+func _physics_process(delta) -> void:
 	if wave_started == false:
 		if prewave > 0:
-			prewave = prewave - 1
+			prewave = prewave - (delta * fps)
 		if prewave <= 0:
-			print_debug("Wave Started")
 			prewave = 1800
 			wave_started = true
 			squad_comp.clear()
 			farway_spawn_setup()
 	if wave_started == true:
-		farway_enemy_spawner()
+		farway_enemy_spawner(delta)
 #
 #Custom Methods
 #
-func farway_enemy_spawner() -> void:
+func farway_enemy_spawner(delta) -> void:
 	if rem_squads > 0:
 		if enemy_spawn_timer > 0:
-			enemy_spawn_timer = enemy_spawn_timer - 1
+			enemy_spawn_timer = enemy_spawn_timer - (delta * fps)
 		if enemy_spawn_timer <= 0:
-			rem_squads = rem_squads - 1
+			rem_squads = rem_squads - (delta * fps)
 			enemy_spawn_timer = 300
 			enemy_prog.update_enemy_progress((rem_squads) * 100/max_squads)
 			farway_spawn_group_select()
 			for i in range(0,squad_comp.size()):
 				room_instantiate_enemy(i)
-			#farway_wave_main()
-			#local_wave = local_wave + 1
-			#wave_started == false
-			#prewave = 1800
 			update_labels()
 	if rem_squads <= 0 && autoload_game.enemy_count <= 0:
 		autoload_game.local_wave = autoload_game.local_wave + 1

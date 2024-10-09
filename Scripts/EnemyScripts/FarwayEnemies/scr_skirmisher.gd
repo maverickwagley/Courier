@@ -10,12 +10,12 @@ func _ready() -> void:
 #
 func _physics_process(delta) -> void:
 	#Generic Status
-	enemy_timers()
+	enemy_timers(delta)
 	enemy_hurt()
 	#Custom Attacks
 	skirmisher_slash_state()
 	#Generic Nav and Anim
-	enemy_navigation()
+	enemy_navigation(delta)
 	#skirmisher_animation()
 	enemy_animation()
 #

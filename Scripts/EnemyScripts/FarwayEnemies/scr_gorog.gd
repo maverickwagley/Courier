@@ -13,13 +13,13 @@ func _ready() -> void:
 #
 func _physics_process(delta) -> void:
 	#Generic Status
-	enemy_timers()
+	enemy_timers(delta)
 	enemy_hurt()
 	#Custom Attacks
 	gorog_slash_state()
 	gorog_shield_state()
 	#Generic Naviation
-	enemy_navigation()
+	enemy_navigation(delta)
 	#Custom Animation
 	gorog_animation()
 #

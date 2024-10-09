@@ -80,6 +80,7 @@ var direction = "down"
 var last_dir = "down"
 var magic_dir = "down"
 #Other
+var fps: int = autoload_game.fps_target
 var roll_shake: bool = false
 var form_menu: bool = false
 var pause_menu: bool = false
@@ -94,8 +95,8 @@ func _ready() -> void:
 	form_controller.player_form = 0
 	form_id = 0
 #
-func _physics_process(_delta) -> void:
-	player_update_status()
+func _physics_process(delta) -> void:
+	player_update_status(delta)
 	if is_dead == false:
 		player_handle_input()
 	else:
@@ -120,27 +121,27 @@ func player_signal_connections() -> void:
 	form.connect("camera_shake",_on_camera_shake)
 	form.connect("cursor_los_check",_on_cursor_los_check)
 #
-func player_update_status() -> void:
+func player_update_status(delta) -> void:
 	#CM: _physics_process
 	visible = true
 	if is_dead == true:
 		if t_dead > 0:
-			t_dead = t_dead - 1
+			t_dead = t_dead - (delta * fps)
 	if is_swap == true:
 		if t_swap > 0:
-			t_swap = t_swap - 1
+			t_swap = t_swap - (delta * fps)
 		if t_swap <= 0:
 			player_form_swap()
 	if stamina < max_stamina:
 		if t_stamina > 0:
-			t_stamina = t_stamina - 1
+			t_stamina = t_stamina - (delta * fps)
 		if t_stamina <= 0:
 			t_stamina = 3
-			stamina = stamina + 1
+			stamina = stamina + (delta * fps)
 			stamina_gui.update() 
 	if is_hurt == true:
 		if t_hurt > 0:
-			t_hurt = t_hurt - 1
+			t_hurt = t_hurt - (delta * fps)
 		if t_hurt <= 0:
 			is_hurt = false
 			is_knockback = false
@@ -149,7 +150,7 @@ func player_update_status() -> void:
 			form.sprite._set("is_hurt",false)
 	if is_invincible == true:
 		if t_invincible > 0:
-			t_invincible = t_invincible - 1
+			t_invincible = t_invincible - (delta * fps)
 		if t_invincible <= 0:
 			is_invincible = false
 			form.is_invincible = false
@@ -157,7 +158,7 @@ func player_update_status() -> void:
 	if is_shielded == true:
 		pass
 	if is_special == false:
-		player_special_timer()
+		player_special_timer(delta)
 #
 func player_handle_input() -> void:
 	#CM: _phsyics_process
@@ -361,25 +362,26 @@ func player_form_charge_update() -> void:
 	form.orange_max = orange_max
 	form.red_max = red_max
 #
-func player_special_timer() -> void:
+func player_special_timer(delta) -> void:
+	#CM: 
 	match form_type:
 		0:
 			if yellow_special < current_max:
 				if t_special > 0:
-					t_special = t_special - 1
+					t_special = t_special - (delta * fps)
 				if t_special < 1:
 					t_special = 5
-					yellow_special = yellow_special + 1
+					yellow_special = yellow_special + (delta * fps)
 					special_gui.update()
 			current_special = yellow_special
 			return
 		1:
 			if violet_special < current_max:
 				if t_special > 0:
-					t_special = t_special - 1
+					t_special = t_special - (delta * fps)
 				if t_special < 1:
 					t_special = 5
-					violet_special = violet_special + 1
+					violet_special = violet_special + (delta * fps)
 					special_gui.update()
 			current_special = violet_special
 			return
