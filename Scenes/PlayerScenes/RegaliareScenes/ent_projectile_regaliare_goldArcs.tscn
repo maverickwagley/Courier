@@ -8,6 +8,7 @@
 radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqevs"]
+resource_local_to_scene = true
 radius = 16.0
 
 [sub_resource type="Animation" id="Animation_slefo"]

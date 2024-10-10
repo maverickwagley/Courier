@@ -97,7 +97,9 @@ func gorog_slash_state() -> void:
 			is_attack1 = false
 #
 func gorog_shield_state() -> void:
-	if is_attack1 == true: return
+	if is_attack1 == true: 
+		is_shielded = false
+		return
 	if is_shielded == false:
 		shieldbar.visible = false
 		if shield < max_shield:
@@ -109,7 +111,7 @@ func gorog_shield_state() -> void:
 			shield = shield + 1
 	#Shield Up or Down (while walking)
 	if is_attack2 == false:
-		if is_aggro == true:
+		if shield_targets.size() > 0:
 			if shield > 49:
 				shieldbar.visible = true
 				is_shielded = true

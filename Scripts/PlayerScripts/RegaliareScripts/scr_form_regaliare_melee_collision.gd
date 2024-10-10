@@ -24,4 +24,3 @@ func enable():
 func disable():
 	shape.disabled = true
 	enemy_hit.clear()
-

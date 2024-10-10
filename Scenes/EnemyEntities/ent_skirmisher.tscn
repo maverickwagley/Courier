@@ -477,19 +477,22 @@ _data = {
 "anim_slash_up": SubResource("Animation_ogq4y")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6p7tm"]
-size = Vector2(7, 6)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yelh8"]
+resource_local_to_scene = true
+size = Vector2(9, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grp8a"]
 size = Vector2(5, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eiyot"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atwmr"]
+resource_local_to_scene = true
 size = Vector2(9, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nexmf"]
 radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wmm5c"]
+resource_local_to_scene = true
 size = Vector2(480, 270)
 
 [node name="Skirmisher" type="CharacterBody2D" groups=["Enemy"]]
@@ -546,9 +549,8 @@ libraries = {
 }
 
 [node name="Movebox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-0.5, -3)
-shape = SubResource("RectangleShape2D_6p7tm")
+shape = SubResource("RectangleShape2D_yelh8")
 
 [node name="Attack1Area" type="Area2D" parent="."]
 position = Vector2(6, -4)
@@ -577,7 +579,7 @@ collision_mask = 4
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitArea"]
 position = Vector2(0, -5)
-shape = SubResource("RectangleShape2D_eiyot")
+shape = SubResource("RectangleShape2D_atwmr")
 
 [node name="Navigation" type="Node2D" parent="."]
 visible = false

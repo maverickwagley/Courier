@@ -19,7 +19,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if t1 >= 0:
-		t1 = t1 - 1
+		t1 = t1 - (delta * 60)
 		
 	if t1 <= 0:
 		enemy_hit.clear()

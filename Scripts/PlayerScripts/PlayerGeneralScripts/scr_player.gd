@@ -372,7 +372,7 @@ func player_special_timer(delta) -> void:
 					t_special = t_special - (delta * fps)
 				if t_special < 1:
 					t_special = 5
-					yellow_special = yellow_special + (delta * fps)
+					yellow_special = yellow_special + ((delta * fps) * 5)
 					special_gui.update()
 			current_special = yellow_special
 			return

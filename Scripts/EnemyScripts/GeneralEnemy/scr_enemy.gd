@@ -4,7 +4,7 @@ extends CharacterBody2D
 #
 class_name Enemy
 #
-#Standard Attacks
+#Standard Attacks and Skills
 @onready var attack1: Area2D
 @onready var attack1_box: CollisionShape2D
 @onready var attack1_timer: Timer
@@ -20,6 +20,8 @@ class_name Enemy
 @onready var attack3_timer: Timer
 @onready var attack3_detect: CollisionShape2D
 @onready var attack3_targets: Array
+@onready var shield_detect: CollisionShape2D
+@onready var shield_targets: Array
 #Standard Basics
 @onready var nav_agent: NavigationAgent2D
 @onready var hurt_audio: AudioStreamPlayer
@@ -53,12 +55,13 @@ var is_attack: bool = false
 var is_attack1: bool = false
 var is_attack2: bool = false
 var is_attack3: bool = false
+#var is_shield_range: bool = false
 var is_knockback: bool = false
 var is_shielded: bool = false
 var is_aggro: bool = true
 var is_stopped: bool = false
 var is_dead: bool = false
-#Timers
+#Timers: These Need converted to float
 var t_move: int = randi_range(60,600)
 var t_knockback: int = 0
 var t_hurt: int = 0
@@ -158,13 +161,14 @@ func enemy_aggro_drop() -> void:
 	pass
 #
 func enemy_hurt() -> void:
+	#CM: _physics_process()
 	if is_hurt == true:
 		if hurt_areas.size() > 0:
-			for i in hurt_areas.size():
-				var _damageArea = hurt_areas[i]
-				if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
-					enemy_apply_damage(_damageArea,3,7)
 			if t_hurt <= 0:
+				for i in hurt_areas.size():
+					var _damageArea = hurt_areas[i]
+					if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
+						enemy_apply_damage(_damageArea,3,7)
 				var _cryChance = randi_range(0,100)
 				if _cryChance >= 50:
 					if autoload_game.audio_mute == false:
@@ -176,8 +180,6 @@ func enemy_hurt() -> void:
 func enemy_apply_damage(area,_essMin,_essMax) -> void:
 	if is_shielded == false:
 		hp = hp - area.damage
-		if area.inflict_kb == true:
-			autoload_entity.knockback(self, area.global_position, area.kb_power, 5)
 	else:
 		if shield > 0:
 			if shield >= area.damage:
@@ -187,6 +189,8 @@ func enemy_apply_damage(area,_essMin,_essMax) -> void:
 				shield = 0
 		else:
 			hp = hp - area.damage
+	if area.inflict_kb == true:
+		autoload_entity.knockback(self, area.global_position, area.kb_power, 5)
 	if hp <= 0:
 		if is_dead == false:
 			is_dead = true
@@ -235,15 +239,17 @@ func enemy_navigation(delta) -> void:
 	nav_agent.set_velocity(intended_vel)
 #
 func enemy_knockback_stack() -> void:
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		if collider.is_class("CharacterBody2D"):
-			if collider.entity_type == 1:
-				if collider.is_knockback == false:
-					#print_debug(collider)
-					autoload_entity.knockback(collider, global_position, knockback_power, t_knockback)
-					collider.is_knockback = true
+	if is_knockback == true:
+		#print_debug(get_slide_collision_count())
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			var collider = collision.get_collider()
+			if collider.is_class("CharacterBody2D"):
+				if collider.entity_type == 1:
+					if collider.is_knockback == false:
+						#print_debug(collider)
+						autoload_entity.knockback(collider, global_position, knockback_power, t_knockback)
+						collider.is_knockback = true
 #
 func enemy_animation() -> void:
 	if is_attack1 == true: return
@@ -316,6 +322,19 @@ func _on_attack2_detect_area_exited(area):
 	if _targetInd != -1:
 		attack2_targets.pop_at(_targetInd)
 #
+func _on_shield_detect_area_entered(area) -> void:
+	if shield_targets.find(area) == -1:
+		shield_targets.append(area)
+		#is_attack1 = true
+	if is_attack == false:
+		is_attack = true
+		#is_shield_range = true
+#
+func _on_shield_detect_area_exited(area) -> void:
+	var _targetInd = shield_targets.find(area)
+	if _targetInd != -1:
+		shield_targets.pop_at(_targetInd)
+#
 func _on_recalculate_timer_timeout() -> void:
 	enemy_nav_calc()
 	#var agent_current_pos = global_position
@@ -333,6 +352,9 @@ func _on_aggro_detect_area_entered(area) -> void:
 func _on_hitbox_area_entered(area) -> void:
 	#if area == $MeleeWeapon: return
 	#if area == $HitArea: return
+	#print_debug("hitbox entered")
+	print_debug(self)
+	t_hurt = 0
 	is_hurt = true
 	if is_shielded == true:
 		#print_debug("Shielded")

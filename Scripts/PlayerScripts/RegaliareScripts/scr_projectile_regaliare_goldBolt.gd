@@ -10,7 +10,7 @@ var sd_timer: int
 var direction: Vector2 = Vector2.RIGHT
 var entity_type: int = 2 #Projectile (Player, Enemy, Projectile, NPC)
 
-var damage: int = 12
+var damage: int = 18
 var inflict_kb: bool = false
 var kb_power: int = 0
 var parent_velocity: Vector2
@@ -24,7 +24,7 @@ func _ready():
 	sd_timer = 60
 
 func _physics_process(delta):
-	sd_timer = sd_timer - 1
+	sd_timer = sd_timer - (delta * 60)
 	velocity = direction * speed * delta
 	var collided = move_and_collide(velocity)
 	if collided:

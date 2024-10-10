@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://xn6nhv4kc0lf"]
+[gd_scene load_steps=51 format=3 uid="uid://xn6nhv4kc0lf"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_gorog.gd" id="1_bfsqs"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_ut5r2"]
@@ -795,13 +795,15 @@ _data = {
 "anim_slash_f_up": SubResource("Animation_8gvxn")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6p7tm"]
-size = Vector2(7, 6)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4y24w"]
+resource_local_to_scene = true
+size = Vector2(9, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grp8a"]
 size = Vector2(9.74998, 8.90166)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eiyot"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsvnq"]
+resource_local_to_scene = true
 size = Vector2(9, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nexmf"]
@@ -812,6 +814,9 @@ radius = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8up8"]
 size = Vector2(480, 270)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o43bg"]
+radius = 96.0
 
 [node name="Gorog" type="CharacterBody2D" groups=["Enemy"]]
 y_sort_enabled = true
@@ -865,9 +870,8 @@ libraries = {
 }
 
 [node name="Movebox" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-0.5, -3)
-shape = SubResource("RectangleShape2D_6p7tm")
+position = Vector2(1, -4)
+shape = SubResource("RectangleShape2D_4y24w")
 
 [node name="Attack1Area" type="Area2D" parent="."]
 rotation = 1.5708
@@ -911,13 +915,12 @@ position = Vector2(-2.99997, 8.00001)
 shape = SubResource("RectangleShape2D_grp8a")
 
 [node name="HitArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 32
 collision_mask = 4
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(0, -5)
-shape = SubResource("RectangleShape2D_eiyot")
+position = Vector2(1, -4)
+shape = SubResource("RectangleShape2D_gsvnq")
 
 [node name="Navigation" type="Node2D" parent="."]
 visible = false
@@ -935,7 +938,6 @@ wait_time = 0.25
 autostart = true
 
 [node name="Attack1Detect" type="Area2D" parent="Navigation"]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -957,7 +959,15 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="AggroDetectCircle" type="CollisionShape2D" parent="Navigation/AggroDetect"]
+visible = false
 shape = SubResource("RectangleShape2D_b8up8")
+
+[node name="ShieldDetect" type="Area2D" parent="Navigation"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Navigation/ShieldDetect"]
+shape = SubResource("CircleShape2D_o43bg")
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_jsfp2")
@@ -978,3 +988,5 @@ volume_db = -5.0
 [connection signal="area_entered" from="Navigation/Attack2Detect" to="." method="_on_attack2_detect_area_entered"]
 [connection signal="area_exited" from="Navigation/Attack2Detect" to="." method="_on_attack2_detect_area_exited"]
 [connection signal="area_entered" from="Navigation/AggroDetect" to="." method="_on_aggro_detect_area_entered"]
+[connection signal="area_entered" from="Navigation/ShieldDetect" to="." method="_on_shield_detect_area_entered"]
+[connection signal="area_exited" from="Navigation/ShieldDetect" to="." method="_on_shield_detect_area_exited"]

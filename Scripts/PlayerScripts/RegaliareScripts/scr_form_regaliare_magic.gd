@@ -39,7 +39,7 @@ func _physics_process(_delta) -> void:
 	if t_magic >= 0:
 		t_magic = t_magic - 1
 	if is_magic == true:
-		emit_signal("check_cost","yellow_primary",3)
+		emit_signal("check_cost","yellow_primary",4)
 		var rot = get_global_mouse_position()
 		look_at(rot)
 		match last_dir:
