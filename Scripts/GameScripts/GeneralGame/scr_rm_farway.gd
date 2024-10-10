@@ -16,7 +16,8 @@ var squad_size: int = 1
 var rem_squads: int = 4
 var squad_comp: Array
 var enemy_spawn_timer: int = 0
-var prewave = 60
+var max_prewave = 180
+var prewave = 180
 var wave_started: bool = false
 var form_menu: bool = false
 #Spawner Variables
@@ -72,8 +73,9 @@ func _physics_process(delta) -> void:
 	if wave_started == false:
 		if prewave > 0:
 			prewave = prewave - (delta * fps)
+			enemy_prog.update_prewave_progress((prewave) * 100/max_prewave)
 		if prewave <= 0:
-			prewave = 1800
+			prewave = max_prewave
 			wave_started = true
 			squad_comp.clear()
 			farway_spawn_setup()
@@ -83,11 +85,14 @@ func _physics_process(delta) -> void:
 #Custom Methods
 #
 func farway_enemy_spawner(delta) -> void:
+	#CM: _physics_process
+	#Spawn Squads of Enemies or Start Prewave Countdown
 	if rem_squads > 0:
 		if enemy_spawn_timer > 0:
 			enemy_spawn_timer = enemy_spawn_timer - (delta * fps)
 		if enemy_spawn_timer <= 0:
-			rem_squads = rem_squads - (delta * fps)
+			rem_squads = rem_squads - 1
+			farway_spawn_update()
 			enemy_spawn_timer = 300
 			enemy_prog.update_enemy_progress((rem_squads) * 100/max_squads)
 			farway_spawn_group_select()
@@ -95,14 +100,18 @@ func farway_enemy_spawner(delta) -> void:
 				room_instantiate_enemy(i)
 			update_labels()
 	if rem_squads <= 0 && autoload_game.enemy_count <= 0:
+		autoload_player.player.player_restore_all()
 		autoload_game.local_wave = autoload_game.local_wave + 1
 		autoload_game.game_wave = autoload_game.game_wave + 1
 		wave_started = false
-		prewave = 1800
+		prewave = max_prewave
+		enemy_spawn_timer = 0
 		update_labels()
 #
 func farway_spawn_group_select() -> void:
+	#CM: farway_enemy_spawner
 	#Spawner Group Selection
+	#Randomly selects a group node, so long as player is not in range
 	for group in get_tree().get_nodes_in_group("EnemySpawnGroup"):
 		if group.collision_list.size() <= 0:
 			match group.name:
@@ -116,6 +125,8 @@ func farway_spawn_group_select() -> void:
 	group_num = group_array[group_rand]
 #
 func farway_spawn_setup() -> void:
+	#CM: _physics_process: called once at start of wave/end of prewave
+	#
 	match autoload_game.local_wave:
 		1:
 			max_squads = 6
@@ -123,47 +134,97 @@ func farway_spawn_setup() -> void:
 			squad_comp.append(0)
 			#squad_size = squad_size + 1
 		2:
+			max_squads = 7
+			rem_squads = max_squads
+			squad_comp.append(0)
+			squad_comp.append(1)
+			#squad_size = squad_size + 3
+		3:
 			max_squads = 8
+			rem_squads = max_squads
+			squad_comp.append(0)
+			squad_comp.append(1)
+			squad_comp.append(2)
+		4:
+			max_squads = 9
 			rem_squads = max_squads
 			squad_comp.append(0)
 			squad_comp.append(0)
 			squad_comp.append(1)
-			#squad_size = squad_size + 3
+			squad_comp.append(2)
+		5:
+			max_squads = 10
+			rem_squads = max_squads
+			squad_comp.append(0)
+			squad_comp.append(0)
+			squad_comp.append(0)
+			squad_comp.append(1)
+			squad_comp.append(2)
+#
+func farway_spawn_update():
+	match autoload_game.local_wave:
+		1:
+			if rem_squads == 3:
+				squad_comp.append(0)
+		2:
+			if rem_squads == 4:
+				squad_comp.append(0)
+		3:
+			if rem_squads == 5:
+				squad_comp.append(0)
+		4:
+			if rem_squads == 6:
+				squad_comp.append(0)
+		5:
+			if rem_squads == 7:
+				squad_comp.append(1)
 #
 func room_instantiate_enemy(_spawnNum) -> void:
+	#CM: farway_enemy_spawner: called in a for loop of squad_comp.size()
+	#Set Random Enemy from 
 	match _spawnNum:
 		0:
-			current_enemy0 = enemy0.instantiate()
+			current_enemy0 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
+			#current_enemy0 = enemy0.instantiate()
 			add_child(current_enemy0)
 			spawn0 = str(group_num,0)
 			room_enemy_spawn_position(spawn0,current_enemy0)
 		1:
-			current_enemy1 = enemy0.instantiate()
+			current_enemy1 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			add_child(current_enemy1)
 			spawn1 = str(group_num,1)
 			room_enemy_spawn_position(spawn1,current_enemy1)
 		2:
-			current_enemy2 = enemy0.instantiate()
+			current_enemy2 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			add_child(current_enemy2)
 			spawn2 = str(group_num,2)
 			room_enemy_spawn_position(spawn2,current_enemy2)
 		3:
-			current_enemy3 = enemy1.instantiate()
+			current_enemy3 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			add_child(current_enemy3)
 			spawn3 = str(group_num,3)
 			room_enemy_spawn_position(spawn3,current_enemy3)
 		4: 
-			current_enemy4 = enemy1.instantiate()
+			current_enemy4 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			add_child(current_enemy4)
 			spawn4 = str(group_num,4)
 			room_enemy_spawn_position(spawn4,current_enemy4)
 		5:
-			current_enemy5 = enemy2.instantiate()
+			current_enemy5 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			add_child(current_enemy5)
 			spawn5 = str(group_num,5)
 			room_enemy_spawn_position(spawn5,current_enemy5)
 	autoload_game.enemy_count = get_tree().get_node_count_in_group("Enemy")
-	print_debug(autoload_game.enemy_count)
+	#print_debug(autoload_game.enemy_count)
+#
+func room_set_enemy_id(_enemyID):
+	match _enemyID:
+		0:
+			return enemy0
+		1:
+			return enemy1
+		2:
+			return enemy2
 #
 func room_enemy_spawn_position(_spawnName,_spawnEnemy) -> void:
 	#Spawn Enemies

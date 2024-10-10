@@ -7,8 +7,8 @@
 [ext_resource type="TileSet" uid="uid://dkhj8kxydaoqb" path="res://Sprites/WorldSprites/LenkoTiles/tile_lenko_grass.tres" id="4_478jf"]
 [ext_resource type="Texture2D" uid="uid://bk3elhgx4vnrh" path="res://Sprites/WorldSprites/LenkoTiles/spr_tileset_lenko.png" id="4_xjco5"]
 [ext_resource type="AudioStream" uid="uid://bphm2qpyqdedm" path="res://Audio/Music/snd_song_smith.wav" id="6_iw75l"]
-[ext_resource type="Texture2D" uid="uid://chp1f4k74nb2y" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_enemy_forces_radial.png" id="9_0wrum"]
-[ext_resource type="Texture2D" uid="uid://vspq67qtbrdb" path="res://Sprites/GUISprites/GeneralGUI/spr_gui_enemy_forces_radial_fill.png" id="10_h4fum"]
+[ext_resource type="Texture2D" uid="uid://chp1f4k74nb2y" path="res://Sprites/GUISprites/EnemyGUI/spr_gui_enemy_forces_radial.png" id="9_0wrum"]
+[ext_resource type="Texture2D" uid="uid://vspq67qtbrdb" path="res://Sprites/GUISprites/EnemyGUI/spr_gui_enemy_forces_radial_fill.png" id="10_h4fum"]
 [ext_resource type="Script" path="res://Scripts/GUIScripts/GeneralGUI/scr_gui_enemy_progress.gd" id="11_65h7q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1206c"]
@@ -893,7 +893,7 @@ offset_top = 4.0
 offset_right = 256.0
 offset_bottom = 36.0
 value = 100.0
-fill_mode = 4
+fill_mode = 5
 texture_under = ExtResource("9_0wrum")
 texture_progress = ExtResource("10_h4fum")
 script = ExtResource("11_65h7q")

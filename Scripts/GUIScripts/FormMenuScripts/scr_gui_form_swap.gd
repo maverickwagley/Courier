@@ -99,10 +99,3 @@ func _on_violet_form_button_pressed() -> void:
 		player.form.is_swap = true
 		get_tree().paused = false
 		close()
-
-
-
-
-
-
-

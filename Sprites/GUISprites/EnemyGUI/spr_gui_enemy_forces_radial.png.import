@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vspq67qtbrdb"
-path="res://.godot/imported/spr_gui_enemy_forces_radial_fill.png-275eafa0dbc30c5cfe0c7edb8586995b.ctex"
+uid="uid://chp1f4k74nb2y"
+path="res://.godot/imported/spr_gui_enemy_forces_radial.png-d92dd657081d4ee1c8377414dc150e14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GUISprites/GeneralGUI/spr_gui_enemy_forces_radial_fill.png"
-dest_files=["res://.godot/imported/spr_gui_enemy_forces_radial_fill.png-275eafa0dbc30c5cfe0c7edb8586995b.ctex"]
+source_file="res://Sprites/GUISprites/EnemyGUI/spr_gui_enemy_forces_radial.png"
+dest_files=["res://.godot/imported/spr_gui_enemy_forces_radial.png-d92dd657081d4ee1c8377414dc150e14.ctex"]
 
 [params]
 

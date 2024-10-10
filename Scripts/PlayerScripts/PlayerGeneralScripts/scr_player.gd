@@ -88,6 +88,7 @@ var pause_menu: bool = false
 #Built-In Methods
 #
 func _ready() -> void:
+	autoload_player.player = self
 	load_form = autoload_player.form_array[0]
 	form = load_form.instantiate()
 	add_child(form)
@@ -407,6 +408,23 @@ func player_form_swap():
 	special_gui.update()
 	#
 	player_status_reset()
+#
+func player_restore_all():
+	yellow_primary = yellow_max
+	yellow_special = yellow_max
+	violet_primary = violet_max
+	violet_special = violet_max
+	green_primary = green_max
+	green_special = green_max
+	blue_primary = blue_max
+	blue_special = blue_max
+	orange_primary = orange_max
+	orange_special = orange_max
+	red_primary = red_max
+	red_special = red_max
+	hp = max_hp
+	stamina = max_stamina
+	player_hud.gui_update_all()
 #
 func player_status_reset():
 	is_invincible = false
