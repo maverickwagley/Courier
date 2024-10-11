@@ -17,6 +17,7 @@ var parent_velocity: Vector2
 var type: int = 0
 
 func _ready():
+	#print_debug(get_instance_id())
 	collision.damage = damage
 	collision.inflict_kb = inflict_kb
 	var rand_rot = global_rotation + randf_range(-0.1,0.1)

@@ -5,6 +5,8 @@ extends Enemy
 #Built-In Methods
 #
 func _ready() -> void:
+	#print_debug("New Skirmisher")
+	#print_debug(get_instance_id())
 	skirmisher_ready()
 	call_deferred("enemy_nav_calc")
 #

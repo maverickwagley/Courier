@@ -1,11 +1,14 @@
-[gd_scene load_steps=19 format=4 uid="uid://ca7pf5s7vr3pd"]
+[gd_scene load_steps=22 format=4 uid="uid://ca7pf5s7vr3pd"]
 
 [ext_resource type="Script" path="res://Scripts/GameScripts/GeneralGame/scr_rm_farway.gd" id="1_58377"]
 [ext_resource type="PackedScene" uid="uid://n6tgp86xdidy" path="res://Scenes/PlayerScenes/ent_player.tscn" id="2_miyam"]
 [ext_resource type="Script" path="res://Scripts/GameScripts/Spawners/scr_spawner_group_enemy.gd" id="3_221il"]
+[ext_resource type="PackedScene" uid="uid://b87153mqpcmem" path="res://Scenes/EnemyEntities/ent_skirmisher.tscn" id="3_cipm0"]
 [ext_resource type="TileSet" uid="uid://8udpdjwui71o" path="res://Sprites/WorldSprites/LenkoTiles/tile_lenko_main.tres" id="3_im7pc"]
 [ext_resource type="TileSet" uid="uid://dkhj8kxydaoqb" path="res://Sprites/WorldSprites/LenkoTiles/tile_lenko_grass.tres" id="4_478jf"]
+[ext_resource type="PackedScene" uid="uid://cula7pwy4q455" path="res://Scenes/EnemyEntities/ent_hunter.tscn" id="4_mho86"]
 [ext_resource type="Texture2D" uid="uid://bk3elhgx4vnrh" path="res://Sprites/WorldSprites/LenkoTiles/spr_tileset_lenko.png" id="4_xjco5"]
+[ext_resource type="PackedScene" uid="uid://xn6nhv4kc0lf" path="res://Scenes/EnemyEntities/ent_gorog.tscn" id="5_vc21t"]
 [ext_resource type="AudioStream" uid="uid://bphm2qpyqdedm" path="res://Audio/Music/snd_song_smith.wav" id="6_iw75l"]
 [ext_resource type="Texture2D" uid="uid://chp1f4k74nb2y" path="res://Sprites/GUISprites/EnemyGUI/spr_gui_enemy_forces_radial.png" id="9_0wrum"]
 [ext_resource type="Texture2D" uid="uid://vspq67qtbrdb" path="res://Sprites/GUISprites/EnemyGUI/spr_gui_enemy_forces_radial_fill.png" id="10_h4fum"]
@@ -713,6 +716,9 @@ font_size = 8
 y_sort_enabled = true
 script = ExtResource("1_58377")
 player_scene = ExtResource("2_miyam")
+enemy0 = ExtResource("3_cipm0")
+enemy1 = ExtResource("4_mho86")
+enemy2 = ExtResource("5_vc21t")
 
 [node name="Markers" type="Node2D" parent="."]
 

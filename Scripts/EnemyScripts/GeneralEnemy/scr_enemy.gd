@@ -167,7 +167,8 @@ func enemy_hurt() -> void:
 			if t_hurt <= 0:
 				for i in hurt_areas.size():
 					var _damageArea = hurt_areas[i]
-					if autoload_enemy.hitbox_area_entered(_damageArea,blood_particle,global_position):
+					print_debug(_damageArea)
+					if enemy_hitbox_area_entered(_damageArea,blood_particle,global_position) == true:
 						enemy_apply_damage(_damageArea,3,7)
 				var _cryChance = randi_range(0,100)
 				if _cryChance >= 50:
@@ -177,7 +178,29 @@ func enemy_hurt() -> void:
 					autoload_player.player.damage_dealt_audio.play()
 				t_hurt = 9
 #
+func enemy_hitbox_area_entered(area,particle,global_position) -> bool:
+		#if is_hurt == true: return
+	#print_debug(name)
+	#print_debug(get_instance_id())
+	if area.enemy_hit.find(get_instance_id()) == -1:
+		area.enemy_hit.append(get_instance_id())
+		var _partChance = randi_range(0,1)
+		if _partChance == 0:
+			var current_part = particle.instantiate()
+			for current_world in get_tree().get_nodes_in_group("World"):
+				if current_world.name == "World":
+					current_world.add_child(current_part) 
+			current_part.particle.amount = randi_range(1,3)
+			current_part.global_position = global_position
+			current_part.global_rotation = area.global_rotation - PI
+		#print_debug("Damage dealt")
+		return true
+	else:
+		#print_debug("Could not append")
+		return false
+#
 func enemy_apply_damage(area,_essMin,_essMax) -> void:
+	#print_debug("Damage applied to: ",self)
 	if is_shielded == false:
 		hp = hp - area.damage
 	else:
@@ -352,8 +375,6 @@ func _on_aggro_detect_area_entered(area) -> void:
 func _on_hitbox_area_entered(area) -> void:
 	#if area == $MeleeWeapon: return
 	#if area == $HitArea: return
-	#print_debug("hitbox entered")
-	print_debug(self)
 	t_hurt = 0
 	is_hurt = true
 	if is_shielded == true:

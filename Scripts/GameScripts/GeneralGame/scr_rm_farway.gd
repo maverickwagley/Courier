@@ -3,11 +3,20 @@
 extends Node2D
 #
 @export var player_scene: PackedScene
+@export var enemy0: PackedScene# = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
+@export var enemy1: PackedScene# = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
+@export var enemy2: PackedScene# = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
 @onready var tilemap: TileMapLayer = $TileMap/Base
 @onready var game_hud: CanvasLayer = $GameHUD
 @onready var enemy_prog: TextureProgressBar = $GameHUD/EnemyProgress
 @onready var wave_label: Label = $GameHUD/EnemyProgress/WaveLabel
 @onready var enemy_label: Label = $GameHUD/EnemyProgress/EnemyLabel
+@onready var current_enemy0: CharacterBody2D 
+@onready var current_enemy1: CharacterBody2D
+@onready var current_enemy2: CharacterBody2D
+@onready var current_enemy3: CharacterBody2D
+@onready var current_enemy4: CharacterBody2D
+@onready var current_enemy5: CharacterBody2D
 #@onready var groupA: Node2D = $Markers/EnemySpawns/SpawnGroupA
 #
 var fps: int = autoload_game.fps_target 
@@ -31,16 +40,7 @@ var spawn2: String = "02"
 var spawn3: String = "03"
 var spawn4: String = "04"
 var spawn5: String = "05"
-var current_enemy0: CharacterBody2D 
-var current_enemy1: CharacterBody2D
-var current_enemy2: CharacterBody2D
-var current_enemy3: CharacterBody2D
-var current_enemy4: CharacterBody2D
-var current_enemy5: CharacterBody2D
 #
-var enemy0 = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
-var enemy1 = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
-var enemy2 = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
 #
 #Built-In Methods
 #
@@ -184,9 +184,10 @@ func room_instantiate_enemy(_spawnNum) -> void:
 	#Set Random Enemy from 
 	match _spawnNum:
 		0:
-			current_enemy0 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
-			#current_enemy0 = enemy0.instantiate()
-			add_child(current_enemy0)
+			#enemy0 = load("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
+			#current_enemy0 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
+			current_enemy0 = enemy0.instantiate()
+			get_tree().current_scene.add_child(current_enemy0)
 			spawn0 = str(group_num,0)
 			room_enemy_spawn_position(spawn0,current_enemy0)
 		1:
@@ -220,10 +221,13 @@ func room_instantiate_enemy(_spawnNum) -> void:
 func room_set_enemy_id(_enemyID):
 	match _enemyID:
 		0:
+			enemy0 = load("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
 			return enemy0
 		1:
+			enemy1 = load("res://Scenes/EnemyEntities/ent_hunter.tscn")
 			return enemy1
 		2:
+			enemy2 = load("res://Scenes/EnemyEntities/ent_gorog.tscn")
 			return enemy2
 #
 func room_enemy_spawn_position(_spawnName,_spawnEnemy) -> void:
