@@ -3,9 +3,9 @@
 extends Node2D
 #
 @export var player_scene: PackedScene
-@export var enemy0: PackedScene# = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
-@export var enemy1: PackedScene# = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
-@export var enemy2: PackedScene# = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
+#@export var enemy0: PackedScene# = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
+#@export var enemy1: PackedScene# = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
+#@export var enemy2: PackedScene# = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
 @onready var tilemap: TileMapLayer = $TileMap/Base
 @onready var game_hud: CanvasLayer = $GameHUD
 @onready var enemy_prog: TextureProgressBar = $GameHUD/EnemyProgress
@@ -17,6 +17,9 @@ extends Node2D
 @onready var current_enemy3: CharacterBody2D
 @onready var current_enemy4: CharacterBody2D
 @onready var current_enemy5: CharacterBody2D
+@onready var enemy0: PackedScene = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
+@onready var enemy1: PackedScene = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
+@onready var enemy2: PackedScene = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
 #@onready var groupA: Node2D = $Markers/EnemySpawns/SpawnGroupA
 #
 var fps: int = autoload_game.fps_target 
@@ -142,23 +145,17 @@ func farway_spawn_setup() -> void:
 		3:
 			max_squads = 8
 			rem_squads = max_squads
-			squad_comp.append(0)
-			squad_comp.append(1)
 			squad_comp.append(2)
 		4:
 			max_squads = 9
 			rem_squads = max_squads
 			squad_comp.append(0)
-			squad_comp.append(0)
 			squad_comp.append(1)
-			squad_comp.append(2)
 		5:
 			max_squads = 10
 			rem_squads = max_squads
 			squad_comp.append(0)
 			squad_comp.append(0)
-			squad_comp.append(0)
-			squad_comp.append(1)
 			squad_comp.append(2)
 #
 func farway_spawn_update():
@@ -170,13 +167,22 @@ func farway_spawn_update():
 			if rem_squads == 4:
 				squad_comp.append(0)
 		3:
-			if rem_squads == 5:
+			if rem_squads == 3:
 				squad_comp.append(0)
-		4:
 			if rem_squads == 6:
 				squad_comp.append(0)
-		5:
+				squad_comp.append(1)
+		4:
+			if rem_squads == 4:
+				squad_comp.append(0)
 			if rem_squads == 7:
+				squad_comp.append(0)
+				squad_comp.append(2)
+		5:
+			if rem_squads == 5:
+				squad_comp.append(1)
+			if rem_squads == 8:
+				squad_comp.append(0)
 				squad_comp.append(1)
 #
 func room_instantiate_enemy(_spawnNum) -> void:
@@ -185,8 +191,8 @@ func room_instantiate_enemy(_spawnNum) -> void:
 	match _spawnNum:
 		0:
 			#enemy0 = load("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
-			#current_enemy0 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
-			current_enemy0 = enemy0.instantiate()
+			current_enemy0 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
+			#current_enemy0 = enemy0.instantiate()
 			get_tree().current_scene.add_child(current_enemy0)
 			spawn0 = str(group_num,0)
 			room_enemy_spawn_position(spawn0,current_enemy0)
@@ -221,13 +227,13 @@ func room_instantiate_enemy(_spawnNum) -> void:
 func room_set_enemy_id(_enemyID):
 	match _enemyID:
 		0:
-			enemy0 = load("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
+			#enemy0 = load("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
 			return enemy0
 		1:
-			enemy1 = load("res://Scenes/EnemyEntities/ent_hunter.tscn")
+			#enemy1 = load("res://Scenes/EnemyEntities/ent_hunter.tscn")
 			return enemy1
 		2:
-			enemy2 = load("res://Scenes/EnemyEntities/ent_gorog.tscn")
+			#enemy2 = load("res://Scenes/EnemyEntities/ent_gorog.tscn")
 			return enemy2
 #
 func room_enemy_spawn_position(_spawnName,_spawnEnemy) -> void:

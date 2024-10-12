@@ -23,7 +23,7 @@ var parent_velocity: Vector2
 var is_magic: bool = false
 var cost_check: bool = false
 var cursor_los_check: bool = false
-var magic_cost: int = 3
+var magic_cost: int = 4
 var magic_rate: int = 10
 var t_magic: int = 0
 #
@@ -39,7 +39,7 @@ func _physics_process(_delta) -> void:
 	if t_magic >= 0:
 		t_magic = t_magic - 1
 	if is_magic == true:
-		emit_signal("check_cost","yellow_primary",4)
+		emit_signal("check_cost","yellow_primary",magic_cost)
 		var rot = get_global_mouse_position()
 		look_at(rot)
 		match last_dir:

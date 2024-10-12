@@ -75,20 +75,26 @@ func update_player(_player) -> void:
 		match item_id:
 			0:
 				_player.yellow_primary = _player.yellow_primary + amount
+				_player.yellow_special = _player.yellow_special + amount
 				_player.primary_gui.update()
 			1:
+				_player.violet_primary = _player.violet_primary + amount
 				_player.violet_primary = _player.violet_primary + amount
 				_player.primary_gui.update()
 			2:
 				_player.green_primary = _player.green_primary + amount
+				_player.green_primary = _player.green_primary + amount
 				_player.primary_gui.update()
 			3:
+				_player.blue_primary = _player.blue_primary + amount
 				_player.blue_primary = _player.blue_primary + amount
 				_player.primary_gui.update()
 			4:
 				_player.orange_primary = _player.orange_primary + amount
+				_player.orange_primary = _player.orange_primary + amount
 				_player.primary_gui.update()
 			5:
+				_player.red_primary = _player.red_primary + amount
 				_player.red_primary = _player.red_primary + amount
 				_player.primary_gui.update()
 			6:

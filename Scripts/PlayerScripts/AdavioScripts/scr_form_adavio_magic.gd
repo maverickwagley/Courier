@@ -21,7 +21,7 @@ signal player_cursor_los
 var parent_velocity: Vector2
 var cursor_los_check: bool = false
 var cost_check: bool = false
-var magic_cost = 25
+var magic_cost = 20
 var t_magic: int
 var is_magic = false
 var last_dir = "down"

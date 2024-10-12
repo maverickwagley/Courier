@@ -69,6 +69,7 @@ var is_magic: bool = false
 var is_special: bool = false
 #Timers
 var t_stamina: int = 0
+var t_recharge: float = 0.0
 var t_hurt: int = 0
 var t_invincible: int = 0
 var t_special: int = 0
@@ -125,6 +126,7 @@ func player_signal_connections() -> void:
 func player_update_status(delta) -> void:
 	#CM: _physics_process
 	visible = true
+	player_recharge_timer(delta)
 	if is_dead == true:
 		if t_dead > 0:
 			t_dead = t_dead - (delta * fps)
@@ -158,8 +160,8 @@ func player_update_status(delta) -> void:
 			form.sprite._set("is_invincible",false)
 	if is_shielded == true:
 		pass
-	if is_special == false:
-		player_special_timer(delta)
+	#if is_special == false:
+		#player_special_timer(delta)
 #
 func player_handle_input() -> void:
 	#CM: _phsyics_process
@@ -363,29 +365,67 @@ func player_form_charge_update() -> void:
 	form.orange_max = orange_max
 	form.red_max = red_max
 #
-func player_special_timer(delta) -> void:
+func player_recharge_timer(delta) -> void:
+	if t_recharge > 0:
+		t_recharge = t_recharge - (delta * fps)
+	if t_recharge <= 0:
+		t_recharge = 15
+		match form_type:
+			0:
+				player_charge_update(1,1)
+				#player_charge_update(2,1)
+				#player_charge_update(3,1)
+				#player_charge_update(4,1)
+				#player_charge_update(5,1)
+			1:
+				player_charge_update(0,1)
+				#player_charge_update(2,1)
+				#player_charge_update(3,1)
+				#player_charge_update(4,1)
+				#player_charge_update(5,1)
+#
+func player_charge_update(_type,_amount) -> void:
 	#CM: 
-	match form_type:
+	match _type:
 		0:
 			if yellow_special < current_max:
-				if t_special > 0:
-					t_special = t_special - (delta * fps)
+				yellow_special = yellow_special + _amount
+				if yellow_special > current_max:
+					yellow_special = current_max
+			if yellow_primary < current_max:
+				yellow_primary = yellow_primary + _amount
+				if yellow_primary > current_max:
+					yellow_primary = current_max
 				if t_special < 1:
 					t_special = 5
-					yellow_special = yellow_special + ((delta * fps) * 5)
-					special_gui.update()
-			current_special = yellow_special
-			return
+			primary_gui.update()
+			special_gui.update()
 		1:
 			if violet_special < current_max:
-				if t_special > 0:
-					t_special = t_special - (delta * fps)
+				violet_special = violet_special + _amount
+				if violet_special > current_max:
+					violet_special = current_max
+			if violet_primary < current_max:
+				violet_primary = violet_primary + _amount
+				if violet_primary > current_max:
+					violet_primary = current_max
 				if t_special < 1:
 					t_special = 5
-					violet_special = violet_special + (delta * fps)
-					special_gui.update()
-			current_special = violet_special
-			return
+			primary_gui.update()
+			special_gui.update()
+		2:
+			if green_special < current_max:
+				green_special = green_special + _amount
+				if green_special > current_max:
+					green_special = current_max
+			if green_primary < current_max:
+				green_primary = green_primary + _amount
+				if green_primary > current_max:
+					green_primary = current_max
+				if t_special < 1:
+					t_special = 5
+			primary_gui.update()
+			special_gui.update()
 #
 func player_form_swap():
 	var form_pos = form.global_position
