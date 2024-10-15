@@ -22,7 +22,7 @@ func _ready():
 	collision.inflict_kb = inflict_kb
 	animations.play("anim_goldArcs")
 	#direction = Vector2.RIGHT.rotated(global_rotation)
-	sd_timer = 60
+	sd_timer = 90
 
 func _physics_process(delta):
 	sd_timer = sd_timer - 1

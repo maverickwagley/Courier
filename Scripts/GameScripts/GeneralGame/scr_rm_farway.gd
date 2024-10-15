@@ -17,9 +17,9 @@ extends Node2D
 @onready var current_enemy3: CharacterBody2D
 @onready var current_enemy4: CharacterBody2D
 @onready var current_enemy5: CharacterBody2D
-@onready var enemy0: PackedScene = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
-@onready var enemy1: PackedScene = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
-@onready var enemy2: PackedScene = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
+@onready var enemy0: PackedScene# = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
+@onready var enemy1: PackedScene# = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
+@onready var enemy2: PackedScene# = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
 #@onready var groupA: Node2D = $Markers/EnemySpawns/SpawnGroupA
 #
 var fps: int = autoload_game.fps_target 
@@ -95,7 +95,7 @@ func farway_enemy_spawner(delta) -> void:
 			enemy_spawn_timer = enemy_spawn_timer - (delta * fps)
 		if enemy_spawn_timer <= 0:
 			rem_squads = rem_squads - 1
-			farway_spawn_update()
+			farway_spawn_comp_update()
 			enemy_spawn_timer = 300
 			enemy_prog.update_enemy_progress((rem_squads) * 100/max_squads)
 			farway_spawn_group_select()
@@ -129,61 +129,121 @@ func farway_spawn_group_select() -> void:
 #
 func farway_spawn_setup() -> void:
 	#CM: _physics_process: called once at start of wave/end of prewave
-	#
+	#Set wave length in squads and set intial squad composition
 	match autoload_game.local_wave:
 		1:
 			max_squads = 6
 			rem_squads = max_squads
-			squad_comp.append(0)
-			#squad_size = squad_size + 1
+			farway_spawn_comp_update()
 		2:
 			max_squads = 7
 			rem_squads = max_squads
-			squad_comp.append(0)
-			squad_comp.append(1)
-			#squad_size = squad_size + 3
+			farway_spawn_comp_update()
 		3:
 			max_squads = 8
 			rem_squads = max_squads
-			squad_comp.append(2)
+			farway_spawn_comp_update()
 		4:
 			max_squads = 9
 			rem_squads = max_squads
-			squad_comp.append(0)
-			squad_comp.append(1)
+			farway_spawn_comp_update()
 		5:
 			max_squads = 10
 			rem_squads = max_squads
-			squad_comp.append(0)
-			squad_comp.append(0)
-			squad_comp.append(2)
+			farway_spawn_comp_update()
 #
-func farway_spawn_update():
+func farway_spawn_comp_update():
+	#CM: farway_spawn_setup, farway_enemy_spawner
+	#Set the enemy squad composition
+	print_debug(max_squads - rem_squads)
 	match autoload_game.local_wave:
 		1:
-			if rem_squads == 3:
-				squad_comp.append(0)
+			match max_squads - rem_squads:
+				0:
+					squad_comp.clear()
+					for i in [0]:
+						squad_comp.append(i)
+				2:
+					squad_comp.clear()
+					for i in [0,0]:
+						squad_comp.append(i)
+				4:
+					squad_comp.clear()
+					for i in [0,0,0]:
+						squad_comp.append(i)
 		2:
-			if rem_squads == 4:
-				squad_comp.append(0)
+			match max_squads - rem_squads:
+				0:
+					squad_comp.clear()
+					for i in [1]:
+						squad_comp.append(i)
+				2:
+					squad_comp.clear()
+					for i in [1,0]:
+						squad_comp.append(i)
+				4:
+					squad_comp.clear()
+					for i in [1,0,0]:
+						squad_comp.append(i)
 		3:
-			if rem_squads == 3:
-				squad_comp.append(0)
-			if rem_squads == 6:
-				squad_comp.append(0)
-				squad_comp.append(1)
+			match rem_squads:
+				0:
+					squad_comp.clear()
+					for i in [0,1]:
+						squad_comp.append(i)
+					
+				2:
+					squad_comp.clear()
+					for i in [0,1,2]:
+						squad_comp.append(i)
+				4:
+					squad_comp.clear()
+					for i in [0,1,1]:
+						squad_comp.append(i)
+				6:
+					squad_comp.clear()
+					for i in [0,1,2]:
+						squad_comp.append(i)
 		4:
-			if rem_squads == 4:
-				squad_comp.append(0)
-			if rem_squads == 7:
-				squad_comp.append(0)
-				squad_comp.append(2)
+			match rem_squads:
+				0:
+					squad_comp.clear()
+					for i in [2,1]:
+						squad_comp.append(i)
+				2:
+					squad_comp.clear()
+					for i in [0,1,2]:
+						squad_comp.append(i)
+				4:
+					squad_comp.clear()
+					for i in [0,0,0,1]:
+						squad_comp.append(i)
+				6:
+					squad_comp.clear()
+					for i in [0,1,1]:
+						squad_comp.append(i)
 		5:
-			if rem_squads == 5:
-				squad_comp.append(1)
-			if rem_squads == 8:
-				squad_comp.append(0)
-				squad_comp.append(1)
+			match rem_squads:
+				0:
+					squad_comp.clear()
+					for i in [0,1,1]:
+						squad_comp.append(i)
+				2:
+					squad_comp.clear()
+					for i in [0,1,1,2]:
+						squad_comp.append(i)
+				4:
+					squad_comp.clear()
+					for i in [0,1,1,1]:
+						squad_comp.append(i)
+				6:
+					squad_comp.clear()
+					for i in [0,0,0,1,2]:
+						squad_comp.append(i)
+				8:
+					squad_comp.clear()
+					for i in [0,0,1,1,2]:
+						squad_comp.append(i)
 #
 func room_instantiate_enemy(_spawnNum) -> void:
 	#CM: farway_enemy_spawner: called in a for loop of squad_comp.size()
@@ -228,13 +288,13 @@ func room_set_enemy_id(_enemyID):
 	match _enemyID:
 		0:
 			#enemy0 = load("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
-			return enemy0
+			return autoload_enemy.enemy0
 		1:
 			#enemy1 = load("res://Scenes/EnemyEntities/ent_hunter.tscn")
-			return enemy1
+			return autoload_enemy.enemy1
 		2:
 			#enemy2 = load("res://Scenes/EnemyEntities/ent_gorog.tscn")
-			return enemy2
+			return autoload_enemy.enemy2
 #
 func room_enemy_spawn_position(_spawnName,_spawnEnemy) -> void:
 	#Spawn Enemies
