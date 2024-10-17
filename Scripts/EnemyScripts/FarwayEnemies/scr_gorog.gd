@@ -55,11 +55,13 @@ func gorog_slash_state() -> void:
 	if is_attack2 == true: return
 	if is_attack1 == true && t_atk1D <= 0:
 		is_shielded = false
+		shieldbar.visible = false
 		t_atk1D = t_atk1C
 		attack1.targets_hit.clear()
 		attack1.damagebox.disabled = false
 	if t_atk1C <= 0 && attack1_targets.size() > 0:
 		is_shielded = false
+		shieldbar.visible = false
 		attack1.is_attack = true
 		is_attack1 = true
 		is_attack = true
@@ -99,6 +101,7 @@ func gorog_slash_state() -> void:
 func gorog_shield_state() -> void:
 	if is_attack1 == true: 
 		is_shielded = false
+		shieldbar.visible = false
 		return
 	if is_shielded == false:
 		shieldbar.visible = false
@@ -133,6 +136,7 @@ func gorog_shield_state() -> void:
 	#Initiate if shield isn't recharging
 	if is_shielded == true:
 		#initiate Attack
+		shieldbar.value = shield * 100 / max_shield
 		if t_atk2C <= 0 && attack2_targets.size() > 0:
 			t_atk2C = 480
 			is_stopped = true

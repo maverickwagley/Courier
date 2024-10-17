@@ -167,7 +167,6 @@ func enemy_hurt() -> void:
 			if t_hurt <= 0:
 				for i in hurt_areas.size():
 					var _damageArea = hurt_areas[i]
-					print_debug(_damageArea)
 					if enemy_hitbox_area_entered(_damageArea,blood_particle,global_position) == true:
 						enemy_apply_damage(_damageArea,3,7)
 				var _cryChance = randi_range(0,100)

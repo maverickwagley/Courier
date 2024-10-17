@@ -51,6 +51,7 @@ func _ready() -> void:
 	print_debug("Mode:" + str(autoload_game.mode))
 	autoload_game.room = self
 	if autoload_game.mode == 1:
+		autoload_enemy.build_enemy_list()
 		var current_player = player_scene.instantiate()
 		add_child(current_player)
 		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
@@ -161,7 +162,7 @@ func farway_spawn_comp_update():
 			match max_squads - rem_squads:
 				0:
 					squad_comp.clear()
-					for i in [0]:
+					for i in [2]:
 						squad_comp.append(i)
 				2:
 					squad_comp.clear()
@@ -248,53 +249,52 @@ func farway_spawn_comp_update():
 func room_instantiate_enemy(_spawnNum) -> void:
 	#CM: farway_enemy_spawner: called in a for loop of squad_comp.size()
 	#Set Random Enemy from 
+	var load_enemy
 	match _spawnNum:
 		0:
-			#enemy0 = load("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
-			current_enemy0 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
-			#current_enemy0 = enemy0.instantiate()
+			load_enemy = autoload_enemy.enemy_list[squad_comp[_spawnNum]]
+			current_enemy0 = load_enemy.instantiate()
+			#current_enemy0 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			get_tree().current_scene.add_child(current_enemy0)
 			spawn0 = str(group_num,0)
 			room_enemy_spawn_position(spawn0,current_enemy0)
 		1:
-			current_enemy1 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
+			load_enemy = autoload_enemy.enemy_list[squad_comp[_spawnNum]]
+			current_enemy1 = load_enemy.instantiate()
+			#current_enemy1 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			add_child(current_enemy1)
 			spawn1 = str(group_num,1)
 			room_enemy_spawn_position(spawn1,current_enemy1)
 		2:
-			current_enemy2 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
+			load_enemy = autoload_enemy.enemy_list[squad_comp[_spawnNum]]
+			current_enemy2 = load_enemy.instantiate()
+			#current_enemy2 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			add_child(current_enemy2)
 			spawn2 = str(group_num,2)
 			room_enemy_spawn_position(spawn2,current_enemy2)
 		3:
-			current_enemy3 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
+			load_enemy = autoload_enemy.enemy_list[squad_comp[_spawnNum]]
+			current_enemy3 = load_enemy.instantiate()
+			#current_enemy3 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			add_child(current_enemy3)
 			spawn3 = str(group_num,3)
 			room_enemy_spawn_position(spawn3,current_enemy3)
 		4: 
-			current_enemy4 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
+			load_enemy = autoload_enemy.enemy_list[squad_comp[_spawnNum]]
+			current_enemy4 = load_enemy.instantiate()
+			#current_enemy4 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			add_child(current_enemy4)
 			spawn4 = str(group_num,4)
 			room_enemy_spawn_position(spawn4,current_enemy4)
 		5:
-			current_enemy5 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
+			load_enemy = autoload_enemy.enemy_list[squad_comp[_spawnNum]]
+			current_enemy5 = load_enemy.instantiate()
+			#current_enemy5 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
 			add_child(current_enemy5)
 			spawn5 = str(group_num,5)
 			room_enemy_spawn_position(spawn5,current_enemy5)
 	autoload_game.enemy_count = get_tree().get_node_count_in_group("Enemy")
 	#print_debug(autoload_game.enemy_count)
-#
-func room_set_enemy_id(_enemyID):
-	match _enemyID:
-		0:
-			#enemy0 = load("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
-			return autoload_enemy.enemy0
-		1:
-			#enemy1 = load("res://Scenes/EnemyEntities/ent_hunter.tscn")
-			return autoload_enemy.enemy1
-		2:
-			#enemy2 = load("res://Scenes/EnemyEntities/ent_gorog.tscn")
-			return autoload_enemy.enemy2
 #
 func room_enemy_spawn_position(_spawnName,_spawnEnemy) -> void:
 	#Spawn Enemies
