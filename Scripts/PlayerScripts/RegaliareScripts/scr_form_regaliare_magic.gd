@@ -1,4 +1,4 @@
-#Regaliare Magic Skill
+#scr_form_regaliare_magic
 #
 extends Node2D
 #

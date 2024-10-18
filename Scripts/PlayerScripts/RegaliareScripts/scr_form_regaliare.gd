@@ -1,4 +1,4 @@
-#Form 0: Regaliare
+#scr_form_regaliare
 #
 extends Form
 #

@@ -1,12 +1,16 @@
+#scr_projectile_goldBolt_collision
 #
+extends AttackArea
 #
-extends Area2D
+#Built-In Methods
 #
-#@onready var player: CharacterBody2D
+func _ready() -> void:
+	inflict_kb = false
+	is_magic = true
+	is_kinetic = false
+	type = 0
 #
-var damage: int
-var inflict_kb: bool = false
-var is_magic: bool = true
-var is_kinetic: bool = false
-var enemy_hit: Array
-var type: int = 0
+#Custom Methods
+#
+func collide() -> void:
+	attack_collision_standard()

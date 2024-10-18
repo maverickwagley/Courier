@@ -1,4 +1,4 @@
-#Form 1: Adavio
+#scr_form_adavio
 #
 extends Form
 #
@@ -143,5 +143,4 @@ func adavio_base() -> void:
 			animations.play("anim_adavio_run_" + direction)
 		else:
 			animations.play("anim_adavio_idle_" + last_dir)
-
 #

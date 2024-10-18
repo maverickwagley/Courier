@@ -1,4 +1,4 @@
-#Adavio Special Skill
+#scr_form_adavio_special
 #
 extends Node2D
 #
@@ -96,3 +96,4 @@ func special_check() -> bool:
 		return true
 	else: 
 		return false
+#

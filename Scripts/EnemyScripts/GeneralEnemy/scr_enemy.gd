@@ -181,8 +181,8 @@ func enemy_hitbox_area_entered(area,particle,global_position) -> bool:
 		#if is_hurt == true: return
 	#print_debug(name)
 	#print_debug(get_instance_id())
-	if area.enemy_hit.find(get_instance_id()) == -1:
-		area.enemy_hit.append(get_instance_id())
+	if area.target_hit.find(get_instance_id()) == -1:
+		area.target_hit.append(get_instance_id())
 		var _partChance = randi_range(0,1)
 		if _partChance == 0:
 			var current_part = particle.instantiate()
@@ -387,6 +387,7 @@ func _on_hitbox_area_entered(area) -> void:
 		sprite._set("is_hurt",true)
 	
 	if hurt_areas.find(area) == -1:
+		area.collide()
 		hurt_areas.append(area)
 #
 func _on_hitbox_area_exited(area) -> void:

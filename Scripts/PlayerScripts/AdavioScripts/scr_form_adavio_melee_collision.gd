@@ -1,28 +1,20 @@
-#Adavio Melee Collision
+#scr_form_adavio_melee_collision
 #
-extends Area2D
-#
-@onready var shape = $MeleeShape
-#
-var parent_velocity: Vector2
-var damage: int = 60
-var inflict_kb: bool = true
-var is_magic: bool = false
-var is_kinetic: bool = true
-var kb_power: int = 175
-var enemy_hit: Array
-var type: int = 1
+extends AttackArea
 #
 #Built-In Methods
 #
 func _ready() -> void:
+	shape = $MeleeShape
 	shape.disabled = true
-#
+	damage = 60
+	inflict_kb = true
+	is_magic = false
+	is_kinetic = true
+	kb_power = 175
+	type = 1
 #
 #Custom Methods
-func enable() -> void:
-	shape.disabled = false
 #
-func disable() -> void:
-	shape.disabled = true
-	enemy_hit.clear()
+func collide() -> void:
+	attack_collision_standard()

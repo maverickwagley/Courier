@@ -1,4 +1,4 @@
-#Player Sprite (Generic)
+#scr_player_sprite (Generic)
 #
 extends Sprite2D
 #

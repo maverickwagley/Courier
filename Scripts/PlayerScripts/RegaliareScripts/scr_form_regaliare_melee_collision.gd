@@ -1,26 +1,18 @@
-extends Area2D
-
-
-@onready var shape = $Damagebox
-#@onready var player: CharacterBody2D
-
-var parent_velocity: Vector2
-var damage: int = 35
-var inflict_kb: bool = true
-var is_magic: bool = false
-var is_kinetic: bool = true
-var kb_power: int = 100
-var enemy_hit: Array
-var type: int = 0
-
-
-
+#scr_form_regaliare_melee_collision
+#
+extends AttackArea
+#
 func _ready():
+	shape = $Damagebox
 	shape.disabled = true
-
-func enable():
-	shape.disabled = false
-
-func disable():
-	shape.disabled = true
-	enemy_hit.clear()
+	damage = 35
+	inflict_kb = true
+	is_magic = false
+	is_kinetic = true
+	kb_power = 100
+	type = 0
+#
+#Custom Methods
+#
+func collide() -> void:
+	attack_collision_standard()

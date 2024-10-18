@@ -1,4 +1,4 @@
-#Regaliare Special Skill
+#scr_form_regaliare_special
 #
 extends Node2D
 #
@@ -12,8 +12,6 @@ signal player_cursor_los
 signal player_camera_shake
 #
 @export var projectile_scene: PackedScene
-#
-#@onready var player: CharacterBody2D
 @onready var special_snd: AudioStreamPlayer = $SpecialSFX
 @onready var player: CharacterBody2D
 #
@@ -34,7 +32,9 @@ func _physics_process(_delta) -> void:
 	if cost_check == true:
 		cost_check = false
 		projectile_create()
-	
+#
+#Custom Methods
+#
 func projectile_create() -> void:
 	#Move to form controller()
 	if autoload_game.audio_mute == false:

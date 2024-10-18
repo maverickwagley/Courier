@@ -1,4 +1,4 @@
-#Regaliare Melee Skill
+#scr_form_regaliare_melee
 #
 extends Node2D
 #

@@ -1,4 +1,4 @@
-#Hunter Attack 1 - Slash
+#scr_hunter_slash
 #
 extends Area2D
 #
