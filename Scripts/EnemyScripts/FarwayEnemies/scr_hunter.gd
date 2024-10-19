@@ -44,7 +44,7 @@ func hunter_ready() -> void:
 	max_shield = 0
 	shieldbar.visible = false
 	speed = 45
-	knockback_powe r= 150
+	knockback_power = 150
 #
 func hunter_slash_state() -> void:
 	if is_attack1 == true && t_atk1D <= 0:

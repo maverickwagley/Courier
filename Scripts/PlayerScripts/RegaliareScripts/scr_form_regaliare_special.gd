@@ -7,7 +7,7 @@ signal special_end
 signal form_status_set
 signal player_status_set
 signal player_gui_update
-signal player_charge_use
+signal player_charge_update
 signal player_cursor_los
 signal player_camera_shake
 #
@@ -46,7 +46,7 @@ func projectile_create() -> void:
 	emit_signal("player_status_set","is_attack",false)
 	emit_signal("player_status_set","is_invincible",true)
 	emit_signal("player_status_set","t_invincible",60)
-	emit_signal("player_charge_use","yellow_special",special_cost)
+	emit_signal("player_charge_update","yellow_special",-(special_cost))
 	emit_signal("form_status_set","is_invincible",true)
 	emit_signal("player_gui_update")
 	#emit_signal("special_end")

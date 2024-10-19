@@ -1,4 +1,4 @@
-#scr_player_health
+#scr_player_healthbar
 #
 extends TextureProgressBar
 #

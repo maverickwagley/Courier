@@ -76,30 +76,30 @@ func update_player(_player) -> void:
 			0:
 				_player.yellow_primary = _player.yellow_primary + amount
 				_player.yellow_special = _player.yellow_special + amount
-				_player.primary_gui.update()
+				_player.player_hud.gui_update_all()
 			1:
 				_player.violet_primary = _player.violet_primary + amount
-				_player.violet_primary = _player.violet_primary + amount
-				_player.primary_gui.update()
+				_player.violet_special = _player.violet_special + amount
+				_player.player_hud.gui_update_all()
 			2:
 				_player.green_primary = _player.green_primary + amount
-				_player.green_primary = _player.green_primary + amount
-				_player.primary_gui.update()
+				_player.green_special = _player.green_special + amount
+				_player.player_hud.gui_update_all()
 			3:
 				_player.blue_primary = _player.blue_primary + amount
-				_player.blue_primary = _player.blue_primary + amount
-				_player.primary_gui.update()
+				_player.blue_special = _player.blue_special + amount
+				_player.player_hud.gui_update_all()
 			4:
 				_player.orange_primary = _player.orange_primary + amount
-				_player.orange_primary = _player.orange_primary + amount
-				_player.primary_gui.update()
+				_player.orange_special = _player.orange_special + amount
+				_player.player_hud.gui_update_all()
 			5:
 				_player.red_primary = _player.red_primary + amount
-				_player.red_primary = _player.red_primary + amount
-				_player.primary_gui.update()
+				_player.red_special = _player.red_special + amount
+				_player.player_hud.gui_update_all()
 			6:
 				_player.hp = _player.hp + amount
-				_player.health_gui.update()
+				_player.player_hud.gui_update_all()
 #
 #Signal Functions
 #

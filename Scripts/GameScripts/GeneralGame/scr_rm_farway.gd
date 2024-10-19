@@ -15,17 +15,17 @@ extends Node2D
 @onready var current_enemy3: CharacterBody2D
 @onready var current_enemy4: CharacterBody2D
 @onready var current_enemy5: CharacterBody2D
-@onready var enemy0: PackedScene# = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
-@onready var enemy1: PackedScene# = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
-@onready var enemy2: PackedScene# = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
+@onready var enemy0: PackedScene # = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
+@onready var enemy1: PackedScene # = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
+@onready var enemy2: PackedScene # = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
 
 #
 var fps: int = autoload_game.fps_target 
-var max_squads: int = 4
-var squad_size: int = 1
-var rem_squads: int = 4
+var max_squads: int
+var squad_size: int
+var rem_squads: int
 var squad_comp: Array
-var enemy_spawn_timer: int = 0
+var enemy_spawn_timer: float = 0.0
 var max_prewave: float = 180.0
 var prewave: float = 180.0
 var wave_started: bool = false
@@ -50,6 +50,7 @@ func _ready() -> void:
 	autoload_game.room = self
 	if autoload_game.mode == 1:
 		autoload_enemy.build_enemy_list()
+		#farway_spawn_comp_update()
 		var current_player = player_scene.instantiate()
 		add_child(current_player)
 		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
@@ -94,6 +95,7 @@ func farway_enemy_spawner(delta) -> void:
 			enemy_spawn_timer = enemy_spawn_timer - (delta * fps)
 		if enemy_spawn_timer <= 0:
 			rem_squads = rem_squads - 1
+			#print_debug(rem_squads)
 			farway_spawn_comp_update()
 			enemy_spawn_timer = 300
 			enemy_prog.update_enemy_progress((rem_squads) * 100/max_squads)
@@ -154,29 +156,29 @@ func farway_spawn_setup() -> void:
 func farway_spawn_comp_update():
 	#CM: farway_spawn_setup, farway_enemy_spawner
 	#Set the enemy squad composition
-	print_debug(max_squads - rem_squads)
+	#print_debug(max_squads - rem_squads)
 	match autoload_game.local_wave:
 		1:
 			match max_squads - rem_squads:
-				0:
+				1: #2
 					squad_comp.clear()
-					for i in [1]:
+					for i in [0]:
 						squad_comp.append(i)
-				2:
+				3: #6
 					squad_comp.clear()
 					for i in [0,0]:
 						squad_comp.append(i)
-				4:
+				5: #12
 					squad_comp.clear()
 					for i in [0,0,0]:
 						squad_comp.append(i)
 		2:
 			match max_squads - rem_squads:
-				0:
+				1:
 					squad_comp.clear()
 					for i in [1]:
 						squad_comp.append(i)
-				2:
+				3:
 					squad_comp.clear()
 					for i in [1,0]:
 						squad_comp.append(i)
@@ -185,61 +187,61 @@ func farway_spawn_comp_update():
 					for i in [1,0,0]:
 						squad_comp.append(i)
 		3:
-			match rem_squads:
-				0:
+			match max_squads - rem_squads:
+				1:
 					squad_comp.clear()
 					for i in [0,1]:
 						squad_comp.append(i)
 					
-				2:
+				3:
 					squad_comp.clear()
 					for i in [0,1,2]:
 						squad_comp.append(i)
-				4:
+				5:
 					squad_comp.clear()
 					for i in [0,1,1]:
 						squad_comp.append(i)
-				6:
+				7:
 					squad_comp.clear()
 					for i in [0,1,2]:
 						squad_comp.append(i)
 		4:
-			match rem_squads:
-				0:
+			match max_squads - rem_squads:
+				1:
 					squad_comp.clear()
 					for i in [2,1]:
 						squad_comp.append(i)
-				2:
+				3:
 					squad_comp.clear()
 					for i in [0,1,2]:
 						squad_comp.append(i)
-				4:
+				5:
 					squad_comp.clear()
 					for i in [0,0,0,1]:
 						squad_comp.append(i)
-				6:
+				7:
 					squad_comp.clear()
 					for i in [0,1,1]:
 						squad_comp.append(i)
 		5:
-			match rem_squads:
-				0:
+			match max_squads - rem_squads:
+				1:
 					squad_comp.clear()
 					for i in [0,1,1]:
 						squad_comp.append(i)
-				2:
+				3:
 					squad_comp.clear()
 					for i in [0,1,1,2]:
 						squad_comp.append(i)
-				4:
+				5:
 					squad_comp.clear()
 					for i in [0,1,1,1]:
 						squad_comp.append(i)
-				6:
+				7:
 					squad_comp.clear()
 					for i in [0,0,0,1,2]:
 						squad_comp.append(i)
-				8:
+				9:
 					squad_comp.clear()
 					for i in [0,0,1,1,2]:
 						squad_comp.append(i)
@@ -253,7 +255,7 @@ func room_instantiate_enemy(_spawnNum) -> void:
 			load_enemy = autoload_enemy.enemy_list[squad_comp[_spawnNum]]
 			current_enemy0 = load_enemy.instantiate()
 			#current_enemy0 = room_set_enemy_id(squad_comp[_spawnNum]).instantiate()
-			get_tree().current_scene.add_child(current_enemy0)
+			add_child(current_enemy0)
 			spawn0 = str(group_num,0)
 			room_enemy_spawn_position(spawn0,current_enemy0)
 		1:

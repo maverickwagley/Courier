@@ -7,7 +7,7 @@ signal special_end
 signal form_status_set
 signal player_status_set
 signal player_gui_update
-signal player_charge_use
+signal player_charge_update
 signal player_camera_shake
 signal player_cursor_los
 #
@@ -22,7 +22,7 @@ var cursor_los_check: bool = false
 var is_special: bool = false
 var special_start: bool = false
 var special_use: bool = false
-var special_cost: float = 75
+var special_cost: float = 50
 var cost_check: bool = false
 var t1: float
 var t2: float
@@ -31,6 +31,7 @@ var t3: float
 #Built-In Functions
 #
 func _ready() -> void:
+	special_collision.connect("special_collision",_on_special_collision)
 	special_collision.disable()
 	pass # Replace with function body.
 #
@@ -45,7 +46,7 @@ func _physics_process(_delta) -> void:
 				#print_debug("Cost Check True")
 				special_start = false
 				special_use = true
-				emit_signal("player_charge_use","violet_special",special_cost)
+				emit_signal("player_charge_update","violet_special",-(special_cost))
 				emit_signal("form_status_set","special_use",true)
 				emit_signal("form_status_set","is_special",true)
 				emit_signal("player_gui_update")
@@ -97,3 +98,10 @@ func special_check() -> bool:
 	else: 
 		return false
 #
+#
+#
+func _on_special_collision() -> void:
+	#print_debug("Special Collision Signal")
+	emit_signal("player_charge_update","shield",3)
+	emit_signal("player_charge_update","violet_primary",3)
+	emit_signal("player_gui_update")

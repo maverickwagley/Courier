@@ -2,6 +2,8 @@
 #
 extends AttackArea
 #
+signal special_collision
+#
 #Built-In Functions
 #
 func _ready()  -> void:
@@ -17,5 +19,5 @@ func _ready()  -> void:
 #Custom Functions
 #
 func collide() -> void:
-	#Generate 3 Overshield
+	emit_signal("special_collision")
 	attack_collision_standard()

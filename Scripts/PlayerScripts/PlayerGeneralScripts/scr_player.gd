@@ -4,6 +4,7 @@ extends CharacterBody2D
 #GUI and Display
 @onready var player_hud: CanvasLayer = $PlayerHUD
 @onready var health_gui: TextureProgressBar = $PlayerHUD/HealthBar
+@onready var shield_gui: TextureProgressBar = $PlayerHUD/ShieldBar
 @onready var stamina_gui: TextureProgressBar = $PlayerHUD/StaminaBar
 @onready var primary_gui: TextureProgressBar = $PlayerHUD/PrimaryBar
 @onready var special_gui: TextureProgressBar = $PlayerHUD/SpecialBar
@@ -25,6 +26,13 @@ var load_form: PackedScene
 var form_id: int = 0
 var form_type: int = 0
 var entity_type: int = 0 
+var forms_count: int = 2
+var yellow_unlocked: bool = true
+var violet_unlocked: bool = true
+var green_unlocked: bool = false
+var blue_unlocked: bool = false
+var orange_unlocked: bool = false
+var red_unlocked: bool = false
 #Stats
 #Stats that are upgradable should be moved to autoload
 var hp: float = 200.0
@@ -32,7 +40,7 @@ var max_hp: float = 200.0
 var stamina: float = 200.0
 var max_stamina: float = 200.0
 var shield: float = 0.0
-var max_shied: float = 0.0
+var max_shield: float = 50.0
 var speed: float = 65.0
 var yellow_primary: float = 200.0
 var violet_primary: float = 200.0
@@ -119,7 +127,7 @@ func player_signal_connections() -> void:
 	form.connect("status_reset",_on_status_reset)
 	form.connect("gui_update",_on_gui_update)
 	form.connect("check_cost",_on_check_cost)
-	form.connect("charge_use",_on_charge_use)
+	form.connect("charge_update",_on_charge_update)
 	form.connect("camera_shake",_on_camera_shake)
 	form.connect("cursor_los_check",_on_cursor_los_check)
 #
@@ -295,7 +303,14 @@ func player_hurt_by_enemy(area) -> void:
 #
 func player_apply_damage(_damage) -> void:
 	#CM: player_hurt_by_enemy
-	hp = hp - _damage
+	if shield > 0:
+		if shield >= _damage:
+			shield = shield - _damage
+		else:
+			shield = 0
+			hp = hp - (_damage - shield)
+	else:
+		hp = hp - _damage
 	if hp <= 0:
 		player_status_reset()
 		hp = max_hp
@@ -306,6 +321,7 @@ func player_apply_damage(_damage) -> void:
 		t_dead = 300
 		is_dead = true
 	health_gui.update()
+	shield_gui.update()
 #
 func player_cursor_direction():
 	var _cdir = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))
@@ -366,6 +382,8 @@ func player_form_charge_update() -> void:
 	form.red_max = red_max
 #
 func player_recharge_timer(delta) -> void:
+	#var _chargeAmount: int = ceil(3 / (forms_count - 1))
+	#print_debug(_chargeAmount)
 	if t_recharge > 0:
 		t_recharge = t_recharge - (delta * fps)
 	if t_recharge <= 0:
@@ -545,33 +563,21 @@ func _on_check_cost(property: StringName,value: float) -> bool:
 				return false
 	return false
 #
-func _on_charge_use(property: StringName,value: Variant) -> bool:
-	match property:
+func _on_charge_update(property: StringName,value: Variant) -> void:
+	match property: 
+		"shield":
+			print_debug("Shield Update")
+			shield = shield + value
 		"yellow_primary":
-			if yellow_primary >= value:
-				yellow_primary = yellow_primary - value
-				return true
-			else:
-				return false
+			yellow_primary = yellow_primary + value
 		"yellow_special":
-			if yellow_special >= value:
-				yellow_special = yellow_special - value
-				return true
-			else:
-				return false
+			yellow_special = yellow_special + value
 		"violet_primary":
-			if violet_primary >= value:
-				violet_primary = violet_primary - value
-				return true
-			else:
-				return false
+			print_debug("Violet Primary Update")
+			violet_primary = violet_primary + value
 		"violet_special":
-			if violet_special >= value:
-				violet_special = violet_special - value
-				return true
-			else:
-				return false
-	return false
+			violet_special = violet_special + value
+	player_hud.gui_update_all()
 #
 func _on_gui_update() -> void:
 	player_hud.gui_update_all()

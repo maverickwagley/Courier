@@ -613,6 +613,13 @@ script = ExtResource("2_y6y5c")
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_ldtj5")
 
+[node name="ShieldBar" type="TextureProgressBar" parent="PlayerHUD"]
+offset_top = 238.0
+offset_right = 32.0
+offset_bottom = 270.0
+texture_progress = ExtResource("5_fe0jg")
+script = ExtResource("6_i61o3")
+
 [node name="HealthBar" type="TextureProgressBar" parent="PlayerHUD"]
 z_index = 1
 offset_top = 238.0
@@ -627,15 +634,6 @@ script = ExtResource("6_jin4q")
 position = Vector2(15, 18)
 sprite_frames = SubResource("SpriteFrames_44wyv")
 speed_scale = 0.0
-
-[node name="ShieldBar" type="TextureProgressBar" parent="PlayerHUD"]
-z_index = 1
-offset_top = 238.0
-offset_right = 32.0
-offset_bottom = 270.0
-fill_mode = 5
-texture_progress = ExtResource("5_fe0jg")
-script = ExtResource("6_i61o3")
 
 [node name="StaminaBar" type="TextureProgressBar" parent="PlayerHUD"]
 z_index = 1

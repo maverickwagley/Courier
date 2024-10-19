@@ -7,7 +7,7 @@ signal status_set
 signal status_reset
 signal gui_update
 signal check_cost
-signal charge_use
+signal charge_update
 signal camera_shake
 signal cursor_los_check
 #
@@ -79,13 +79,13 @@ func form_player_signal_connections() -> void:
 	special.connect("player_status_set",_on_player_status_set)
 	special.connect("player_gui_update",_on_player_gui_update)
 	special.connect("form_status_set",_on_form_status_set)
-	special.connect("player_charge_use",_on_player_charge_use)
+	special.connect("player_charge_update",_on_player_charge_update)
 	special.connect("player_camera_shake",_on_player_camera_shake)
 	magic.connect("check_cost",_on_check_cost)
 	magic.connect("player_status_set",_on_player_status_set)
 	magic.connect("player_gui_update",_on_player_gui_update)
 	magic.connect("form_status_set",_on_form_status_set)
-	magic.connect("player_charge_use",_on_player_charge_use)
+	magic.connect("player_charge_update",_on_player_charge_update)
 	magic.connect("player_camera_shake",_on_player_camera_shake)
 	magic.connect("player_cursor_los",_on_player_cursor_los_check)
 #
@@ -189,8 +189,8 @@ func _on_check_cost(_property: StringName,_cost: int) -> void:
 func _on_player_gui_update() -> void:
 	emit_signal("gui_update")
 #
-func _on_player_charge_use(property: StringName,value: Variant) -> void:
-	emit_signal("charge_use",property,value)
+func _on_player_charge_update(property: StringName,value: Variant) -> void:
+	emit_signal("charge_update",property,value)
 #
 func _on_form_status_set(property: StringName,value: Variant) -> void:
 	set(property,value)

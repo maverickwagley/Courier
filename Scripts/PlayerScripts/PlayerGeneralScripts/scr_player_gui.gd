@@ -3,6 +3,7 @@
 extends CanvasLayer
 #
 @onready var healthbar: TextureProgressBar = $HealthBar
+@onready var shieldbar: TextureProgressBar = $ShieldBar
 @onready var staminabar: TextureProgressBar = $StaminaBar
 @onready var primarybar: TextureProgressBar = $PrimaryBar
 @onready var specialbar: TextureProgressBar = $SpecialBar
@@ -22,3 +23,4 @@ func gui_update_all() -> void:
 	staminabar.update()
 	primarybar.update()
 	specialbar.update()
+	shieldbar.update()

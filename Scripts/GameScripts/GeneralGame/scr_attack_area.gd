@@ -28,5 +28,5 @@ func disable() -> void:
 	target_hit.clear()
 #
 func attack_collision_standard() -> bool:
-	print_debug("Standard Attack Area Collision")
+	#print_debug("Standard Attack Area Collision")
 	return true

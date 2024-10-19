@@ -6,7 +6,7 @@ signal check_cost
 signal form_status_set
 signal player_status_set
 signal player_gui_update
-signal player_charge_use
+signal player_charge_update
 signal player_camera_shake
 signal player_cursor_los
 #
@@ -74,7 +74,7 @@ func projectile_create():
 	autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)
 	if autoload_game.audio_mute == false:
 		magic_audio.play()
-	emit_signal("player_charge_use","violet_primary",magic_cost)
+	emit_signal("player_charge_update","violet_primary",-(magic_cost))
 	for i in 7:
 		var projectile = projectile_scene.instantiate()
 		emit_signal("player_camera_shake",3)
