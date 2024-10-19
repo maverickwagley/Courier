@@ -1,3 +1,5 @@
+#scr_autoload_enemy
+#
 extends Node
 #
 @onready var enemy0 = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
@@ -13,7 +15,7 @@ func build_enemy_list():
 	#enemy_list[1] = enemy1
 	#enemy_list[2] = enemy2
 #
-#Custom Methods
+#Custom Functions
 #
 func detect_area_entered():
 	pass

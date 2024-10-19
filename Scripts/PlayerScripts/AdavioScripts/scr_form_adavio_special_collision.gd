@@ -2,7 +2,7 @@
 #
 extends AttackArea
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready()  -> void:
 	shape = $SpecialShape
@@ -14,7 +14,7 @@ func _ready()  -> void:
 	kb_power = 250
 	type = 1
 #
-#Custom Methods
+#Custom Functions
 #
 func collide() -> void:
 	#Generate 3 Overshield

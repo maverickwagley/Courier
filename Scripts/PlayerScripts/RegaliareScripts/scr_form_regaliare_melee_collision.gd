@@ -12,7 +12,7 @@ func _ready():
 	kb_power = 100
 	type = 0
 #
-#Custom Methods
+#Custom Functions
 #
 func collide() -> void:
 	attack_collision_standard()

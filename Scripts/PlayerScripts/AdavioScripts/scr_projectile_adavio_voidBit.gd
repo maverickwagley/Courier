@@ -5,18 +5,19 @@ extends CharacterBody2D
 @onready var collision: Area2D = $EnemyCollision
 @onready var particle: PackedScene = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_particle_voidBolt.tscn")
 #
+var fps: float = autoload_game.fps_target
 var speed = 250
 var sd_timer: int
 var direction: Vector2 = Vector2.RIGHT
 var entity_type: int = 2 #Projectile (Player, Enemy, Projectile, NPC)
-var damage: int = 14
+var damage: float = 14
 var inflict_kb: bool = false
 var is_magic: bool = true
 var is_kinetic: bool = false
-var kb_power: int = 0
+var kb_power: float = 0
 var parent_velocity: Vector2
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready():
 	collision.damage = damage
@@ -27,11 +28,12 @@ func _ready():
 #
 func _physics_process(delta):
 	if sd_timer < 35:
+		#Damage Falloff
 		if damage > 3:
-			damage = damage - 1
+			damage = damage - (delta * fps)
 		if speed > 150:
-			speed = speed - 10
-	sd_timer = sd_timer - 1
+			speed = speed - (10 * (delta * fps))
+	sd_timer = sd_timer - (delta * fps)
 	velocity = direction * speed * delta
 	var collision = move_and_collide(velocity)
 	if collision:

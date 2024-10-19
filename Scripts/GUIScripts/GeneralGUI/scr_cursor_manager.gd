@@ -1,4 +1,4 @@
-#Player Cursor Manager
+#scr_cursor_manager
 #
 extends Node2D
 #
@@ -16,7 +16,7 @@ extends Node2D
 @onready var _tDisable: int = 0 #Review With Adavio
 @onready var form_id: int = 0
 #
-#Built-in Methods
+#Built-in Functions
 #
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -32,7 +32,7 @@ func _process(delta):
 		if _tDisable <= 0:
 			cursor_sprite.texture = basic_cursor
 #
-#Custom Methods
+#Custom Functions
 #
 func update(_formID: int) -> void:
 	match _formID:

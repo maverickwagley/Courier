@@ -1,11 +1,8 @@
-#Enemy Gorog
+#scr_gorog
 #
 extends Enemy
 #
-#@onready var arrow_scene = preload("res://Scenes/EnemyEntities/ent_projectile_hunter_arrow.tscn")
-#@onready var shieldBash_smear = $Attack2Area/Attack2Sprite
-#
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	gorog_ready()
@@ -23,13 +20,13 @@ func _physics_process(delta) -> void:
 	#Custom Animation
 	gorog_animation()
 #
-#Custom Methods
+#Custom Functions
 #
 func gorog_ready() -> void:
+	#CM: _ready
 	#Set Child Nodes
 	sprite = $EnemySprite
 	animations = $AnimationPlayer
-	#effects = $Effects
 	healthbar = $HealthBar
 	shieldbar = $ShieldBar
 	hurt_box = $HitArea/Hitbox
@@ -48,17 +45,16 @@ func gorog_ready() -> void:
 	knockback_power= 150
 	shield = 100
 	max_shield = 100
-	
-	#is_stopped = false
 #
 func gorog_slash_state() -> void:
+	#CM: _physics_process
 	if is_attack2 == true: return
 	if is_attack1 == true && t_atk1D <= 0:
 		is_shielded = false
 		shieldbar.visible = false
 		t_atk1D = t_atk1C
-		attack1.targets_hit.clear()
-		attack1.damagebox.disabled = false
+		attack1.target_hit.clear()
+		attack1.shape.disabled = false
 	if t_atk1C <= 0 && attack1_targets.size() > 0:
 		is_shielded = false
 		shieldbar.visible = false
@@ -76,7 +72,7 @@ func gorog_slash_state() -> void:
 		await animations.animation_finished
 		if attack1_targets.size() > 0:
 			t_atk1C = 90
-			attack1.targets_hit.clear()
+			attack1.target_hit.clear()
 			last_dir = enemy_attack_dir(attack1_targets)
 			animations.play("anim_slash_f_" + last_dir)
 			await animations.animation_finished
@@ -85,7 +81,7 @@ func gorog_slash_state() -> void:
 			enemy_nav_calc()
 			is_stopped = false
 			attack1.is_attack = false
-			attack1.damagebox.disabled = true
+			attack1.shape.disabled = true
 			is_attack = false
 			is_attack1 = false
 		else:
@@ -94,11 +90,12 @@ func gorog_slash_state() -> void:
 			enemy_nav_calc()
 			is_stopped = false
 			attack1.is_attack = false
-			attack1.damagebox.disabled = true
+			attack1.shape.disabled = true
 			is_attack = false
 			is_attack1 = false
 #
 func gorog_shield_state() -> void:
+	#CM: _physics_process
 	if is_attack1 == true: 
 		is_shielded = false
 		shieldbar.visible = false
@@ -129,7 +126,7 @@ func gorog_shield_state() -> void:
 			speed = 45
 	#Dash Forward
 	if is_attack2 == true:
-		if attack2.targets_hit.size() > 0:
+		if attack2.target_hit.size() > 0:
 			velocity.x = 0
 			velocity.y = 0
 		move_and_slide()
@@ -156,7 +153,7 @@ func gorog_shield_state() -> void:
 			animations.play("anim_idle_" + last_dir)
 			enemy_nav_calc()
 			attack2_box.disabled = true
-			attack2.targets_hit.clear()
+			attack2.target_hit.clear()
 			attack2.is_attack = false
 			is_shielded = true
 			shield = shield + 50
@@ -167,6 +164,7 @@ func gorog_shield_state() -> void:
 			is_attack2 = false
 #
 func gorog_animation() -> void:
+	#CM: _phsyics_process
 	if is_attack1 == true: return
 	if is_attack2 == true: return
 	if is_knockback == true: return

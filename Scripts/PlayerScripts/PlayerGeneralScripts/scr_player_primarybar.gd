@@ -1,4 +1,4 @@
-#Player Primary Bar
+#scr_player_primarybar
 #
 extends TextureProgressBar
 #
@@ -13,12 +13,12 @@ extends TextureProgressBar
 #
 var player_num: int = 0
 #
-#Built-in Methods
+#Built-in Functions
 #
 func _ready() -> void:
 	update()
 #
-#Custom Methods
+#Custom Functions
 #
 func update() -> void:
 	#CM: Form Controller > Magic Skill > _physics process

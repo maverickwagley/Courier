@@ -22,13 +22,13 @@ var cursor_los_check: bool = false
 var is_special: bool = false
 var special_start: bool = false
 var special_use: bool = false
-var special_cost: int = 75
+var special_cost: float = 75
 var cost_check: bool = false
-var t1: int
-var t2: int
-var t3: int 
+var t1: float
+var t2: float
+var t3: float
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	special_collision.disable()
@@ -80,7 +80,7 @@ func _physics_process(_delta) -> void:
 			t2 = 70
 			special_use = false
 #
-#Custom Methods
+#Custom Functions
 #
 func special_check() -> bool:
 	#Check Line of Sight w/ Raycast

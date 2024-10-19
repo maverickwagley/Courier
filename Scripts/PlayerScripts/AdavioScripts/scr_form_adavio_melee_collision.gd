@@ -2,7 +2,7 @@
 #
 extends AttackArea
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	shape = $MeleeShape
@@ -14,7 +14,7 @@ func _ready() -> void:
 	kb_power = 175
 	type = 1
 #
-#Custom Methods
+#Custom Functions
 #
 func collide() -> void:
 	attack_collision_standard()

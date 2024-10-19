@@ -2,7 +2,7 @@
 #
 extends Form
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	form_id = 0
@@ -20,7 +20,7 @@ func _physics_process(delta) -> void:
 	regaliare_special()
 	regaliare_base()
 #
-#Custom Methods
+#Custom Functions
 #
 func regaliare_roll() -> void:
 	#form_roll_input()

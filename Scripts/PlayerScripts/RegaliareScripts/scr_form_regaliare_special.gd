@@ -16,13 +16,13 @@ signal player_camera_shake
 @onready var player: CharacterBody2D
 #
 var parent_velocity: Vector2
-var special_rate: int = 90
-var special_cost: int = 100
+var special_rate: float = 90.0
+var special_cost: float = 100.0
 var is_special: bool = false
 var cost_check: bool = false
 var cursor_los_check: bool = false
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _physics_process(_delta) -> void:
 	if is_special == true:
@@ -33,7 +33,7 @@ func _physics_process(_delta) -> void:
 		cost_check = false
 		projectile_create()
 #
-#Custom Methods
+#Custom Functions
 #
 func projectile_create() -> void:
 	#Move to form controller()

@@ -1,11 +1,9 @@
-#Room Farway
+#scr_rm_farway
 #
 extends Node2D
 #
 @export var player_scene: PackedScene
-#@export var enemy0: PackedScene# = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
-#@export var enemy1: PackedScene# = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
-#@export var enemy2: PackedScene# = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
+#
 @onready var tilemap: TileMapLayer = $TileMap/Base
 @onready var game_hud: CanvasLayer = $GameHUD
 @onready var enemy_prog: TextureProgressBar = $GameHUD/EnemyProgress
@@ -20,7 +18,7 @@ extends Node2D
 @onready var enemy0: PackedScene# = preload("res://Scenes/EnemyEntities/ent_skirmisher.tscn")
 @onready var enemy1: PackedScene# = preload("res://Scenes/EnemyEntities/ent_hunter.tscn")
 @onready var enemy2: PackedScene# = preload("res://Scenes/EnemyEntities/ent_gorog.tscn")
-#@onready var groupA: Node2D = $Markers/EnemySpawns/SpawnGroupA
+
 #
 var fps: int = autoload_game.fps_target 
 var max_squads: int = 4
@@ -28,8 +26,8 @@ var squad_size: int = 1
 var rem_squads: int = 4
 var squad_comp: Array
 var enemy_spawn_timer: int = 0
-var max_prewave = 180
-var prewave = 180
+var max_prewave: float = 180.0
+var prewave: float = 180.0
 var wave_started: bool = false
 var form_menu: bool = false
 #Spawner Variables
@@ -45,7 +43,7 @@ var spawn4: String = "04"
 var spawn5: String = "05"
 #
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	print_debug("Mode:" + str(autoload_game.mode))
@@ -86,7 +84,7 @@ func _physics_process(delta) -> void:
 	if wave_started == true:
 		farway_enemy_spawner(delta)
 #
-#Custom Methods
+#Custom Functions
 #
 func farway_enemy_spawner(delta) -> void:
 	#CM: _physics_process
@@ -162,7 +160,7 @@ func farway_spawn_comp_update():
 			match max_squads - rem_squads:
 				0:
 					squad_comp.clear()
-					for i in [2]:
+					for i in [1]:
 						squad_comp.append(i)
 				2:
 					squad_comp.clear()

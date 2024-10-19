@@ -1,6 +1,9 @@
+#scr_autoload_enemy
+#
 extends Node
-
-
+#
+#Custom Methods
+#
 func knockback(_receiveKB: CharacterBody2D, _kbSourcePos: Vector2, _power: int, _dur : int):
 	var receiver = _receiveKB
 	var knockback_dir = _kbSourcePos.direction_to(receiver.global_position)
@@ -9,7 +12,7 @@ func knockback(_receiveKB: CharacterBody2D, _kbSourcePos: Vector2, _power: int, 
 	receiver.t_knockback = _dur
 	receiver.is_knockback = true
 	#source.move_and_slide()
-
+#
 func set_status():
 	var is_invincible: bool = false
 	var is_swap: bool = false

@@ -1,6 +1,8 @@
+#scr_autoload_game
+#
 extends Node
 #9223372008786492141
-
+#
 #General Game
 var player = {}
 var mode: int = 0

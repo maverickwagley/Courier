@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcwyp7atpwu7m"
-path="res://.godot/imported/spr_shadow_r12.png-508ba31374b7b466879650b33d9bb53f.ctex"
+uid="uid://denjhha87gcfe"
+path="res://.godot/imported/spr_shadow_r16.png-2d91947f97061a2bc55c9cb514922ee6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png"
-dest_files=["res://.godot/imported/spr_shadow_r12.png-508ba31374b7b466879650b33d9bb53f.ctex"]
+source_file="res://Sprites/Shadows/spr_shadow_r16.png"
+dest_files=["res://.godot/imported/spr_shadow_r16.png-2d91947f97061a2bc55c9cb514922ee6.ctex"]
 
 [params]
 

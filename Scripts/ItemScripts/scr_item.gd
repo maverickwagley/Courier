@@ -1,4 +1,4 @@
-#Item (Generic)
+#scr_item (Generic)
 #
 extends CharacterBody2D
 #
@@ -20,7 +20,7 @@ var item_id: int = 0
 var amount: int = randi_range(5,25)
 var parent_velocity: Vector2
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	global_rotation = global_rotation + randf_range(-3.14,3.14)
@@ -101,7 +101,7 @@ func update_player(_player) -> void:
 				_player.hp = _player.hp + amount
 				_player.health_gui.update()
 #
-#Signal Methods
+#Signal Functions
 #
 func _on_player_collision_area_entered(area) -> void:
 	player = area.get_parent()

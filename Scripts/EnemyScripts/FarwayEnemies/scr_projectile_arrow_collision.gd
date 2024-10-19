@@ -1,12 +1,15 @@
-#Projectile Collision - Hunter Arrow
+#scr_projectile_arrow_collision
 #
-extends Area2D
+extends AttackArea
 #
-@onready var player: CharacterBody2D
+#Built-In Functions
 #
-var damage: int
-var inflict_kb: bool = false
-var targets_hit: Array
-var enemy_hit: Array
-var type: int = 0
-
+func _ready():
+	#var player: CharacterBody2D
+	inflict_kb = false
+	type = 0
+#
+#Custom Functions
+#
+func collide() -> void:
+	attack_collision_standard()

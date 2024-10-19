@@ -3,9 +3,9 @@
 extends AttackArea
 #
 var player: CharacterBody2D
-var t1: int = 0
+var t1: float
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready():
 	inflict_kb = false
@@ -21,6 +21,8 @@ func _process(delta):
 	if t1 <= 0:
 		target_hit.clear()
 		t1 = 15
+#
+#Custom Methods
 #
 func collide() -> void:
 	attack_collision_standard()

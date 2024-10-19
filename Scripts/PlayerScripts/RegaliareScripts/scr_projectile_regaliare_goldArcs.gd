@@ -12,12 +12,12 @@ var sd_timer: int
 var direction: Vector2
 var ary_collision: Array
 var entity_type: int = 2 
-var damage: int = 25
+var damage: float = 25.0
 var inflict_kb: bool = true
 var parent_velocity: Vector2
 var type: int = 0
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready():
 	collision.damage = damage
@@ -34,7 +34,7 @@ func _physics_process(delta):
 	if sd_timer < 1:
 		queue_free()
 #
-#Signal Methods
+#Signal Functions
 #
 func _on_enemy_collision_area_entered(area):
 	pass

@@ -1,4 +1,4 @@
-#Enemy (Generic)
+#scr_enemy (Generic)
 #
 extends CharacterBody2D
 #
@@ -39,16 +39,16 @@ class_name Enemy
 @onready var death_particle = preload("res://Scenes/GameScenes/ent_particle_death.tscn")
 @onready var item_drop = preload("res://Scenes/ItemScenes/ent_item.tscn")
 #
-var fps: int = autoload_game.fps_target
-var hp: int
-var max_hp: int
-var speed: int
-var shield: int
-var max_shield: int
-var knockback_power: int
-var entity_type:int = 1
+var fps: float = autoload_game.fps_target
+var hp: float
+var max_hp: float
+var speed: float
+var shield: float
+var max_shield: float
+var knockback_power: float
+var entity_type:float = 1
 #Status
-var objective_num: int = 0
+var objective_num: float = 0
 var is_hurt: bool = false
 var is_invincible: bool = false
 var is_attack: bool = false
@@ -62,20 +62,20 @@ var is_aggro: bool = true
 var is_stopped: bool = false
 var is_dead: bool = false
 #Timers: These Need converted to float
-var t_move: int = randi_range(60,600)
-var t_knockback: int = 0
-var t_hurt: int = 0
-var t_shield: int = 0
-var t_aggro: int = 0
-var t_atk1C: int = 0 #Cooldown
-var t_atk1D: int = 0 #Delay
-var t_atk1S: int = 0 #Special
-var t_atk2C: int = 0
-var t_atk2D: int = 0
-var t_atk2S: int = 0
-var t_atk3C: int = 0
-var t_atk3D: int = 0
-var t_atk3S: int = 0
+var t_move: float = randi_range(60,600)
+var t_knockback: float = 0
+var t_hurt: float = 0
+var t_shield: float = 0
+var t_aggro: float = 0
+var t_atk1C: float = 0 #Cooldown
+var t_atk1D: float = 0 #Delay
+var t_atk1S: float = 0 #Special
+var t_atk2C: float = 0
+var t_atk2D: float = 0
+var t_atk2S: float = 0
+var t_atk3C: float = 0
+var t_atk3D: float = 0
+var t_atk3S: float = 0
 #Direction
 var move_dir: Vector2
 var target_pos: Vector2
@@ -83,7 +83,7 @@ var direction = "down"
 var last_dir = "down"
 var magic_dir = "down"
 #
-#Custom Methods
+#Custom Functions
 #
 func enemy_timers(delta) -> void:
 	if t_atk1C > 0:
@@ -113,25 +113,11 @@ func enemy_nav_calc() -> void:
 		target_node = p
 	if target_node:
 		nav_agent.target_position = target_node.global_position
-	#if target_node:
-		#print_debug(target_node.name)
-		#nav_agent.target_position = target_node.global_position
-	#else:
-		#for spawn in get_tree().get_nodes_in_group("EnemyPathPoint"):
-			#if spawn.name == str(objective_num):
-				#nav_agent.target_position  = spawn.global_position
 #
 func enemy_target_set(_trgt) -> void:
 	is_aggro = true
 	t_aggro = 300
 	target_node = _trgt
-#
-func enemy_reposition() -> void:
-	pass
-	#var _newX = global_position.x + randi_range(-16,16)
-	#var _newY = global_position.y + randi_range(-16,16)
-	#nav_agent.target_position.x = _newX
-	#nav_agent.target_position.y = _newY
 #
 func enemy_attack_dir(_array: Array):
 	if _array.size() >= 1:
@@ -178,9 +164,6 @@ func enemy_hurt() -> void:
 				t_hurt = 9
 #
 func enemy_hitbox_area_entered(area,particle,global_position) -> bool:
-		#if is_hurt == true: return
-	#print_debug(name)
-	#print_debug(get_instance_id())
 	if area.target_hit.find(get_instance_id()) == -1:
 		area.target_hit.append(get_instance_id())
 		var _partChance = randi_range(0,1)
@@ -199,7 +182,6 @@ func enemy_hitbox_area_entered(area,particle,global_position) -> bool:
 		return false
 #
 func enemy_apply_damage(area,_essMin,_essMax) -> void:
-	#print_debug("Damage applied to: ",self)
 	if is_shielded == false:
 		hp = hp - area.damage
 	else:
@@ -262,14 +244,12 @@ func enemy_navigation(delta) -> void:
 #
 func enemy_knockback_stack() -> void:
 	if is_knockback == true:
-		#print_debug(get_slide_collision_count())
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
 			var collider = collision.get_collider()
 			if collider.is_class("CharacterBody2D"):
 				if collider.entity_type == 1:
 					if collider.is_knockback == false:
-						#print_debug(collider)
 						autoload_entity.knockback(collider, global_position, knockback_power, t_knockback)
 						collider.is_knockback = true
 #
@@ -313,7 +293,7 @@ func enemy_drop_essence(_id,_min,_max) -> void:
 	current_energy.amount = randi_range(_min,_max)
 	current_energy.classed = true
 #
-#Signal Methods
+#Signal Functions
 #
 func _on_attack1_detect_area_entered(area) -> void:
 	if attack1_targets.find(area) == -1:
@@ -359,25 +339,16 @@ func _on_shield_detect_area_exited(area) -> void:
 #
 func _on_recalculate_timer_timeout() -> void:
 	enemy_nav_calc()
-	#var agent_current_pos = global_position
-	#var next_path_position = nav_agent.get_next_path_position()
-	##velocity = agent_current_pos.direction_to(next_path_position) * speed
-	#var intended_vel = agent_current_pos.direction_to(next_path_position) * speed
-	#nav_agent.set_velocity(intended_vel)
 #
 func _on_aggro_detect_area_entered(area) -> void:
 	is_aggro = true
 	t_aggro = 300
 	target_node = area.owner
-	#print_debug(target_node)
 #
 func _on_hitbox_area_entered(area) -> void:
-	#if area == $MeleeWeapon: return
-	#if area == $HitArea: return
 	t_hurt = 0
 	is_hurt = true
 	if is_shielded == true:
-		#print_debug("Shielded")
 		sprite.apply_intensity_fade(0.5,0.0,0.25)
 		sprite._set("is_shielded",true)
 		if autoload_game.audio_mute == false:
@@ -404,7 +375,5 @@ func _on_attack1_audio_timer_timeout() -> void:
 func _on_navigation_velocity_computed(safe_velocity):
 	if is_stopped == true: return
 	if is_knockback == true: return
-	#if nav_agent.is_navigation_finished(): return
-	#print_debug("velocity set:" + str(velocity))
 	velocity = safe_velocity
 	move_and_slide()

@@ -1,4 +1,4 @@
-#Player HUD
+#scr_player_gui
 #
 extends CanvasLayer
 #
@@ -10,12 +10,12 @@ extends CanvasLayer
 @onready var heath_texture = preload("res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_health.png")
 @onready var stamina_texture = preload("res://Sprites/GUISprites/PlayerGUI/RadialFills/spr_gui_healthbar_radial_fill_stamina.png")
 #
-#Built-in Methods
+#Built-in Functions
 #
 func _ready() -> void:
 	visible = true
 #
-#Custom Methods
+#Custom Functions
 #
 func gui_update_all() -> void:
 	healthbar.update()

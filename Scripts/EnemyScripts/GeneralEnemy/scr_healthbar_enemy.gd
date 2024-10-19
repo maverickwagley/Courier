@@ -1,16 +1,10 @@
-#Enemy Health Bar
+#scr_healthbar_enemy
 #
 extends TextureProgressBar
 #
 @onready var enemy = get_parent()
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready():
 	value = 100
-	#call_deferred("update")
-#
-#Custom Methods
-#
-#func update():
-	#value = enemy.hp * 100 / enemy.max_hp

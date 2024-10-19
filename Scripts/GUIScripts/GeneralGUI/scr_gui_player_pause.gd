@@ -1,4 +1,4 @@
-#Player Pause Menu
+#scr_gui_player_pause
 #
 extends CanvasLayer
 #
@@ -7,14 +7,14 @@ extends CanvasLayer
 var is_open: bool = false
 var player: CharacterBody2D
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	player = get_parent()
 	visible = false
 	is_open = false
 #
-#Custom Methods
+#Custom Functions
 #
 func toggle_menu() -> void:
 	#CM: Player > menu_input()
@@ -33,7 +33,7 @@ func close() -> void:
 	player.form_menu = false
 	player.pause_menu = false
 #
-#Signal Methods
+#Signal Functions
 #
 func _on_resume_button_pressed() -> void:
 	get_tree().paused = false

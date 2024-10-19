@@ -24,37 +24,37 @@ var form: Node2D
 var load_form: PackedScene
 var form_id: int = 0
 var form_type: int = 0
-var entity_type:int = 0 
+var entity_type: int = 0 
 #Stats
 #Stats that are upgradable should be moved to autoload
-var hp: int = 200
-var max_hp: int = 200
-var stamina: int = 200
-var max_stamina: int = 200
-var shield: int = 0
-var max_shied: int = 0
-var speed: int = 65
-var yellow_primary: int = 200
-var violet_primary: int = 200
-var green_primary: int = 200
-var blue_primary: int = 200
-var orange_primary: int = 200
-var red_primary: int = 200
-var current_primary: int = 200
-var yellow_special: int = 200
-var violet_special: int = 200
-var green_special: int = 200
-var blue_special: int = 200
-var orange_special: int = 200
-var red_special: int = 200
-var current_special: int = 200
-var yellow_max: int = 200
-var violet_max: int = 200
-var green_max: int = 200
-var blue_max: int = 200
-var orange_max: int = 200
-var red_max: int = 200
-var current_max: int = 200
+var hp: float = 200.0
+var max_hp: float = 200.0
+var stamina: float = 200.0
+var max_stamina: float = 200.0
+var shield: float = 0.0
+var max_shied: float = 0.0
+var speed: float = 65.0
+var yellow_primary: float = 200.0
+var violet_primary: float = 200.0
+var green_primary: float = 200.0
+var blue_primary: float = 200.0
+var orange_primary: float = 200.0
+var red_primary: float = 200.0
+var current_primary: float = 200.0
+var yellow_special: float = 200.0
+var violet_special: float = 200.0
+var green_special: float = 200.0
+var blue_special: float = 200.0
+var orange_special: float = 200.0
+var red_special: float = 200.0
+var current_special: float = 200.0
+var yellow_max: float = 200.0
+var violet_max: float = 200.0
+var green_max: float = 200.0
+var blue_max: float = 200.0
+var orange_max: float = 200.0
+var red_max: float = 200.0
+var current_max: float = 200.0
 #Status
 var is_invincible: bool = false
 var is_shielded: bool = false
@@ -68,14 +68,14 @@ var is_melee: bool = false
 var is_magic: bool = false
 var is_special: bool = false
 #Timers
-var t_stamina: int = 0
+var t_stamina: float = 0.0
 var t_recharge: float = 0.0
-var t_hurt: int = 0
-var t_invincible: int = 0
-var t_special: int = 0
-var t_shield: int = 0
-var t_dead: int = 0
-var t_swap: int = 0
+var t_hurt: float = 0.0
+var t_invincible: float = 0.0
+var t_special: float = 0.0
+var t_shield: float = 0.0
+var t_dead: float = 0.0
+var t_swap: float = 0.0
 #Animation
 var direction = "down"
 var last_dir = "down"
@@ -86,7 +86,7 @@ var roll_shake: bool = false
 var form_menu: bool = false
 var pause_menu: bool = false
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	autoload_player.player = self
@@ -112,7 +112,7 @@ func _physics_process(delta) -> void:
 			form.form_swap_in()
 			form.sprite.apply_intensity_fade(1.0,0.0,0.5)
 #
-#Custom Methods
+#Custom Functions
 #
 func player_signal_connections() -> void:
 	form.connect("status_set",_on_status_set)
@@ -128,7 +128,7 @@ func player_update_status(delta) -> void:
 	visible = true
 	player_recharge_timer(delta)
 	if is_dead == true:
-		if t_dead > 0:
+		if t_dead > 0.0:
 			t_dead = t_dead - (delta * fps)
 	if is_swap == true:
 		if t_swap > 0:
@@ -152,9 +152,9 @@ func player_update_status(delta) -> void:
 			form.is_knockback = false
 			form.sprite._set("is_hurt",false)
 	if is_invincible == true:
-		if t_invincible > 0:
+		if t_invincible > 0.0:
 			t_invincible = t_invincible - (delta * fps)
-		if t_invincible <= 0:
+		if t_invincible <= 0.0:
 			is_invincible = false
 			form.is_invincible = false
 			form.sprite._set("is_invincible",false)
@@ -494,16 +494,16 @@ func player_cursor_los_check() -> bool:
 	else: 
 		return false
 #
-#Signal Methods
+#Signal Functions
 #
 func _on_hitbox_area_entered(area) -> void:
 	if is_roll == true: return
 	if area.name == "Hitbox": return
 	if is_dead == false:
 		if is_hurt == false:
-			if area.targets_hit.find(self) ==  -1:
+			if area.target_hit.find(self) ==  -1:
 				#print_debug("Added to hit list of " + str(area.name))
-				area.targets_hit.append(self)
+				area.target_hit.append(self)
 			player_hurt_by_enemy(area)
 			form.form_hit()
 #
@@ -513,7 +513,7 @@ func _on_status_reset() -> void:
 func _on_status_set(property: StringName,value: Variant) -> void:
 	set(property,value)
 #
-func _on_check_cost(property: StringName,value: int) -> bool:
+func _on_check_cost(property: StringName,value: float) -> bool:
 	match property:
 		"yellow_primary":
 			if yellow_primary >= value:

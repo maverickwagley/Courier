@@ -2,7 +2,7 @@
 #
 extends AttackArea
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	inflict_kb = false
@@ -10,7 +10,7 @@ func _ready() -> void:
 	is_kinetic = false
 	type = 0
 #
-#Custom Methods
+#Custom Functions
 #
 func collide() -> void:
 	attack_collision_standard()

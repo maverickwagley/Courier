@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ceea2cusjtdn8"
-path="res://.godot/imported/spr_shadow_r8.png-cdbb6441d2a0622713db4d04b3397869.ctex"
+path="res://.godot/imported/spr_shadow_r8.png-730456a1b45684f0f47f36cc016dc966.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scripts/GameScripts/Shadows/spr_shadow_r8.png"
-dest_files=["res://.godot/imported/spr_shadow_r8.png-cdbb6441d2a0622713db4d04b3397869.ctex"]
+source_file="res://Sprites/Shadows/spr_shadow_r8.png"
+dest_files=["res://.godot/imported/spr_shadow_r8.png-730456a1b45684f0f47f36cc016dc966.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=40 format=3 uid="uid://cula7pwy4q455"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter.gd" id="1_m5x75"]
-[ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_qnt1g"]
+[ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Sprites/Shadows/spr_shadow_r12.png" id="2_qnt1g"]
 [ext_resource type="Texture2D" uid="uid://cvjogw318t2h2" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy.png" id="3_bp4rq"]
 [ext_resource type="Texture2D" uid="uid://bpdkjgb0xdwfa" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy_fill.png" id="4_4oxt8"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/GeneralEnemy/scr_healthbar_enemy.gd" id="5_ptxr5"]

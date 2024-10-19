@@ -1,12 +1,10 @@
-#Enemy Skirmishers
+#scr_skirmisher
 #
 extends Enemy
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
-	#print_debug("New Skirmisher")
-	#print_debug(get_instance_id())
 	skirmisher_ready()
 	call_deferred("enemy_nav_calc")
 #
@@ -21,7 +19,7 @@ func _physics_process(delta) -> void:
 	enemy_animation()
 	enemy_hurt()
 #
-#Custom Methods
+#Custom Functions
 #
 func skirmisher_ready() -> void:
 	#Set Child Nodes
@@ -49,8 +47,8 @@ func skirmisher_ready() -> void:
 func skirmisher_slash_state() -> void:
 	if is_attack1 == true && t_atk1D <= 0:
 		t_atk1D = t_atk1C
-		attack1.targets_hit.clear()
-		attack1.damagebox.disabled = false
+		attack1.target_hit.clear()
+		attack1.shape.disabled = false
 	if is_attack == true:
 		if t_atk1C <= 0 && attack1_targets.size() > 0:
 			attack1.is_attack = true
@@ -70,7 +68,7 @@ func skirmisher_slash_state() -> void:
 			enemy_nav_calc()
 			is_stopped = false
 			attack1.is_attack = false
-			attack1.damagebox.disabled = true
+			attack1.shape.disabled = true
 			is_attack = false
 			is_attack1 = false
 #

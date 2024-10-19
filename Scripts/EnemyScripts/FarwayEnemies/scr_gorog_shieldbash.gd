@@ -1,20 +1,24 @@
-#Gorog Attack 2 - Shield and Shield Bash
+#scr_gorog_shieldbash
 #
-extends Area2D
+extends AttackArea
 #
-@onready var damagebox = $Attack2Damagebox
-@onready var attack_audio = $Attack2SFX
-@onready var attack_aud_timer = $Attack2AudioTimer
 #
-var is_attack: bool = false
-var inflict_kb: bool = false
-var targets_hit: Array
-var kb_power: int = 0
-var damage: int = 40
-#
-#Built-In Methods
+#Built-In Functions
 #
 func _ready():
+	shape = $Attack2Damagebox
+	attack_audio = $Attack2SFX
+	attack_aud_timer = $Attack2AudioTimer
+	#
+	is_attack = false
+	inflict_kb = false
+	kb_power = 0.0
+	damage = 40.0
 	#var parent = get_parent()
 	is_attack = false
-	damagebox.disabled = true
+	shape.disabled = true
+#
+#Custom Functions
+#
+func collide() -> void:
+	attack_collision_standard()

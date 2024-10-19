@@ -1,20 +1,22 @@
-#Hunter Attack 2 - Bowshot
+#scr_hunter_bowshot
 #
-extends Area2D
+extends AttackArea
 #
-@onready var damagebox = $Attack2Damagebox
-@onready var attack_audio = $Attack2SFX
-@onready var attack_aud_timer = $Attack2AudioTimer
-#
-var is_attack: bool = false
-var inflict_kb: bool = false
-var targets_hit: Array
-var kb_power: int = 0
-var damage: int = 10
-#
-#Built-In Methods
+#Built-In Functions
 #
 func _ready():
 	#var parent = get_parent()
+	shape = $Attack2Damagebox
+	attack_audio = $Attack2SFX
+	attack_aud_timer = $Attack2AudioTimer
+	#
 	is_attack = false
-	damagebox.disabled = true
+	inflict_kb = false
+	kb_power = 0.0
+	damage = 10.0
+	shape.disabled = true
+#
+#Custom Functions
+#
+func collide() -> void:
+	attack_collision_standard()

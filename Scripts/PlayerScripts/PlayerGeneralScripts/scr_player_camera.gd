@@ -1,4 +1,4 @@
-#Player Camera
+#scr_player_camera
 #
 extends Camera2D
 #
@@ -10,7 +10,7 @@ var rng = RandomNumberGenerator.new()
 var tilemap: TileMapLayer
 var shake_strength: float = 0.0
 #
-#Built-in Methods
+#Built-in Functions
 #
 func _process(delta) -> void:
 	#update_camera_limit()
@@ -20,7 +20,7 @@ func _process(delta) -> void:
 	if shake_strength <= 0:
 		is_shaking = false
 #
-#Custom Methods
+#Custom Functions
 #
 func apply_shake(_strength) -> void:
 	shake_strength = _strength

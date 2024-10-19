@@ -1,10 +1,13 @@
+#scr_autoload_player
+#
 extends Node
-
+#
 @onready var player: CharacterBody2D
 var form0 = preload("res://Scenes/PlayerScenes/RegaliareScenes/ent_regaliare.tscn")
 var form1 = preload("res://Scenes/PlayerScenes/AdavioScenes/ent_adavio.tscn")
 var form_array = [form0,form1]
-
+#
+#Custom Functions
 #
 func cursor_direction(_cdir):
 	#var cdir = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))

@@ -1,4 +1,3 @@
-#GameHUD
 #gui_game_hud
 #
 extends CanvasLayer

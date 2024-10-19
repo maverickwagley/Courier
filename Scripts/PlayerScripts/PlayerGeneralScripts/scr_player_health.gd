@@ -1,4 +1,4 @@
-#Player Health Bar
+#scr_player_health
 #
 extends TextureProgressBar
 #
@@ -7,12 +7,12 @@ extends TextureProgressBar
 #
 var player_num: int = 0
 #
-#Built-in Methods
+#Built-in Functions
 #
 func _ready() -> void:
 	value = player.hp * 100 / player.max_hp
 #
-#Custom Methods
+#Custom Functions
 #
 func update() -> void:
 	#CM: Player > apply_damage()

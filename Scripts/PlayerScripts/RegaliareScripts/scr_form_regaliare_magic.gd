@@ -23,11 +23,11 @@ var parent_velocity: Vector2
 var is_magic: bool = false
 var cost_check: bool = false
 var cursor_los_check: bool = false
-var magic_cost: int = 4
-var magic_rate: int = 10
-var t_magic: int = 0
+var magic_cost: float = 4.0
+var magic_rate: float = 10.0
+var t_magic: float = 0.0
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	visible = false
@@ -68,7 +68,7 @@ func _physics_process(_delta) -> void:
 			if cost_check == true:
 				projectile_create()
 #
-#Custom Methods
+#Custom Functions
 #
 func update() -> void:
 	if is_magic == true:

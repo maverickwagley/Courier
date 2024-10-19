@@ -1,4 +1,4 @@
-#Player Special Bar
+#scr_player_specialbar
 #
 extends TextureProgressBar
 #
@@ -9,12 +9,12 @@ extends TextureProgressBar
 #
 var player_num: int = 0
 #
-#Built-in Methods
+#Built-in Functions
 #
 func _ready() -> void:
 	update()
 #
-#Custom Methods
+#Custom Functions
 #
 func update() -> void:
 	#CM: Form Controller > Special Skill > _physics_process

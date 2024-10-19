@@ -1,11 +1,11 @@
-#Enemy Sprite
+#scr_enemy_sprite
 #
 extends Sprite2D
 #
 @export var is_hurt: bool = false
 @export var is_shielded: bool = false
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _set(property: StringName, value: Variant) -> bool:
 	match property:
@@ -22,7 +22,7 @@ func _set(property: StringName, value: Variant) -> bool:
 				material.set_shader_parameter("is_shielded",true)
 	return false
 #
-#Custom Methods
+#Custom Functions
 #
 func apply_intensity_fade(_start,_finish,_length) -> void:
 	var tween = get_tree().create_tween()

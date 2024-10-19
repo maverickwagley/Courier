@@ -26,7 +26,7 @@ var t_magic: int
 var is_magic = false
 var last_dir = "down"
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	visible = false
@@ -68,7 +68,7 @@ func _physics_process(delta) -> void:
 			if cost_check == true:
 				projectile_create()
 #
-#Custom Methods
+#Custom Functions
 #
 func projectile_create():
 	autoload_player.part_spawn(flash,spawner.global_position,global_rotation,0.0)

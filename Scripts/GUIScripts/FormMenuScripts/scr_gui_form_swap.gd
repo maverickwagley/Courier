@@ -1,4 +1,4 @@
-#Player Form Swap Menu
+#scr_gui_form_swap
 #
 extends CanvasLayer
 #Center
@@ -27,7 +27,7 @@ var form3: int = 3
 var form4: int = 4
 var form5: int = 5
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	player = get_parent()
@@ -45,7 +45,7 @@ func _physics_process(_delta) -> void:
 			get_tree().paused = true
 			open()
 #
-#Custom Methods
+#Custom Functions
 #
 func toggle_menu() -> void:
 	if is_open == false:
@@ -72,7 +72,7 @@ func update() -> void:
 	violet_primary.set_value(player.violet_primary * 100 / player.current_max)
 	violet_special.set_value(player.violet_special * 100 / player.current_max)
 #
-#Signal Methods
+#Signal Functions
 #
 func _on_yellow_form_button_pressed() -> void:
 	if player_form == 0:

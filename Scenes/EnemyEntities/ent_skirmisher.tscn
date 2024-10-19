@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://b87153mqpcmem"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_skirmisher.gd" id="1_3bh3k"]
-[ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Scripts/GameScripts/Shadows/spr_shadow_r12.png" id="2_dadce"]
+[ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Sprites/Shadows/spr_shadow_r12.png" id="2_dadce"]
 [ext_resource type="Texture2D" uid="uid://cvjogw318t2h2" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy.png" id="2_y5y7o"]
 [ext_resource type="Texture2D" uid="uid://bpdkjgb0xdwfa" path="res://Sprites/GUISprites/EnemyGUI/spr_healthbar_enemy_fill.png" id="3_jv2b4"]
 [ext_resource type="Texture2D" uid="uid://cwrrdkhu6gqv3" path="res://Sprites/EnemySprites/spr_enemy_skirmisher.png" id="5_48ily"]

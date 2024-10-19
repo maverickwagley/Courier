@@ -11,13 +11,13 @@ var parent_velocity: Vector2
 var cursor_los_check: bool = false
 var audio_played: bool = false
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	if get_children().is_empty(): return
 	weapon = get_children()[0]
 #
-#Custom Methods
+#Custom Functions
 #
 func enable() -> void:
 	if !weapon: return

@@ -7,7 +7,7 @@ extends Sprite2D
 @export var is_hurt: bool = false
 @export var is_swap: bool = false
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	load_shader_silhouette()
@@ -54,7 +54,7 @@ func _set(property: StringName, value: Variant) -> bool:
 					material.set_shader_parameter("is_swap",true)
 	return false
 #
-#Custom Methods
+#Custom Functions
 #
 func load_shader_silhouette() -> void:
 	silhouette.texture = texture

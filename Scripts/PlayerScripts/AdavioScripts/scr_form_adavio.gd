@@ -2,7 +2,7 @@
 #
 extends Form
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	form_id = 1
@@ -18,7 +18,7 @@ func _physics_process(delta) -> void:
 	adavio_special()
 	adavio_base()
 #
-#Custom Methods
+#Custom Functions
 #
 func adavio_roll() -> void:
 	#form_roll_input()

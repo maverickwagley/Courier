@@ -1,10 +1,10 @@
-#Enemy Hunter
+#scr_hunter
 #
 extends Enemy
 #
 @onready var arrow_scene = preload("res://Scenes/EnemyEntities/ent_projectile_hunter_arrow.tscn")
 #
-#Built-In Methods
+#Built-In Functions
 #
 func _ready() -> void:
 	hunter_ready()
@@ -21,7 +21,7 @@ func _physics_process(delta) -> void:
 	enemy_navigation(delta)
 	enemy_animation()
 #
-#Custom Methods
+#Custom Functions
 #
 func hunter_ready() -> void:
 	#Set Child Nodes
@@ -44,14 +44,13 @@ func hunter_ready() -> void:
 	max_shield = 0
 	shieldbar.visible = false
 	speed = 45
-	knockback_power= 150
+	knockback_powe r= 150
 #
 func hunter_slash_state() -> void:
-	
 	if is_attack1 == true && t_atk1D <= 0:
 		t_atk1D = t_atk1C
-		attack1.targets_hit.clear()
-		attack1.damagebox.disabled = false
+		attack1.target_hit.clear()
+		attack1.shape.disabled = false
 	if t_atk1C <= 0 && attack1_targets.size() > 0:
 		attack1.is_attack = true
 		is_attack1 = true
@@ -70,7 +69,7 @@ func hunter_slash_state() -> void:
 		enemy_nav_calc()
 		is_stopped = false
 		attack1.is_attack = false
-		attack1.damagebox.disabled = true
+		attack1.shape.disabled = true
 		is_attack = false
 		is_attack1 = false
 #

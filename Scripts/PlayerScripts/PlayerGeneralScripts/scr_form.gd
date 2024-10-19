@@ -38,26 +38,26 @@ var special_start: bool = false
 var special_use: bool = false
 var cursor_los: bool = false
 #
-var yellow_primary: int = 200
-var violet_primary: int = 200
-var green_primary: int = 200
-var blue_primary: int = 200
-var orange_primary: int = 200
-var red_primary: int = 200
-var yellow_special: int = 200
-var violet_special: int = 200
-var green_special: int = 200
-var blue_special: int = 200
-var orange_special: int = 200
-var red_special: int = 200
-var yellow_max: int = 200
-var violet_max: int = 200
-var green_max: int = 200
-var blue_max: int = 200
-var orange_max: int = 200
-var red_max: int = 200
-var magic_cost: int = 0
-var special_cost: int = 0
+var yellow_primary: float = 200.0
+var violet_primary: float = 200.0
+var green_primary: float = 200.0
+var blue_primary: float = 200.0
+var orange_primary: float = 200.0
+var red_primary: float = 200.0
+var yellow_special: float = 200.0
+var violet_special: float = 200.0
+var green_special: float = 200.0
+var blue_special: float = 200.0
+var orange_special: float = 200.0
+var red_special: float = 200.0
+var yellow_max: float = 200.0
+var violet_max: float = 200.0
+var green_max: float = 200.0
+var blue_max: float = 200.0
+var orange_max: float = 200.0
+var red_max: float = 200.0
+var magic_cost: float = 0.0
+var special_cost: float = 0.0
 #
 var direction = "down"
 var last_dir = "down"
@@ -66,12 +66,12 @@ var melee_dir = "down"
 var special_dir = "down"
 #
 var player_velocity: Vector2
-var t_special: int = 5
-var t_move: int = 0
-var t_swap: int = 15
-var t_magic: int = 0
+var t_special: float = 5.0
+var t_move: float = 0.0
+var t_swap: float = 15.0
+var t_magic: float = 0.0
 # 
-#Custom Methods
+#Custom Functions
 #
 func form_player_signal_connections() -> void:
 	special.connect("special_end",_on_special_end)
@@ -172,7 +172,7 @@ func form_status_reset() -> void:
 	is_magic = false
 	is_special = false
 #
-#Signal Methods
+#Signal Functions
 #
 func _on_player_status_set(property: StringName,value: Variant) -> void:
 	emit_signal("status_set",property,value)
