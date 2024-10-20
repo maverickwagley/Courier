@@ -113,6 +113,10 @@ func _physics_process(delta) -> void:
 		#player_death_process()
 		visible = false
 		if t_dead <= 0:
+			for _enemy in get_tree().get_nodes_in_group("Enemy"):
+				_enemy.queue_free()
+			for _room in get_tree().get_nodes_in_group("World"):
+				_room.wave_restart()
 			is_dead = false
 			is_swap = true
 			dead_gui.visible = false

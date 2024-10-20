@@ -87,6 +87,11 @@ func _physics_process(delta) -> void:
 #
 #Custom Functions
 #
+func wave_restart() -> void:
+	wave_started = false
+	prewave = 900
+	rem_squads = max_squads
+#
 func farway_enemy_spawner(delta) -> void:
 	#CM: _physics_process
 	#Spawn Squads of Enemies or Start Prewave Countdown

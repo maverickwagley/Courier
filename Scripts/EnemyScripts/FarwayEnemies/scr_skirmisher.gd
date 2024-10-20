@@ -49,28 +49,28 @@ func skirmisher_slash_state() -> void:
 		t_atk1D = t_atk1C
 		attack1.target_hit.clear()
 		attack1.shape.disabled = false
-	if is_attack == true:
-		if t_atk1C <= 0 && attack1_targets.size() > 0:
-			attack1.is_attack = true
-			is_attack1 = true
-			is_attack = true
-			is_stopped = true
-			t_atk1C = 90
-			t_atk1D = 12
-			velocity.x = 0
-			velocity.y = 0
-			attack1.attack_aud_timer.start()
-			last_dir = enemy_attack_dir(attack1_targets)
-			animations.play("anim_slash_" + last_dir)
-			await animations.animation_finished
-			animations.play("anim_idle_" + last_dir)
-			last_dir = enemy_attack_dir(attack1_targets)
-			enemy_nav_calc()
-			is_stopped = false
-			attack1.is_attack = false
-			attack1.shape.disabled = true
-			is_attack = false
-			is_attack1 = false
+	#if is_attack == true:
+	if t_atk1C <= 0 && attack1_targets.size() > 0:
+		attack1.is_attack = true
+		is_attack1 = true
+		is_attack = true
+		is_stopped = true
+		t_atk1C = 90
+		t_atk1D = 12
+		velocity.x = 0
+		velocity.y = 0
+		attack1.attack_aud_timer.start()
+		last_dir = enemy_attack_dir(attack1_targets)
+		animations.play("anim_slash_" + last_dir)
+		await animations.animation_finished
+		animations.play("anim_idle_" + last_dir)
+		last_dir = enemy_attack_dir(attack1_targets)
+		enemy_nav_calc()
+		is_stopped = false
+		attack1.is_attack = false
+		attack1.shape.disabled = true
+		is_attack = false
+		is_attack1 = false
 #
 #func skirmisher_animation() -> void:
 	#if is_attack1 == true: return
