@@ -123,6 +123,7 @@ func _physics_process(delta) -> void:
 			form.sprite._set("is_hurt",false)
 			form.form_swap_in()
 			form.sprite.apply_intensity_fade(1.0,0.0,0.5)
+			player_restore_all()
 #
 #Custom Functions
 #

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://ca7pf5s7vr3pd"]
+[gd_scene load_steps=21 format=4 uid="uid://ca7pf5s7vr3pd"]
 
 [ext_resource type="Script" path="res://Scripts/GameScripts/GeneralGame/scr_rm_farway.gd" id="1_58377"]
 [ext_resource type="PackedScene" uid="uid://n6tgp86xdidy" path="res://Scenes/PlayerScenes/ent_player.tscn" id="2_miyam"]
@@ -709,6 +709,15 @@ sources/0 = SubResource("TileSetAtlasSource_ofd4p")
 font = SubResource("SystemFont_8xgjf")
 font_size = 8
 
+[sub_resource type="SystemFont" id="SystemFont_nlfy3"]
+font_names = PackedStringArray("Gabriola")
+
+[sub_resource type="LabelSettings" id="LabelSettings_tj085"]
+font = SubResource("SystemFont_nlfy3")
+font_size = 50
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
 [node name="World" type="Node2D" groups=["World"]]
 y_sort_enabled = true
 script = ExtResource("1_58377")
@@ -914,6 +923,15 @@ offset_top = 12.0
 offset_right = 48.0
 offset_bottom = 21.0
 label_settings = SubResource("LabelSettings_0kose")
+
+[node name="VictoryLabel" type="Label" parent="GameHUD"]
+visible = false
+offset_left = 187.0
+offset_top = 111.0
+offset_right = 295.0
+offset_bottom = 162.0
+text = "Victory"
+label_settings = SubResource("LabelSettings_tj085")
 
 [connection signal="area_entered" from="Markers/EnemySpawns/SpawnGroupA/SpawnArea" to="Markers/EnemySpawns" method="_on_spawn_area_entered"]
 [connection signal="area_exited" from="Markers/EnemySpawns/SpawnGroupA/SpawnArea" to="Markers/EnemySpawns" method="_on_spawn_area_exited"]

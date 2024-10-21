@@ -9,6 +9,7 @@ extends Node2D
 @onready var enemy_prog: TextureProgressBar = $GameHUD/EnemyProgress
 @onready var wave_label: Label = $GameHUD/EnemyProgress/WaveLabel
 @onready var enemy_label: Label = $GameHUD/EnemyProgress/EnemyLabel
+@onready var victory_label: Label = $GameHUD/VictoryLabel
 @onready var current_enemy0: CharacterBody2D 
 @onready var current_enemy1: CharacterBody2D
 @onready var current_enemy2: CharacterBody2D
@@ -30,6 +31,8 @@ var max_prewave: float = 180.0
 var prewave: float = 180.0
 var wave_started: bool = false
 var form_menu: bool = false
+var round_complete: bool = false
+var t_victory: float = 300.0
 #Spawner Variables
 var group_array: Array
 var group_num: int = 0
@@ -73,6 +76,13 @@ func _ready() -> void:
 		pass 
 #
 func _physics_process(delta) -> void:
+	if round_complete == true:
+		victory_label.visible = true
+		t_victory = t_victory - (delta * fps)
+		if t_victory <= 0:
+			autoload_game.mode = 0
+			get_tree().change_scene_to_file("res://Scenes/RoomScenes/MetaRooms/rm_home.tscn")
+		return
 	if wave_started == false:
 		if prewave > 0:
 			prewave = prewave - (delta * fps)
@@ -84,12 +94,13 @@ func _physics_process(delta) -> void:
 			farway_spawn_setup()
 	if wave_started == true:
 		farway_enemy_spawner(delta)
+	
 #
 #Custom Functions
 #
 func wave_restart() -> void:
 	wave_started = false
-	prewave = 900
+	prewave = 180
 	rem_squads = max_squads
 #
 func farway_enemy_spawner(delta) -> void:
@@ -109,13 +120,23 @@ func farway_enemy_spawner(delta) -> void:
 				room_instantiate_enemy(i)
 			update_labels()
 	if rem_squads <= 0 && autoload_game.enemy_count <= 0:
-		autoload_player.player.player_restore_all()
-		autoload_game.local_wave = autoload_game.local_wave + 1
-		autoload_game.game_wave = autoload_game.game_wave + 1
-		wave_started = false
-		prewave = max_prewave
-		enemy_spawn_timer = 0
-		update_labels()
+		if autoload_game.local_wave <= 4:
+			autoload_player.player.player_restore_all()
+			autoload_game.local_wave = autoload_game.local_wave + 1
+			autoload_game.game_wave = autoload_game.game_wave + 1
+			wave_started = false
+			prewave = max_prewave
+			enemy_spawn_timer = 0
+			update_labels()
+		else:
+			round_complete = true
+			autoload_player.player.player_restore_all()
+			autoload_game.local_wave = 1
+			autoload_game.game_wave = 1
+			wave_started = false
+			prewave = max_prewave
+			enemy_spawn_timer = 0
+			update_labels()
 #
 func farway_spawn_group_select() -> void:
 	#CM: farway_enemy_spawner
