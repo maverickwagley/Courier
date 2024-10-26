@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://xn6nhv4kc0lf"]
+[gd_scene load_steps=52 format=3 uid="uid://xn6nhv4kc0lf"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_gorog.gd" id="1_bfsqs"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Sprites/Shadows/spr_shadow_r12.png" id="2_ut5r2"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="11_jsfp2"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_gorog_shieldbash.gd" id="14_ixgrf"]
 [ext_resource type="AudioStream" uid="uid://daqsc0bgj2ni2" path="res://Audio/GameAudio/snd_hit_shielded.wav" id="16_dj84p"]
+[ext_resource type="Texture2D" uid="uid://dgroflxfigwtq" path="res://Sprites/GUISprites/EnemyGUI/spr_gui_arrow_enemy_indicator.png" id="17_g255k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_35fl7"]
 resource_local_to_scene = true
@@ -976,6 +977,12 @@ volume_db = -5.0
 [node name="ShieldedSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_dj84p")
 volume_db = -5.0
+
+[node name="EnemyMarker" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(0, -21)
+texture = ExtResource("17_g255k")
 
 [connection signal="timeout" from="Attack1Area/Attack1AudioTimer" to="." method="_on_attack1_audio_timer_timeout"]
 [connection signal="timeout" from="Attack2Area/Attack2AudioTimer" to="." method="_on_attack1_audio_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cula7pwy4q455"]
+[gd_scene load_steps=41 format=3 uid="uid://cula7pwy4q455"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter.gd" id="1_m5x75"]
 [ext_resource type="Texture2D" uid="uid://bcwyp7atpwu7m" path="res://Sprites/Shadows/spr_shadow_r12.png" id="2_qnt1g"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://lygsusjeso34" path="res://Audio/EnemyAudio/snd_skirmisher_slash.mp3" id="9_clvev"]
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/FarwayEnemies/scr_hunter_bowshot.gd" id="10_1dfv7"]
 [ext_resource type="AudioStream" uid="uid://bkctl01akyku0" path="res://Audio/EnemyAudio/snd_skirmisher_damaged.wav" id="10_cwx2p"]
+[ext_resource type="Texture2D" uid="uid://dgroflxfigwtq" path="res://Sprites/GUISprites/EnemyGUI/spr_gui_arrow_enemy_indicator.png" id="15_1r23d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s7w7t"]
 resource_local_to_scene = true
@@ -555,7 +556,7 @@ size = Vector2(5, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jy75p"]
 resource_local_to_scene = true
-size = Vector2(9, 9)
+size = Vector2(8.5, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nexmf"]
 
@@ -669,7 +670,7 @@ collision_layer = 32
 collision_mask = 4
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(1, -5)
+position = Vector2(-0.25, -5)
 shape = SubResource("RectangleShape2D_jy75p")
 
 [node name="Navigation" type="Node2D" parent="."]
@@ -715,6 +716,12 @@ shape = SubResource("RectangleShape2D_xkxup")
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_cwx2p")
 volume_db = -5.0
+
+[node name="EnemyMarker" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(0, -21)
+texture = ExtResource("15_1r23d")
 
 [connection signal="timeout" from="Attack1Area/Attack1AudioTimer" to="." method="_on_attack1_audio_timer_timeout"]
 [connection signal="timeout" from="Attack2Area/Attack2AudioTimer" to="." method="_on_attack1_audio_timer_timeout"]

@@ -119,6 +119,10 @@ func farway_enemy_spawner(delta) -> void:
 			for i in range(0,squad_comp.size()):
 				room_instantiate_enemy(i)
 			update_labels()
+			if rem_squads <= 0:
+				for _en in get_tree().get_nodes_in_group("Enemy"):
+					_en.enemy_marker.visible = true
+	#
 	if rem_squads <= 0 && autoload_game.enemy_count <= 0:
 		if autoload_game.local_wave <= 4:
 			autoload_player.player.player_restore_all()

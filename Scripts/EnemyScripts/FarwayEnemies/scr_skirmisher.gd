@@ -34,6 +34,7 @@ func skirmisher_ready() -> void:
 	attack1_detect = $Navigation/Attack1Detect/Attack1DetectCircle
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
+	enemy_marker = $EnemyMarker
 	#Set Stats
 	hp = 70
 	max_hp = 70

@@ -35,6 +35,7 @@ class_name Enemy
 @onready var hurt_timer: Timer
 @onready var hurt_areas: Array
 @onready var hurt_box: CollisionShape2D
+@onready var enemy_marker: Sprite2D
 @onready var blood_particle = preload("res://Scenes/GameScenes/ent_particle_blood.tscn")
 @onready var death_particle = preload("res://Scenes/GameScenes/ent_particle_death.tscn")
 @onready var item_drop = preload("res://Scenes/ItemScenes/ent_item.tscn")

@@ -38,6 +38,7 @@ func gorog_ready() -> void:
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
 	shielded_audio = $ShieldedSFX
+	enemy_marker = $EnemyMarker
 	#Set Stats
 	hp = 140
 	max_hp = 140

@@ -37,6 +37,7 @@ func hunter_ready() -> void:
 	attack2 = $Attack2Area
 	nav_agent = $Navigation/NavigationAgent2D
 	hurt_audio = $HurtSFX
+	enemy_marker = $EnemyMarker
 	#Set Stats
 	hp = 80
 	max_hp = 80
