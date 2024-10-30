@@ -29,5 +29,3 @@ void fragment() {
 		COLOR = vec4(silhouette_color.rgb,0.0);
 	}
 }
-
-
